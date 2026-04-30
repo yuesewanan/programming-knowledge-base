@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="系统学习 Git - 基础命令、分支管理、远程协作、工作流">
+  <title>Git · 编程知识库</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle">☰</button><a href="../index.html" class="logo"><span class="logo-icon">&lt;/&gt;</span><span>编程知识库</span></a></div>
+    <div class="header-right"><div class="search-box"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="搜索知识点..." autocomplete="off"><div class="search-dropdown" id="searchDropdown"></div></div><button class="theme-toggle" id="themeToggle">🌙</button></div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section"><div class="sidebar-title">🏠 导航</div><a href="../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🌐 前端</div><a href="html-css.html" class="sidebar-link"><span class="icon">🌐</span> HTML / CSS</a><a href="javascript.html" class="sidebar-link"><span class="icon">⚡</span> JavaScript</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">⚙️ 后端 & 语言</div><a href="python.html" class="sidebar-link"><span class="icon">🐍</span> Python</a><a href="java.html" class="sidebar-link"><span class="icon">☕</span> Java</a><a href="c-language.html" class="sidebar-link"><span class="icon">⚙️</span> C 语言</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🧠 算法 & 工具</div><a href="data-structures.html" class="sidebar-link"><span class="icon">📊</span> 数据结构 & 算法</a><a href="git.html" class="sidebar-link active"><span class="icon">🔗</span> Git</a><a href="sql.html" class="sidebar-link"><span class="icon">🗄️</span> SQL</a></div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(240,80,50,0.1); color: var(--color-git);">🔗 版本控制</div>
+        <h1>Git</h1>
+        <p>业界标准的分布式版本控制系统。掌握 Git 是团队协作开发的必备技能，也是开发者日常使用最频繁的工具之一。</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 目录</h3>
+        <ul class="toc-list">
+          <li><a href="#basics">基础命令</a></li>
+          <li><a href="#branching">分支管理</a></li>
+          <li><a href="#remote">远程协作</a></li>
+          <li><a href="#workflows">工作流</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="basics">
+        <h2>基础命令</h2>
+        <p>Git 基础命令是日常使用频率最高的操作。</p>
+
+        <div class="diagram">工作区 (Working Directory)
+    │ git add
+    ▼
+暂存区 (Staging Area / Index)
+    │ git commit
+    ▼
+本地仓库 (Local Repository)
+    │ git push
+    ▼
+远程仓库 (Remote Repository)</div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Bash</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 配置</span>
+<span class="variable">git</span> config --global user.name <span class="string">"Your Name"</span>
+<span class="variable">git</span> config --global user.email <span class="string">"email@example.com"</span>
+
+<span class="comment"># 初始化仓库</span>
+<span class="variable">git</span> init                            <span class="comment"># 创建新仓库</span>
+<span class="variable">git</span> clone &lt;url&gt;                     <span class="comment"># 克隆远程仓库</span>
+
+<span class="comment"># 日常操作</span>
+<span class="variable">git</span> status                          <span class="comment"># 查看状态</span>
+<span class="variable">git</span> add &lt;file&gt;                      <span class="comment"># 添加文件到暂存区</span>
+<span class="variable">git</span> add .                           <span class="comment"># 添加所有变更</span>
+<span class="variable">git</span> commit -m <span class="string">"feat: add login"</span>     <span class="comment"># 提交</span>
+<span class="variable">git</span> log --oneline                   <span class="comment"># 查看简洁日志</span>
+<span class="variable">git</span> diff                            <span class="comment"># 查看未暂存的变更</span>
+<span class="variable">git</span> diff --staged                   <span class="comment"># 查看已暂存的变更</span>
+
+<span class="comment"># 撤销操作</span>
+<span class="variable">git</span> restore &lt;file&gt;                  <span class="comment"># 撤销工作区修改</span>
+<span class="variable">git</span> restore --staged &lt;file&gt;          <span class="comment"># 撤销暂存</span>
+<span class="variable">git</span> reset --soft HEAD~1              <span class="comment"># 撤销上次提交，保留修改</span>
+<span class="variable">git</span> reset --hard HEAD~1              <span class="comment"># 撤销上次提交，丢弃修改</span>
+
+<span class="comment"># 查看历史</span>
+<span class="variable">git</span> log --graph --oneline --all      <span class="comment"># 图形化查看所有分支</span>
+<span class="variable">git</span> blame &lt;file&gt;                    <span class="comment"># 查看每行最后的修改者</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="branching">
+        <h2>分支管理</h2>
+        <p>分支是 Git 最强大的功能之一，让并行开发成为可能。</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Bash</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 创建与切换分支</span>
+<span class="variable">git</span> branch feature-login              <span class="comment"># 创建分支</span>
+<span class="variable">git</span> checkout feature-login            <span class="comment"># 切换分支</span>
+<span class="variable">git</span> checkout -b feature-login         <span class="comment"># 创建并切换（快捷）</span>
+
+<span class="comment"># 合并分支</span>
+<span class="variable">git</span> checkout main                     <span class="comment"># 先切回主分支</span>
+<span class="variable">git</span> merge feature-login               <span class="comment"># 合并特性分支到 main</span>
+
+<span class="comment"># 删除分支</span>
+<span class="variable">git</span> branch -d feature-login           <span class="comment"># 删除已合并的分支</span>
+<span class="variable">git</span> branch -D feature-login           <span class="comment"># 强制删除未合并的分支</span>
+
+<span class="comment"># 变基 (rebase) - 保持线性历史</span>
+<span class="variable">git</span> checkout feature
+<span class="variable">git</span> rebase main                       <span class="comment"># 将 feature 基点到 main 顶端</span>
+
+<span class="comment"># 解决冲突后继续 rebase</span>
+<span class="variable">git</span> rebase --continue                 <span class="comment"># 解决冲突后继续</span>
+<span class="variable">git</span> rebase --abort                    <span class="comment"># 放弃 rebase</span>
+
+<span class="comment"># 储藏 (stash) - 临时保存工作</span>
+<span class="variable">git</span> stash                             <span class="comment"># 暂存当前修改</span>
+<span class="variable">git</span> stash pop                         <span class="comment"># 恢复最近一次暂存</span>
+<span class="variable">git</span> stash list                        <span class="comment"># 查看所有暂存</span>
+<span class="variable">git</span> stash drop                        <span class="comment"># 丢弃暂存</span>
+
+<span class="comment"># 查看分支</span>
+<span class="variable">git</span> branch                            <span class="comment"># 本地分支列表</span>
+<span class="variable">git</span> branch -a                         <span class="comment"># 所有分支（含远程）</span></code></pre>
+        </div>
+
+        <div class="tip">
+          <strong>💡 merge vs rebase</strong>
+          <p><strong>merge</strong>：保留完整历史，产生合并提交，适合公共分支。</p>
+          <p><strong>rebase</strong>：历史线性整洁，但会改写提交，适合个人特性分支。</p>
+          <p>⚠️ 不要对已推送的公共分支进行 rebase。</p>
+        </div>
+      </section>
+
+      <section class="section" id="remote">
+        <h2>远程协作</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Bash</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 远程仓库管理</span>
+<span class="variable">git</span> remote add origin &lt;url&gt;           <span class="comment"># 添加远程仓库</span>
+<span class="variable">git</span> remote -v                         <span class="comment"># 查看远程仓库</span>
+<span class="variable">git</span> remote remove origin              <span class="comment"># 删除远程仓库</span>
+
+<span class="comment"># 推送</span>
+<span class="variable">git</span> push origin main                  <span class="comment"># 推送到远程 main</span>
+<span class="variable">git</span> push -u origin feature            <span class="comment"># 推送到远端并建立追踪</span>
+<span class="variable">git</span> push --all                        <span class="comment"># 推送所有分支</span>
+<span class="variable">git</span> push origin --delete feature      <span class="comment"># 删除远程分支</span>
+
+<span class="comment"># 拉取</span>
+<span class="variable">git</span> pull                              <span class="comment"># 拉取并合并 (fetch + merge)</span>
+<span class="variable">git</span> pull --rebase                     <span class="comment"># 拉取并变基 (推荐)</span>
+<span class="variable">git</span> fetch                             <span class="comment"># 仅拉取，不自动合并</span>
+
+<span class="comment"># 标签</span>
+<span class="variable">git</span> tag v1.0.0                        <span class="comment"># 创建标签</span>
+<span class="variable">git</span> push origin --tags                <span class="comment"># 推送所有标签</span></code></pre>
+        </div>
+
+        <div class="note">
+          <strong>📘 推荐的拉取方式</strong>
+          <p>使用 <code class="inline-code">git pull --rebase</code> 而非 <code class="inline-code">git pull</code>，可以避免产生多余的 merge commit，保持历史线性整洁。也可设置默认行为：</p>
+          <code class="inline-code">git config --global pull.rebase true</code>
+        </div>
+      </section>
+
+      <section class="section" id="workflows">
+        <h2>Git 工作流</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🌿</div>
+            <h4>Git Flow</h4>
+            <p>经典工作流：main / develop / feature / release / hotfix 分支。适合有固定发布周期的项目</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🚀</div>
+            <h4>GitHub Flow</h4>
+            <p>简化工作流：main + feature 分支 + PR。每个 feature 从 main 创建分支，通过 PR 合并回 main。持续部署友好</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔄</div>
+            <h4>GitLab Flow</h4>
+            <p>在 GitHub Flow 基础上增加环境分支（staging / production），支持环境部署</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">✅</div>
+            <h4>主干开发 (Trunk-based)</h4>
+            <p>短命特性分支 + 频繁合并到 main。适合 CI/CD 和 DevOps 文化</p>
+          </div>
+        </div>
+
+        <div class="diagram">GitHub Flow 示意图:
+
+main ──●────●────────●────────────●──
+         \          /            /
+          \        /            /
+feature  ──●──●──●  (Pull Request → Merge)</div>
+      </section>
+
+      <div class="page-nav">
+        <a href="data-structures.html" class="nav-prev">← 数据结构 & 算法</a>
+        <a href="sql.html" class="nav-next">学习 SQL →</a>
+      </div>
+      <footer class="footer"><p>💻 编程知识库 · Git 学习页面</p></footer>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

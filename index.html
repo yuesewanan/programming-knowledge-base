@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="编程知识学习网站 - 涵盖 HTML/CSS, JavaScript, Python, Java, C/C++, 数据结构与算法, Git, SQL 等编程知识">
+  <title>编程知识库 · 学习编程</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+</head>
+<body>
+
+  <!-- 顶部导航栏 -->
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="切换菜单">☰</button>
+      <a href="index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">🌙</button>
+    </div>
+  </header>
+
+  <!-- 侧边栏遮罩 -->
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+
+  <!-- 侧边栏 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="index.html" class="sidebar-link active">
+        <span class="icon">📖</span> 首页
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">🌐 前端</div>
+      <a href="topics/html-css.html" class="sidebar-link">
+        <span class="icon">🌐</span> HTML / CSS
+      </a>
+      <a href="topics/javascript.html" class="sidebar-link">
+        <span class="icon">⚡</span> JavaScript
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">⚙️ 后端 & 语言</div>
+      <a href="topics/python.html" class="sidebar-link">
+        <span class="icon">🐍</span> Python
+      </a>
+      <a href="topics/java.html" class="sidebar-link">
+        <span class="icon">☕</span> Java
+      </a>
+      <a href="topics/c-language.html" class="sidebar-link">
+        <span class="icon">⚙️</span> C 语言
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">🧠 算法 & 工具</div>
+      <a href="topics/data-structures.html" class="sidebar-link">
+        <span class="icon">📊</span> 数据结构 & 算法
+      </a>
+      <a href="topics/git.html" class="sidebar-link">
+        <span class="icon">🔗</span> Git
+      </a>
+      <a href="topics/sql.html" class="sidebar-link">
+        <span class="icon">🗄️</span> SQL
+      </a>
+    </div>
+  </aside>
+
+  <!-- 进度条 -->
+  <div class="progress-bar">
+    <div class="fill"></div>
+  </div>
+
+  <!-- 主内容 -->
+  <main class="main">
+    <div class="content">
+
+      <!-- 首页横幅 -->
+      <section class="hero-section">
+        <h1>💻 编程知识库</h1>
+        <p>从零开始系统学习编程，涵盖主流语言与核心技术的知识宝典</p>
+        <div style="font-size: 18px; color: var(--text-secondary);">
+          正在学习 <strong style="color: var(--primary);" id="typeWriter">HTML/CSS</strong>
+        </div>
+      </section>
+
+      <!-- 统计 -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">学习模块</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">40+</div>
+          <div class="stat-label">核心知识点</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">代码示例</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">免费学习</div>
+        </div>
+      </div>
+
+      <!-- 主题网格 -->
+      <h2 style="font-size: 22px; font-weight: 700; margin: 40px 0 20px;">📚 学习路径</h2>
+
+      <div class="topic-grid">
+        <a href="topics/html-css.html" class="topic-card" style="--card-color: var(--color-html);">
+          <span class="topic-icon">🌐</span>
+          <h3>HTML / CSS</h3>
+          <p>网页结构与样式基础，从标签到响应式布局，构建现代网页的必备技能。</p>
+          <div class="topic-meta">
+            <span>📄 6 章节</span>
+            <span>⭐ 入门必学</span>
+          </div>
+        </a>
+
+        <a href="topics/javascript.html" class="topic-card" style="--card-color: var(--color-js);">
+          <span class="topic-icon">⚡</span>
+          <h3>JavaScript</h3>
+          <p>掌握 Web 交互的核心语言，从基础语法到异步编程与 ES6+ 新特性。</p>
+          <div class="topic-meta">
+            <span>📄 6 章节</span>
+            <span>⭐ 核心技能</span>
+          </div>
+        </a>
+
+        <a href="topics/python.html" class="topic-card" style="--card-color: var(--color-python);">
+          <span class="topic-icon">🐍</span>
+          <h3>Python</h3>
+          <p>简洁优雅的通用编程语言，适用于 Web 开发、数据分析与人工智能。</p>
+          <div class="topic-meta">
+            <span>📄 5 章节</span>
+            <span>⭐ 强烈推荐</span>
+          </div>
+        </a>
+
+        <a href="topics/java.html" class="topic-card" style="--card-color: var(--color-java);">
+          <span class="topic-icon">☕</span>
+          <h3>Java</h3>
+          <p>企业级应用的主流语言，深入理解面向对象编程与大型项目开发。</p>
+          <div class="topic-meta">
+            <span>📄 4 章节</span>
+            <span>⭐ 后端必备</span>
+          </div>
+        </a>
+
+        <a href="topics/c-language.html" class="topic-card" style="--card-color: var(--color-c);">
+          <span class="topic-icon">⚙️</span>
+          <h3>C 语言</h3>
+          <p>编程语言的基石，深入理解指针、内存管理与底层计算机原理。</p>
+          <div class="topic-meta">
+            <span>📄 4 章节</span>
+            <span>⭐ 基础夯实</span>
+          </div>
+        </a>
+
+        <a href="topics/data-structures.html" class="topic-card" style="--card-color: var(--color-dsa);">
+          <span class="topic-icon">📊</span>
+          <h3>数据结构 & 算法</h3>
+          <p>编程面试核心，系统学习常见数据结构与经典算法思想。</p>
+          <div class="topic-meta">
+            <span>📄 5 章节</span>
+            <span>⭐ 面试必备</span>
+          </div>
+        </a>
+
+        <a href="topics/git.html" class="topic-card" style="--card-color: var(--color-git);">
+          <span class="topic-icon">🔗</span>
+          <h3>Git</h3>
+          <p>版本控制工业标准，掌握团队协作开发的核心工具。</p>
+          <div class="topic-meta">
+            <span>📄 4 章节</span>
+            <span>⭐ 团队协作</span>
+          </div>
+        </a>
+
+        <a href="topics/sql.html" class="topic-card" style="--card-color: var(--color-sql);">
+          <span class="topic-icon">🗄️</span>
+          <h3>SQL</h3>
+          <p>数据库查询语言标准，掌握数据存储、查询与优化的核心技能。</p>
+          <div class="topic-meta">
+            <span>📄 4 章节</span>
+            <span>⭐ 数据核心</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 特色说明 -->
+      <div style="margin-top: 48px; padding: 32px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl);">
+        <h3 style="font-size: 20px; margin-bottom: 20px;">✨ 网站特色</h3>
+        <div class="card-grid">
+          <div class="card" style="border-color: var(--primary);">
+            <div class="card-icon">📖</div>
+            <h4>系统化学习</h4>
+            <p>从基础到进阶，结构化知识体系，循序渐进的学习路径</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">💻</div>
+            <h4>丰富代码示例</h4>
+            <p>每个知识点配有可直接运行的代码示例，边学边练效果更佳</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌙</div>
+            <h4>暗色模式</h4>
+            <p>支持亮色/暗色主题切换，保护视力，舒适阅读</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔍</div>
+            <h4>全文搜索</h4>
+            <p>快速查找所需知识点，精准定位学习内容</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📱</div>
+            <h4>响应式设计</h4>
+            <p>适配桌面、平板与手机，随时随地学习</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🆓</div>
+            <h4>完全免费</h4>
+            <p>所有内容永久免费，无需注册，即开即学</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>💻 编程知识库 · 用 ❤️ 构建 · 持续更新中</p>
+      </footer>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

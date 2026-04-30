@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="系统学习 SQL - 基础查询、JOIN、聚合函数、索引与事务">
+  <title>SQL · 编程知识库</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle">☰</button><a href="../index.html" class="logo"><span class="logo-icon">&lt;/&gt;</span><span>编程知识库</span></a></div>
+    <div class="header-right"><div class="search-box"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="搜索知识点..." autocomplete="off"><div class="search-dropdown" id="searchDropdown"></div></div><button class="theme-toggle" id="themeToggle">🌙</button></div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section"><div class="sidebar-title">🏠 导航</div><a href="../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🌐 前端</div><a href="html-css.html" class="sidebar-link"><span class="icon">🌐</span> HTML / CSS</a><a href="javascript.html" class="sidebar-link"><span class="icon">⚡</span> JavaScript</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">⚙️ 后端 & 语言</div><a href="python.html" class="sidebar-link"><span class="icon">🐍</span> Python</a><a href="java.html" class="sidebar-link"><span class="icon">☕</span> Java</a><a href="c-language.html" class="sidebar-link"><span class="icon">⚙️</span> C 语言</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🧠 算法 & 工具</div><a href="data-structures.html" class="sidebar-link"><span class="icon">📊</span> 数据结构 & 算法</a><a href="git.html" class="sidebar-link"><span class="icon">🔗</span> Git</a><a href="sql.html" class="sidebar-link active"><span class="icon">🗄️</span> SQL</a></div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(0,117,143,0.1); color: var(--color-sql);">🗄️ 数据管理</div>
+        <h1>SQL</h1>
+        <p>结构化查询语言，操作关系型数据库的标准语言。从简单的数据查询到复杂的数据分析，SQL 是数据世界的基础技能。</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 目录</h3>
+        <ul class="toc-list">
+          <li><a href="#basics">基础查询</a></li>
+          <li><a href="#filtering">条件过滤与排序</a></li>
+          <li><a href="#joins">表连接 (JOIN)</a></li>
+          <li><a href="#aggregation">聚合与分组</a></li>
+          <li><a href="#ddl">表操作 (DDL)</a></li>
+          <li><a href="#advanced">索引与事务</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="basics">
+        <h2>基础查询</h2>
+        <p>SELECT 是 SQL 中最核心的语句，用于从表中检索数据。</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">SQL</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">-- 查询所有列</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">users</span>;
+
+<span class="comment">-- 查询指定列</span>
+<span class="keyword">SELECT</span> <span class="variable">name</span>, <span class="variable">email</span>, <span class="variable">age</span> <span class="keyword">FROM</span> <span class="variable">users</span>;
+
+<span class="comment">-- 列别名</span>
+<span class="keyword">SELECT</span>
+    <span class="variable">name</span> <span class="keyword">AS</span> <span class="string">"姓名"</span>,
+    <span class="variable">email</span> <span class="keyword">AS</span> <span class="string">"邮箱"</span>
+<span class="keyword">FROM</span> <span class="variable">users</span>;
+
+<span class="comment">-- 去重</span>
+<span class="keyword">SELECT DISTINCT</span> <span class="variable">city</span> <span class="keyword">FROM</span> <span class="variable">users</span>;
+
+<span class="comment">-- 限制返回行数</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">products</span> <span class="keyword">LIMIT</span> <span class="number">10</span>;       <span class="comment">-- MySQL, PostgreSQL</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">products</span> <span class="keyword">FETCH FIRST</span> <span class="number">10</span> <span class="keyword">ROWS ONLY</span>;  <span class="comment">-- SQL Server, Oracle</span>
+
+<span class="comment">-- 常量列</span>
+<span class="keyword">SELECT</span> <span class="variable">name</span>, <span class="string">'活跃'</span> <span class="keyword">AS</span> <span class="variable">status</span> <span class="keyword">FROM</span> <span class="variable">users</span>;</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="filtering">
+        <h2>条件过滤与排序</h2>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">SQL</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">-- WHERE 子句</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">users</span>
+<span class="keyword">WHERE</span> <span class="variable">age</span> >= <span class="number">18</span>;
+
+<span class="comment">-- 多条件</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">orders</span>
+<span class="keyword">WHERE</span> <span class="variable">status</span> = <span class="string">'completed'</span>
+  <span class="keyword">AND</span> <span class="variable">total</span> > <span class="number">100</span>
+  <span class="keyword">AND</span> (<span class="variable">created_at</span> >= <span class="string">'2024-01-01'</span> <span class="keyword">OR</span> <span class="variable">priority</span> = <span class="string">'high'</span>);
+
+<span class="comment">-- IN 操作符</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">products</span>
+<span class="keyword">WHERE</span> <span class="variable">category</span> <span class="keyword">IN</span> (<span class="string">'电子产品'</span>, <span class="string">'书籍'</span>, <span class="string">'服装'</span>);
+
+<span class="comment">-- BETWEEN 范围</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">employees</span>
+<span class="keyword">WHERE</span> <span class="variable">salary</span> <span class="keyword">BETWEEN</span> <span class="number">5000</span> <span class="keyword">AND</span> <span class="number">10000</span>;
+
+<span class="comment">-- LIKE 模糊匹配</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">users</span>
+<span class="keyword">WHERE</span> <span class="variable">name</span> <span class="keyword">LIKE</span> <span class="string">'张%'</span>;      <span class="comment">-- 以"张"开头</span>
+
+<span class="comment">-- NULL 判断</span>
+<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="variable">users</span>
+<span class="keyword">WHERE</span> <span class="variable">phone</span> <span class="keyword">IS NULL</span>;         <span class="comment">-- IS NOT NULL 判断非空</span>
+
+<span class="comment">-- 排序</span>
+<span class="keyword">SELECT</span> <span class="variable">name</span>, <span class="variable">price</span>
+<span class="keyword">FROM</span> <span class="variable">products</span>
+<span class="keyword">ORDER BY</span> <span class="variable">price</span> <span class="keyword">DESC</span>, <span class="variable">name</span> <span class="keyword">ASC</span>;    <span class="comment">-- DESC 降序，ASC 升序（默认）</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="joins">
+        <h2>表连接 (JOIN)</h2>
+        <p>JOIN 用于将多个表中的数据关联查询，是关系型数据库的核心操作。</p>
+
+        <div class="diagram">表A (users)          表B (orders)
+┌─────┬──────┐     ┌─────┬──────────┐
+│ id  │ name │     │ id  │ user_id  │
+├─────┼──────┤     ├─────┼──────────┤
+│ 1   │ Alice│     │ 101 │ 1        │
+│ 2   │ Bob  │     │ 102 │ 1        │
+│ 3   │ Carol│     │ 103 │ 3        │
+└─────┴──────┘     └─────┴──────────┘
+
+INNER JOIN → 只返回匹配的行 (用户1,3)
+LEFT JOIN  → 返回左表所有行 (用户1,2,3)</div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">SQL</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">-- INNER JOIN: 只返回两表匹配的行</span>
+<span class="keyword">SELECT</span> <span class="variable">u</span>.<span class="variable">name</span>, <span class="variable">o</span>.<span class="variable">total</span>, <span class="variable">o</span>.<span class="variable">created_at</span>
+<span class="keyword">FROM</span> <span class="variable">users</span> <span class="variable">u</span>
+<span class="keyword">INNER JOIN</span> <span class="variable">orders</span> <span class="variable">o</span> <span class="keyword">ON</span> <span class="variable">u</span>.<span class="variable">id</span> = <span class="variable">o</span>.<span class="variable">user_id</span>;
+
+<span class="comment">-- LEFT JOIN: 返回左表所有行，右表无匹配则为 NULL</span>
+<span class="keyword">SELECT</span> <span class="variable">u</span>.<span class="variable">name</span>, <span class="keyword">COUNT</span>(<span class="variable">o</span>.<span class="variable">id</span>) <span class="keyword">AS</span> <span class="variable">order_count</span>
+<span class="keyword">FROM</span> <span class="variable">users</span> <span class="variable">u</span>
+<span class="keyword">LEFT JOIN</span> <span class="variable">orders</span> <span class="variable">o</span> <span class="keyword">ON</span> <span class="variable">u</span>.<span class="variable">id</span> = <span class="variable">o</span>.<span class="variable">user_id</span>
+<span class="keyword">GROUP BY</span> <span class="variable">u</span>.<span class="variable">id</span>, <span class="variable">u</span>.<span class="variable">name</span>;
+
+<span class="comment">-- RIGHT JOIN: 返回右表所有行</span>
+<span class="keyword">SELECT</span> <span class="variable">e</span>.<span class="variable">name</span>, <span class="variable">d</span>.<span class="variable">name</span> <span class="keyword">AS</span> <span class="variable">department</span>
+<span class="keyword">FROM</span> <span class="variable">employees</span> <span class="variable">e</span>
+<span class="keyword">RIGHT JOIN</span> <span class="variable">departments</span> <span class="variable">d</span> <span class="keyword">ON</span> <span class="variable">e</span>.<span class="variable">dept_id</span> = <span class="variable">d</span>.<span class="variable">id</span>;
+
+<span class="comment">-- FULL JOIN: 返回所有行</span>
+<span class="comment">-- (MySQL 不直接支持，可用 LEFT + UNION + RIGHT 模拟)</span>
+
+<span class="comment">-- 自连接: 同一张表连接自己</span>
+<span class="keyword">SELECT</span> <span class="variable">e1</span>.<span class="variable">name</span> <span class="keyword">AS</span> <span class="variable">employee</span>,
+       <span class="variable">e2</span>.<span class="variable">name</span> <span class="keyword">AS</span> <span class="variable">manager</span>
+<span class="keyword">FROM</span> <span class="variable">employees</span> <span class="variable">e1</span>
+<span class="keyword">LEFT JOIN</span> <span class="variable">employees</span> <span class="variable">e2</span> <span class="keyword">ON</span> <span class="variable">e1</span>.<span class="variable">manager_id</span> = <span class="variable">e2</span>.<span class="variable">id</span>;</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="aggregation">
+        <h2>聚合与分组</h2>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">SQL</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">-- 聚合函数</span>
+<span class="keyword">SELECT</span>
+    <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> <span class="variable">total_users</span>,           <span class="comment">-- 计数</span>
+    <span class="keyword">AVG</span>(<span class="variable">age</span>) <span class="keyword">AS</span> <span class="variable">avg_age</span>,               <span class="comment">-- 平均值</span>
+    <span class="keyword">SUM</span>(<span class="variable">amount</span>) <span class="keyword">AS</span> <span class="variable">total_amount</span>,       <span class="comment">-- 总和</span>
+    <span class="keyword">MAX</span>(<span class="variable">score</span>) <span class="keyword">AS</span> <span class="variable">max_score</span>,            <span class="comment">-- 最大值</span>
+    <span class="keyword">MIN</span>(<span class="variable">score</span>) <span class="keyword">AS</span> <span class="variable">min_score</span>             <span class="comment">-- 最小值</span>
+<span class="keyword">FROM</span> <span class="variable">users</span>;
+
+<span class="comment">-- GROUP BY 分组</span>
+<span class="keyword">SELECT</span>
+    <span class="variable">department</span>,
+    <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> <span class="variable">employee_count</span>,
+    <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(<span class="variable">salary</span>), <span class="number">2</span>) <span class="keyword">AS</span> <span class="variable">avg_salary</span>
+<span class="keyword">FROM</span> <span class="variable">employees</span>
+<span class="keyword">GROUP BY</span> <span class="variable">department</span>;
+
+<span class="comment">-- HAVING: 对分组结果过滤 (WHERE 不行)</span>
+<span class="keyword">SELECT</span>
+    <span class="variable">category</span>,
+    <span class="keyword">COUNT</span>(*) <span class="keyword">AS</span> <span class="variable">product_count</span>,
+    <span class="keyword">AVG</span>(<span class="variable">price</span>) <span class="keyword">AS</span> <span class="variable">avg_price</span>
+<span class="keyword">FROM</span> <span class="variable">products</span>
+<span class="keyword">GROUP BY</span> <span class="variable">category</span>
+<span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*) >= <span class="number">5</span>;      <span class="comment">-- 只显示商品数 >= 5 的分类</span>
+
+<span class="comment">-- WHERE vs HAVING</span>
+<span class="comment">-- WHERE: 分组前过滤行</span>
+<span class="comment">-- HAVING: 分组后过滤组</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="ddl">
+        <h2>表操作 (DDL)</h2>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">SQL</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">-- 创建表</span>
+<span class="keyword">CREATE TABLE</span> <span class="variable">users</span> (
+    <span class="variable">id</span> <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span> <span class="keyword">AUTO_INCREMENT</span>,
+    <span class="variable">name</span> <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">NOT NULL</span>,
+    <span class="variable">email</span> <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT NULL</span>,
+    <span class="variable">age</span> <span class="type">INT</span> <span class="keyword">CHECK</span> (<span class="variable">age</span> >= <span class="number">0</span>),
+    <span class="variable">city</span> <span class="type">VARCHAR</span>(<span class="number">100</span>) <span class="keyword">DEFAULT</span> <span class="string">'未知'</span>,
+    <span class="variable">created_at</span> <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="builtin">CURRENT_TIMESTAMP</span>
+);
+
+<span class="comment">-- 修改表</span>
+<span class="keyword">ALTER TABLE</span> <span class="variable">users</span> <span class="keyword">ADD COLUMN</span> <span class="variable">phone</span> <span class="type">VARCHAR</span>(<span class="number">20</span>);
+<span class="keyword">ALTER TABLE</span> <span class="variable">users</span> <span class="keyword">DROP COLUMN</span> <span class="variable">phone</span>;
+<span class="keyword">ALTER TABLE</span> <span class="variable">users</span> <span class="keyword">MODIFY COLUMN</span> <span class="variable">name</span> <span class="type">VARCHAR</span>(<span class="number">200</span>);
+
+<span class="comment">-- 外键约束</span>
+<span class="keyword">CREATE TABLE</span> <span class="variable">orders</span> (
+    <span class="variable">id</span> <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span> <span class="keyword">AUTO_INCREMENT</span>,
+    <span class="variable">user_id</span> <span class="type">INT</span> <span class="keyword">NOT NULL</span>,
+    <span class="variable">total</span> <span class="type">DECIMAL</span>(<span class="number">10</span>, <span class="number">2</span>),
+    <span class="keyword">FOREIGN KEY</span> (<span class="variable">user_id</span>) <span class="keyword">REFERENCES</span> <span class="variable">users</span>(<span class="variable">id</span>)
+        <span class="keyword">ON DELETE CASCADE</span>
+);
+
+<span class="comment">-- 插入数据</span>
+<span class="keyword">INSERT INTO</span> <span class="variable">users</span> (<span class="variable">name</span>, <span class="variable">email</span>, <span class="variable">age</span>)
+<span class="keyword">VALUES</span> (<span class="string">'Alice'</span>, <span class="string">'alice@example.com'</span>, <span class="number">25</span>);
+
+<span class="comment">-- 更新数据</span>
+<span class="keyword">UPDATE</span> <span class="variable">users</span>
+<span class="keyword">SET</span> <span class="variable">age</span> = <span class="number">26</span>, <span class="variable">city</span> = <span class="string">'北京'</span>
+<span class="keyword">WHERE</span> <span class="variable">id</span> = <span class="number">1</span>;
+
+<span class="comment">-- 删除数据</span>
+<span class="keyword">DELETE FROM</span> <span class="variable">users</span> <span class="keyword">WHERE</span> <span class="variable">id</span> = <span class="number">1</span>;
+<span class="keyword">TRUNCATE TABLE</span> <span class="variable">users</span>;      <span class="comment">-- 清空表 (不可回滚)</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="advanced">
+        <h2>索引与事务</h2>
+        <p>索引提升查询性能，事务确保数据一致性。</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">SQL</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">-- 创建索引</span>
+<span class="keyword">CREATE INDEX</span> <span class="variable">idx_users_email</span> <span class="keyword">ON</span> <span class="variable">users</span>(<span class="variable">email</span>);
+<span class="keyword">CREATE UNIQUE INDEX</span> <span class="variable">idx_users_phone</span> <span class="keyword">ON</span> <span class="variable">users</span>(<span class="variable">phone</span>);
+<span class="keyword">CREATE INDEX</span> <span class="variable">idx_orders_user_date</span> <span class="keyword">ON</span> <span class="variable">orders</span>(<span class="variable">user_id</span>, <span class="variable">created_at</span>);  <span class="comment">-- 复合索引</span>
+
+<span class="comment">-- 查看执行计划</span>
+<span class="keyword">EXPLAIN SELECT</span> * <span class="keyword">FROM</span> <span class="variable">users</span> <span class="keyword">WHERE</span> <span class="variable">email</span> = <span class="string">'test@test.com'</span>;
+
+<span class="comment">-- 事务 (ACID)</span>
+<span class="keyword">START TRANSACTION</span>;
+
+<span class="keyword">UPDATE</span> <span class="variable">accounts</span>
+<span class="keyword">SET</span> <span class="variable">balance</span> = <span class="variable">balance</span> - <span class="number">100</span>
+<span class="keyword">WHERE</span> <span class="variable">id</span> = <span class="number">1</span>;
+
+<span class="keyword">UPDATE</span> <span class="variable">accounts</span>
+<span class="keyword">SET</span> <span class="variable">balance</span> = <span class="variable">balance</span> + <span class="number">100</span>
+<span class="keyword">WHERE</span> <span class="variable">id</span> = <span class="number">2</span>;
+
+<span class="keyword">COMMIT</span>;     <span class="comment">-- 提交事务</span>
+<span class="comment">-- ROLLBACK; -- 回滚事务</span>
+
+<span class="comment">-- 事务隔离级别</span>
+<span class="keyword">SET TRANSACTION ISOLATION LEVEL READ COMMITTED</span>;</code></pre>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <h4>索引类型</h4>
+            <p>B+树索引（默认）、哈希索引、全文索引、空间索引。选择合适的索引类型对查询性能至关重要</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔒</div>
+            <h4>ACID</h4>
+            <p>原子性 (Atomicity)、一致性 (Consistency)、隔离性 (Isolation)、持久性 (Durability)</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">👁️</div>
+            <h4>隔离级别</h4>
+            <p>READ UNCOMMITTED → READ COMMITTED → REPEATABLE READ → SERIALIZABLE（从低到高）</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📊</div>
+            <h4>执行计划</h4>
+            <p>使用 EXPLAIN（MySQL）/ EXPLAIN ANALYZE（PostgreSQL）分析查询性能瓶颈</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-nav">
+        <a href="git.html" class="nav-prev">← Git</a>
+        <a href="../index.html" class="nav-next">返回首页 →</a>
+      </div>
+      <footer class="footer"><p>💻 编程知识库 · SQL 学习页面</p></footer>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

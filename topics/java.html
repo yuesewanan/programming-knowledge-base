@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="系统学习 Java - 基础语法、面向对象、集合框架、异常处理">
+  <title>Java · 编程知识库</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle">☰</button><a href="../index.html" class="logo"><span class="logo-icon">&lt;/&gt;</span><span>编程知识库</span></a></div>
+    <div class="header-right"><div class="search-box"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="搜索知识点..." autocomplete="off"><div class="search-dropdown" id="searchDropdown"></div></div><button class="theme-toggle" id="themeToggle">🌙</button></div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section"><div class="sidebar-title">🏠 导航</div><a href="../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🌐 前端</div><a href="html-css.html" class="sidebar-link"><span class="icon">🌐</span> HTML / CSS</a><a href="javascript.html" class="sidebar-link"><span class="icon">⚡</span> JavaScript</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">⚙️ 后端 & 语言</div><a href="python.html" class="sidebar-link"><span class="icon">🐍</span> Python</a><a href="java.html" class="sidebar-link active"><span class="icon">☕</span> Java</a><a href="c-language.html" class="sidebar-link"><span class="icon">⚙️</span> C 语言</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🧠 算法 & 工具</div><a href="data-structures.html" class="sidebar-link"><span class="icon">📊</span> 数据结构 & 算法</a><a href="git.html" class="sidebar-link"><span class="icon">🔗</span> Git</a><a href="sql.html" class="sidebar-link"><span class="icon">🗄️</span> SQL</a></div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">☕ 企业级开发</div>
+        <h1>Java</h1>
+        <p>经典的企业级编程语言，以其"一次编写，到处运行"的跨平台能力和强大的面向对象特性著称。</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 目录</h3>
+        <ul class="toc-list">
+          <li><a href="#basics">基础语法</a></li>
+          <li><a href="#oop">面向对象编程</a></li>
+          <li><a href="#collections">集合框架</a></li>
+          <li><a href="#exceptions">异常处理</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="basics">
+        <h2>基础语法</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Java</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="class">HelloWorld</span> {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="function">main</span>(<span class="type">String</span>[] <span class="variable">args</span>) {
+        <span class="comment">// 变量声明</span>
+        <span class="type">int</span> <span class="variable">age</span> = <span class="number">25</span>;
+        <span class="type">double</span> <span class="variable">price</span> = <span class="number">19.99</span>;
+        <span class="type">boolean</span> <span class="variable">isValid</span> = <span class="keyword">true</span>;
+        <span class="type">String</span> <span class="variable">name</span> = <span class="string">"Java"</span>;
+
+        <span class="comment">// 控制流</span>
+        <span class="keyword">if</span> (<span class="variable">age</span> >= <span class="number">18</span>) {
+            <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"成年"</span>);
+        }
+
+        <span class="comment">// 循环</span>
+        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> = <span class="number">0</span>; <span class="variable">i</span> < <span class="number">5</span>; <span class="variable">i</span>++) {
+            <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="variable">i</span>);
+        }
+
+        <span class="comment">// switch 表达式 (Java 14+)</span>
+        <span class="type">String</span> <span class="variable">result</span> = <span class="keyword">switch</span> (<span class="variable">day</span>) {
+            <span class="keyword">case</span> <span class="string">"MON"</span>, <span class="string">"FRI"</span> -> <span class="string">"工作日"</span>;
+            <span class="keyword">case</span> <span class="string">"SAT"</span>, <span class="string">"SUN"</span> -> <span class="string">"周末"</span>;
+            <span class="keyword">default</span> -> <span class="string">"未知"</span>;
+        };
+
+        <span class="comment">// 数组</span>
+        <span class="type">int</span>[] <span class="variable">numbers</span> = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>};
+        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">n</span> : <span class="variable">numbers</span>) {       <span class="comment">// 增强 for 循环</span>
+            <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="variable">n</span>);
+        }
+    }
+}</code></pre>
+        </div>
+        <div class="note"><strong>📘 说明</strong>Java 是强类型语言，所有变量必须先声明类型。入口方法是 <code class="inline-code">public static void main(String[] args)</code>。</div>
+      </section>
+
+      <section class="section" id="oop">
+        <h2>面向对象编程</h2>
+        <p>Java 是彻底的面向对象语言，一切皆对象。</p>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Java</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">// 封装 - 使用 private 和 getter/setter</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">Student</span> {
+    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">name</span>;
+    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">age</span>;
+
+    <span class="keyword">public</span> <span class="function">Student</span>(<span class="type">String</span> <span class="variable">name</span>, <span class="type">int</span> <span class="variable">age</span>) {  <span class="comment">// 构造方法</span>
+        <span class="keyword">this</span>.<span class="variable">name</span> = <span class="variable">name</span>;
+        <span class="keyword">this</span>.<span class="variable">age</span> = <span class="variable">age</span>;
+    }
+
+    <span class="keyword">public</span> <span class="type">String</span> <span class="function">getName</span>() { <span class="keyword">return</span> <span class="variable">name</span>; }
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">setName</span>(<span class="type">String</span> <span class="variable">name</span>) { <span class="keyword">this</span>.<span class="variable">name</span> = <span class="variable">name</span>; }
+}
+
+<span class="comment">// 继承</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">Animal</span> {
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">speak</span>() {
+        <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"动物叫"</span>);
+    }
+}
+
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">Dog</span> <span class="keyword">extends</span> <span class="class">Animal</span> {
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">speak</span>() {              <span class="comment">// 方法重写</span>
+        <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"汪汪!"</span>);
+    }
+}
+
+<span class="comment">// 接口</span>
+<span class="keyword">public</span> <span class="keyword">interface</span> <span class="class">Drawable</span> {
+    <span class="keyword">void</span> <span class="function">draw</span>();                    <span class="comment">// 抽象方法</span>
+    <span class="keyword">default</span> <span class="keyword">void</span> <span class="function">print</span>() {         <span class="comment">// 默认方法 (Java 8+)</span>
+        <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"打印"</span>);
+    }
+}
+
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">Circle</span> <span class="keyword">implements</span> <span class="class">Drawable</span> {
+    <span class="meta">@Override</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">draw</span>() {
+        <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"画圆"</span>);
+    }
+}
+
+<span class="comment">// 抽象类</span>
+<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="class">Shape</span> {
+    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">double</span> <span class="function">area</span>();
+}</code></pre>
+        </div>
+        <div class="card-grid">
+          <div class="card"><div class="card-icon">🔒</div><h4>封装</h4><p>使用 private/protected/public 控制访问权限，保护数据安全</p></div>
+          <div class="card"><div class="card-icon">🧬</div><h4>继承</h4><p>extends 关键字实现类继承，子类复用父类成员</p></div>
+          <div class="card"><div class="card-icon">🔄</div><h4>多态</h4><p>父类引用指向子类对象，运行时动态绑定方法调用</p></div>
+          <div class="card"><div class="card-icon">📐</div><h4>抽象</h4><p>抽象类和接口定义规范，子类实现具体细节</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="collections">
+        <h2>集合框架</h2>
+        <p>Java 集合框架提供了丰富的数据结构实现。</p>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Java</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">import</span> <span class="variable">java.util.*</span>;
+
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">CollectionDemo</span> {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="function">main</span>(<span class="type">String</span>[] <span class="variable">args</span>) {
+        <span class="comment">// List - 有序可重复</span>
+        <span class="type">List</span>&lt;<span class="type">String</span>&gt; <span class="variable">list</span> = <span class="keyword">new</span> <span class="class">ArrayList</span>&lt;&gt;();
+        <span class="variable">list</span>.<span class="function">add</span>(<span class="string">"Apple"</span>);
+        <span class="variable">list</span>.<span class="function">add</span>(<span class="string">"Banana"</span>);
+        <span class="variable">list</span>.<span class="function">get</span>(<span class="number">0</span>);           <span class="comment">// 通过索引访问</span>
+        <span class="variable">list</span>.<span class="function">remove</span>(<span class="string">"Apple"</span>);
+
+        <span class="comment">// Set - 无序不重复</span>
+        <span class="type">Set</span>&lt;<span class="type">Integer</span>&gt; <span class="variable">set</span> = <span class="keyword">new</span> <span class="class">HashSet</span>&lt;&gt;();
+        <span class="variable">set</span>.<span class="function">add</span>(<span class="number">1</span>);
+        <span class="variable">set</span>.<span class="function">add</span>(<span class="number">2</span>);
+        <span class="variable">set</span>.<span class="function">contains</span>(<span class="number">1</span>);      <span class="comment">// true</span>
+
+        <span class="comment">// Map - 键值对</span>
+        <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="type">Integer</span>&gt; <span class="variable">map</span> = <span class="keyword">new</span> <span class="class">HashMap</span>&lt;&gt;();
+        <span class="variable">map</span>.<span class="function">put</span>(<span class="string">"Alice"</span>, <span class="number">90</span>);
+        <span class="variable">map</span>.<span class="function">get</span>(<span class="string">"Alice"</span>);     <span class="comment">// 90</span>
+        <span class="keyword">for</span> (<span class="type">Map</span>.<span class="type">Entry</span>&lt;<span class="type">String</span>, <span class="type">Integer</span>&gt; <span class="variable">entry</span> : <span class="variable">map</span>.<span class="function">entrySet</span>()) {
+            <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="variable">entry</span>.<span class="function">getKey</span>() + <span class="string">": "</span> + <span class="variable">entry</span>.<span class="function">getValue</span>());
+        }
+
+        <span class="comment">// Queue - 队列</span>
+        <span class="type">Queue</span>&lt;<span class="type">String</span>&gt; <span class="variable">queue</span> = <span class="keyword">new</span> <span class="class">LinkedList</span>&lt;&gt;();
+        <span class="variable">queue</span>.<span class="function">offer</span>(<span class="string">"first"</span>);   <span class="comment">// 入队</span>
+        <span class="variable">queue</span>.<span class="function">poll</span>();             <span class="comment">// 出队</span>
+
+        <span class="comment">// Stream API (Java 8+)</span>
+        <span class="variable">list</span>.<span class="function">stream</span>()
+            .<span class="function">filter</span>(<span class="variable">s</span> -> <span class="variable">s</span>.<span class="function">startsWith</span>(<span class="string">"A"</span>))
+            .<span class="function">map</span>(<span class="type">String</span>::<span class="variable">toUpperCase</span>)
+            .<span class="function">forEach</span>(<span class="type">System</span>.<span class="variable">out</span>::<span class="variable">println</span>);
+    }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="exceptions">
+        <h2>异常处理</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Java</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment">// try-catch-finally</span>
+<span class="keyword">try</span> {
+    <span class="type">int</span> <span class="variable">result</span> = <span class="number">10</span> / <span class="number">0</span>;
+} <span class="keyword">catch</span> (<span class="class">ArithmeticException</span> <span class="variable">e</span>) {
+    <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"除数不能为0: "</span> + <span class="variable">e</span>.<span class="function">getMessage</span>());
+} <span class="keyword">catch</span> (<span class="class">Exception</span> <span class="variable">e</span>) {
+    <span class="variable">e</span>.<span class="function">printStackTrace</span>();
+} <span class="keyword">finally</span> {
+    <span class="type">System</span>.<span class="variable">out</span>.<span class="function">println</span>(<span class="string">"始终执行"</span>);  <span class="comment">// 关闭资源</span>
+}
+
+<span class="comment">// try-with-resources (Java 7+) - 自动关闭资源</span>
+<span class="keyword">try</span> (<span class="class">BufferedReader</span> <span class="variable">br</span> = <span class="keyword">new</span> <span class="class">BufferedReader</span>(
+        <span class="keyword">new</span> <span class="class">FileReader</span>(<span class="string">"file.txt"</span>))) {
+    <span class="type">String</span> <span class="variable">line</span> = <span class="variable">br</span>.<span class="function">readLine</span>();
+} <span class="keyword">catch</span> (<span class="class">IOException</span> <span class="variable">e</span>) {
+    <span class="variable">e</span>.<span class="function">printStackTrace</span>();
+}
+
+<span class="comment">// 自定义异常</span>
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="class">InsufficientBalanceException</span> <span class="keyword">extends</span> <span class="class">Exception</span> {
+    <span class="keyword">public</span> <span class="function">InsufficientBalanceException</span>(<span class="type">String</span> <span class="variable">message</span>) {
+        <span class="keyword">super</span>(<span class="variable">message</span>);
+    }
+}
+
+<span class="comment">// throw 和 throws</span>
+<span class="keyword">public</span> <span class="keyword">void</span> <span class="function">withdraw</span>(<span class="type">double</span> <span class="variable">amount</span>)
+        <span class="keyword">throws</span> <span class="class">InsufficientBalanceException</span> {
+    <span class="keyword">if</span> (<span class="variable">amount</span> > <span class="variable">balance</span>) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="class">InsufficientBalanceException</span>(<span class="string">"余额不足"</span>);
+    }
+    <span class="variable">balance</span> -= <span class="variable">amount</span>;
+}</code></pre>
+        </div>
+        <div class="tip"><strong>💡 最佳实践</strong>使用 try-with-resources 自动关闭资源；捕获具体异常而非 <code class="inline-code">Exception</code>；自定义异常需要继承 <code class="inline-code">Exception</code>（受检）或 <code class="inline-code">RuntimeException</code>（非受检）。</div>
+      </section>
+
+      <div class="page-nav">
+        <a href="python.html" class="nav-prev">← Python</a>
+        <a href="c-language.html" class="nav-next">学习 C 语言 →</a>
+      </div>
+      <footer class="footer"><p>💻 编程知识库 · Java 学习页面</p></footer>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

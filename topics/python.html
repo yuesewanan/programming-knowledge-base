@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="系统学习 Python - 基础语法、函数、面向对象、文件IO、常用库">
+  <title>Python · 编程知识库</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle">☰</button><a href="../index.html" class="logo"><span class="logo-icon">&lt;/&gt;</span><span>编程知识库</span></a></div>
+    <div class="header-right"><div class="search-box"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="搜索知识点..." autocomplete="off"><div class="search-dropdown" id="searchDropdown"></div></div><button class="theme-toggle" id="themeToggle">🌙</button></div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section"><div class="sidebar-title">🏠 导航</div><a href="../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🌐 前端</div><a href="html-css.html" class="sidebar-link"><span class="icon">🌐</span> HTML / CSS</a><a href="javascript.html" class="sidebar-link"><span class="icon">⚡</span> JavaScript</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">⚙️ 后端 & 语言</div><a href="python.html" class="sidebar-link active"><span class="icon">🐍</span> Python</a><a href="java.html" class="sidebar-link"><span class="icon">☕</span> Java</a><a href="c-language.html" class="sidebar-link"><span class="icon">⚙️</span> C 语言</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🧠 算法 & 工具</div><a href="data-structures.html" class="sidebar-link"><span class="icon">📊</span> 数据结构 & 算法</a><a href="git.html" class="sidebar-link"><span class="icon">🔗</span> Git</a><a href="sql.html" class="sidebar-link"><span class="icon">🗄️</span> SQL</a></div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(55,118,171,0.1); color: var(--color-python);">🐍 通用编程语言</div>
+        <h1>Python</h1>
+        <p>简洁优雅的通用编程语言。语法清晰、上手简单，广泛应用于 Web 开发、数据分析、人工智能和自动化脚本。</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 目录</h3>
+        <ul class="toc-list">
+          <li><a href="#basics">基础语法</a></li>
+          <li><a href="#data-structures">内置数据结构</a></li>
+          <li><a href="#functions">函数与模块</a></li>
+          <li><a href="#oop">面向对象编程</a></li>
+          <li><a href="#file-io">文件 I/O 与异常</a></li>
+          <li><a href="#libraries">常用标准库</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="basics">
+        <h2>基础语法</h2>
+        <p>Python 使用缩进来定义代码块，告别大括号。</p>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 变量与数据类型</span>
+<span class="variable">name</span> = <span class="string">"Python"</span>           <span class="comment"># 字符串</span>
+<span class="variable">age</span> = <span class="number">30</span>                   <span class="comment"># 整数</span>
+<span class="variable">pi</span> = <span class="number">3.14159</span>              <span class="comment"># 浮点数</span>
+<span class="variable">is_fun</span> = <span class="keyword">True</span>            <span class="comment"># 布尔值</span>
+<span class="variable">nothing</span> = <span class="keyword">None</span>            <span class="comment"># 空值</span>
+
+<span class="comment"># 输入输出</span>
+<span class="variable">name</span> = <span class="builtin">input</span>(<span class="string">"请输入名字: "</span>)
+<span class="builtin">print</span>(<span class="string">f"你好, {name}!"</span>)    <span class="comment"># f-string 格式化</span>
+
+<span class="comment"># 条件语句</span>
+<span class="keyword">if</span> <span class="variable">age</span> >= <span class="number">18</span>:
+    <span class="builtin">print</span>(<span class="string">"成年"</span>)
+<span class="keyword">elif</span> <span class="variable">age</span> >= <span class="number">12</span>:
+    <span class="builtin">print</span>(<span class="string">"青少年"</span>)
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"儿童"</span>)
+
+<span class="comment"># 循环</span>
+<span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">5</span>):        <span class="comment"># 0, 1, 2, 3, 4</span>
+    <span class="builtin">print</span>(<span class="variable">i</span>)
+
+<span class="keyword">while</span> <span class="variable">count</span> < <span class="number">5</span>:
+    <span class="builtin">print</span>(<span class="variable">count</span>)
+    <span class="variable">count</span> += <span class="number">1</span>
+
+<span class="comment"># 列表推导式</span>
+<span class="variable">squares</span> = [<span class="variable">x</span> ** <span class="number">2</span> <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">10</span>)]
+<span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span></code></pre>
+        </div>
+        <div class="note"><strong>📘 注意</strong>Python 使用缩进（通常 4 个空格）而不是大括号来定义代码块。缩进错误会导致 <code class="inline-code">IndentationError</code>。</div>
+      </section>
+
+      <section class="section" id="data-structures">
+        <h2>内置数据结构</h2>
+        <p>Python 提供了丰富且强大的内置数据结构。</p>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 列表 (list) - 有序可变序列</span>
+<span class="variable">fruits</span> = [<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="variable">fruits</span>.<span class="builtin">append</span>(<span class="string">"葡萄"</span>)     <span class="comment"># 添加元素</span>
+<span class="variable">fruits</span>.<span class="builtin">sort</span>()               <span class="comment"># 排序</span>
+<span class="variable">first</span>, <span class="variable">*rest</span> = <span class="variable">fruits</span>      <span class="comment"># 解包</span>
+
+<span class="comment"># 元组 (tuple) - 有序不可变</span>
+<span class="variable">point</span> = (<span class="number">3</span>, <span class="number">4</span>)
+<span class="variable">x</span>, <span class="variable">y</span> = <span class="variable">point</span>              <span class="comment"># 元组解包</span>
+
+<span class="comment"># 字典 (dict) - 键值对</span>
+<span class="variable">user</span> = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>}
+<span class="variable">user</span>[<span class="string">"email"</span>] = <span class="string">"alice@example.com"</span>
+<span class="keyword">for</span> <span class="variable">key</span>, <span class="variable">value</span> <span class="keyword">in</span> <span class="variable">user</span>.<span class="builtin">items</span>():
+    <span class="builtin">print</span>(<span class="variable">key</span>, <span class="variable">value</span>)
+
+<span class="comment"># 集合 (set) - 无序不重复</span>
+<span class="variable">tags</span> = {<span class="string">"python"</span>, <span class="string">"编程"</span>, <span class="string">"python"</span>}  <span class="comment"># {"python", "编程"}</span>
+<span class="variable">tags</span> & {<span class="string">"python"</span>, <span class="string">"java"</span>}         <span class="comment"># 交集: {"python"}</span>
+<span class="variable">tags</span> | {<span class="string">"go"</span>}                     <span class="comment"># 并集</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="functions">
+        <h2>函数与模块</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 函数定义</span>
+<span class="keyword">def</span> <span class="function">greet</span>(<span class="variable">name</span>: <span class="builtin">str</span>, <span class="variable">times</span>: <span class="builtin">int</span> = <span class="number">1</span>) -> <span class="builtin">str</span>:  <span class="comment"># 类型注解</span>
+    <span class="string">"""返回问候语"""</span>                       <span class="comment"># 文档字符串</span>
+    <span class="keyword">return</span> <span class="string">f"你好, {name}! "</span> * <span class="variable">times</span>
+
+<span class="comment"># 关键字参数</span>
+<span class="function">greet</span>(<span class="variable">times</span>=<span class="number">3</span>, <span class="variable">name</span>=<span class="string">"Bob"</span>)
+
+<span class="comment"># 可变参数</span>
+<span class="keyword">def</span> <span class="function">sum_all</span>(<span class="variable">*args</span>):              <span class="comment"># args 是元组</span>
+    <span class="keyword">return</span> <span class="builtin">sum</span>(<span class="variable">args</span>)
+
+<span class="keyword">def</span> <span class="function">print_info</span>(<span class="variable">**kwargs</span>):         <span class="comment"># kwargs 是字典</span>
+    <span class="keyword">for</span> <span class="variable">k</span>, <span class="variable">v</span> <span class="keyword">in</span> <span class="variable">kwargs</span>.<span class="builtin">items</span>():
+        <span class="builtin">print</span>(<span class="string">f"{k}: {v}"</span>)
+
+<span class="comment"># Lambda 匿名函数</span>
+<span class="variable">square</span> = <span class="keyword">lambda</span> <span class="variable">x</span>: <span class="variable">x</span> ** <span class="number">2</span>
+<span class="variable">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]
+<span class="variable">squared</span> = <span class="builtin">list</span>(<span class="builtin">map</span>(<span class="keyword">lambda</span> <span class="variable">x</span>: <span class="variable">x</span> ** <span class="number">2</span>, <span class="variable">numbers</span>))
+
+<span class="comment"># 模块导入</span>
+<span class="keyword">import</span> <span class="variable">math</span>
+<span class="keyword">from</span> <span class="variable">datetime</span> <span class="keyword">import</span> <span class="variable">datetime</span>
+<span class="keyword">import</span> <span class="variable">numpy</span> <span class="keyword">as</span> <span class="variable">np</span></code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="oop">
+        <h2>面向对象编程</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">class</span> <span class="class">Animal</span>:
+    <span class="string">"""动物基类"""</span>
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>, <span class="variable">name</span>):     <span class="comment"># 构造方法</span>
+        <span class="variable">self</span>.<span class="variable">name</span> = <span class="variable">name</span>
+
+    <span class="keyword">def</span> <span class="function">speak</span>(<span class="variable">self</span>):                 <span class="comment"># 实例方法</span>
+        <span class="keyword">raise</span> <span class="class">NotImplementedError</span>
+
+    <span class="keyword">@classmethod</span>
+    <span class="keyword">def</span> <span class="function">create_unknown</span>(<span class="variable">cls</span>):        <span class="comment"># 类方法</span>
+        <span class="keyword">return</span> <span class="function">cls</span>(<span class="string">"未知生物"</span>)
+
+    <span class="keyword">@staticmethod</span>
+    <span class="keyword">def</span> <span class="function">info</span>():                     <span class="comment"># 静态方法</span>
+        <span class="keyword">return</span> <span class="string">"这是一个动物类"</span>
+
+    <span class="keyword">def</span> <span class="function">__str__</span>(<span class="variable">self</span>):               <span class="comment"># 特殊方法</span>
+        <span class="keyword">return</span> <span class="string">f"动物: {self.name}"</span>
+
+
+<span class="keyword">class</span> <span class="class">Dog</span>(<span class="class">Animal</span>):                 <span class="comment"># 继承</span>
+    <span class="keyword">def</span> <span class="function">speak</span>(<span class="variable">self</span>):                 <span class="comment"># 方法重写</span>
+        <span class="keyword">return</span> <span class="string">"汪汪!"</span>
+
+<span class="comment"># 装饰器</span>
+<span class="keyword">def</span> <span class="function">timer</span>(<span class="variable">func</span>):
+    <span class="keyword">import</span> <span class="variable">time</span>
+    <span class="keyword">def</span> <span class="function">wrapper</span>(<span class="variable">*args</span>, <span class="variable">**kwargs</span>):
+        <span class="variable">start</span> = <span class="variable">time</span>.<span class="builtin">time</span>()
+        <span class="variable">result</span> = <span class="function">func</span>(<span class="variable">*args</span>, <span class="variable">**kwargs</span>)
+        <span class="builtin">print</span>(<span class="string">f"执行耗时: {time.time() - start:.4f}秒"</span>)
+        <span class="keyword">return</span> <span class="variable">result</span>
+    <span class="keyword">return</span> <span class="variable">wrapper</span>
+
+<span class="keyword">@timer</span>
+<span class="keyword">def</span> <span class="function">slow_function</span>():
+    <span class="keyword">import</span> <span class="variable">time</span>
+    <span class="variable">time</span>.<span class="builtin">sleep</span>(<span class="number">1</span>)</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="file-io">
+        <h2>文件 I/O 与异常</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 文件读写 (使用 with 自动关闭)</span>
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"file.txt"</span>, <span class="string">"r"</span>, <span class="variable">encoding</span>=<span class="string">"utf-8"</span>) <span class="keyword">as</span> <span class="variable">f</span>:
+    <span class="variable">content</span> = <span class="variable">f</span>.<span class="builtin">read</span>()           <span class="comment"># 读取全部</span>
+    <span class="variable">lines</span> = <span class="variable">f</span>.<span class="builtin">readlines</span>()        <span class="comment"># 读取所有行</span>
+    <span class="keyword">for</span> <span class="variable">line</span> <span class="keyword">in</span> <span class="variable">f</span>:               <span class="comment"># 逐行读取（大文件推荐）</span>
+        <span class="builtin">print</span>(<span class="variable">line</span>.<span class="builtin">strip</span>())
+
+<span class="keyword">with</span> <span class="builtin">open</span>(<span class="string">"output.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> <span class="variable">f</span>:
+    <span class="variable">f</span>.<span class="builtin">write</span>(<span class="string">"Hello, World!\n"</span>)
+    <span class="variable">f</span>.<span class="builtin">writelines</span>([<span class="string">"line1\n"</span>, <span class="string">"line2\n"</span>])
+
+<span class="comment"># 异常处理</span>
+<span class="keyword">try</span>:
+    <span class="variable">result</span> = <span class="number">10</span> / <span class="number">0</span>
+<span class="keyword">except</span> <span class="class">ZeroDivisionError</span> <span class="keyword">as</span> <span class="variable">e</span>:
+    <span class="builtin">print</span>(<span class="string">f"除数不能为0: {e}"</span>)
+<span class="keyword">except</span> <span class="class">Exception</span> <span class="keyword">as</span> <span class="variable">e</span>:
+    <span class="builtin">print</span>(<span class="string">f"未知错误: {e}"</span>)
+<span class="keyword">else</span>:
+    <span class="builtin">print</span>(<span class="string">"没有异常发生"</span>)
+<span class="keyword">finally</span>:
+    <span class="builtin">print</span>(<span class="string">"无论是否有异常都会执行"</span>)
+
+<span class="comment"># JSON 处理</span>
+<span class="keyword">import</span> <span class="variable">json</span>
+<span class="variable">data</span> = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"scores"</span>: [<span class="number">90</span>, <span class="number">85</span>]}
+<span class="variable">json_str</span> = <span class="variable">json</span>.<span class="builtin">dumps</span>(<span class="variable">data</span>, <span class="variable">ensure_ascii</span>=<span class="keyword">False</span>)
+<span class="variable">parsed</span> = <span class="variable">json</span>.<span class="builtin">loads</span>(<span class="variable">json_str</span>)</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="libraries">
+        <h2>常用标准库</h2>
+        <div class="card-grid">
+          <div class="card"><div class="card-icon">📅</div><h4>datetime</h4><p>日期和时间处理</p></div>
+          <div class="card"><div class="card-icon">📊</div><h4>os / sys</h4><p>操作系统接口与系统参数</p></div>
+          <div class="card"><div class="card-icon">🌐</div><h4>re</h4><p>正则表达式</p></div>
+          <div class="card"><div class="card-icon">🔢</div><h4>math / random</h4><p>数学计算与随机数</p></div>
+          <div class="card"><div class="card-icon">📁</div><h4>pathlib</h4><p>面向对象的文件路径操作</p></div>
+          <div class="card"><div class="card-icon">🌐</div><h4>urllib / requests</h4><p>HTTP 请求（requests 为第三方库，推荐）</p></div>
+          <div class="card"><div class="card-icon">📝</div><h4>csv</h4><p>CSV 文件读写</p></div>
+          <div class="card"><div class="card-icon">🧵</div><h4>threading / asyncio</h4><p>多线程与异步编程</p></div>
+        </div>
+      </section>
+
+      <div class="page-nav">
+        <a href="javascript.html" class="nav-prev">← JavaScript</a>
+        <a href="java.html" class="nav-next">学习 Java →</a>
+      </div>
+      <footer class="footer"><p>💻 编程知识库 · Python 学习页面</p></footer>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>

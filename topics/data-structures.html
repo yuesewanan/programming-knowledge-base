@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="系统学习数据结构与算法 - 排序、搜索、树、图、动态规划">
+  <title>数据结构 & 算法 · 编程知识库</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle">☰</button><a href="../index.html" class="logo"><span class="logo-icon">&lt;/&gt;</span><span>编程知识库</span></a></div>
+    <div class="header-right"><div class="search-box"><span class="search-icon">🔍</span><input type="text" id="searchInput" placeholder="搜索知识点..." autocomplete="off"><div class="search-dropdown" id="searchDropdown"></div></div><button class="theme-toggle" id="themeToggle">🌙</button></div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section"><div class="sidebar-title">🏠 导航</div><a href="../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🌐 前端</div><a href="html-css.html" class="sidebar-link"><span class="icon">🌐</span> HTML / CSS</a><a href="javascript.html" class="sidebar-link"><span class="icon">⚡</span> JavaScript</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">⚙️ 后端 & 语言</div><a href="python.html" class="sidebar-link"><span class="icon">🐍</span> Python</a><a href="java.html" class="sidebar-link"><span class="icon">☕</span> Java</a><a href="c-language.html" class="sidebar-link"><span class="icon">⚙️</span> C 语言</a></div>
+    <div class="sidebar-section"><div class="sidebar-title">🧠 算法 & 工具</div><a href="data-structures.html" class="sidebar-link active"><span class="icon">📊</span> 数据结构 & 算法</a><a href="git.html" class="sidebar-link"><span class="icon">🔗</span> Git</a><a href="sql.html" class="sidebar-link"><span class="icon">🗄️</span> SQL</a></div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(139,92,246,0.1); color: var(--color-dsa);">🧠 编程核心</div>
+        <h1>数据结构 & 算法</h1>
+        <p>数据结构是计算机存储、组织数据的方式，算法是解决问题的步骤和方法。掌握它们是成为优秀程序员的关键。</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 目录</h3>
+        <ul class="toc-list">
+          <li><a href="#overview">数据结构概览</a></li>
+          <li><a href="#sorting">排序算法</a></li>
+          <li><a href="#searching">搜索算法</a></li>
+          <li><a href="#trees">树结构</a></li>
+          <li><a href="#dp">动态规划</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="overview">
+        <h2>数据结构概览</h2>
+        <p>常见数据结构的时间复杂度对比（平均情况）：</p>
+        <table class="concept-table">
+          <thead>
+            <tr><th>数据结构</th><th>访问</th><th>搜索</th><th>插入</th><th>删除</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>数组</td><td>O(1)</td><td>O(n)</td><td>O(n)</td><td>O(n)</td></tr>
+            <tr><td>链表</td><td>O(n)</td><td>O(n)</td><td>O(1)</td><td>O(1)</td></tr>
+            <tr><td>栈</td><td>O(n)</td><td>O(n)</td><td>O(1)</td><td>O(1)</td></tr>
+            <tr><td>队列</td><td>O(n)</td><td>O(n)</td><td>O(1)</td><td>O(1)</td></tr>
+            <tr><td>哈希表</td><td>O(1)</td><td>O(1)</td><td>O(1)</td><td>O(1)</td></tr>
+            <tr><td>二叉搜索树</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td></tr>
+            <tr><td>堆</td><td>O(1)</td><td>O(log n)</td><td>O(log n)</td><td>O(log n)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="card-grid">
+          <div class="card"><div class="card-icon">📋</div><h4>数组</h4><p>连续内存空间，支持随机访问。适合索引频繁、插入删除少的场景</p></div>
+          <div class="card"><div class="card-icon">🔗</div><h4>链表</h4><p>非连续存储，通过指针串联。适合频繁插入删除、无需随机访问</p></div>
+          <div class="card"><div class="card-icon">📚</div><h4>栈</h4><p>后进先出 (LIFO)。用于函数调用、括号匹配、撤销操作</p></div>
+          <div class="card"><div class="card-icon">🚶</div><h4>队列</h4><p>先进先出 (FIFO)。用于 BFS、任务调度、消息队列</p></div>
+          <div class="card"><div class="card-icon">🗺️</div><h4>哈希表</div><p>键值映射，平均 O(1) 查询。用于缓存、去重、计数</p></div>
+          <div class="card"><div class="card-icon">🌳</div><h4>树</h4><p>层次结构。用于文件系统、HTML DOM、数据库索引</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="sorting">
+        <h2>排序算法</h2>
+        <p>排序是最基础的算法之一。不同排序算法在不同场景下各有优劣。</p>
+
+        <table class="concept-table">
+          <thead>
+            <tr><th>算法</th><th>平均时间复杂度</th><th>最坏</th><th>空间</th><th>稳定</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>冒泡排序</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✓</td></tr>
+            <tr><td>选择排序</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✗</td></tr>
+            <tr><td>插入排序</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✓</td></tr>
+            <tr><td>归并排序</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td><td>✓</td></tr>
+            <tr><td>快速排序</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)</td><td>✗</td></tr>
+            <tr><td>堆排序</td><td>O(n log n)</td><td>O(n log n)</td><td>O(1)</td><td>✗</td></tr>
+          </tbody>
+        </table>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python - 快速排序</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">def</span> <span class="function">quick_sort</span>(<span class="variable">arr</span>):
+    <span class="string">"""快速排序 - 分治思想"""</span>
+    <span class="keyword">if</span> <span class="builtin">len</span>(<span class="variable">arr</span>) <= <span class="number">1</span>:
+        <span class="keyword">return</span> <span class="variable">arr</span>
+
+    <span class="variable">pivot</span> = <span class="variable">arr</span>[<span class="builtin">len</span>(<span class="variable">arr</span>) // <span class="number">2</span>]  <span class="comment"># 选择基准</span>
+    <span class="variable">left</span> = [<span class="variable">x</span> <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">arr</span> <span class="keyword">if</span> <span class="variable">x</span> < <span class="variable">pivot</span>]
+    <span class="variable">middle</span> = [<span class="variable">x</span> <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">arr</span> <span class="keyword">if</span> <span class="variable">x</span> == <span class="variable">pivot</span>]
+    <span class="variable">right</span> = [<span class="variable">x</span> <span class="keyword">for</span> <span class="variable">x</span> <span class="keyword">in</span> <span class="variable">arr</span> <span class="keyword">if</span> <span class="variable">x</span> > <span class="variable">pivot</span>]
+
+    <span class="keyword">return</span> <span class="function">quick_sort</span>(<span class="variable">left</span>) + <span class="variable">middle</span> + <span class="function">quick_sort</span>(<span class="variable">right</span>)
+
+<span class="comment"># 示例</span>
+<span class="builtin">print</span>(<span class="function">quick_sort</span>([<span class="number">3</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>]))
+<span class="comment"># [1, 1, 2, 3, 6, 8, 10]</span></code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python - 归并排序</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">def</span> <span class="function">merge_sort</span>(<span class="variable">arr</span>):
+    <span class="keyword">if</span> <span class="builtin">len</span>(<span class="variable">arr</span>) <= <span class="number">1</span>:
+        <span class="keyword">return</span> <span class="variable">arr</span>
+
+    <span class="variable">mid</span> = <span class="builtin">len</span>(<span class="variable">arr</span>) // <span class="number">2</span>
+    <span class="variable">left</span> = <span class="function">merge_sort</span>(<span class="variable">arr</span>[:<span class="variable">mid</span>])
+    <span class="variable">right</span> = <span class="function">merge_sort</span>(<span class="variable">arr</span>[<span class="variable">mid</span>:])
+
+    <span class="keyword">return</span> <span class="function">merge</span>(<span class="variable">left</span>, <span class="variable">right</span>)
+
+<span class="keyword">def</span> <span class="function">merge</span>(<span class="variable">left</span>, <span class="variable">right</span>):
+    <span class="variable">result</span> = []
+    <span class="variable">i</span> = <span class="variable">j</span> = <span class="number">0</span>
+
+    <span class="keyword">while</span> <span class="variable">i</span> < <span class="builtin">len</span>(<span class="variable">left</span>) <span class="keyword">and</span> <span class="variable">j</span> < <span class="builtin">len</span>(<span class="variable">right</span>):
+        <span class="keyword">if</span> <span class="variable">left</span>[<span class="variable">i</span>] <= <span class="variable">right</span>[<span class="variable">j</span>]:
+            <span class="variable">result</span>.<span class="builtin">append</span>(<span class="variable">left</span>[<span class="variable">i</span>])
+            <span class="variable">i</span> += <span class="number">1</span>
+        <span class="keyword">else</span>:
+            <span class="variable">result</span>.<span class="builtin">append</span>(<span class="variable">right</span>[<span class="variable">j</span>])
+            <span class="variable">j</span> += <span class="number">1</span>
+
+    <span class="keyword">return</span> <span class="variable">result</span> + <span class="variable">left</span>[<span class="variable">i</span>:] + <span class="variable">right</span>[<span class="variable">j</span>:]</code></pre>
+        </div>
+
+        <div class="tip"><strong>💡 推荐</strong>实际开发中使用语言内置排序（Python 的 <code class="inline-code">sorted()</code>、Java 的 <code class="inline-code">Arrays.sort()</code>、JS 的 <code class="inline-code">arr.sort()</code>），它们都经过高度优化。</div>
+      </section>
+
+      <section class="section" id="searching">
+        <h2>搜索算法</h2>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python - 二分搜索</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">def</span> <span class="function">binary_search</span>(<span class="variable">arr</span>, <span class="variable">target</span>):
+    <span class="string">"""二分搜索 - 要求数组已排序 O(log n)"""</span>
+    <span class="variable">left</span>, <span class="variable">right</span> = <span class="number">0</span>, <span class="builtin">len</span>(<span class="variable">arr</span>) - <span class="number">1</span>
+
+    <span class="keyword">while</span> <span class="variable">left</span> <= <span class="variable">right</span>:
+        <span class="variable">mid</span> = (<span class="variable">left</span> + <span class="variable">right</span>) // <span class="number">2</span>
+
+        <span class="keyword">if</span> <span class="variable">arr</span>[<span class="variable">mid</span>] == <span class="variable">target</span>:
+            <span class="keyword">return</span> <span class="variable">mid</span>
+        <span class="keyword">elif</span> <span class="variable">arr</span>[<span class="variable">mid</span>] < <span class="variable">target</span>:
+            <span class="variable">left</span> = <span class="variable">mid</span> + <span class="number">1</span>
+        <span class="keyword">else</span>:
+            <span class="variable">right</span> = <span class="variable">mid</span> - <span class="number">1</span>
+
+    <span class="keyword">return</span> -<span class="number">1</span>  <span class="comment"># 未找到</span>
+
+<span class="comment"># DFS (深度优先搜索) - 递归遍历</span>
+<span class="keyword">def</span> <span class="function">dfs</span>(<span class="variable">graph</span>, <span class="variable">node</span>, <span class="variable">visited</span>=<span class="keyword">None</span>):
+    <span class="keyword">if</span> <span class="variable">visited</span> <span class="keyword">is</span> <span class="keyword">None</span>:
+        <span class="variable">visited</span> = <span class="builtin">set</span>()
+    <span class="variable">visited</span>.<span class="builtin">add</span>(<span class="variable">node</span>)
+    <span class="builtin">print</span>(<span class="variable">node</span>, <span class="variable">end</span>=<span class="string">' '</span>)
+
+    <span class="keyword">for</span> <span class="variable">neighbor</span> <span class="keyword">in</span> <span class="variable">graph</span>[<span class="variable">node</span>]:
+        <span class="keyword">if</span> <span class="variable">neighbor</span> <span class="keyword">not</span> <span class="keyword">in</span> <span class="variable">visited</span>:
+            <span class="function">dfs</span>(<span class="variable">graph</span>, <span class="variable">neighbor</span>, <span class="variable">visited</span>)
+
+<span class="comment"># BFS (广度优先搜索)</span>
+<span class="keyword">from</span> <span class="variable">collections</span> <span class="keyword">import</span> <span class="variable">deque</span>
+
+<span class="keyword">def</span> <span class="function">bfs</span>(<span class="variable">graph</span>, <span class="variable">start</span>):
+    <span class="variable">visited</span> = {<span class="variable">start</span>}
+    <span class="variable">queue</span> = <span class="function">deque</span>([<span class="variable">start</span>])
+
+    <span class="keyword">while</span> <span class="variable">queue</span>:
+        <span class="variable">node</span> = <span class="variable">queue</span>.<span class="builtin">popleft</span>()
+        <span class="builtin">print</span>(<span class="variable">node</span>, <span class="variable">end</span>=<span class="string">' '</span>)
+
+        <span class="keyword">for</span> <span class="variable">neighbor</span> <span class="keyword">in</span> <span class="variable">graph</span>[<span class="variable">node</span>]:
+            <span class="keyword">if</span> <span class="variable">neighbor</span> <span class="keyword">not</span> <span class="keyword">in</span> <span class="variable">visited</span>:
+                <span class="variable">visited</span>.<span class="builtin">add</span>(<span class="variable">neighbor</span>)
+                <span class="variable">queue</span>.<span class="builtin">append</span>(<span class="variable">neighbor</span>)</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="trees">
+        <h2>树结构</h2>
+        <p>树是一种分层数据结构，在计算机科学中有广泛应用。</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python - 二叉树</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="keyword">class</span> <span class="class">TreeNode</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="variable">self</span>, <span class="variable">val</span>=<span class="number">0</span>, <span class="variable">left</span>=<span class="keyword">None</span>, <span class="variable">right</span>=<span class="keyword">None</span>):
+        <span class="variable">self</span>.<span class="variable">val</span> = <span class="variable">val</span>
+        <span class="variable">self</span>.<span class="variable">left</span> = <span class="variable">left</span>
+        <span class="variable">self</span>.<span class="variable">right</span> = <span class="variable">right</span>
+
+<span class="comment"># 二叉树遍历</span>
+<span class="keyword">def</span> <span class="function">inorder</span>(<span class="variable">root</span>):         <span class="comment"># 中序: 左-根-右</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">root</span>:
+        <span class="keyword">return</span>
+    <span class="function">inorder</span>(<span class="variable">root</span>.<span class="variable">left</span>)
+    <span class="builtin">print</span>(<span class="variable">root</span>.<span class="variable">val</span>, <span class="variable">end</span>=<span class="string">' '</span>)
+    <span class="function">inorder</span>(<span class="variable">root</span>.<span class="variable">right</span>)
+
+<span class="keyword">def</span> <span class="function">preorder</span>(<span class="variable">root</span>):        <span class="comment"># 前序: 根-左-右</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">root</span>:
+        <span class="keyword">return</span>
+    <span class="builtin">print</span>(<span class="variable">root</span>.<span class="variable">val</span>, <span class="variable">end</span>=<span class="string">' '</span>)
+    <span class="function">preorder</span>(<span class="variable">root</span>.<span class="variable">left</span>)
+    <span class="function">preorder</span>(<span class="variable">root</span>.<span class="variable">right</span>)
+
+<span class="keyword">def</span> <span class="function">postorder</span>(<span class="variable">root</span>):       <span class="comment"># 后序: 左-右-根</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">root</span>:
+        <span class="keyword">return</span>
+    <span class="function">postorder</span>(<span class="variable">root</span>.<span class="variable">left</span>)
+    <span class="function">postorder</span>(<span class="variable">root</span>.<span class="variable">right</span>)
+    <span class="builtin">print</span>(<span class="variable">root</span>.<span class="variable">val</span>, <span class="variable">end</span>=<span class="string">' '</span>)
+
+<span class="comment"># 二叉搜索树 (BST) 搜索</span>
+<span class="keyword">def</span> <span class="function">search_bst</span>(<span class="variable">root</span>, <span class="variable">target</span>):
+    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable">root</span> <span class="keyword">or</span> <span class="variable">root</span>.<span class="variable">val</span> == <span class="variable">target</span>:
+        <span class="keyword">return</span> <span class="variable">root</span>
+    <span class="keyword">if</span> <span class="variable">target</span> < <span class="variable">root</span>.<span class="variable">val</span>:
+        <span class="keyword">return</span> <span class="function">search_bst</span>(<span class="variable">root</span>.<span class="variable">left</span>, <span class="variable">target</span>)
+    <span class="keyword">return</span> <span class="function">search_bst</span>(<span class="variable">root</span>.<span class="variable">right</span>, <span class="variable">target</span>)</code></pre>
+        </div>
+
+        <div class="card-grid">
+          <div class="card"><div class="card-icon">🌳</div><h4>二叉树</h4><p>每个节点最多有两个子节点。满二叉树、完全二叉树、平衡二叉树</p></div>
+          <div class="card"><div class="card-icon">🔍</div><h4>二叉搜索树 (BST)</h4><p>左子树 < 根 < 右子树。中序遍历得到有序序列</p></div>
+          <div class="card"><div class="card-icon">⚖️</div><h4>AVL 树</h4><p>自平衡 BST，左右子树高度差不超过 1</p></div>
+          <div class="card"><div class="card-icon">🗄️</div><h4>堆 (Heap)</h4><p>完全二叉树，最大堆/最小堆。用于优先队列</p></div>
+        </div>
+      </section>
+
+      <section class="section" id="dp">
+        <h2>动态规划</h2>
+        <p>DP 通过将复杂问题分解为子问题并缓存结果来优化计算。核心思想：<strong>最优子结构</strong> + <strong>重叠子问题</strong>。</p>
+
+        <div class="code-block">
+          <div class="code-header"><span class="lang-label">Python - 经典 DP</span><button class="copy-btn">📋 复制</button></div>
+          <pre><code><span class="comment"># 1. 斐波那契数列 - DP 入门</span>
+<span class="keyword">def</span> <span class="function">fib</span>(<span class="variable">n</span>):
+    <span class="keyword">if</span> <span class="variable">n</span> <= <span class="number">1</span>:
+        <span class="keyword">return</span> <span class="variable">n</span>
+    <span class="variable">dp</span> = [<span class="number">0</span>] * (<span class="variable">n</span> + <span class="number">1</span>)
+    <span class="variable">dp</span>[<span class="number">1</span>] = <span class="number">1</span>
+    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">2</span>, <span class="variable">n</span> + <span class="number">1</span>):
+        <span class="variable">dp</span>[<span class="variable">i</span>] = <span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">1</span>] + <span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">2</span>]
+    <span class="keyword">return</span> <span class="variable">dp</span>[<span class="variable">n</span>]
+
+<span class="comment"># 2. 0/1 背包问题</span>
+<span class="keyword">def</span> <span class="function">knapsack</span>(<span class="variable">weights</span>, <span class="variable">values</span>, <span class="variable">capacity</span>):
+    <span class="variable">n</span> = <span class="builtin">len</span>(<span class="variable">weights</span>)
+    <span class="variable">dp</span> = [[<span class="number">0</span>] * (<span class="variable">capacity</span> + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="builtin">range</span>(<span class="variable">n</span> + <span class="number">1</span>)]
+
+    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">1</span>, <span class="variable">n</span> + <span class="number">1</span>):
+        <span class="keyword">for</span> <span class="variable">w</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="variable">capacity</span> + <span class="number">1</span>):
+            <span class="keyword">if</span> <span class="variable">weights</span>[<span class="variable">i</span>-<span class="number">1</span>] <= <span class="variable">w</span>:
+                <span class="variable">dp</span>[<span class="variable">i</span>][<span class="variable">w</span>] = <span class="builtin">max</span>(
+                    <span class="variable">values</span>[<span class="variable">i</span>-<span class="number">1</span>] + <span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">1</span>][<span class="variable">w</span> - <span class="variable">weights</span>[<span class="variable">i</span>-<span class="number">1</span>]],
+                    <span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">1</span>][<span class="variable">w</span>]
+                )
+            <span class="keyword">else</span>:
+                <span class="variable">dp</span>[<span class="variable">i</span>][<span class="variable">w</span>] = <span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">1</span>][<span class="variable">w</span>]
+    <span class="keyword">return</span> <span class="variable">dp</span>[<span class="variable">n</span>][<span class="variable">capacity</span>]
+
+<span class="comment"># 3. 最长公共子序列 (LCS)</span>
+<span class="keyword">def</span> <span class="function">lcs</span>(<span class="variable">text1</span>, <span class="variable">text2</span>):
+    <span class="variable">m</span>, <span class="variable">n</span> = <span class="builtin">len</span>(<span class="variable">text1</span>), <span class="builtin">len</span>(<span class="variable">text2</span>)
+    <span class="variable">dp</span> = [[<span class="number">0</span>] * (<span class="variable">n</span> + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="builtin">range</span>(<span class="variable">m</span> + <span class="number">1</span>)]
+
+    <span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">1</span>, <span class="variable">m</span> + <span class="number">1</span>):
+        <span class="keyword">for</span> <span class="variable">j</span> <span class="keyword">in</span> <span class="builtin">range</span>(<span class="number">1</span>, <span class="variable">n</span> + <span class="number">1</span>):
+            <span class="keyword">if</span> <span class="variable">text1</span>[<span class="variable">i</span>-<span class="number">1</span>] == <span class="variable">text2</span>[<span class="variable">j</span>-<span class="number">1</span>]:
+                <span class="variable">dp</span>[<span class="variable">i</span>][<span class="variable">j</span>] = <span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">1</span>][<span class="variable">j</span>-<span class="number">1</span>] + <span class="number">1</span>
+            <span class="keyword">else</span>:
+                <span class="variable">dp</span>[<span class="variable">i</span>][<span class="variable">j</span>] = <span class="builtin">max</span>(<span class="variable">dp</span>[<span class="variable">i</span>-<span class="number">1</span>][<span class="variable">j</span>], <span class="variable">dp</span>[<span class="variable">i</span>][<span class="variable">j</span>-<span class="number">1</span>])
+    <span class="keyword">return</span> <span class="variable">dp</span>[<span class="variable">m</span>][<span class="variable">n</span>]</code></pre>
+        </div>
+
+        <div class="tip">
+          <strong>💡 DP 解题四步法</strong>
+          <ol>
+            <li><strong>定义状态</strong>：<code class="inline-code">dp[i]</code> 表示什么</li>
+            <li><strong>状态转移</strong>：<code class="inline-code">dp[i] = f(dp[i-1], dp[i-2], ...)</code></li>
+            <li><strong>初始化</strong>：确定 base case</li>
+            <li><strong>返回值</strong>：确定最终答案的位置</li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="page-nav">
+        <a href="c-language.html" class="nav-prev">← C 语言</a>
+        <a href="git.html" class="nav-next">学习 Git →</a>
+      </div>
+      <footer class="footer"><p>💻 编程知识库 · 数据结构 & 算法 学习页面</p></footer>
+    </div>
+  </main>
+  <script src="../js/main.js"></script>
+</body>
+</html>
