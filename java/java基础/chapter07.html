@@ -63,15 +63,15 @@
       <div class="toc">
         <h3>📑 本章目录</h3>
         <ul class="toc-list">
-          <li><a href="#section-1">1. 58</a></li>
-          <li><a href="#section-2">2. 59</a></li>
-          <li><a href="#section-3">3. 60</a></li>
-          <li><a href="#section-4">4. 61</a></li>
+          <li><a href="#section-1">1. final 关键字 - 详解 Java 常量</a></li>
+          <li><a href="#section-2">2. 单例设计模式 - 懒汉式单例与饿汉式单例</a></li>
+          <li><a href="#section-3">3. 枚举 - 认识枚举类</a></li>
+          <li><a href="#section-4">4. 枚举 - 应用场景</a></li>
         </ul>
       </div>
 
       <section class="section" id="section-1">
-        <h3>1. 58</h3>
+        <h3>final 关键字 - 详解 Java 常量</h3>
         <div class="topic-content"><h2>final 关键字 - 详解 Java 常量</h2><p>在 Java 中，<code class="inline-code">final</code> 是一个关键字，用于定义<strong>常量</strong>或<strong>不可变的变量</strong>。它确保变量的值在初始化后不能被修改，从而提高程序的安全性和可读性。</p><hr><h3>1. final 关键字的基本语法</h3><h4>1.1 定义常量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final 数据类型 变量名 = 值;</code></pre></div><ul><li><code class="inline-code">final</code> 修饰的变量必须在声明时初始化</li>
 <li>初始化后，值不能被修改</li>
 </ul>
@@ -177,7 +177,7 @@ list = new ArrayList&lt;&gt;(); // ❌ 编译错误：不能修改 final 引用<
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟 final 行为</p><p>#java基础 #final #常量 #不可变性 #代码安全</p></div>
       </section>
       <section class="section" id="section-2">
-        <h3>2. 59</h3>
+        <h3>单例设计模式 - 懒汉式单例与饿汉式单例</h3>
         <div class="topic-content"><h2>单例设计模式 - 懒汉式单例与饿汉式单例</h2><p>在 Java 中，<strong>单例设计模式（Singleton Pattern）</strong> 是一种创建型设计模式，它确保一个类只有一个实例，并提供一个全局访问点。单例模式常用于管理共享资源，如数据库连接池、日志对象、配置管理等。</p><hr><h3>1. 单例模式的基本要求</h3><ul><li><strong>构造函数私有化</strong>：防止外部直接创建实例</li>
 <li><strong>提供全局访问点</strong>：通过静态方法获取实例</li>
 <li><strong>线程安全</strong>：在多线程环境下，确保只有一个实例</li>
@@ -257,7 +257,7 @@ list = new ArrayList&lt;&gt;(); // ❌ 编译错误：不能修改 final 引用<
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟单例行为</p><p>#java基础 #单例模式 #饿汉式 #懒汉式 #线程安全</p></div>
       </section>
       <section class="section" id="section-3">
-        <h3>3. 60</h3>
+        <h3>枚举 - 认识枚举类</h3>
         <div class="topic-content"><h2>枚举 - 认识枚举类</h2><p>在 Java 中，<strong>枚举（Enum）</strong> 是一种特殊的数据类型，用于定义一组固定的常量。枚举类是 Java 5 引入的一种特殊类，它继承自 <code class="inline-code">java.lang.Enum</code>，并提供了类型安全的常量定义方式。</p><hr><h3>1. 枚举的基本语法</h3><h4>1.1 定义枚举类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
     RED, GREEN, BLUE;
 }</code></pre></div><p>> <strong>说明</strong>：
@@ -364,7 +364,7 @@ list = new ArrayList&lt;&gt;(); // ❌ 编译错误：不能修改 final 引用<
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟枚举行为</p><p>#java基础 #枚举 #类型安全 #常量定义</p></div>
       </section>
       <section class="section" id="section-4">
-        <h3>4. 61</h3>
+        <h3>枚举 - 应用场景</h3>
         <div class="topic-content"><h2>枚举 - 应用场景</h2><p>在 Java 中，<strong>枚举（Enum）</strong> 是一种特殊的数据类型，用于定义一组固定的常量。枚举类是 Java 5 引入的一种特殊类，它继承自 <code class="inline-code">java.lang.Enum</code>，并提供了类型安全的常量定义方式。本节将详细介绍枚举的应用场景。</p><hr><h3>1. 定义常量</h3><h4>1.1 优点</h4><ul><li><strong>类型安全</strong>：避免了使用字符串或整数定义常量的错误</li>
 <li><strong>可读性</strong>：代码更加清晰易懂</li>
 <li><strong>维护性</strong>：常量集中管理，便于维护</li>

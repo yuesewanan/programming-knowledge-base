@@ -63,20 +63,20 @@
       <div class="toc">
         <h3>📑 本章目录</h3>
         <ul class="toc-list">
-          <li><a href="#section-1">1. 70</a></li>
-          <li><a href="#section-2">2. 71</a></li>
-          <li><a href="#section-3">3. 72</a></li>
-          <li><a href="#section-4">4. 73</a></li>
-          <li><a href="#section-5">5. 74</a></li>
-          <li><a href="#section-6">6. 75</a></li>
-          <li><a href="#section-7">7. 76</a></li>
-          <li><a href="#section-8">8. 77</a></li>
-          <li><a href="#section-9">9. 78</a></li>
+          <li><a href="#section-1">1. 综合项目-智能家居系统</a></li>
+          <li><a href="#section-2">2. 类中的成分-代码块</a></li>
+          <li><a href="#section-3">3. 内部类-成员内部类-静态内部类-局部内部类</a></li>
+          <li><a href="#section-4">4. 匿名内部类-认识-使用形式</a></li>
+          <li><a href="#section-5">5. 匿名内部类-使用场景</a></li>
+          <li><a href="#section-6">6. 函数式编程-方法引用</a></li>
+          <li><a href="#section-7">7. 常用API-String-String生成验证码-ArrayList集合</a></li>
+          <li><a href="#section-8">8. 项目实战-人事系统</a></li>
+          <li><a href="#section-9">9. 项目实战-数字华容道</a></li>
         </ul>
       </div>
 
       <section class="section" id="section-1">
-        <h3>1. 70</h3>
+        <h3>综合项目-智能家居系统</h3>
         <div class="topic-content"><h2>综合项目-智能家居系统</h2><p>在本节中，我们将通过一个综合项目来实践 Java 的核心概念，构建一个简单的智能家居系统。该项目将结合面向对象编程（OOP）、接口、抽象类、多态性等知识点，帮助你巩固所学知识并提升实际开发能力。</p><hr><h3>项目目标</h3><p>实现一个智能家居系统的控制平台，支持以下功能：</p><ul><li>控制灯光、空调、窗帘等设备</li>
 <li>设备可以是不同的类型（如智能灯、智能空调）</li>
 <li>支持通过统一接口进行操作</li>
@@ -215,7 +215,7 @@ import java.util.List;</p><p>public class ControlCenter {
 > - 可以结合 <code class="inline-code">Spring Boot</code> 构建更完整的智能家居管理系统</p><p>#java基础 #综合项目 #智能家居 #面向对象编程 #抽象类 #接口 #多态性</p></div>
       </section>
       <section class="section" id="section-2">
-        <h3>2. 71</h3>
+        <h3>类中的成分-代码块</h3>
         <div class="topic-content"><h2>类中的成分-代码块</h2><p>在 Java 中，类的组成部分除了字段（成员变量）、方法、构造器之外，还有一种特殊的结构叫做 <strong>代码块（Code Block）</strong>。代码块用于在类加载或对象创建时执行特定的初始化逻辑，是 Java 中实现复杂初始化需求的重要机制。</p><hr><h3>1. 什么是代码块？</h3><p>代码块是指在类中使用 <code class="inline-code">{}</code> 包裹的一段代码，它不属于任何方法，但可以在类中定义并执行。根据其位置和特性，代码块主要分为以下几种类型：</p><ul><li>静态代码块（Static Block）</li>
 <li>实例代码块（Instance Block）</li>
 <li>构造器代码块（Constructor Block）</li>
@@ -353,7 +353,7 @@ main 方法执行
 > - 在实际项目中，可以结合 <code class="inline-code">Builder</code> 模式或 <code class="inline-code">Spring</code> 注入机制来替代部分代码块功能</p><p>#java基础 #代码块 #静态代码块 #实例代码块 #初始化逻辑</p></div>
       </section>
       <section class="section" id="section-3">
-        <h3>3. 72</h3>
+        <h3>内部类-成员内部类-静态内部类-局部内部类</h3>
         <div class="topic-content"><h2>内部类-成员内部类-静态内部类-局部内部类</h2><p>在 Java 中，<strong>内部类（Inner Class）</strong> 是指定义在另一个类内部的类。内部类可以访问外部类的所有成员（包括私有成员），并且可以用于实现复杂的封装和设计模式。根据其定义位置和特性，内部类主要分为以下三种类型：</p><ul><li>成员内部类（Member Inner Class）</li>
 <li>静态内部类（Static Inner Class）</li>
 <li>局部内部类（Local Inner Class）</li>
@@ -512,7 +512,7 @@ main 方法执行
 > - 避免过度使用内部类，保持代码简洁清晰</p><p>#java基础 #内部类 #成员内部类 #静态内部类 #局部内部类 #封装</p></div>
       </section>
       <section class="section" id="section-4">
-        <h3>4. 73</h3>
+        <h3>匿名内部类-认识-使用形式</h3>
         <div class="topic-content"><h2>匿名内部类-认识-使用形式</h2><p>在 Java 中，<strong>匿名内部类（Anonymous Inner Class）</strong> 是一种特殊的内部类，它没有名字，通常用于简化代码，特别是在实现接口或继承抽象类时。匿名内部类常用于事件监听、回调函数等场景，能够快速创建一个类的实例并立即使用。</p><hr><h3>1. 什么是匿名内部类？</h3><p>匿名内部类是定义在方法内部或类中的一种内部类，它没有名字，且只能创建一个实例。它通常用于实现接口或继承抽象类，从而快速创建一个类的实例。</p><h4>1.1 特点</h4><ul><li>没有名字</li>
 <li>只能创建一个实例</li>
 <li>通常用于实现接口或继承抽象类</li>
@@ -628,7 +628,7 @@ import java.awt.event.ActionListener;</p><p>public class ButtonDemo {
 > - 避免过度使用匿名内部类，保持代码清晰可读</p><p>#java基础 #匿名内部类 #接口 #抽象类 #事件监听 #回调函数</p></div>
       </section>
       <section class="section" id="section-5">
-        <h3>5. 74</h3>
+        <h3>匿名内部类-使用场景</h3>
         <div class="topic-content"><h2>匿名内部类-使用场景</h2><p>匿名内部类是 Java 中一种简洁且实用的语法特性，它允许开发者在不显式定义类的情况下，快速实现接口或继承抽象类。由于其语法简洁、逻辑集中，匿名内部类在实际开发中有着广泛的应用场景。以下是匿名内部类的主要使用场景。</p><hr><h3>1. 事件监听器（Event Listeners）</h3><p>在图形用户界面（GUI）编程中，匿名内部类常用于实现事件监听器，例如按钮点击、鼠标移动等事件。</p><h4>示例：Swing 中的按钮点击事件</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;</p><p>public class ButtonListenerDemo {
@@ -743,7 +743,7 @@ import java.util.List;</p><p>public class ComparatorDemo {
 > - 避免过度使用匿名内部类，保持代码清晰可读</p><p>#java基础 #匿名内部类 #事件监听 #回调函数 #函数式接口 #单例模式</p></div>
       </section>
       <section class="section" id="section-6">
-        <h3>6. 75</h3>
+        <h3>函数式编程-方法引用</h3>
         <div class="topic-content"><h2>函数式编程-方法引用</h2><p>在 Java 8 中引入了函数式编程的支持，其中 <strong>方法引用（Method Reference）</strong> 是一种简洁的语法，用于引用已经存在的方法，而无需显式地编写 Lambda 表达式。方法引用可以看作是 Lambda 表达式的语法糖，使代码更加简洁、可读性更高。</p><hr><h3>1. 什么是方法引用？</h3><p>方法引用是一种引用已有方法的语法，它允许开发者将方法作为参数传递，而无需重新实现该方法。方法引用的语法格式如下：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">类名::方法名</code></pre></div><p>方法引用可以引用以下几种方法：</p><ul><li>静态方法</li>
 <li>实例方法</li>
 <li>构造器</li>
@@ -880,7 +880,7 @@ import java.util.function.Predicate;</p><p>public class DataProcessingDemo {
 > - 避免过度使用方法引用，保持代码清晰可读</p><p>#java基础 #函数式编程 #方法引用 #Lambda表达式 #函数式接口</p></div>
       </section>
       <section class="section" id="section-7">
-        <h3>7. 76</h3>
+        <h3>常用API-String-String生成验证码-ArrayList集合</h3>
         <div class="topic-content"><h2>常用API-String-String生成验证码-ArrayList集合</h2><p>在 Java 开发中，<code class="inline-code">String</code> 类和 <code class="inline-code">ArrayList</code> 集合是两个非常常用的类。<code class="inline-code">String</code> 类用于处理字符串，而 <code class="inline-code">ArrayList</code> 是一个动态数组，用于存储和操作对象集合。本节将介绍 <code class="inline-code">String</code> 类的常用方法、如何使用 <code class="inline-code">String</code> 生成验证码，以及 <code class="inline-code">ArrayList</code> 集合的基本用法。</p><hr><h3>1. String 类的常用方法</h3><h4>1.1 字符串的创建</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str1 = &quot;Hello World&quot;;
 String str2 = new String(&quot;Hello World&quot;);</code></pre></div><p>> <strong>说明</strong>：
 <ul><li><code class="inline-code">str1</code> 是字符串常量池中的字符串</li>
@@ -1010,7 +1010,7 @@ System.out.println(list.get(0)); // Banana</code></pre></div><p>> <strong>说明
 > - 在实际项目中，可以结合 <code class="inline-code">HashMap</code> 和 <code class="inline-code">HashSet</code> 实现更复杂的数据结构</p><p>#java基础 #String #ArrayList #验证码生成 #常用API</p></div>
       </section>
       <section class="section" id="section-8">
-        <h3>8. 77</h3>
+        <h3>项目实战-人事系统</h3>
         <div class="topic-content"><h2>项目实战-人事系统</h2><p>在本节中，我们将通过一个综合项目来实践 Java 的核心概念，构建一个简单的人事管理系统。该项目将结合面向对象编程（OOP）、集合、文件操作、异常处理等知识点，帮助你巩固所学知识并提升实际开发能力。</p><hr><h3>1. 项目目标</h3><p>实现一个简单的人事管理系统，支持以下功能：</p><ul><li>添加员工信息</li>
 <li>删除员工信息</li>
 <li>修改员工信息</li>
@@ -1242,7 +1242,7 @@ Employee{id=1, name=&#039;张三&#039;, age=25, department=&#039;技术部&#039;
 > - 可以结合 <code class="inline-code">Spring Boot</code> 构建更完整的管理系统</p><p>#java基础 #项目实战 #人事系统 #集合 #文件操作</p></div>
       </section>
       <section class="section" id="section-9">
-        <h3>9. 78</h3>
+        <h3>项目实战-数字华容道</h3>
         <div class="topic-content"><h2>项目实战-数字华容道</h2><p>在本节中，我们将通过一个综合项目来实践 Java 的核心概念，构建一个简单的数字华容道游戏。该项目将结合数组、随机数、控制台输入输出、逻辑判断等知识点，帮助你巩固所学知识并提升实际开发能力。</p><hr><h3>1. 项目目标</h3><p>实现一个数字华容道游戏，支持以下功能：</p><ul><li>随机生成初始棋盘</li>
 <li>显示当前棋盘状态</li>
 <li>用户输入移动方向（上、下、左、右）</li>

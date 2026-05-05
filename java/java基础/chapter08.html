@@ -63,19 +63,19 @@
       <div class="toc">
         <h3>📑 本章目录</h3>
         <ul class="toc-list">
-          <li><a href="#section-1">1. 62</a></li>
-          <li><a href="#section-2">2. 63</a></li>
-          <li><a href="#section-3">3. 64</a></li>
-          <li><a href="#section-4">4. 65</a></li>
-          <li><a href="#section-5">5. 66</a></li>
-          <li><a href="#section-6">6. 67</a></li>
-          <li><a href="#section-7">7. 68</a></li>
-          <li><a href="#section-8">8. 69</a></li>
+          <li><a href="#section-1">1. 抽象类 - 认识抽象类</a></li>
+          <li><a href="#section-2">2. 抽象类 - 好处与应用场景</a></li>
+          <li><a href="#section-3">3. 抽象类 - 模板方法设计模式</a></li>
+          <li><a href="#section-4">4. 接口 - 认识接口</a></li>
+          <li><a href="#section-5">5. 接口 - 接口的好处</a></li>
+          <li><a href="#section-6">6. 接口 - 综合案例</a></li>
+          <li><a href="#section-7">7. 接口 - JDK8 新增的三个方法及注意事项</a></li>
+          <li><a href="#section-8">8. 接口 - 抽象类和接口的区别</a></li>
         </ul>
       </div>
 
       <section class="section" id="section-1">
-        <h3>1. 62</h3>
+        <h3>抽象类 - 认识抽象类</h3>
         <div class="topic-content"><h2>抽象类 - 认识抽象类</h2><p>在 Java 中，<strong>抽象类（Abstract Class）</strong> 是一种特殊的类，它不能被实例化，只能被继承。抽象类通常用于定义一组公共的属性和方法，供子类继承和实现。抽象类是面向对象编程的重要特性之一，它提高了代码的复用性和可扩展性。</p><hr><h3>1. 抽象类的基本语法</h3><h4>1.1 定义抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
     // 抽象方法
     abstract void makeSound();</p><p>    // 普通方法
@@ -183,7 +183,7 @@
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟抽象类行为</p><p>#java基础 #抽象类 #抽象方法 #公共行为 #公共属性</p></div>
       </section>
       <section class="section" id="section-2">
-        <h3>2. 63</h3>
+        <h3>抽象类 - 好处与应用场景</h3>
         <div class="topic-content"><h2>抽象类 - 好处与应用场景</h2><p>在 Java 中，<strong>抽象类（Abstract Class）</strong> 是一种特殊的类，它不能被实例化，只能被继承。抽象类通常用于定义一组公共的属性和方法，供子类继承和实现。本节将详细介绍抽象类的好处和应用场景。</p><hr><h3>1. 抽象类的好处</h3><h4>1.1 提高代码的复用性</h4><p>抽象类可以定义一组公共的方法和属性，供子类继承和使用，从而避免重复代码。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
     protected String name;
     protected int age;</p><p>    public Animal(String name, int age) {
@@ -282,7 +282,7 @@
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟抽象类行为</p><p>#java基础 #抽象类 #抽象方法 #公共行为 #公共属性 #公共方法</p></div>
       </section>
       <section class="section" id="section-3">
-        <h3>3. 64</h3>
+        <h3>抽象类 - 模板方法设计模式</h3>
         <div class="topic-content"><h2>抽象类 - 模板方法设计模式</h2><p>在 Java 中，<strong>模板方法设计模式（Template Method Pattern）</strong> 是一种行为型设计模式，它定义了一个算法的骨架，将一些步骤延迟到子类中实现。模板方法模式通过抽象类来定义算法的框架，子类通过继承抽象类并实现特定步骤来完成算法。</p><hr><h3>1. 模板方法设计模式的基本结构</h3><h4>1.1 抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
     // 模板方法：定义算法的骨架
     final void playGame() {
@@ -441,7 +441,7 @@ Football 游戏结束
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟模板方法行为</p><p>#java基础 #模板方法设计模式 #算法骨架 #抽象方法 #具体方法</p></div>
       </section>
       <section class="section" id="section-4">
-        <h3>4. 65</h3>
+        <h3>接口 - 认识接口</h3>
         <div class="topic-content"><h2>接口 - 认识接口</h2><p>在 Java 中，<strong>接口（Interface）</strong> 是一种引用类型，它定义了一组抽象方法，这些方法必须由实现该接口的类来实现。接口是面向对象编程的重要特性之一，它提供了多态性和代码的解耦。</p><hr><h3>1. 接口的基本语法</h3><h4>1.1 定义接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
     void fly();
 }</code></pre></div><p>> <strong>说明</strong>：
@@ -589,7 +589,7 @@ Football 游戏结束
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #多态性 #解耦 #行为规范</p></div>
       </section>
       <section class="section" id="section-5">
-        <h3>5. 66</h3>
+        <h3>接口 - 接口的好处</h3>
         <div class="topic-content"><h2>接口 - 接口的好处</h2><p>在 Java 中，<strong>接口（Interface）</strong> 是一种引用类型，它定义了一组抽象方法，这些方法必须由实现该接口的类来实现。接口是面向对象编程的重要特性之一，它提供了多态性和代码的解耦。本节将详细介绍接口的好处。</p><hr><h3>1. 接口的好处</h3><h4>1.1 提高代码的可维护性</h4><p>接口可以集中管理公共的行为规范，便于维护和修改。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
     void fly();
 }</p><p>public class Bird implements Flyable {
@@ -732,7 +732,7 @@ Football 游戏结束
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #多态性 #解耦 #行为规范</p></div>
       </section>
       <section class="section" id="section-6">
-        <h3>6. 67</h3>
+        <h3>接口 - 综合案例</h3>
         <div class="topic-content"><h2>接口 - 综合案例</h2><p>本节通过实现一个<strong>支付系统</strong>，将接口、类、多态等知识点融合在一起，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 案例目标</h3><p>编写程序，模拟一个支付系统，支持多种支付方式（如支付宝、微信、银行卡），并根据用户选择的支付方式调用相应的支付方法。</p><h4>1.1 功能需求</h4><ul><li>定义一个 <code class="inline-code">Payment</code> 接口，包含支付方法</li>
 <li>实现多个支付方式类（如 <code class="inline-code">Alipay</code>、<code class="inline-code">WeChatPay</code>、<code class="inline-code">BankCardPay</code>）</li>
 <li>根据用户输入选择支付方式</li>
@@ -839,7 +839,7 @@ Football 游戏结束
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #支付系统 #综合案例 #多态</p></div>
       </section>
       <section class="section" id="section-7">
-        <h3>7. 68</h3>
+        <h3>接口 - JDK8 新增的三个方法及注意事项</h3>
         <div class="topic-content"><h2>接口 - JDK8 新增的三个方法及注意事项</h2><p>在 Java 8 中，接口（Interface）得到了重大增强，引入了 <strong>默认方法（Default Methods）</strong>、<strong>静态方法（Static Methods）</strong> 和 <strong>私有方法（Private Methods）</strong>，这些新特性使得接口更加灵活和强大。</p><hr><h3>1. JDK8 新增的三个方法</h3><h4>1.1 默认方法（Default Methods）</h4><p>默认方法允许接口中定义带有方法体的方法，实现类可以选择性地重写。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
     void fly();</p><p>    default void takeOff() {
         System.out.println(&quot;起飞&quot;);
@@ -927,7 +927,7 @@ Football 游戏结束
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #JDK8 #默认方法 #静态方法 #私有方法</p></div>
       </section>
       <section class="section" id="section-8">
-        <h3>8. 69</h3>
+        <h3>接口 - 抽象类和接口的区别</h3>
         <div class="topic-content"><h2>接口 - 抽象类和接口的区别</h2><p>在 Java 中，<strong>抽象类（Abstract Class）</strong> 和 <strong>接口（Interface）</strong> 是两种重要的抽象机制，它们都可以用于定义抽象方法，但它们在语法、用途和设计思想上有显著的区别。本节将详细介绍抽象类和接口的区别。</p><hr><h3>1. 抽象类和接口的基本语法</h3><h4>1.1 抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
     protected String name;
     protected int age;</p><p>    public Animal(String name, int age) {

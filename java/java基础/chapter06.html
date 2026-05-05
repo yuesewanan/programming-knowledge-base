@@ -63,21 +63,21 @@
       <div class="toc">
         <h3>📑 本章目录</h3>
         <ul class="toc-list">
-          <li><a href="#section-1">1. 48</a></li>
-          <li><a href="#section-2">2. 49</a></li>
-          <li><a href="#section-3">3. 50</a></li>
-          <li><a href="#section-4">4. 51</a></li>
-          <li><a href="#section-5">5. 52</a></li>
-          <li><a href="#section-6">6. 53</a></li>
-          <li><a href="#section-7">7. 54</a></li>
-          <li><a href="#section-8">8. 55</a></li>
-          <li><a href="#section-9">9. 56</a></li>
-          <li><a href="#section-10">10. 57</a></li>
+          <li><a href="#section-1">1. 继承 - 认识继承</a></li>
+          <li><a href="#section-2">2. 继承 - 权限修饰符</a></li>
+          <li><a href="#section-3">3. 继承后的特点</a></li>
+          <li><a href="#section-4">4. 继承 - 方法重写 - 应用场景：toString() 方法</a></li>
+          <li><a href="#section-5">5. 继承 - 子类构造器的特点与应用场景</a></li>
+          <li><a href="#section-6">6. 6. 53</a></li>
+          <li><a href="#section-7">7. 多态 - 认识多态</a></li>
+          <li><a href="#section-8">8. 多态 - 多态的好处和存在的问题</a></li>
+          <li><a href="#section-9">9. 多态 - 多态下的类型转换问题</a></li>
+          <li><a href="#section-10">10. 综合实战 - 支付模块</a></li>
         </ul>
       </div>
 
       <section class="section" id="section-1">
-        <h3>1. 48</h3>
+        <h3>继承 - 认识继承</h3>
         <div class="topic-content"><h2>继承 - 认识继承</h2><p>在 Java 中，<strong>继承（Inheritance）</strong> 是面向对象编程的三大特性之一，它允许一个类（子类）继承另一个类（父类）的属性和方法，实现代码的复用和扩展。</p><hr><h3>1. 什么是继承？</h3><p>继承是一种“is-a”关系，表示子类是父类的一种特殊类型。通过继承，子类可以复用父类的代码，同时可以添加新的功能或修改已有功能。</p><h4>1.1 继承的语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class 子类名 extends 父类名 {
     // 子类的属性和方法
 }</code></pre></div><h4>1.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
@@ -171,7 +171,7 @@
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟继承关系</p><p>#java基础 #继承 #面向对象编程 #代码复用 #方法重写 #构造方法</p></div>
       </section>
       <section class="section" id="section-2">
-        <h3>2. 49</h3>
+        <h3>继承 - 权限修饰符</h3>
         <div class="topic-content"><h2>继承 - 权限修饰符</h2><p>在 Java 中，<strong>权限修饰符</strong>（Access Modifiers）用于控制类、属性、方法的访问范围。它们在继承中起着至关重要的作用，决定了子类能否访问父类的成员。</p><hr><h3>1. 权限修饰符的种类</h3><p>Java 提供了四种权限修饰符，按访问权限从大到小排列：</p><table><tr><td>修饰符</td><td>说明</td><td>访问范围</td></tr></table><table><tr><td><code class="inline-code">public</code></td><td>公共的</td><td>任何地方都可以访问</td></tr></table>
 <table><tr><td><code class="inline-code">protected</code></td><td>受保护的</td><td>同包 + 子类可以访问</td></tr></table>
 <table><tr><td><code class="inline-code">default</code>（无修饰符）</td><td>默认的</td><td>同包可以访问</td></tr></table>
@@ -254,7 +254,7 @@
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟权限控制</p><p>#java基础 #权限修饰符 #继承 #封装 #访问控制 #编程实践</p></div>
       </section>
       <section class="section" id="section-3">
-        <h3>3. 50</h3>
+        <h3>继承后的特点</h3>
         <div class="topic-content"><h2>继承后的特点</h2><p>在 Java 中，继承（Inheritance）是面向对象编程的核心特性之一。通过继承，子类可以复用父类的属性和方法，同时可以扩展或修改父类的功能。继承后，子类与父类之间形成了一种“is-a”的关系，即子类是父类的一种特殊类型。</p><hr><h3>1. 继承的基本特点</h3><h4>1.1 代码复用</h4><p>继承允许子类复用父类的代码，避免重复编写相同的逻辑。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
     String name;
     int age;</p><p>    void eat() {
@@ -393,7 +393,7 @@
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟继承关系</p><p>#java基础 #继承 #代码复用 #方法重写 #多态性 #构造方法</p></div>
       </section>
       <section class="section" id="section-4">
-        <h3>4. 51</h3>
+        <h3>继承 - 方法重写 - 应用场景：toString() 方法</h3>
         <div class="topic-content"><h2>继承 - 方法重写 - 应用场景：toString() 方法</h2><p>在 Java 中，<code class="inline-code">toString()</code> 方法是 <code class="inline-code">Object</code> 类提供的一个方法，用于返回对象的字符串表示。通过继承和方法重写，我们可以为自定义类提供更清晰、更有意义的字符串表示，方便调试和日志输出。</p><hr><h3>1. toString() 方法的作用</h3><ul><li><strong>默认行为</strong>：<code class="inline-code">Object</code> 类的 <code class="inline-code">toString()</code> 返回格式为 <code class="inline-code">类名@哈希码</code></li>
 <li><strong>重写目的</strong>：提供更直观、可读性强的字符串表示</li>
 </ul>
@@ -507,7 +507,7 @@ public String toString() {
 > - 在调试和日志中使用 <code class="inline-code">toString()</code> 方法</p><p>#java基础 #继承 #方法重写 #toString() #调试 #日志 #集合输出</p></div>
       </section>
       <section class="section" id="section-5">
-        <h3>5. 52</h3>
+        <h3>继承 - 子类构造器的特点与应用场景</h3>
         <div class="topic-content"><h2>继承 - 子类构造器的特点与应用场景</h2><p>在 Java 中，构造器（Constructor）用于初始化对象。当一个类继承另一个类时，子类的构造器必须调用父类的构造器，以确保父类的初始化逻辑被执行。理解子类构造器的特点对于正确使用继承至关重要。</p><hr><h3>1. 子类构造器的特点</h3><h4>1.1 构造器的调用顺序</h4><ul><li><strong>父类构造器先执行</strong>：子类构造器的第一条语句必须是 <code class="inline-code">super()</code> 或 <code class="inline-code">this()</code>，否则编译器会自动插入 <code class="inline-code">super()</code>。</li>
 <li><strong>子类构造器后执行</strong>：父类构造器执行完毕后，子类构造器继续执行。</li>
 </ul>
@@ -741,7 +741,7 @@ Dog 构造器执行</code></pre></div></p><hr><h4>2.3 使用 <code class="inline
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟构造器调用</p><p>#java基础 #构造器 #this() #构造器重载 #代码复用</p></div>
       </section>
       <section class="section" id="section-7">
-        <h3>7. 54</h3>
+        <h3>多态 - 认识多态</h3>
         <div class="topic-content"><h2>多态 - 认识多态</h2><p>在 Java 中，<strong>多态（Polymorphism）</strong> 是面向对象编程的三大特性之一，它允许同一个接口或方法在不同对象上有不同的实现方式。多态的核心思想是“<strong>一个接口，多种实现</strong>”，它提高了程序的灵活性和可扩展性。</p><hr><h3>1. 什么是多态？</h3><p>多态是指<strong>同一个方法在不同对象上表现出不同的行为</strong>。它通过继承和方法重写实现，使得程序可以在运行时根据对象的实际类型选择调用哪个方法。</p><h4>1.1 多态的实现方式</h4><ul><li><strong>继承</strong>：子类继承父类</li>
 <li><strong>方法重写</strong>：子类重写父类的方法</li>
 <li><strong>向上转型</strong>：父类引用指向子类对象</li>
@@ -917,7 +917,7 @@ import java.util.List;</p><p>class Animal {
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #多态 #面向对象编程 #方法重写 #向上转型 #动态绑定</p></div>
       </section>
       <section class="section" id="section-8">
-        <h3>8. 55</h3>
+        <h3>多态 - 多态的好处和存在的问题</h3>
         <div class="topic-content"><h2>多态 - 多态的好处和存在的问题</h2><p>多态是面向对象编程的核心特性之一，它通过继承和方法重写，实现了“一个接口，多种实现”的灵活性。然而，多态在带来便利的同时，也存在一些潜在的问题。本节将详细探讨多态的好处和存在的问题。</p><hr><h3>1. 多态的好处</h3><h4>1.1 提高代码的可扩展性</h4><p>多态允许我们在不修改现有代码的情况下，添加新的子类。这符合“开闭原则”（Open-Closed Principle），即对扩展开放，对修改关闭。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
     void makeSound() {
         System.out.println(&quot;动物叫&quot;);
@@ -1042,7 +1042,7 @@ import java.util.List;</p><p>class Animal {
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #多态 #面向对象编程 #方法重写 #向上转型 #动态绑定		</p></div>
       </section>
       <section class="section" id="section-9">
-        <h3>9. 56</h3>
+        <h3>多态 - 多态下的类型转换问题</h3>
         <div class="topic-content"><h2>多态 - 多态下的类型转换问题</h2><p>在 Java 中，多态允许父类引用指向子类对象，这为程序设计带来了极大的灵活性。然而，这种灵活性也带来了类型转换的问题。本节将详细探讨多态下的类型转换问题，包括向上转型、向下转型以及相关的注意事项。</p><hr><h3>1. 向上转型（Upcasting）</h3><h4>1.1 定义</h4><p>向上转型是指将子类对象赋值给父类引用的过程。这是自动进行的，无需显式转换。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
     void makeSound() {
         System.out.println(&quot;动物叫&quot;);
@@ -1194,7 +1194,7 @@ import java.util.List;</p><p>class Animal {
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #多态 #类型转换 #向上转型 #向下转型 #instanceof</p></div>
       </section>
       <section class="section" id="section-10">
-        <h3>10. 57</h3>
+        <h3>综合实战 - 支付模块</h3>
         <div class="topic-content"><h2>综合实战 - 支付模块</h2><p>本节通过实现一个<strong>支付模块</strong>，将类、对象、继承、多态等知识点融合在一起，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 案例目标</h3><p>编写程序，模拟一个支付系统，支持多种支付方式（如支付宝、微信、银行卡），并根据用户选择的支付方式调用相应的支付方法。</p><h4>1.1 功能需求</h4><ul><li>定义一个 <code class="inline-code">Payment</code> 抽象类，包含支付方法</li>
 <li>实现多个支付方式类（如 <code class="inline-code">Alipay</code>、<code class="inline-code">WeChatPay</code>、<code class="inline-code">BankCardPay</code>）</li>
 <li>根据用户输入选择支付方式</li>

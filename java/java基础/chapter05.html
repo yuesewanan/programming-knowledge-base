@@ -63,20 +63,20 @@
       <div class="toc">
         <h3>📑 本章目录</h3>
         <ul class="toc-list">
-          <li><a href="#section-1">1. 39</a></li>
-          <li><a href="#section-2">2. 40</a></li>
-          <li><a href="#section-3">3. 41</a></li>
-          <li><a href="#section-4">4. 42</a></li>
-          <li><a href="#section-5">5. 43</a></li>
-          <li><a href="#section-6">6. 44</a></li>
-          <li><a href="#section-7">7. 45</a></li>
-          <li><a href="#section-8">8. 46</a></li>
-          <li><a href="#section-9">9. 47</a></li>
+          <li><a href="#section-1">1. 面向对象编程入门</a></li>
+          <li><a href="#section-2">2. 构造器</a></li>
+          <li><a href="#section-3">3. this关键字</a></li>
+          <li><a href="#section-4">4. 封装</a></li>
+          <li><a href="#section-5">5. 实体类</a></li>
+          <li><a href="#section-6">6. static - 静态变量 - 应用场景</a></li>
+          <li><a href="#section-7">7. static - 静态方法 - 应用场景 - 工具类</a></li>
+          <li><a href="#section-8">8. 静态方法的注意事项</a></li>
+          <li><a href="#section-9">9. 综合实战 - 电影信息展示</a></li>
         </ul>
       </div>
 
       <section class="section" id="section-1">
-        <h3>1. 39</h3>
+        <h3>面向对象编程入门</h3>
         <div class="topic-content"><h2>面向对象编程入门</h2><p>面向对象编程（Object-Oriented Programming，简称 OOP）是 Java 的核心编程范式，它将现实世界中的事物抽象为“对象”，通过封装、继承、多态等特性实现代码的模块化、可维护性和可扩展性。</p><hr><h3>1. 什么是面向对象编程？</h3><p>面向对象编程是一种以“对象”为核心的编程思想，它将数据和操作数据的方法封装在一起，形成一个独立的单元。</p><h4>1.1 核心思想</h4><ul><li><strong>万物皆对象</strong>：现实世界中的事物都可以抽象为对象</li>
 <li><strong>对象 = 属性 + 方法</strong>：对象包含数据（属性）和行为（方法）</li>
 <li><strong>程序 = 对象之间的交互</strong>：通过调用对象的方法实现功能</li>
@@ -194,7 +194,7 @@ public class Main {
 > - 在抽象层面，使用接口定义行为</p><p>#java基础 #面向对象编程 #OOP #类与对象 #封装 #继承 #多态 #抽象 #编程思想</p></div>
       </section>
       <section class="section" id="section-2">
-        <h3>2. 40</h3>
+        <h3>构造器</h3>
         <div class="topic-content"><h2>构造器</h2><p>在 Java 面向对象编程中，<strong>构造器（Constructor）</strong> 是一种特殊的成员方法，用于在创建对象时初始化对象的状态。构造器与类同名，没有返回类型（甚至没有 <code class="inline-code">void</code>），并且在对象实例化时自动调用。</p><h3>构造器的基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
     private String name;
     private int age;</p><p>    // 无参构造器
@@ -269,7 +269,7 @@ public class Main {
 构造器是 Java 面向对象编程中非常重要的概念，合理使用构造器可以提高代码的可读性和可维护性。</p></div>
       </section>
       <section class="section" id="section-3">
-        <h3>3. 41</h3>
+        <h3>this关键字</h3>
         <div class="topic-content"><h2>this关键字</h2><p>在 Java 面向对象编程中，<strong><code class="inline-code">this</code> 关键字</strong> 是一个非常重要的引用，它代表当前对象的引用，即调用该方法或构造器的对象本身。<code class="inline-code">this</code> 可以用于访问当前对象的实例变量、调用当前对象的方法，或在构造器中调用其他构造器。</p><h3>1. this 用于访问实例变量</h3><p>当类的局部变量与实例变量同名时，<code class="inline-code">this</code> 可以用于明确指定访问的是实例变量，而不是局部变量。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
     private String name;
     private int age;</p><p>    public Person(String name, int age) {
@@ -359,7 +359,7 @@ public class Main {
 <table><tr><td>传递当前对象</td><td>作为参数传递给其他方法或对象</td></tr></table><p><code class="inline-code">this</code> 关键字是 Java 面向对象编程中的核心概念之一，合理使用 <code class="inline-code">this</code> 可以使代码更加清晰、简洁、可维护。</p></div>
       </section>
       <section class="section" id="section-4">
-        <h3>4. 42</h3>
+        <h3>封装</h3>
         <div class="topic-content"><h2>封装</h2><p>在 Java 面向对象编程中，<strong>封装（Encapsulation）</strong> 是四大基本特性之一，指的是将对象的属性和行为封装在类中，隐藏内部实现细节，只暴露必要的接口供外部使用。封装的目的是提高代码的安全性、可维护性和可复用性。</p><h3>1. 封装的核心思想</h3><p>封装的本质是“<strong>隐藏实现，暴露接口</strong>”。通过访问修饰符（如 <code class="inline-code">private</code>、<code class="inline-code">public</code> 等）控制类成员的可见性，防止外部直接访问或修改对象的内部状态。</p><h3>2. 封装的实现方式</h3><h4>2.1 使用访问修饰符</h4><ul><li><code class="inline-code">private</code>：私有成员，只能在本类中访问</li>
 <li><code class="inline-code">public</code>：公有成员，任何地方都可以访问</li>
 <li><code class="inline-code">protected</code>：受保护成员，子类和同包类可以访问</li>
@@ -438,7 +438,7 @@ public class Main {
 <h3>总结</h3><p>封装是面向对象编程的基石之一。通过合理使用访问修饰符和提供安全的访问方法，可以有效保护对象的内部状态，提高代码的健壮性和可维护性。良好的封装设计是构建高质量 Java 程序的关键。</p><p>> <strong>封装 = 私有化属性 + 公有化方法 + 数据验证 + 接口控制</strong></p><p>在实际开发中，应遵循“<strong>最小暴露原则</strong>”，只暴露必要的接口，隐藏不必要的实现细节。</p></div>
       </section>
       <section class="section" id="section-5">
-        <h3>5. 43</h3>
+        <h3>实体类</h3>
         <div class="topic-content"><h2>实体类</h2><p>在 Java 开发中，<strong>实体类（Entity Class）</strong> 是用于表示现实世界中某个具体对象或数据结构的类。它通常对应数据库中的一张表，或系统中的一个业务对象，封装了对象的属性和基本操作。</p><p>实体类是面向对象编程中“类”概念的直接体现，广泛应用于 Web 开发、数据持久化、业务逻辑处理等场景。</p><hr><h3>1. 实体类的基本结构</h3><p>一个典型的实体类包含：</p><ul><li><strong>私有属性（private fields）</strong>：表示对象的属性</li>
 <li><strong>公共的 getter 和 setter 方法</strong>：用于访问和修改属性</li>
 <li><strong>构造器（可选）</strong>：用于初始化对象</li>
@@ -528,7 +528,7 @@ public class Book {
 > <strong>实体类 = 数据结构 + 封装 + 可序列化 + 与数据库/网络交互</strong></p><p>在实际项目中，应合理设计实体类，避免过度复杂化，保持其简洁性和可维护性。</p></div>
       </section>
       <section class="section" id="section-6">
-        <h3>6. 44</h3>
+        <h3>static - 静态变量 - 应用场景</h3>
         <div class="topic-content"><h2>static - 静态变量 - 应用场景</h2><p>在 Java 中，<code class="inline-code">static</code> 关键字用于声明<strong>静态变量</strong>（也称类变量），它属于类本身，而不是类的实例。静态变量在类加载时初始化，所有实例共享同一份内存空间。</p><hr><h3>1. 静态变量的定义</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Counter {
     private static int count = 0; // 静态变量，所有实例共享</p><p>    public Counter() {
         count++; // 每创建一个实例，计数器加1
@@ -594,7 +594,7 @@ System.out.println(User.getUserCount()); // 输出: 2</code></pre></div></p><h4>
 <table><tr><td><strong>资源池</strong></td><td>线程安全的共享资源管理</td></tr></table><p>> <strong>静态变量 = 类共享 + 生命周期长 + 初始化早</strong></p><p>合理使用静态变量可以提高代码的复用性和效率，但需注意其生命周期和线程安全问题，避免滥用导致内存泄漏或并发问题。</p><hr><p>> 💡 <strong>建议</strong>：在非必要情况下，优先使用实例变量；静态变量应谨慎使用，主要用于全局配置、常量、工具类、单例等场景。</p></div>
       </section>
       <section class="section" id="section-7">
-        <h3>7. 45</h3>
+        <h3>static - 静态方法 - 应用场景 - 工具类</h3>
         <div class="topic-content"><h2>static - 静态方法 - 应用场景 - 工具类</h2><p>在 Java 中，<code class="inline-code">static</code> 关键字用于定义<strong>静态成员</strong>，包括静态变量、静态方法和静态代码块。静态成员属于类本身，而不是类的实例，因此可以在不创建对象的情况下直接通过类名调用。</p><hr><h3>1. 什么是静态方法？</h3><p>静态方法是使用 <code class="inline-code">static</code> 关键字修饰的方法，它属于类，而不是类的实例。静态方法可以直接通过类名调用，无需创建对象。</p><h4>1.1 语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MyClass {
     public static void myMethod() {
         System.out.println(&quot;这是一个静态方法&quot;);
@@ -683,7 +683,7 @@ import java.time.format.DateTimeFormatter;</p><p>public class DateUtils {
 > - 添加用户提示，提升交互体验</p><p>#java基础 #static #静态方法 #工具类 #代码复用 #编程实践</p></div>
       </section>
       <section class="section" id="section-8">
-        <h3>8. 46</h3>
+        <h3>静态方法的注意事项</h3>
         <div class="topic-content"><h2>静态方法的注意事项</h2><p>在 Java 中，<code class="inline-code">static</code> 关键字用于定义静态成员，包括静态变量、静态方法和静态代码块。静态方法属于类本身，而不是类的实例，因此在使用时需要注意以下几点，以避免常见错误和性能问题。</p><hr><h3>1. 静态方法的访问限制</h3><h4>1.1 不能访问非静态成员</h4><p>静态方法不能直接访问类的非静态成员（实例变量和实例方法）。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MyClass {
     private int instanceVar = 10; // 实例变量
     private static int staticVar = 20; // 静态变量</p><p>    public void instanceMethod() {
@@ -748,7 +748,7 @@ obj.staticMethod(); // ✅ 但不推荐，容易误解为实例方法</code></pr
 > - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟静态方法</p><p>#java基础 #static #静态方法 #注意事项 #线程安全 #性能优化 #编程实践</p></div>
       </section>
       <section class="section" id="section-9">
-        <h3>9. 47</h3>
+        <h3>综合实战 - 电影信息展示</h3>
         <div class="topic-content"><h2>综合实战 - 电影信息展示</h2><p>本节通过实现一个<strong>电影信息展示系统</strong>，将类、对象、静态方法、数组、循环等知识点融合在一起，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 案例目标</h3><p>编写程序，展示多个电影的信息，包括电影名称、导演、评分、类型等。</p><h4>1.1 功能需求</h4><ul><li>定义一个 <code class="inline-code">Movie</code> 类，包含电影信息</li>
 <li>使用数组存储多个电影对象</li>
 <li>输出所有电影信息</li>
