@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 程序流程控制 - 编程知识库">
+  <title>第3章: 程序流程控制 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link active"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🔄 第3章</div>
+        <h1>程序流程控制</h1>
+        <p>Java基础教程 - 程序流程控制</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 17</a></li>
+          <li><a href="#section-2">2. 18</a></li>
+          <li><a href="#section-3">3. 19</a></li>
+          <li><a href="#section-4">4. 20</a></li>
+          <li><a href="#section-5">5. 21</a></li>
+          <li><a href="#section-6">6. 22</a></li>
+          <li><a href="#section-7">7. 23</a></li>
+          <li><a href="#section-8">8. 24</a></li>
+          <li><a href="#section-9">9. 25</a></li>
+          <li><a href="#section-10">10. 26</a></li>
+          <li><a href="#section-11">11. 27</a></li>
+          <li><a href="#section-12">12. 28</a></li>
+          <li><a href="#section-13">13. 29</a></li>
+          <li><a href="#section-14">14. 30</a></li>
+          <li><a href="#section-15">15. 31</a></li>
+          <li><a href="#section-16">16. 32</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 17</h3>
+        <div class="topic-content"><h2>程序流程控制概述</h2><p>在 Java 编程中，<strong>程序流程控制</strong>是决定程序执行顺序的核心机制。它决定了代码的执行路径，使程序能够根据不同的条件做出响应，实现复杂的逻辑功能。</p><hr><h3>1. 什么是程序流程控制？</h3><p>程序流程控制是指通过特定的语法结构来控制程序的执行顺序。它主要包括以下三种基本结构：</p><h4>1.1 顺序结构</h4><p>程序按照代码的书写顺序逐行执行，是最基本的执行方式。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 10;
+int b = 20;
+int sum = a + b;
+System.out.println(sum);</code></pre></div><p>> 执行顺序：<code class="inline-code">a = 10</code> → <code class="inline-code">b = 20</code> → <code class="inline-code">sum = a + b</code> → <code class="inline-code">println</code></p><h4>1.2 选择结构（分支结构）</h4><p>根据条件判断，选择执行不同的代码块。主要通过 <code class="inline-code">if</code>、<code class="inline-code">if-else</code>、<code class="inline-code">if-else if</code> 和 <code class="inline-code">switch</code> 实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int score = 85;
+if (score &gt;= 90) {
+    System.out.println(&quot;优秀&quot;);
+} else if (score &gt;= 80) {
+    System.out.println(&quot;良好&quot;);
+} else {
+    System.out.println(&quot;需努力&quot;);
+}</code></pre></div><h4>1.3 循环结构</h4><p>重复执行某段代码，直到满足退出条件。主要通过 <code class="inline-code">for</code>、<code class="inline-code">while</code> 和 <code class="inline-code">do-while</code> 实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 0; i &lt; 5; i++) {
+    System.out.println(&quot;第 &quot; + i + &quot; 次循环&quot;);
+}</code></pre></div><hr><h3>2. 流程控制的重要性</h3><ul><li><strong>灵活性</strong>：让程序能根据输入或状态动态调整行为</li>
+<li><strong>效率</strong>：避免重复代码，提高可维护性</li>
+<li><strong>逻辑表达</strong>：实现复杂的业务逻辑，如用户登录、数据验证等</li>
+</ul>
+<hr></p><h3>3. 常见流程控制语句</h3><table><tr><td>类型</td><td>语句</td><td>说明</td></tr></table><table><tr><td>选择结构</td><td><code class="inline-code">if</code>、<code class="inline-code">if-else</code>、<code class="inline-code">if-else if</code></td><td>多条件分支判断</td></tr></table>
+<table><tr><td>选择结构</td><td><code class="inline-code">switch</code></td><td>多分支选择，适合枚举类型</td></tr></table>
+<table><tr><td>循环结构</td><td><code class="inline-code">for</code></td><td>固定次数循环</td></tr></table>
+<table><tr><td>循环结构</td><td><code class="inline-code">while</code></td><td>条件满足时循环</td></tr></table>
+<table><tr><td>循环结构</td><td><code class="inline-code">do-while</code></td><td>至少执行一次循环体</td></tr></table>
+<table><tr><td>跳转语句</td><td><code class="inline-code">break</code></td><td>跳出循环或 switch</td></tr></table>
+<table><tr><td>跳转语句</td><td><code class="inline-code">continue</code></td><td>跳过当前循环体，进入下一次循环</td></tr></table>
+<table><tr><td>跳转语句</td><td><code class="inline-code">return</code></td><td>从方法中返回</td></tr></table><hr><h3>4. 流程控制的应用场景</h3><table><tr><td>场景</td><td>使用的流程控制</td></tr></table><table><tr><td>用户登录验证</td><td><code class="inline-code">if-else</code> 判断用户名密码</td></tr></table>
+<table><tr><td>成绩等级评定</td><td><code class="inline-code">if-else if</code> 多级判断</td></tr></table>
+<table><tr><td>数组遍历</td><td><code class="inline-code">for</code> 或 <code class="inline-code">while</code> 循环</td></tr></table>
+<table><tr><td>输入验证</td><td><code class="inline-code">while</code> 循环直到输入合法</td></tr></table>
+<table><tr><td>多条件菜单选择</td><td><code class="inline-code">switch</code> 语句</td></tr></table><hr><h3>5. 总结</h3><table><tr><td>结构</td><td>特点</td><td>适用场景</td></tr></table><table><tr><td>顺序结构</td><td>代码按顺序执行</td><td>基础赋值、计算</td></tr></table>
+<table><tr><td>选择结构</td><td>根据条件选择路径</td><td>判断、分支</td></tr></table>
+<table><tr><td>循环结构</td><td>重复执行代码</td><td>遍历、计数、等待</td></tr></table><p>> <strong>程序流程控制 = 程序逻辑的骨架</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 合理使用流程控制，避免代码嵌套过深  
+> - 优先使用 <code class="inline-code">for</code> 循环遍历数组或集合  
+> - 在复杂逻辑中，考虑使用函数拆分，提高可读性  
+> - 注意 <code class="inline-code">break</code> 和 <code class="inline-code">continue</code> 的使用位置，避免逻辑错误</p><p>#java基础 #程序流程控制 #顺序结构 #选择结构 #循环结构 #if语句 #switch语句 #for循环 #while循环 #编程逻辑 #代码结构</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 18</h3>
+        <div class="topic-content"><h2>if分支结构</h2><p>在 Java 中，<code class="inline-code">if</code> 分支结构是实现程序逻辑判断的基础工具，用于根据条件表达式的真假来决定是否执行某段代码。它是程序流程控制中最基本的<strong>选择结构</strong>之一。</p><hr><h3>1. if 基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (条件表达式) {
+    // 条件为 true 时执行的代码块
+}</code></pre></div><ul><li><strong>条件表达式</strong>：必须是一个布尔类型（<code class="inline-code">boolean</code>）的表达式，返回 <code class="inline-code">true</code> 或 <code class="inline-code">false</code></li>
+<li><strong>代码块</strong>：可以是一条语句或多个语句，用大括号 <code class="inline-code">{}</code> 包裹</li>
+</ul>
+<h4>示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int age = 18;
+if (age &gt;= 18) {
+    System.out.println(&quot;已成年，可以投票&quot;);
+}</code></pre></div><p>> 输出：<code class="inline-code">已成年，可以投票</code></p><hr><h3>2. if-else 结构</h3><p>当条件为 <code class="inline-code">true</code> 执行一段代码，为 <code class="inline-code">false</code> 执行另一段代码。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (条件表达式) {
+    // 条件为 true 时执行
+} else {
+    // 条件为 false 时执行
+}</code></pre></div><h4>示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int score = 75;
+if (score &gt;= 60) {
+    System.out.println(&quot;考试通过&quot;);
+} else {
+    System.out.println(&quot;考试未通过&quot;);
+}</code></pre></div><p>> 输出：<code class="inline-code">考试通过</code></p><hr><h3>3. if-else if-else 多分支结构</h3><p>用于处理多个条件判断，从上到下依次判断，一旦某个条件为 <code class="inline-code">true</code>，就执行对应代码块，并跳过后续判断。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (条件1) {
+    // 执行代码1
+} else if (条件2) {
+    // 执行代码2
+} else if (条件3) {
+    // 执行代码3
+} else {
+    // 默认执行代码
+}</code></pre></div><h4>示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int score = 85;
+if (score &gt;= 90) {
+    System.out.println(&quot;优秀&quot;);
+} else if (score &gt;= 80) {
+    System.out.println(&quot;良好&quot;);
+} else if (score &gt;= 70) {
+    System.out.println(&quot;中等&quot;);
+} else {
+    System.out.println(&quot;需努力&quot;);
+}</code></pre></div><p>> 输出：<code class="inline-code">良好</code></p><hr><h3>4. 嵌套 if 结构</h3><p>在 <code class="inline-code">if</code> 或 <code class="inline-code">else</code> 块中再写一个 <code class="inline-code">if</code> 结构，用于处理更复杂的逻辑。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (条件1) {
+    if (条件2) {
+        // 执行代码
+    }
+}</code></pre></div><h4>示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int age = 20;
+boolean hasLicense = true;</p><p>if (age &gt;= 18) {
+    if (hasLicense) {
+        System.out.println(&quot;可以开车&quot;);
+    } else {
+        System.out.println(&quot;已成年但无驾照，不能开车&quot;);
+    }
+} else {
+    System.out.println(&quot;未成年，不能开车&quot;);
+}</code></pre></div><p>> 输出：<code class="inline-code">可以开车</code></p><hr><h3>5. 注意事项</h3><h4>5.1 条件表达式必须是布尔类型</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 5;
+if (a) { // ❌ 编译错误：int 不能隐式转换为 boolean
+    System.out.println(&quot;a 不为 0&quot;);
+}</code></pre></div><p>✅ 正确写法：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (a != 0) {
+    System.out.println(&quot;a 不为 0&quot;);
+}</code></pre></div><h4>5.2 单条语句可省略大括号</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (score &gt;= 60)
+    System.out.println(&quot;通过&quot;);</code></pre></div><p>⚠️ 但建议始终使用大括号，提高代码可读性和安全性。</p><h4>5.3 逻辑运算符的使用</h4><ul><li><code class="inline-code">&&</code>：逻辑与（短路与）</li>
+<li><code class="inline-code">||</code>：逻辑或（短路或）</li>
+<li><code class="inline-code">!</code>：逻辑非</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (age &gt;= 18 &amp;&amp; score &gt;= 60) {
+    System.out.println(&quot;可以参加考试&quot;);
+}</code></pre></div></p><hr><h3>6. 总结</h3><table><tr><td>结构</td><td>说明</td><td>适用场景</td></tr></table><table><tr><td><code class="inline-code">if</code></td><td>单条件判断</td><td>简单判断</td></tr></table>
+<table><tr><td><code class="inline-code">if-else</code></td><td>二选一</td><td>是/否判断</td></tr></table>
+<table><tr><td><code class="inline-code">if-else if-else</code></td><td>多条件判断</td><td>分级判断</td></tr></table>
+<table><tr><td><code class="inline-code">嵌套 if</code></td><td>复杂条件</td><td>多层依赖</td></tr></table><p>> <strong>if 分支结构 = 程序逻辑判断的核心</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 优先使用 <code class="inline-code">if-else if-else</code> 处理多条件，避免嵌套过深  
+> - 使用有意义的变量名和注释，提高代码可读性  
+> - 注意逻辑运算符的短路特性，避免不必要的计算  
+> - 在复杂逻辑中，考虑拆分为函数，提高维护性</p><p>#java基础 #if分支结构 #条件判断 #if语句 #if-else #if-else if #多条件判断 #逻辑控制 #编程基础 #代码结构</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 19</h3>
+        <div class="topic-content"><h2>if分支练习</h2><p>通过实际练习巩固 <code class="inline-code">if</code> 分支结构的使用，是掌握条件判断逻辑的关键步骤。本节提供多个练习题，涵盖单条件、多条件、嵌套判断等场景，帮助你熟练运用 <code class="inline-code">if</code>、<code class="inline-code">if-else</code> 和 <code class="inline-code">if-else if-else</code> 结构。</p><hr><h3>1. 练习一：判断年龄是否成年</h3><h4>题目</h4>
+编写程序，输入年龄，判断是否已成年（≥18岁）。</p><h4>代码实现</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class AdultCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入年龄: &quot;);
+        int age = scanner.nextInt();</p><p>        if (age &gt;= 18) {
+            System.out.println(&quot;已成年&quot;);
+        } else {
+            System.out.println(&quot;未成年&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>2. 练习二：判断成绩等级</h3><h4>题目</h4>
+输入一个成绩（0~100），输出对应的等级：
+<ul><li>≥90：优秀</li>
+<li>80~89：良好</li>
+<li>70~79：中等</li>
+<li>60~69：及格</li>
+<li><60：不及格</li>
+</ul>
+<h4>代码实现</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class GradeCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入成绩: &quot;);
+        int score = scanner.nextInt();</p><p>        if (score &gt;= 90) {
+            System.out.println(&quot;优秀&quot;);
+        } else if (score &gt;= 80) {
+            System.out.println(&quot;良好&quot;);
+        } else if (score &gt;= 70) {
+            System.out.println(&quot;中等&quot;);
+        } else if (score &gt;= 60) {
+            System.out.println(&quot;及格&quot;);
+        } else {
+            System.out.println(&quot;不及格&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 练习三：判断闰年</h3><h4>题目</h4>
+输入一个年份，判断是否为闰年。</p><p>> <strong>闰年规则</strong>：
+> - 能被 4 整除且不能被 100 整除
+> - 或者能被 400 整除</p><h4>代码实现</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class LeapYearCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入年份: &quot;);
+        int year = scanner.nextInt();</p><p>        if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || (year % 400 == 0)) {
+            System.out.println(year + &quot; 是闰年&quot;);
+        } else {
+            System.out.println(year + &quot; 不是闰年&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 练习四：判断三角形类型</h3><h4>题目</h4>
+输入三角形的三条边，判断是否能构成三角形，并判断类型（等边、等腰、普通）。</p><p>> <strong>三角形判定规则</strong>：任意两边之和大于第三边</p><h4>代码实现</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class TriangleType {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入第一条边: &quot;);
+        double a = scanner.nextDouble();
+        System.out.print(&quot;请输入第二条边: &quot;);
+        double b = scanner.nextDouble();
+        System.out.print(&quot;请输入第三条边: &quot;);
+        double c = scanner.nextDouble();</p><p>        // 判断是否能构成三角形
+        if (a + b &gt; c &amp;&amp; a + c &gt; b &amp;&amp; b + c &gt; a) {
+            System.out.println(&quot;可以构成三角形&quot;);</p><p>            // 判断类型
+            if (a == b &amp;&amp; b == c) {
+                System.out.println(&quot;等边三角形&quot;);
+            } else if (a == b <table><tr><td>b == c</td></tr></table> a == c) {
+                System.out.println(&quot;等腰三角形&quot;);
+            } else {
+                System.out.println(&quot;普通三角形&quot;);
+            }
+        } else {
+            System.out.println(&quot;不能构成三角形&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>5. 练习五：模拟登录验证</h3><h4>题目</h4>
+模拟用户登录，输入用户名和密码，判断是否正确。</p><h4>代码实现</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class LoginCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String correctUser = &quot;admin&quot;;
+        String correctPass = &quot;123456&quot;;</p><p>        System.out.print(&quot;请输入用户名: &quot;);
+        String user = scanner.nextLine();
+        System.out.print(&quot;请输入密码: &quot;);
+        String pass = scanner.nextLine();</p><p>        if (user.equals(correctUser) &amp;&amp; pass.equals(correctPass)) {
+            System.out.println(&quot;登录成功&quot;);
+        } else {
+            System.out.println(&quot;用户名或密码错误&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>6. 练习六：判断数字大小</h3><h4>题目</h4>
+输入三个整数，输出最大值。</p><h4>代码实现</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class MaxOfThree {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入第一个数: &quot;);
+        int a = scanner.nextInt();
+        System.out.print(&quot;请输入第二个数: &quot;);
+        int b = scanner.nextInt();
+        System.out.print(&quot;请输入第三个数: &quot;);
+        int c = scanner.nextInt();</p><p>        int max = a;
+        if (b &gt; max) {
+            max = b;
+        }
+        if (c &gt; max) {
+            max = c;
+        }</p><p>        System.out.println(&quot;最大值是: &quot; + max);
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>练习</td><td>涉及知识点</td></tr></table><table><tr><td>练习一</td><td>单条件判断</td></tr></table>
+<table><tr><td>练习二</td><td>多条件判断</td></tr></table>
+<table><tr><td>练习三</td><td>复合逻辑判断</td></tr></table>
+<table><tr><td>练习四</td><td>嵌套判断</td></tr></table>
+<table><tr><td>练习五</td><td>字符串比较</td></tr></table>
+<table><tr><td>练习六</td><td>多次比较</td></tr></table><p>> <strong>if 分支练习 = 从理论到实践的桥梁</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 每个练习完成后，尝试修改条件，观察输出变化  
+> - 使用 <code class="inline-code">System.out.println()</code> 输出中间变量，辅助调试  
+> - 在复杂逻辑中，考虑使用函数拆分，提高可读性  
+> - 注意边界值测试（如年龄为 18、成绩为 60、闰年为 2000）</p><p>#java基础 #if分支练习 #条件判断 #编程练习 #逻辑控制 #代码实践 #编程入门 #Java语法</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 20</h3>
+        <div class="topic-content"><h2>switch分支-穿透性</h2><p>在 Java 中，<code class="inline-code">switch</code> 是一种多分支选择结构，用于根据变量的值执行不同的代码块。与 <code class="inline-code">if-else</code> 不同的是，<code class="inline-code">switch</code> 支持<strong>穿透性（fall-through）</strong>，这是其一个重要的特性，也是初学者容易出错的地方。</p><hr><h3>1. switch 基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">switch (表达式) {
+    case 值1:
+        // 代码块1
+        break;
+    case 值2:
+        // 代码块2
+        break;
+    ...
+    default:
+        // 默认代码块
+}</code></pre></div><ul><li><strong>表达式</strong>：必须是 <code class="inline-code">byte</code>、<code class="inline-code">short</code>、<code class="inline-code">int</code>、<code class="inline-code">char</code>、<code class="inline-code">String</code>（Java 7+）、<code class="inline-code">enum</code> 类型</li>
+<li><strong>case</strong>：匹配表达式的值</li>
+<li><strong>break</strong>：跳出当前 <code class="inline-code">switch</code>，防止穿透</li>
+<li><strong>default</strong>：当没有匹配的 case 时执行</li>
+</ul>
+<hr></p><h3>2. switch 的穿透性（Fall-through）</h3><h4>2.1 什么是穿透性？</h4><p>当某个 <code class="inline-code">case</code> 匹配成功后，如果没有 <code class="inline-code">break</code>，程序会<strong>继续执行下一个 <code class="inline-code">case</code> 的代码块</strong>，直到遇到 <code class="inline-code">break</code> 或 <code class="inline-code">switch</code> 结束。这种行为称为“穿透”。</p><h4>2.2 示例：无 break 的穿透</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int day = 2;
+switch (day) {
+    case 1:
+        System.out.println(&quot;星期一&quot;);
+    case 2:
+        System.out.println(&quot;星期二&quot;);
+    case 3:
+        System.out.println(&quot;星期三&quot;);
+    default:
+        System.out.println(&quot;其他日子&quot;);
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">星期二
+星期三
+其他日子</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li><code class="inline-code">day = 2</code>，匹配 <code class="inline-code">case 2</code></li>
+<li>因为没有 <code class="inline-code">break</code>，继续执行 <code class="inline-code">case 3</code> 和 <code class="inline-code">default</code></li>
+<li>所以输出了所有后续的语句</li>
+</ul>
+<hr></p><h3>3. 正确使用 switch：避免穿透</h3><h4>3.1 使用 break 防止穿透</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int day = 2;
+switch (day) {
+    case 1:
+        System.out.println(&quot;星期一&quot;);
+        break;
+    case 2:
+        System.out.println(&quot;星期二&quot;);
+        break;
+    case 3:
+        System.out.println(&quot;星期三&quot;);
+        break;
+    default:
+        System.out.println(&quot;其他日子&quot;);
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">星期二</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li><code class="inline-code">day = 2</code>，匹配 <code class="inline-code">case 2</code></li>
+<li>执行后遇到 <code class="inline-code">break</code>，跳出 <code class="inline-code">switch</code></li>
+</ul>
+<hr></p><h4>3.2 利用穿透性实现合并逻辑</h4><p>在某些场景下，可以<strong>有意利用穿透性</strong>，将多个 <code class="inline-code">case</code> 合并为一个处理逻辑。</p><p>#### 示例：判断月份类型</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int month = 12;
+switch (month) {
+    case 12:
+    case 1:
+    case 2:
+        System.out.println(&quot;冬季&quot;);
+        break;
+    case 3:
+    case 4:
+    case 5:
+        System.out.println(&quot;春季&quot;);
+        break;
+    case 6:
+    case 7:
+    case 8:
+        System.out.println(&quot;夏季&quot;);
+        break;
+    case 9:
+    case 10:
+    case 11:
+        System.out.println(&quot;秋季&quot;);
+        break;
+    default:
+        System.out.println(&quot;无效月份&quot;);
+}</code></pre></div><p>> 输出：<code class="inline-code">冬季</code></p><p>> <strong>分析</strong>：
+<ul><li><code class="inline-code">month = 12</code>，匹配 <code class="inline-code">case 12</code></li>
+<li>因为没有 <code class="inline-code">break</code>，但 <code class="inline-code">case 1</code> 和 <code class="inline-code">case 2</code> 没有代码，直接跳过</li>
+<li>所以执行 <code class="inline-code">System.out.println("冬季")</code>，然后遇到 <code class="inline-code">break</code> 跳出</li>
+</ul>
+<hr></p><h3>4. 注意事项</h3><h4>4.1 break 是可选的，但通常必须使用</h4><ul><li>如果忘记写 <code class="inline-code">break</code>，会导致意外的穿透行为</li>
+<li>在大多数情况下，每个 <code class="inline-code">case</code> 后都应加上 <code class="inline-code">break</code></li>
+</ul>
+<h4>4.2 default 的位置</h4><ul><li><code class="inline-code">default</code> 可以放在任意位置，但通常放在最后</li>
+<li>如果 <code class="inline-code">default</code> 前没有 <code class="inline-code">break</code>，它也会被穿透</li>
+</ul>
+<h4>4.3 switch 表达式类型限制</h4><table><tr><td>类型</td><td>是否支持</td></tr></table><table><tr><td><code class="inline-code">int</code>、<code class="inline-code">byte</code>、<code class="inline-code">short</code>、<code class="inline-code">char</code></td><td>✅</td></tr></table>
+<table><tr><td><code class="inline-code">String</code>（Java 7+）</td><td>✅</td></tr></table>
+<table><tr><td><code class="inline-code">enum</code></td><td>✅</td></tr></table>
+<table><tr><td><code class="inline-code">long</code>、<code class="inline-code">float</code>、<code class="inline-code">double</code></td><td>❌</td></tr></table>
+<table><tr><td><code class="inline-code">boolean</code></td><td>❌</td></tr></table><hr><h3>5. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>穿透性</strong></td><td><code class="inline-code">case</code> 匹配后，若无 <code class="inline-code">break</code>，会继续执行后续 <code class="inline-code">case</code></td></tr></table>
+<table><tr><td><strong>break</strong></td><td>用于跳出 <code class="inline-code">switch</code>，防止穿透</td></tr></table>
+<table><tr><td><strong>default</strong></td><td>默认分支，可选</td></tr></table>
+<table><tr><td><strong>合并 case</strong></td><td>可利用穿透性合并多个 <code class="inline-code">case</code> 的逻辑</td></tr></table><p>> <strong>switch 分支 = 多条件判断的高效方式，但需注意穿透性</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 除非有明确需求，否则每个 <code class="inline-code">case</code> 后都加上 <code class="inline-code">break</code>  
+> - 使用 <code class="inline-code">default</code> 处理异常情况，提高健壮性  
+> - 在合并逻辑时，确保逻辑清晰，避免混淆  
+> - 在 Java 7+ 中，可使用 <code class="inline-code">String</code> 作为 switch 表达式，增强可读性</p><p>#java基础 #switch分支 #穿透性 #fall-through #break #多条件判断 #编程技巧 #代码逻辑</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 21</h3>
+        <div class="topic-content"><h2>for循环</h2><p><code class="inline-code">for</code> 循环是 Java 中最常用的循环结构之一，用于重复执行某段代码，特别适合已知循环次数的场景。它结构清晰、语法简洁，是实现遍历数组、计数、重复任务等操作的核心工具。</p><hr><h3>1. for 循环语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (初始化表达式; 条件表达式; 更新表达式) {
+    // 循环体代码
+}</code></pre></div><h4>1.1 三个部分说明</h4><table><tr><td>部分</td><td>作用</td><td>示例</td></tr></table><table><tr><td>初始化表达式</td><td>设置循环变量的初始值</td><td><code class="inline-code">int i = 0</code></td></tr></table>
+<table><tr><td>条件表达式</td><td>判断是否继续循环，必须为 <code class="inline-code">boolean</code> 类型</td><td><code class="inline-code">i < 10</code></td></tr></table>
+<table><tr><td>更新表达式</td><td>每次循环后更新循环变量</td><td><code class="inline-code">i++</code></td></tr></table><h4>1.2 执行流程</h4><p>1. 执行初始化表达式（只执行一次）
+2. 判断条件表达式：
+   - 若为 <code class="inline-code">true</code>，执行循环体
+   - 若为 <code class="inline-code">false</code>，跳出循环
+3. 执行更新表达式
+4. 回到第 2 步，重复执行</p><hr><h3>2. 基本示例</h3><h4>2.1 输出 1 到 10</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 1; i &lt;= 10; i++) {
+    System.out.println(i);
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1
+2
+3
+...
+10</code></pre></div></p><h4>2.2 计算 1 到 10 的和</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int sum = 0;
+for (int i = 1; i &lt;= 10; i++) {
+    sum += i;
+}
+System.out.println(&quot;1 到 10 的和是: &quot; + sum);</code></pre></div><p>> 输出：<code class="inline-code">55</code></p><hr><h3>3. for 循环的变体</h3><h4>3.1 从大到小循环</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 10; i &gt;= 1; i--) {
+    System.out.println(i);
+}</code></pre></div><p>> 输出：<code class="inline-code">10</code> 到 <code class="inline-code">1</code></p><h4>3.2 跳跃循环（步长为 2）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 0; i &lt; 10; i += 2) {
+    System.out.println(i);
+}</code></pre></div><p>> 输出：<code class="inline-code">0, 2, 4, 6, 8</code></p><hr><h3>4. 嵌套 for 循环</h3><p>在循环中再嵌套一个循环，用于处理二维结构，如矩阵、图形打印等。</p><h4>示例：打印九九乘法表</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 1; i &lt;= 9; i++) {
+    for (int j = 1; j &lt;= i; j++) {
+        System.out.print(j + &quot;×&quot; + i + &quot;=&quot; + (i * j) + &quot;\t&quot;);
+    }
+    System.out.println(); // 换行
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1×1=1	
+1×2=2	2×2=4	
+1×3=3	2×3=6	3×3=9	
+...</code></pre></div></p><hr><h3>5. for 循环的注意事项</h3><h4>5.1 循环变量的作用域</h4><p>循环变量在 <code class="inline-code">for</code> 语句中定义时，其作用域仅限于 <code class="inline-code">for</code> 循环内部。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 0; i &lt; 5; i++) {
+    System.out.println(i);
+}
+// System.out.println(i); // ❌ 编译错误：i 未定义</code></pre></div><h4>5.2 死循环风险</h4><p>如果条件表达式永远为 <code class="inline-code">true</code>，会导致无限循环。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 0; i &gt;= 0; i++) {
+    System.out.println(i);
+}</code></pre></div><p>> 输出：从 0 开始不断递增，直到内存溢出</p><p>✅ 正确写法：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 0; i &lt; 10; i++) {
+    System.out.println(i);
+}</code></pre></div><h4>5.3 循环变量类型</h4><ul><li>通常使用 <code class="inline-code">int</code>，但也可以使用 <code class="inline-code">byte</code>、<code class="inline-code">short</code>、<code class="inline-code">char</code> 等类型</li>
+<li>注意数据类型范围，避免溢出</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (char c = &#039;a&#039;; c &lt;= &#039;z&#039;; c++) {
+    System.out.print(c + &quot; &quot;);
+}</code></pre></div></p><p>> 输出：<code class="inline-code">a b c ... z</code></p><hr><h3>6. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>结构清晰</strong></td><td>初始化、条件、更新三部分明确</td></tr></table>
+<table><tr><td><strong>适用场景</strong></td><td>已知循环次数、遍历数组、计数等</td></tr></table>
+<table><tr><td><strong>嵌套支持</strong></td><td>可用于二维结构处理</td></tr></table>
+<table><tr><td><strong>性能高效</strong></td><td>比 <code class="inline-code">while</code> 更简洁，执行效率高</td></tr></table><p>> <strong>for 循环 = 重复执行的首选方式</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 优先使用 <code class="inline-code">for</code> 循环处理已知次数的循环  
+> - 使用有意义的变量名（如 <code class="inline-code">i</code>、<code class="inline-code">j</code>、<code class="inline-code">index</code>）  
+> - 在嵌套循环中，注意循环次数，避免性能问题  
+> - 使用 <code class="inline-code">break</code> 或 <code class="inline-code">continue</code> 控制循环流程</p><p>#java基础 #for循环 #循环结构 #编程基础 #代码逻辑 #遍历数组 #计数 #嵌套循环 #编程技巧</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 22</h3>
+        <div class="topic-content"><h2>for循环案例-求和-求奇数和</h2><p>在实际编程中，<code class="inline-code">for</code> 循环常用于处理数值计算任务，如求和、求平均值、统计奇偶数等。本节通过两个经典案例：<strong>求 1 到 100 的和</strong> 和 <strong>求 1 到 100 中所有奇数的和</strong>，深入理解 <code class="inline-code">for</code> 循环的应用。</p><hr><h3>1. 案例一：求 1 到 100 的和</h3><h4>1.1 题目</h4>
+计算从 1 到 100 所有整数的和。</p><h4>1.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Sum1To100 {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 1; i &lt;= 100; i++) {
+            sum += i;
+        }
+        System.out.println(&quot;1 到 100 的和是: &quot; + sum);
+    }
+}</code></pre></div><h4>1.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1 到 100 的和是: 5050</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>初始化 <code class="inline-code">sum = 0</code></li>
+<li><code class="inline-code">for</code> 循环从 <code class="inline-code">i = 1</code> 开始，每次递增 1，直到 <code class="inline-code">i = 100</code></li>
+<li>每次将 <code class="inline-code">i</code> 加到 <code class="inline-code">sum</code> 上</li>
+<li>最终输出总和</li>
+</ul>
+<hr></p><h3>2. 案例二：求 1 到 100 中所有奇数的和</h3><h4>2.1 题目</h4>
+计算从 1 到 100 中所有奇数的和。</p><h4>2.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class SumOdd1To100 {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 1; i &lt;= 100; i++) {
+            if (i % 2 == 1) { // 判断是否为奇数
+                sum += i;
+            }
+        }
+        System.out.println(&quot;1 到 100 中所有奇数的和是: &quot; + sum);
+    }
+}</code></pre></div><h4>2.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1 到 100 中所有奇数的和是: 2500</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>使用 <code class="inline-code">if (i % 2 == 1)</code> 判断 <code class="inline-code">i</code> 是否为奇数</li>
+<li>只有奇数才加入 <code class="inline-code">sum</code></li>
+<li>最终输出奇数和</li>
+</ul>
+<hr></p><h3>3. 优化写法：直接遍历奇数</h3><h4>3.1 优化思路</h4>
+无需判断奇偶性，直接从 1 开始，每次递增 2，只遍历奇数。</p><h4>3.2 优化代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class SumOddOptimized {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 1; i &lt;= 100; i += 2) { // i 每次增加 2
+            sum += i;
+        }
+        System.out.println(&quot;1 到 100 中所有奇数的和是: &quot; + sum);
+    }
+}</code></pre></div><h4>3.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1 到 100 中所有奇数的和是: 2500</code></pre></div><p>> <strong>优势</strong>：
+<ul><li>减少判断次数，提高效率</li>
+<li>代码更简洁，逻辑更清晰</li>
+</ul>
+<hr></p><h3>4. 案例三：求 1 到 100 中所有偶数的和</h3><h4>4.1 题目</h4>
+计算从 1 到 100 中所有偶数的和。</p><h4>4.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class SumEven1To100 {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 2; i &lt;= 100; i += 2) {
+            sum += i;
+        }
+        System.out.println(&quot;1 到 100 中所有偶数的和是: &quot; + sum);
+    }
+}</code></pre></div><h4>4.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1 到 100 中所有偶数的和是: 2550</code></pre></div><p>> <strong>验证</strong>：
+<ul><li>奇数和：2500</li>
+<li>偶数和：2550</li>
+<li>总和：2500 + 2550 = 5050 ✅</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>案例</td><td>方法</td><td>说明</td></tr></table><table><tr><td>求和</td><td><code class="inline-code">for</code> 循环 + <code class="inline-code">+=</code></td><td>遍历所有数</td></tr></table>
+<table><tr><td>求奇数和</td><td><code class="inline-code">if (i % 2 == 1)</code></td><td>判断奇偶</td></tr></table>
+<table><tr><td>求奇数和（优化）</td><td><code class="inline-code">i += 2</code></td><td>直接遍历奇数</td></tr></table>
+<table><tr><td>求偶数和</td><td><code class="inline-code">i += 2</code></td><td>直接遍历偶数</td></tr></table><p>> <strong>for 循环 = 数值计算的核心工具</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在已知规律的场景下，优先使用步长优化循环（如 <code class="inline-code">i += 2</code>）  
+> - 使用 <code class="inline-code">sum += i</code> 累加，避免重复计算  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 注意边界值测试（如 <code class="inline-code">i = 1</code>、<code class="inline-code">i = 100</code>）</p><p>#java基础 #for循环案例 #求和 #奇数和 #偶数和 #编程练习 #数值计算 #代码实践 #编程技巧</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 23</h3>
+        <div class="topic-content"><h2>while循环</h2><p><code class="inline-code">while</code> 循环是 Java 中的另一种基本循环结构，用于重复执行某段代码，直到指定的条件不再满足为止。与 <code class="inline-code">for</code> 循环不同，<code class="inline-code">while</code> 循环更适合<strong>条件未知或循环次数不确定</strong>的场景。</p><hr><h3>1. while 循环语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (条件表达式) {
+    // 循环体代码
+}</code></pre></div><h4>1.1 执行流程</h4><p>1. 判断条件表达式是否为 <code class="inline-code">true</code>
+2. 如果为 <code class="inline-code">true</code>，执行循环体
+3. 执行完循环体后，再次判断条件
+4. 如果为 <code class="inline-code">false</code>，跳出循环</p><p>> ⚠️ 注意：如果条件一开始就是 <code class="inline-code">false</code>，循环体将<strong>一次也不执行</strong></p><hr><h3>2. 基本示例</h3><h4>2.1 输出 1 到 5</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 5) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1
+2
+3
+4
+5</code></pre></div></p><h4>2.2 计算 1 到 10 的和</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int sum = 0;
+int i = 1;
+while (i &lt;= 10) {
+    sum += i;
+    i++;
+}
+System.out.println(&quot;1 到 10 的和是: &quot; + sum);</code></pre></div><p>> 输出：<code class="inline-code">55</code></p><hr><h3>3. while 循环的变体</h3><h4>3.1 从大到小循环</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 10;
+while (i &gt;= 1) {
+    System.out.println(i);
+    i--;
+}</code></pre></div><p>> 输出：<code class="inline-code">10</code> 到 <code class="inline-code">1</code></p><h4>3.2 跳跃循环（步长为 2）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 0;
+while (i &lt; 10) {
+    System.out.println(i);
+    i += 2;
+}</code></pre></div><p>> 输出：<code class="inline-code">0, 2, 4, 6, 8</code></p><hr><h3>4. 嵌套 while 循环</h3><p>在循环中嵌套另一个 <code class="inline-code">while</code> 循环，用于处理更复杂的逻辑。</p><h4>示例：打印乘法表</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 9) {
+    int j = 1;
+    while (j &lt;= i) {
+        System.out.print(j + &quot;×&quot; + i + &quot;=&quot; + (i * j) + &quot;\t&quot;);
+        j++;
+    }
+    System.out.println();
+    i++;
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1×1=1	
+1×2=2	2×2=4	
+1×3=3	2×3=6	3×3=9	
+...</code></pre></div></p><hr><h3>5. 注意事项</h3><h4>5.1 死循环风险</h4><p>如果条件表达式永远为 <code class="inline-code">true</code>，会导致无限循环。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &gt; 0) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><p>> 输出：从 1 开始不断递增，直到内存溢出</p><p>✅ 正确写法：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 10) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><h4>5.2 循环变量的作用域</h4><p>循环变量在 <code class="inline-code">while</code> 外部定义时，可以在循环外使用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 5) {
+    System.out.println(i);
+    i++;
+}
+System.out.println(&quot;循环结束后 i = &quot; + i); // 输出：6</code></pre></div><hr><h3>6. while 与 for 的比较</h3><table><tr><td>特性</td><td><code class="inline-code">for</code> 循环</td><td><code class="inline-code">while</code> 循环</td></tr></table><table><tr><td>适用场景</td><td>已知循环次数</td><td>条件未知或循环次数不确定</td></tr></table>
+<table><tr><td>结构</td><td>初始化、条件、更新三部分</td><td>只有条件判断</td></tr></table>
+<table><tr><td>可读性</td><td>更简洁</td><td>更灵活</td></tr></table>
+<table><tr><td>使用频率</td><td>更常用</td><td>更适合特定场景</td></tr></table><p>> <strong>选择建议</strong>：
+> - 如果循环次数已知，优先使用 <code class="inline-code">for</code>
+> - 如果循环条件依赖外部变量或用户输入，使用 <code class="inline-code">while</code></p><hr><h3>7. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>结构</strong></td><td><code class="inline-code">while (条件) { 循环体 }</code></td></tr></table>
+<table><tr><td><strong>执行</strong></td><td>先判断，再执行</td></tr></table>
+<table><tr><td><strong>适用场景</strong></td><td>条件驱动、用户输入、文件读取等</td></tr></table>
+<table><tr><td><strong>性能</strong></td><td>与 <code class="inline-code">for</code> 相当，但语法稍复杂</td></tr></table><p>> <strong>while 循环 = 条件驱动的重复执行工具</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在循环中确保条件最终会变为 <code class="inline-code">false</code>，避免死循环  
+> - 使用有意义的变量名（如 <code class="inline-code">i</code>、<code class="inline-code">count</code>、<code class="inline-code">flag</code>）  
+> - 在嵌套循环中，注意循环次数，避免性能问题  
+> - 使用 <code class="inline-code">break</code> 或 <code class="inline-code">continue</code> 控制循环流程</p><p>#java基础 #while循环 #循环结构 #编程基础 #代码逻辑 #条件判断 #编程技巧 #循环控制</p></div>
+      </section>
+      <section class="section" id="section-8">
+        <h3>8. 24</h3>
+        <div class="topic-content"><h2>while循环的案例</h2><p><code class="inline-code">while</code> 循环适用于条件驱动的重复执行场景，如用户输入验证、文件读取、数据处理等。本节通过多个实际案例，展示 <code class="inline-code">while</code> 循环在不同场景下的应用。</p><hr><h3>1. 案例一：用户登录验证</h3><h4>1.1 题目</h4>
+模拟用户登录，允许用户最多尝试 3 次，输入正确用户名和密码后退出。</p><h4>1.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class LoginWithWhile {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String correctUser = &quot;admin&quot;;
+        String correctPass = &quot;123456&quot;;
+        int attempts = 0;
+        boolean loginSuccess = false;</p><p>        while (attempts &lt; 3 &amp;&amp; !loginSuccess) {
+            System.out.print(&quot;请输入用户名: &quot;);
+            String user = scanner.nextLine();
+            System.out.print(&quot;请输入密码: &quot;);
+            String pass = scanner.nextLine();</p><p>            if (user.equals(correctUser) &amp;&amp; pass.equals(correctPass)) {
+                System.out.println(&quot;登录成功&quot;);
+                loginSuccess = true;
+            } else {
+                attempts++;
+                System.out.println(&quot;用户名或密码错误，剩余尝试次数: &quot; + (3 - attempts));
+            }
+        }</p><p>        if (!loginSuccess) {
+            System.out.println(&quot;尝试次数已用完，账户已锁定&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><h4>1.3 输出示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入用户名: admin
+请输入密码: 123456
+登录成功</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>使用 <code class="inline-code">while</code> 控制最大尝试次数</li>
+<li>使用 <code class="inline-code">boolean</code> 标志控制登录状态</li>
+<li>用户输入错误时提示剩余次数</li>
+</ul>
+<hr></p><h3>2. 案例二：猜数字游戏</h3><h4>2.1 题目</h4>
+程序随机生成一个 1 到 100 的数字，用户不断输入猜测值，直到猜中为止。</p><h4>2.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Random;
+import java.util.Scanner;</p><p>public class GuessNumber {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int target = random.nextInt(100) + 1; // 1~100
+        Scanner scanner = new Scanner(System.in);
+        int guess;
+        int attempts = 0;</p><p>        System.out.println(&quot;猜数字游戏：我已生成一个 1 到 100 的数字，请猜猜看！&quot;);</p><p>        while (true) {
+            System.out.print(&quot;请输入你的猜测: &quot;);
+            guess = scanner.nextInt();
+            attempts++;</p><p>            if (guess == target) {
+                System.out.println(&quot;恭喜你，猜对了！数字是 &quot; + target);
+                System.out.println(&quot;你总共猜了 &quot; + attempts + &quot; 次&quot;);
+                break;
+            } else if (guess &lt; target) {
+                System.out.println(&quot;太小了，请再猜大一点&quot;);
+            } else {
+                System.out.println(&quot;太大了，请再猜小一点&quot;);
+            }
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><h4>2.3 输出示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">猜数字游戏：我已生成一个 1 到 100 的数字，请猜猜看！
+请输入你的猜测: 50
+太大了，请再猜小一点
+请输入你的猜测: 25
+太小了，请再猜大一点
+请输入你的猜测: 37
+恭喜你，猜对了！数字是 37
+你总共猜了 3 次</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>使用 <code class="inline-code">while (true)</code> 实现无限循环，直到猜中为止</li>
+<li>使用 <code class="inline-code">break</code> 跳出循环</li>
+<li>提供提示帮助用户缩小范围</li>
+</ul>
+<hr></p><h3>3. 案例三：计算阶乘</h3><h4>3.1 题目</h4>
+输入一个正整数，计算其阶乘（n! = n × (n-1) × ... × 1）</p><h4>3.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class Factorial {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入一个正整数: &quot;);
+        int n = scanner.nextInt();
+        int result = 1;
+        int i = 1;</p><p>        while (i &lt;= n) {
+            result *= i;
+            i++;
+        }</p><p>        System.out.println(n + &quot;! = &quot; + result);
+        scanner.close();
+    }
+}</code></pre></div><h4>3.3 输出示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入一个正整数: 5
+5! = 120</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>使用 <code class="inline-code">while</code> 循环从 1 到 n 累乘</li>
+<li>初始化 <code class="inline-code">result = 1</code>，避免乘以 0</li>
+<li>循环条件为 <code class="inline-code">i <= n</code></li>
+</ul>
+<hr></p><h3>4. 案例四：输入数字求和</h3><h4>4.1 题目</h4>
+用户不断输入数字，直到输入 <code class="inline-code">0</code> 为止，程序输出所有输入数字的和。</p><h4>4.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class SumUntilZero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int sum = 0;
+        int input;</p><p>        System.out.println(&quot;请输入数字（输入 0 结束）:&quot;);</p><p>        while (true) {
+            System.out.print(&quot;输入: &quot;);
+            input = scanner.nextInt();</p><p>            if (input == 0) {
+                break;
+            }</p><p>            sum += input;
+        }</p><p>        System.out.println(&quot;所有数字的和是: &quot; + sum);
+        scanner.close();
+    }
+}</code></pre></div><h4>4.3 输出示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入数字（输入 0 结束）:
+输入: 10
+输入: 20
+输入: 30
+输入: 0
+所有数字的和是: 60</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>使用 <code class="inline-code">while (true)</code> 实现无限输入</li>
+<li>使用 <code class="inline-code">break</code> 在输入 <code class="inline-code">0</code> 时退出</li>
+<li>适合处理用户输入流</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>案例</td><td>使用场景</td><td>关键点</td></tr></table><table><tr><td>用户登录</td><td>条件驱动、次数限制</td><td><code class="inline-code">while (attempts < 3)</code></td></tr></table>
+<table><tr><td>猜数字</td><td>无限循环、用户交互</td><td><code class="inline-code">while (true)</code> + <code class="inline-code">break</code></td></tr></table>
+<table><tr><td>阶乘计算</td><td>数值计算</td><td><code class="inline-code">while (i <= n)</code></td></tr></table>
+<table><tr><td>输入求和</td><td>用户输入流</td><td><code class="inline-code">while (true)</code> + <code class="inline-code">break</code></td></tr></table><p>> <strong>while 循环 = 条件驱动的灵活控制工具</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在 <code class="inline-code">while</code> 循环中确保条件最终会变为 <code class="inline-code">false</code>，避免死循环  
+> - 使用 <code class="inline-code">break</code> 控制跳出循环，提高代码灵活性  
+> - 在用户输入场景中，注意异常处理（如输入非数字）  
+> - 保持代码结构清晰，便于调试和维护</p><p>#java基础 #while循环案例 #编程实践 #用户输入 #条件判断 #循环控制 #编程技巧</p></div>
+      </section>
+      <section class="section" id="section-9">
+        <h3>9. 25</h3>
+        <div class="topic-content"><h2>do-while循环，三种循环的区别</h2><p>在 Java 中，<code class="inline-code">for</code>、<code class="inline-code">while</code> 和 <code class="inline-code">do-while</code> 是三种基本的循环结构，它们都用于重复执行代码块，但在执行时机和适用场景上有所不同。本节将详细介绍 <code class="inline-code">do-while</code> 循环，并对比三种循环的异同。</p><hr><h3>1. do-while 循环语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">do {
+    // 循环体代码
+} while (条件表达式);</code></pre></div><h4>1.1 执行流程</h4><p>1. 先执行循环体
+2. 再判断条件表达式：
+   - 如果为 <code class="inline-code">true</code>，继续执行循环体
+   - 如果为 <code class="inline-code">false</code>，跳出循环</p><p>> ⚠️ <strong>关键点</strong>：<code class="inline-code">do-while</code> 至少执行一次循环体，即使条件一开始就是 <code class="inline-code">false</code></p><hr><h3>2. do-while 示例</h3><h4>2.1 输出 1 到 5</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+do {
+    System.out.println(i);
+    i++;
+} while (i &lt;= 5);</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1
+2
+3
+4
+5</code></pre></div></p><h4>2.2 用户输入验证（至少输入一次）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class InputValidation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input;</p><p>        do {
+            System.out.print(&quot;请输入用户名（输入 &#039;quit&#039; 退出）: &quot;);
+            input = scanner.nextLine();
+            if (!input.equals(&quot;quit&quot;)) {
+                System.out.println(&quot;欢迎用户: &quot; + input);
+            }
+        } while (!input.equals(&quot;quit&quot;));</p><p>        System.out.println(&quot;程序结束&quot;);
+        scanner.close();
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入用户名（输入 &#039;quit&#039; 退出）: admin
+欢迎用户: admin
+请输入用户名（输入 &#039;quit&#039; 退出）: quit
+程序结束</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li>用户至少输入一次</li>
+<li>输入 <code class="inline-code">quit</code> 后退出循环</li>
+</ul>
+<hr></p><h3>3. 三种循环的对比</h3><table><tr><td>特性</td><td><code class="inline-code">for</code> 循环</td><td><code class="inline-code">while</code> 循环</td><td><code class="inline-code">do-while</code> 循环</td></tr></table><table><tr><td><strong>执行时机</strong></td><td>先判断，再执行</td><td>先判断，再执行</td><td>先执行，再判断</td></tr></table>
+<table><tr><td><strong>是否至少执行一次</strong></td><td>否</td><td>否</td><td>是</td></tr></table>
+<table><tr><td><strong>适用场景</strong></td><td>已知循环次数</td><td>条件驱动</td><td>至少执行一次的场景</td></tr></table>
+<table><tr><td><strong>语法结构</strong></td><td>初始化、条件、更新</td><td>条件</td><td>循环体 + 条件</td></tr></table>
+<table><tr><td><strong>代码简洁性</strong></td><td>高</td><td>中</td><td>中</td></tr></table><hr><h3>4. 三种循环的使用建议</h3><h4>4.1 何时使用 <code class="inline-code">for</code> 循环？</h4><ul><li>循环次数已知</li>
+<li>遍历数组、集合</li>
+<li>计数循环</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 0; i &lt; 10; i++) {
+    System.out.println(i);
+}</code></pre></div></p><h4>4.2 何时使用 <code class="inline-code">while</code> 循环？</h4><ul><li>循环次数未知</li>
+<li>条件依赖外部变量</li>
+<li>用户输入验证（可选）</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (userInput != &quot;quit&quot;) {
+    // 处理输入
+}</code></pre></div></p><h4>4.3 何时使用 <code class="inline-code">do-while</code> 循环？</h4><ul><li>至少执行一次循环体</li>
+<li>用户输入验证（必须输入一次）</li>
+<li>菜单选择（至少显示一次菜单）</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">do {
+    showMenu();
+    choice = getUserInput();
+} while (choice != 0);</code></pre></div></p><hr><h3>5. 三种循环的转换</h3><h4>5.1 <code class="inline-code">for</code> → <code class="inline-code">while</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// for 循环
+for (int i = 0; i &lt; 5; i++) {
+    System.out.println(i);
+}</p><p>// 转换为 while
+int i = 0;
+while (i &lt; 5) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><h4>5.2 <code class="inline-code">while</code> → <code class="inline-code">do-while</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// while 循环
+while (condition) {
+    // 循环体
+}</p><p>// 转换为 do-while（仅当循环体必须执行一次时）
+do {
+    // 循环体
+} while (condition);</code></pre></div><p>> ⚠️ 注意：<code class="inline-code">while</code> 和 <code class="inline-code">do-while</code> 的转换需谨慎，因为执行时机不同</p><hr><h3>6. 总结</h3><table><tr><td>循环类型</td><td>执行时机</td><td>是否至少执行一次</td><td>适用场景</td></tr></table><table><tr><td><code class="inline-code">for</code></td><td>先判断</td><td>否</td><td>已知次数、遍历</td></tr></table>
+<table><tr><td><code class="inline-code">while</code></td><td>先判断</td><td>否</td><td>条件驱动、输入验证</td></tr></table>
+<table><tr><td><code class="inline-code">do-while</code></td><td>先执行</td><td>是</td><td>至少执行一次</td></tr></table><p>> <strong>选择建议</strong>：
+> - 如果循环次数已知，优先使用 <code class="inline-code">for</code>
+> - 如果条件驱动，使用 <code class="inline-code">while</code>
+> - 如果必须执行一次，使用 <code class="inline-code">do-while</code></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在用户输入场景中，优先使用 <code class="inline-code">do-while</code>，确保用户至少输入一次  
+> - 在循环中使用 <code class="inline-code">break</code> 或 <code class="inline-code">continue</code> 控制流程  
+> - 保持代码结构清晰，避免嵌套过深  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性</p><p>#java基础 #循环结构 #for循环 #while循环 #do-while循环 #循环对比 #编程技巧 #代码逻辑</p></div>
+      </section>
+      <section class="section" id="section-10">
+        <h3>10. 26</h3>
+        <div class="topic-content"><h2>死循环</h2><p>在 Java 编程中，<strong>死循环（Infinite Loop）</strong> 是指程序进入一个无法正常退出的循环结构，导致程序一直重复执行某段代码，无法继续后续逻辑。死循环通常由错误的条件判断或逻辑设计引起，是程序调试中常见的问题。</p><hr><h3>1. 什么是死循环？</h3><p>死循环是指循环条件始终为 <code class="inline-code">true</code>，导致循环体无限执行，程序无法正常结束。</p><h4>1.1 常见原因</h4><ul><li>循环变量未更新</li>
+<li>条件表达式写错</li>
+<li>使用了错误的逻辑运算符</li>
+</ul>
+<hr></p><h3>2. 死循环示例</h3><h4>2.1 循环变量未更新</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 10) {
+    System.out.println(i);
+    // i++ 缺失，导致 i 始终为 1
+}</code></pre></div><p>> 输出：<code class="inline-code">1</code> 无限打印，程序卡死</p><h4>2.2 条件表达式写错</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &gt; 0) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><p>> 输出：<code class="inline-code">1, 2, 3, ...</code> 无限递增，直到内存溢出</p><h4>2.3 使用了错误的逻辑运算符</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i != 10) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><p>> 输出：<code class="inline-code">1, 2, 3, ...</code> 无限递增，因为 <code class="inline-code">i</code> 从 1 开始，每次加 1，永远不会等于 10？不，会等于 10，所以不会死循环。</p><p>✅ 正确写法：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (i &lt; 10) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><hr><h3>3. 如何避免死循环？</h3><h4>3.1 确保循环变量更新</h4><p>在循环体中，必须确保循环变量在每次迭代中发生变化。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 10) {
+    System.out.println(i);
+    i++; // ✅ 必须更新
+}</code></pre></div><h4>3.2 检查循环条件</h4><p>确保循环条件最终会变为 <code class="inline-code">false</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 1;
+while (i &lt;= 10) {
+    System.out.println(i);
+    i++;
+}</code></pre></div><h4>3.3 使用调试工具</h4><p>在 IDE 中设置断点，逐步执行代码，观察循环变量的变化。</p><hr><h3>4. 死循环的处理方式</h3><h4>4.1 使用 <code class="inline-code">break</code> 强制退出</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (true) {
+    System.out.println(&quot;无限循环&quot;);
+    break; // ✅ 强制退出
+}</code></pre></div><h4>4.2 使用 <code class="inline-code">Ctrl + C</code> 终止程序</h4><p>在控制台中，按 <code class="inline-code">Ctrl + C</code> 可以终止正在运行的 Java 程序。</p><hr><h3>5. 死循环的用途</h3><p>虽然死循环通常是错误的，但在某些特定场景下，它也是有用的。</p><h4>5.1 服务器监听</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (true) {
+    // 监听客户端连接
+    Socket client = serverSocket.accept();
+    // 处理客户端请求
+}</code></pre></div><h4>5.2 游戏主循环</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (gameRunning) {
+    // 更新游戏状态
+    // 渲染画面
+}</code></pre></div><h4>5.3 用户交互菜单</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">do {
+    showMenu();
+    choice = getUserInput();
+} while (choice != 0);</code></pre></div><hr><h3>6. 总结</h3><table><tr><td>类型</td><td>说明</td></tr></table><table><tr><td><strong>死循环</strong></td><td>循环条件始终为 <code class="inline-code">true</code>，无法退出</td></tr></table>
+<table><tr><td><strong>原因</strong></td><td>循环变量未更新、条件写错</td></tr></table>
+<table><tr><td><strong>解决</strong></td><td>更新循环变量、检查条件</td></tr></table>
+<table><tr><td><strong>用途</strong></td><td>服务器、游戏、菜单</td></tr></table><p>> <strong>死循环 = 程序逻辑错误的常见表现</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在循环中确保循环变量更新  
+> - 使用 <code class="inline-code">break</code> 控制退出条件  
+> - 在调试时使用 <code class="inline-code">System.out.println</code> 输出变量值  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性</p><p>#java基础 #死循环 #编程错误 #循环控制 #调试技巧 #程序逻辑</p></div>
+      </section>
+      <section class="section" id="section-11">
+        <h3>11. 27</h3>
+        <div class="topic-content"><h2>循环嵌套案例</h2><p>在 Java 编程中，<strong>循环嵌套</strong>是指在一个循环内部再嵌套一个或多个循环。这种结构常用于处理二维数据结构（如数组、矩阵）、打印图形、生成组合等场景。本节通过多个实际案例，展示循环嵌套的应用。</p><hr><h3>1. 案例一：打印九九乘法表</h3><h4>1.1 题目</h4>
+打印一个标准的九九乘法表。</p><h4>1.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MultiplicationTable {
+    public static void main(String[] args) {
+        for (int i = 1; i &lt;= 9; i++) {
+            for (int j = 1; j &lt;= i; j++) {
+                System.out.print(j + &quot;×&quot; + i + &quot;=&quot; + (i * j) + &quot;\t&quot;);
+            }
+            System.out.println(); // 换行
+        }
+    }
+}</code></pre></div><h4>1.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1×1=1	
+1×2=2	2×2=4	
+1×3=3	2×3=6	3×3=9	
+1×4=4	2×4=8	3×4=12	4×4=16	
+1×5=5	2×5=10	3×5=15	4×5=20	5×5=25	
+1×6=6	2×6=12	3×6=18	4×6=24	5×6=30	6×6=36	
+1×7=7	2×7=14	3×7=21	4×7=28	5×7=35	6×7=42	7×7=49	
+1×8=8	2×8=16	3×8=24	4×8=32	5×8=40	6×8=48	7×8=56	8×8=64	
+1×9=9	2×9=18	3×9=27	4×9=36	5×9=45	6×9=54	7×9=63	8×9=72	9×9=81</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>外层循环 <code class="inline-code">i</code> 控制行数（1 到 9）</li>
+<li>内层循环 <code class="inline-code">j</code> 控制列数（1 到 <code class="inline-code">i</code>）</li>
+<li>每行输出 <code class="inline-code">j × i = i*j</code> 的结果</li>
+</ul>
+<hr></p><h3>2. 案例二：打印直角三角形</h3><h4>2.1 题目</h4>
+使用 <code class="inline-code">*</code> 打印一个直角三角形。</p><h4>2.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class RightTriangle {
+    public static void main(String[] args) {
+        int rows = 5;
+        for (int i = 1; i &lt;= rows; i++) {
+            for (int j = 1; j &lt;= i; j++) {
+                System.out.print(&quot;*&quot;);
+            }
+            System.out.println(); // 换行
+        }
+    }
+}</code></pre></div><h4>2.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">*
+<strong>
+</strong>*
+**<strong>
+</strong>*<strong></code></pre></div><p>> </strong>分析**：
+<ul><li>外层循环控制行数</li>
+<li>内层循环控制每行的 <code class="inline-code">*</code> 数量</li>
+<li>每行 <code class="inline-code">*</code> 的数量等于行号</li>
+</ul>
+<hr></p><h3>3. 案例三：打印空心矩形</h3><h4>3.1 题目</h4>
+打印一个空心矩形。</p><h4>3.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class HollowRectangle {
+    public static void main(String[] args) {
+        int rows = 5;
+        int cols = 10;</p><p>        for (int i = 1; i &lt;= rows; i++) {
+            for (int j = 1; j &lt;= cols; j++) {
+                if (i == 1 <table><tr><td>i == rows</td><td>j == 1</td></tr></table> j == cols) {
+                    System.out.print(&quot;*&quot;);
+                } else {
+                    System.out.print(&quot; &quot;);
+                }
+            }
+            System.out.println(); // 换行
+        }
+    }
+}</code></pre></div><h4>3.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">**********
+*        *
+*        *
+*        *
+********<strong></code></pre></div><p>> </strong>分析**：
+<ul><li>使用 <code class="inline-code">if</code> 判断是否为边框位置</li>
+<li>边框位置打印 <code class="inline-code">*</code>，内部打印空格</li>
+</ul>
+<hr></p><h3>4. 案例四：计算二维数组元素和</h3><h4>4.1 题目</h4>
+定义一个 3×4 的二维数组，计算所有元素的和。</p><h4>4.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class ArraySum {
+    public static void main(String[] args) {
+        int[][] arr = {
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12}
+        };</p><p>        int sum = 0;
+        for (int i = 0; i &lt; arr.length; i++) {
+            for (int j = 0; j &lt; arr[i].length; j++) {
+                sum += arr[i][j];
+            }
+        }</p><p>        System.out.println(&quot;数组元素和: &quot; + sum);
+    }
+}</code></pre></div><h4>4.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">数组元素和: 78</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>外层循环遍历行</li>
+<li>内层循环遍历列</li>
+<li>累加所有元素</li>
+</ul>
+<hr></p><h3>5. 案例五：查找二维数组中的最大值</h3><h4>5.1 题目</h4>
+在一个二维数组中查找最大值。</p><h4>5.2 实现代码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MaxIn2DArray {
+    public static void main(String[] args) {
+        int[][] arr = {
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12}
+        };</p><p>        int max = arr[0][0];
+        for (int i = 0; i &lt; arr.length; i++) {
+            for (int j = 0; j &lt; arr[i].length; j++) {
+                if (arr[i][j] &gt; max) {
+                    max = arr[i][j];
+                }
+            }
+        }</p><p>        System.out.println(&quot;最大值: &quot; + max);
+    }
+}</code></pre></div><h4>5.3 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">最大值: 12</code></pre></div><p>> <strong>分析</strong>：
+<ul><li>使用 <code class="inline-code">arr[0][0]</code> 初始化最大值</li>
+<li>遍历所有元素，更新最大值</li>
+</ul>
+<hr></p><h3>6. 总结</h3><table><tr><td>案例</td><td>用途</td><td>关键点</td></tr></table><table><tr><td>九九乘法表</td><td>打印表格</td><td>嵌套循环控制行和列</td></tr></table>
+<table><tr><td>直角三角形</td><td>图形打印</td><td>内层循环控制每行的字符数</td></tr></table>
+<table><tr><td>空心矩形</td><td>图形打印</td><td>使用 <code class="inline-code">if</code> 判断边框</td></tr></table>
+<table><tr><td>数组求和</td><td>数据处理</td><td>遍历二维数组</td></tr></table>
+<table><tr><td>查找最大值</td><td>数据处理</td><td>比较并更新最大值</td></tr></table><p>> <strong>循环嵌套 = 处理二维结构的核心工具</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在嵌套循环中，注意循环次数，避免性能问题  
+> - 使用有意义的变量名（如 <code class="inline-code">i</code>、<code class="inline-code">j</code>、<code class="inline-code">row</code>、<code class="inline-code">col</code>）  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 使用 <code class="inline-code">System.out.println</code> 输出中间变量，辅助调试</p><p>#java基础 #循环嵌套 #编程案例 #二维数组 #图形打印 #数据处理 #编程技巧</p></div>
+      </section>
+      <section class="section" id="section-12">
+        <h3>12. 28</h3>
+        <div class="topic-content"><h2>跳转关键字 - continue 和 break</h2><p>在 Java 中，<code class="inline-code">continue</code> 和 <code class="inline-code">break</code> 是两个重要的<strong>跳转关键字</strong>，用于控制循环的执行流程。它们可以改变程序的正常执行顺序，实现更灵活的逻辑控制。</p><hr><h3>1. break 关键字</h3><h4>1.1 作用</h4><p><code class="inline-code">break</code> 用于<strong>立即终止当前循环或 switch 结构</strong>，并跳出到循环或 switch 之后的代码。</p><h4>1.2 使用场景</h4><ul><li>在 <code class="inline-code">for</code>、<code class="inline-code">while</code>、<code class="inline-code">do-while</code> 循环中跳出循环</li>
+<li>在 <code class="inline-code">switch</code> 中跳出当前 case</li>
+</ul>
+<h4>1.3 示例</h4><p>#### 示例 1：在 for 循环中使用 break</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class BreakExample {
+    public static void main(String[] args) {
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i == 5) {
+                break; // 当 i == 5 时跳出循环
+            }
+            System.out.println(i);
+        }
+        System.out.println(&quot;循环结束&quot;);
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1
+2
+3
+4
+循环结束</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li>当 <code class="inline-code">i = 5</code> 时，执行 <code class="inline-code">break</code>，跳出 <code class="inline-code">for</code> 循环</li>
+<li>不再执行后续的 <code class="inline-code">i = 6</code> 到 <code class="inline-code">10</code></li>
+</ul>
+#### 示例 2：在 switch 中使用 break</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class SwitchBreak {
+    public static void main(String[] args) {
+        int choice = 2;
+        switch (choice) {
+            case 1:
+                System.out.println(&quot;选项 1&quot;);
+                break;
+            case 2:
+                System.out.println(&quot;选项 2&quot;);
+                break;
+            case 3:
+                System.out.println(&quot;选项 3&quot;);
+                break;
+            default:
+                System.out.println(&quot;无效选项&quot;);
+        }
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">选项 2</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li><code class="inline-code">case 2</code> 匹配成功，执行后遇到 <code class="inline-code">break</code>，跳出 <code class="inline-code">switch</code></li>
+<li>不会继续执行 <code class="inline-code">case 3</code> 和 <code class="inline-code">default</code></li>
+</ul>
+<hr></p><h3>2. continue 关键字</h3><h4>2.1 作用</h4><p><code class="inline-code">continue</code> 用于<strong>跳过当前循环体中剩余的代码，直接进入下一次循环</strong>。</p><h4>2.2 使用场景</h4><ul><li>在 <code class="inline-code">for</code>、<code class="inline-code">while</code>、<code class="inline-code">do-while</code> 循环中跳过当前迭代</li>
+<li>通常用于过滤某些不符合条件的数据</li>
+</ul>
+<h4>2.3 示例</h4><p>#### 示例 1：跳过偶数</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class ContinueExample {
+    public static void main(String[] args) {
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i % 2 == 0) {
+                continue; // 跳过偶数
+            }
+            System.out.println(i);
+        }
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">1
+3
+5
+7
+9</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li>当 <code class="inline-code">i</code> 为偶数时，执行 <code class="inline-code">continue</code>，跳过 <code class="inline-code">System.out.println(i)</code></li>
+<li>直接进入下一次循环</li>
+</ul>
+#### 示例 2：跳过空字符串</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringFilter {
+    public static void main(String[] args) {
+        String[] names = {&quot;Alice&quot;, &quot;&quot;, &quot;Bob&quot;, &quot;Charlie&quot;, &quot;&quot;};
+        for (String name : names) {
+            if (name.isEmpty()) {
+                continue; // 跳过空字符串
+            }
+            System.out.println(&quot;欢迎: &quot; + name);
+        }
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">欢迎: Alice
+欢迎: Bob
+欢迎: Charlie</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li>当 <code class="inline-code">name</code> 为空字符串时，执行 <code class="inline-code">continue</code>，跳过后续代码</li>
+<li>不执行 <code class="inline-code">System.out.println</code></li>
+</ul>
+<hr></p><h3>3. break 和 continue 的区别</h3><table><tr><td>特性</td><td><code class="inline-code">break</code></td><td><code class="inline-code">continue</code></td></tr></table><table><tr><td><strong>作用</strong></td><td>终止整个循环或 switch</td><td>跳过当前迭代，进入下一次循环</td></tr></table>
+<table><tr><td><strong>执行流程</strong></td><td>跳出循环体</td><td>跳过当前循环体剩余代码</td></tr></table>
+<table><tr><td><strong>适用场景</strong></td><td>提前退出循环、switch</td><td>过滤不符合条件的数据</td></tr></table>
+<table><tr><td><strong>是否影响循环次数</strong></td><td>是</td><td>否</td></tr></table><hr><h3>4. 嵌套循环中的 break 和 continue</h3><h4>4.1 break 在嵌套循环中</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class NestedBreak {
+    public static void main(String[] args) {
+        outer: for (int i = 1; i &lt;= 3; i++) {
+            for (int j = 1; j &lt;= 3; j++) {
+                if (i == 2 &amp;&amp; j == 2) {
+                    break outer; // 跳出外层循环
+                }
+                System.out.println(&quot;i=&quot; + i + &quot;, j=&quot; + j);
+            }
+        }
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">i=1, j=1
+i=1, j=2
+i=1, j=3
+i=2, j=1</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li>使用标签 <code class="inline-code">outer:</code> 标记外层循环</li>
+<li><code class="inline-code">break outer;</code> 跳出外层循环，不再执行 <code class="inline-code">i = 2</code> 的后续 <code class="inline-code">j</code> 值</li>
+</ul>
+<h4>4.2 continue 在嵌套循环中</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class NestedContinue {
+    public static void main(String[] args) {
+        for (int i = 1; i &lt;= 3; i++) {
+            for (int j = 1; j &lt;= 3; j++) {
+                if (i == 2 &amp;&amp; j == 2) {
+                    continue; // 跳过当前迭代
+                }
+                System.out.println(&quot;i=&quot; + i + &quot;, j=&quot; + j);
+            }
+        }
+    }
+}</code></pre></div><p>> 输出：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">i=1, j=1
+i=1, j=2
+i=1, j=3
+i=2, j=1
+i=2, j=3
+i=3, j=1
+i=3, j=2
+i=3, j=3</code></pre></div></p><p>> <strong>分析</strong>：
+<ul><li>当 <code class="inline-code">i = 2</code> 且 <code class="inline-code">j = 2</code> 时，执行 <code class="inline-code">continue</code>，跳过 <code class="inline-code">System.out.println</code></li>
+<li>继续执行 <code class="inline-code">j = 3</code> 的代码</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>关键字</td><td>作用</td><td>适用场景</td></tr></table><table><tr><td><code class="inline-code">break</code></td><td>终止循环或 switch</td><td>提前退出、switch 分支</td></tr></table>
+<table><tr><td><code class="inline-code">continue</code></td><td>跳过当前迭代</td><td>过滤数据、跳过无效值</td></tr></table><p>> <strong>break 和 continue = 控制循环流程的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在循环中使用 <code class="inline-code">break</code> 或 <code class="inline-code">continue</code> 时，确保逻辑清晰  
+> - 在嵌套循环中，使用标签（label）控制跳出范围  
+> - 避免过度使用，保持代码可读性  
+> - 在复杂逻辑中，考虑拆分为函数，提高可维护性</p><p>#java基础 #跳转关键字 #break #continue #循环控制 #编程技巧 #代码逻辑</p></div>
+      </section>
+      <section class="section" id="section-13">
+        <h3>13. 29</h3>
+        <div class="topic-content"><h2>综合实战 - 计算器</h2><p>计算器是编程中一个经典的综合项目，它融合了输入输出、运算符、分支结构、循环结构等多种知识点。本节通过实现一个<strong>控制台计算器</strong>，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 项目目标</h3><p>实现一个支持加、减、乘、除四则运算的控制台计算器，支持连续计算。</p><h4>1.1 功能需求</h4><ul><li>输入两个数字和一个运算符</li>
+<li>执行对应运算</li>
+<li>输出结果</li>
+<li>支持连续计算（用户可选择是否继续）</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入 Scanner 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // 主循环
+        while (true) {
+            // 输入数字和运算符
+            // 执行计算
+            // 输出结果
+            // 判断是否继续
+        }
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String continueCalc = &quot;y&quot;;</p><p>        while (continueCalc.equalsIgnoreCase(&quot;y&quot;)) {
+            System.out.print(&quot;请输入第一个数字: &quot;);
+            double num1 = scanner.nextDouble();</p><p>            System.out.print(&quot;请输入运算符 (+, -, *, /): &quot;);
+            String operator = scanner.next();</p><p>            System.out.print(&quot;请输入第二个数字: &quot;);
+            double num2 = scanner.nextDouble();</p><p>            double result = 0;
+            boolean validOperation = true;</p><p>            switch (operator) {
+                case &quot;+&quot;:
+                    result = num1 + num2;
+                    break;
+                case &quot;-&quot;:
+                    result = num1 - num2;
+                    break;
+                case &quot;*&quot;:
+                    result = num1 * num2;
+                    break;
+                case &quot;/&quot;:
+                    if (num2 == 0) {
+                        System.out.println(&quot;错误：除数不能为 0&quot;);
+                        validOperation = false;
+                    } else {
+                        result = num1 / num2;
+                    }
+                    break;
+                default:
+                    System.out.println(&quot;错误：不支持的运算符&quot;);
+                    validOperation = false;
+            }</p><p>            if (validOperation) {
+                System.out.printf(&quot;%.2f %s %.2f = %.2f%n&quot;, num1, operator, num2, result);
+            }</p><p>            System.out.print(&quot;是否继续计算？(y/n): &quot;);
+            continueCalc = scanner.next();
+        }</p><p>        System.out.println(&quot;感谢使用计算器，再见！&quot;);
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入第一个数字: 10
+请输入运算符 (+, -, *, /): +
+请输入第二个数字: 5
+10.00 + 5.00 = 15.00
+是否继续计算？(y/n): y
+请输入第一个数字: 20
+请输入运算符 (+, -, *, /): /
+请输入第二个数字: 4
+20.00 / 4.00 = 5.00
+是否继续计算？(y/n): n
+感谢使用计算器，再见！</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>输入数字</td><td><code class="inline-code">scanner.nextDouble()</code></td></tr></table>
+<table><tr><td>输入运算符</td><td><code class="inline-code">scanner.next()</code></td></tr></table>
+<table><tr><td>四则运算</td><td><code class="inline-code">switch</code> 分支</td></tr></table>
+<table><tr><td>除零判断</td><td><code class="inline-code">if (num2 == 0)</code></td></tr></table>
+<table><tr><td>连续计算</td><td><code class="inline-code">while (continueCalc.equalsIgnoreCase("y"))</code></td></tr></table>
+<table><tr><td>格式化输出</td><td><code class="inline-code">System.out.printf</code></td></tr></table><hr><h3>6. 扩展功能（可选）</h3><h4>6.1 支持更多运算符</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">case &quot;%&quot;:
+    result = num1 % num2;
+    break;</code></pre></div><h4>6.2 支持小数输入</h4><ul><li><code class="inline-code">double</code> 类型支持小数</li>
+<li><code class="inline-code">System.out.printf("%.2f")</code> 保留两位小数</li>
+</ul>
+<h4>6.3 支持历史记录</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">List&lt;String&gt; history = new ArrayList&lt;&gt;();
+history.add(&quot;10 + 5 = 15&quot;);</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">switch</code></td><td>多分支选择</td></tr></table>
+<table><tr><td><code class="inline-code">while</code></td><td>连续计算</td></tr></table>
+<table><tr><td><code class="inline-code">if-else</code></td><td>错误处理</td></tr></table>
+<table><tr><td><code class="inline-code">printf</code></td><td>格式化输出</td></tr></table><p>> <strong>计算器 = 综合知识的实践平台</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，注意异常处理（如输入非数字）  
+> - 使用 <code class="inline-code">try-catch</code> 捕获 <code class="inline-code">InputMismatchException</code>  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #综合实战 #计算器 #编程练习 #输入输出 #分支结构 #循环结构 #运算符 #代码实践</p></div>
+      </section>
+      <section class="section" id="section-14">
+        <h3>14. 30</h3>
+        <div class="topic-content"><h2>综合实战 - 猜数字</h2><p>猜数字游戏是一个经典的编程练习，它融合了随机数生成、用户输入、条件判断、循环控制等多种知识点。本节通过实现一个<strong>控制台猜数字游戏</strong>，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 项目目标</h3><p>实现一个猜数字游戏，程序随机生成一个 1 到 100 的数字，用户不断输入猜测值，直到猜中为止。</p><h4>1.1 功能需求</h4><ul><li>随机生成一个 1 到 100 的数字</li>
+<li>用户输入猜测值</li>
+<li>程序提示“太大了”或“太小了”</li>
+<li>用户猜中后输出正确信息</li>
+<li>支持重新开始游戏</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入必要的类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Random;
+import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class GuessNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        int target = random.nextInt(100) + 1; // 1~100
+        int guess;
+        int attempts = 0;</p><p>        System.out.println(&quot;猜数字游戏：我已生成一个 1 到 100 的数字，请猜猜看！&quot;);</p><p>        while (true) {
+            System.out.print(&quot;请输入你的猜测: &quot;);
+            guess = scanner.nextInt();
+            attempts++;</p><p>            if (guess == target) {
+                System.out.println(&quot;恭喜你，猜对了！数字是 &quot; + target);
+                System.out.println(&quot;你总共猜了 &quot; + attempts + &quot; 次&quot;);
+                break;
+            } else if (guess &lt; target) {
+                System.out.println(&quot;太小了，请再猜大一点&quot;);
+            } else {
+                System.out.println(&quot;太大了，请再猜小一点&quot;);
+            }
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Random;
+import java.util.Scanner;</p><p>public class GuessNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        int target = random.nextInt(100) + 1; // 1~100
+        int guess;
+        int attempts = 0;</p><p>        System.out.println(&quot;猜数字游戏：我已生成一个 1 到 100 的数字，请猜猜看！&quot;);</p><p>        while (true) {
+            System.out.print(&quot;请输入你的猜测: &quot;);
+            guess = scanner.nextInt();
+            attempts++;</p><p>            if (guess == target) {
+                System.out.println(&quot;恭喜你，猜对了！数字是 &quot; + target);
+                System.out.println(&quot;你总共猜了 &quot; + attempts + &quot; 次&quot;);
+                break;
+            } else if (guess &lt; target) {
+                System.out.println(&quot;太小了，请再猜大一点&quot;);
+            } else {
+                System.out.println(&quot;太大了，请再猜小一点&quot;);
+            }
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">猜数字游戏：我已生成一个 1 到 100 的数字，请猜猜看！
+请输入你的猜测: 50
+太大了，请再猜小一点
+请输入你的猜测: 25
+太小了，请再猜大一点
+请输入你的猜测: 37
+太小了，请再猜大一点
+请输入你的猜测: 43
+恭喜你，猜对了！数字是 43
+你总共猜了 4 次</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>随机数生成</td><td><code class="inline-code">Random random = new Random(); random.nextInt(100) + 1</code></td></tr></table>
+<table><tr><td>用户输入</td><td><code class="inline-code">scanner.nextInt()</code></td></tr></table>
+<table><tr><td>循环判断</td><td><code class="inline-code">while (true)</code> + <code class="inline-code">break</code></td></tr></table>
+<table><tr><td>条件提示</td><td><code class="inline-code">if-else</code> 分支</td></tr></table>
+<table><tr><td>计数统计</td><td><code class="inline-code">attempts++</code></td></tr></table><hr><h3>6. 扩展功能（可选）</h3><h4>6.1 添加最大尝试次数</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int maxAttempts = 10;
+while (attempts &lt; maxAttempts) {
+    // 猜测逻辑
+}</code></pre></div><h4>6.2 添加难度选择</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.print(&quot;请选择难度（1-简单，2-中等，3-困难）: &quot;);
+int difficulty = scanner.nextInt();
+int range = 100;
+if (difficulty == 2) range = 50;
+if (difficulty == 3) range = 20;</code></pre></div><h4>6.3 添加历史记录</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">List&lt;Integer&gt; guesses = new ArrayList&lt;&gt;();
+guesses.add(guess);</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Random</code></td><td>随机数生成</td></tr></table>
+<table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">while</code></td><td>无限循环</td></tr></table>
+<table><tr><td><code class="inline-code">if-else</code></td><td>条件判断</td></tr></table>
+<table><tr><td><code class="inline-code">break</code></td><td>跳出循环</td></tr></table><p>> <strong>猜数字 = 综合知识的实践平台</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，注意异常处理（如输入非数字）  
+> - 使用 <code class="inline-code">try-catch</code> 捕获 <code class="inline-code">InputMismatchException</code>  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #综合实战 #猜数字 #编程练习 #随机数 #用户输入 #循环控制 #条件判断 #代码实践</p></div>
+      </section>
+      <section class="section" id="section-15">
+        <h3>15. 31</h3>
+        <div class="topic-content"><h2>综合实战 - 验证码</h2><p>验证码（CAPTCHA）是一种用于区分人类用户和自动化程序的安全机制，广泛应用于注册、登录、支付等场景。本节通过实现一个<strong>控制台验证码生成与验证程序</strong>，帮助你巩固字符串操作、随机数生成、循环结构等知识点。</p><hr><h3>1. 项目目标</h3><p>实现一个简单的验证码系统，支持生成随机验证码并验证用户输入。</p><h4>1.1 功能需求</h4><ul><li>生成一个指定长度的随机验证码（字母 + 数字）</li>
+<li>显示验证码</li>
+<li>用户输入验证码</li>
+<li>验证输入是否正确</li>
+<li>支持重新生成验证码</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入必要的类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Random;
+import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class VerificationCode {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String code = generateCode(6); // 生成 6 位验证码
+        System.out.println(&quot;验证码: &quot; + code);</p><p>        System.out.print(&quot;请输入验证码: &quot;);
+        String input = scanner.nextLine();</p><p>        if (input.equals(code)) {
+            System.out.println(&quot;验证成功！&quot;);
+        } else {
+            System.out.println(&quot;验证失败！&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Random;
+import java.util.Scanner;</p><p>public class VerificationCode {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String code = generateCode(6);
+        System.out.println(&quot;验证码: &quot; + code);</p><p>        System.out.print(&quot;请输入验证码: &quot;);
+        String input = scanner.nextLine();</p><p>        if (input.equals(code)) {
+            System.out.println(&quot;验证成功！&quot;);
+        } else {
+            System.out.println(&quot;验证失败！&quot;);
+        }</p><p>        scanner.close();
+    }</p><p>    // 生成指定长度的随机验证码
+    public static String generateCode(int length) {
+        String chars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;;
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();</p><p>        for (int i = 0; i &lt; length; i++) {
+            int index = random.nextInt(chars.length());
+            code.append(chars.charAt(index));
+        }</p><p>        return code.toString();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">验证码: aB3x9K
+请输入验证码: aB3x9K
+验证成功！</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>验证码生成</td><td><code class="inline-code">Random</code> + 字符串拼接</td></tr></table>
+<table><tr><td>验证码长度</td><td>参数控制</td></tr></table>
+<table><tr><td>用户输入</td><td><code class="inline-code">scanner.nextLine()</code></td></tr></table>
+<table><tr><td>验证逻辑</td><td><code class="inline-code">equals()</code> 比较字符串</td></tr></table>
+<table><tr><td>重新生成</td><td>重新调用 <code class="inline-code">generateCode()</code></td></tr></table><hr><h3>6. 扩展功能（可选）</h3><h4>6.1 添加最大尝试次数</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int maxAttempts = 3;
+for (int i = 0; i &lt; maxAttempts; i++) {
+    System.out.print(&quot;请输入验证码: &quot;);
+    String input = scanner.nextLine();
+    if (input.equals(code)) {
+        System.out.println(&quot;验证成功！&quot;);
+        break;
+    } else {
+        System.out.println(&quot;验证失败，剩余次数: &quot; + (maxAttempts - i - 1));
+    }
+}</code></pre></div><h4>6.2 添加验证码刷新功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.print(&quot;是否刷新验证码？(y/n): &quot;);
+if (scanner.nextLine().equalsIgnoreCase(&quot;y&quot;)) {
+    code = generateCode(6);
+    System.out.println(&quot;验证码: &quot; + code);
+}</code></pre></div><h4>6.3 添加验证码过期机制</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">long startTime = System.currentTimeMillis();
+// 60 秒后过期
+if (System.currentTimeMillis() - startTime &gt; 60000) {
+    System.out.println(&quot;验证码已过期，请重新获取&quot;);
+}</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Random</code></td><td>随机数生成</td></tr></table>
+<table><tr><td><code class="inline-code">StringBuilder</code></td><td>字符串拼接</td></tr></table>
+<table><tr><td><code class="inline-code">String</code></td><td>字符串操作</td></tr></table>
+<table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">equals()</code></td><td>字符串比较</td></tr></table><p>> <strong>验证码 = 安全机制的实践平台</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，验证码通常通过邮件或短信发送  
+> - 使用 <code class="inline-code">Thread.sleep()</code> 模拟网络延迟  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #综合实战 #验证码 #编程练习 #随机数 #字符串操作 #用户输入 #代码实践</p></div>
+      </section>
+      <section class="section" id="section-16">
+        <h3>16. 32</h3>
+        <div class="topic-content"><h2>综合实战 - 找素数</h2><p>素数（质数）是指在大于 1 的自然数中，除了 1 和它本身以外不再有其他因数的数。本节通过实现一个<strong>控制台程序，找出指定范围内的所有素数</strong>，帮助你巩固循环、条件判断、数学运算等知识点。</p><hr><h3>1. 项目目标</h3><p>编写程序，找出从 2 到某个最大值之间的所有素数，并输出结果。</p><h4>1.1 功能需求</h4><ul><li>输入一个最大值（如 100）</li>
+<li>找出从 2 到该值之间的所有素数</li>
+<li>输出每个素数</li>
+<li>支持用户输入新的最大值</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入 Scanner 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class PrimeFinder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print(&quot;请输入最大值（输入 0 退出）: &quot;);
+            int max = scanner.nextInt();
+            if (max == 0) break;
+            findPrimes(max);
+        }
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class PrimeFinder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        while (true) {
+            System.out.print(&quot;请输入最大值（输入 0 退出）: &quot;);
+            int max = scanner.nextInt();
+            if (max == 0) break;</p><p>            System.out.println(&quot;2 到 &quot; + max + &quot; 之间的素数有：&quot;);
+            findPrimes(max);
+        }</p><p>        scanner.close();
+    }</p><p>    // 找出从 2 到 max 之间的所有素数
+    public static void findPrimes(int max) {
+        for (int i = 2; i &lt;= max; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + &quot; &quot;);
+            }
+        }
+        System.out.println(); // 换行
+    }</p><p>    // 判断一个数是否为素数
+    public static boolean isPrime(int n) {
+        if (n &lt; 2) return false;
+        if (n == 2) return true;
+        if (n % 2 == 0) return false;</p><p>        // 只需检查到 sqrt(n)
+        for (int i = 3; i * i &lt;= n; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入最大值（输入 0 退出）: 20
+2 到 20 之间的素数有：
+2 3 5 7 11 13 17 19 
+请输入最大值（输入 0 退出）: 50
+2 到 50 之间的素数有：
+2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 
+请输入最大值（输入 0 退出）: 0</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>输入最大值</td><td><code class="inline-code">scanner.nextInt()</code></td></tr></table>
+<table><tr><td>循环判断</td><td><code class="inline-code">for</code> 循环</td></tr></table>
+<table><tr><td>素数判断</td><td><code class="inline-code">isPrime()</code> 方法</td></tr></table>
+<table><tr><td>优化算法</td><td>只检查到 <code class="inline-code">sqrt(n)</code></td></tr></table>
+<table><tr><td>支持重复输入</td><td><code class="inline-code">while (true)</code> + <code class="inline-code">break</code></td></tr></table><hr><h3>6. 算法优化</h3><h4>6.1 优化点 1：只检查奇数</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (n % 2 == 0) return false;
+for (int i = 3; i * i &lt;= n; i += 2) {
+    if (n % i == 0) return false;
+}</code></pre></div><p>> 说明：偶数（除 2 外）都不是素数，所以只检查奇数。</p><h4>6.2 优化点 2：只检查到 <code class="inline-code">sqrt(n)</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (int i = 3; i * i &lt;= n; i += 2)</code></pre></div><p>> 说明：如果 <code class="inline-code">n</code> 有因数，那么至少有一个因数 ≤ <code class="inline-code">sqrt(n)</code>。</p><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">for</code> 循环</td><td>遍历数字</td></tr></table>
+<table><tr><td><code class="inline-code">if-else</code></td><td>条件判断</td></tr></table>
+<table><tr><td><code class="inline-code">isPrime()</code></td><td>方法封装</td></tr></table>
+<table><tr><td><code class="inline-code">sqrt</code> 优化</td><td>提高效率</td></tr></table><p>> <strong>找素数 = 数学与编程的结合</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，素数通常用于加密算法（如 RSA）  
+> - 使用 <code class="inline-code">BigInteger</code> 处理大数素数  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #综合实战 #找素数 #编程练习 #数学运算 #循环控制 #条件判断 #代码实践</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter02.html" class="nav-prev">← 第2章</a>
+        <a href="chapter04.html" class="nav-next">第4章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 程序流程控制</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

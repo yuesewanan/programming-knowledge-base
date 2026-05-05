@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 类型转换与运算符 - 编程知识库">
+  <title>第2章: 类型转换与运算符 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link active"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🔢 第2章</div>
+        <h1>类型转换与运算符</h1>
+        <p>Java基础教程 - 类型转换与运算符</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 8</a></li>
+          <li><a href="#section-2">2. 9</a></li>
+          <li><a href="#section-3">3. 10</a></li>
+          <li><a href="#section-4">4. 11</a></li>
+          <li><a href="#section-5">5. 12</a></li>
+          <li><a href="#section-6">6. 13</a></li>
+          <li><a href="#section-7">7. 14</a></li>
+          <li><a href="#section-8">8. 15</a></li>
+          <li><a href="#section-9">9. 16</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 8</h3>
+        <div class="topic-content"><h2>方法详解</h2><p>在 Java 中，<strong>方法（Method）</strong> 是类中用于封装特定功能的代码块，是实现程序逻辑的核心单元。方法支持参数传递、返回值、重载、访问控制等特性。</p><hr><h3>1. 方法的基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">修饰符 返回类型 方法名(参数列表) {
+    // 方法体
+    return 返回值; // 可选，仅当返回类型非 void 时需要
+}</code></pre></div><h4>1.1 组成部分</h4><table><tr><td>组成部分</td><td>说明</td></tr></table><table><tr><td><strong>修饰符</strong></td><td><code class="inline-code">public</code>、<code class="inline-code">private</code>、<code class="inline-code">protected</code>、<code class="inline-code">static</code>、<code class="inline-code">final</code> 等</td></tr></table>
+<table><tr><td><strong>返回类型</strong></td><td><code class="inline-code">void</code>、<code class="inline-code">int</code>、<code class="inline-code">String</code>、自定义类型等</td></tr></table>
+<table><tr><td><strong>方法名</strong></td><td>遵循驼峰命名法，如 <code class="inline-code">calculateTotal()</code></td></tr></table>
+<table><tr><td><strong>参数列表</strong></td><td>可选，多个参数用逗号分隔</td></tr></table>
+<table><tr><td><strong>方法体</strong></td><td>包含执行逻辑的代码块</td></tr></table><hr><h3>2. 方法的分类</h3><h4>2.1 按返回类型分类</h4><table><tr><td>类型</td><td>说明</td><td>示例</td></tr></table><table><tr><td><strong>无返回值</strong></td><td>返回类型为 <code class="inline-code">void</code></td><td><code class="inline-code">void printHello()</code></td></tr></table>
+<table><tr><td><strong>有返回值</strong></td><td>返回具体类型</td><td><code class="inline-code">int add(int a, int b)</code></td></tr></table><h4>2.2 按访问修饰符分类</h4><table><tr><td>修饰符</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">public</code></td><td>公有，任何地方可访问</td></tr></table>
+<table><tr><td><code class="inline-code">private</code></td><td>私有，仅本类可访问</td></tr></table>
+<table><tr><td><code class="inline-code">protected</code></td><td>受保护，子类和同包类可访问</td></tr></table>
+<table><tr><td>默认（包私有）</td><td>同包类可访问</td></tr></table><h4>2.3 按是否静态分类</h4><table><tr><td>类型</td><td>说明</td></tr></table><table><tr><td><strong>实例方法</strong></td><td>需要对象调用</td><td><code class="inline-code">obj.method()</code></td></tr></table>
+<table><tr><td><strong>静态方法</strong></td><td>通过类名调用</td><td><code class="inline-code">ClassName.method()</code></td></tr></table><hr><h3>3. 方法的参数</h3><h4>3.1 基本类型参数</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public int add(int a, int b) {
+    return a + b;
+}</code></pre></div><h4>3.2 引用类型参数</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void printUser(User user) {
+    System.out.println(user.getName());
+}</code></pre></div><h4>3.3 可变参数（Varargs）</h4><p>从 Java 5 开始支持可变参数，用 <code class="inline-code">...</code> 表示。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public int sum(int... numbers) {
+    int total = 0;
+    for (int num : numbers) {
+        total += num;
+    }
+    return total;
+}</p><p>// 调用示例
+sum(1, 2, 3); // 6
+sum(); // 0</code></pre></div><hr><h3>4. 方法的返回值</h3><h4>4.1 返回基本类型</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public int getMax(int a, int b) {
+    return a &gt; b ? a : b;
+}</code></pre></div><h4>4.2 返回引用类型</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public User getUserById(int id) {
+    // 查询数据库
+    return new User(&quot;Alice&quot;, 25);
+}</code></pre></div><h4>4.3 返回 void</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void displayMessage(String msg) {
+    System.out.println(msg);
+}</code></pre></div><hr><h3>5. 方法重载（Overloading）</h3><p>同一类中可以有多个同名方法，只要参数列表不同（类型、数量、顺序不同）。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }</p><p>    public double add(double a, double b) {
+        return a + b;
+    }</p><p>    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}</code></pre></div><p>> <strong>调用时根据参数自动匹配</strong></p><hr><h3>6. 方法的调用</h3><h4>6.1 实例方法调用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Calculator calc = new Calculator();
+int result = calc.add(3, 5);</code></pre></div><h4>6.2 静态方法调用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int result = Calculator.add(3, 5); // 通过类名调用</code></pre></div><h4>6.3 方法链（Method Chaining）</h4><p>通过返回 <code class="inline-code">this</code> 实现方法链。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringBuilderExample {
+    private StringBuilder sb;</p><p>    public StringBuilderExample() {
+        sb = new StringBuilder();
+    }</p><p>    public StringBuilderExample append(String str) {
+        sb.append(str);
+        return this;
+    }</p><p>    public StringBuilderExample append(int num) {
+        sb.append(num);
+        return this;
+    }</p><p>    public String toString() {
+        return sb.toString();
+    }</p><p>    // 使用示例
+    public static void main(String[] args) {
+        StringBuilderExample builder = new StringBuilderExample();
+        builder.append(&quot;Hello&quot;).append(&quot; &quot;).append(&quot;World&quot;).append(123);
+        System.out.println(builder.toString()); // 输出: Hello World123
+    }
+}</code></pre></div><hr><h3>7. 方法的注意事项</h3><table><tr><td>注意事项</td><td>说明</td></tr></table><table><tr><td><strong>方法名不能与类名相同</strong></td><td>构造器除外</td></tr></table>
+<table><tr><td><strong>返回值类型必须匹配</strong></td><td>不能返回错误类型</td></tr></table>
+<table><tr><td><strong>参数列表必须唯一</strong></td><td>重载时参数列表必须不同</td></tr></table>
+<table><tr><td><strong>静态方法不能访问实例变量</strong></td><td>除非通过对象引用</td></tr></table><hr><h3>8. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>封装功能</strong></td><td>方法封装可重用的逻辑</td></tr></table>
+<table><tr><td><strong>参数传递</strong></td><td>支持基本类型和引用类型</td></tr></table>
+<table><tr><td><strong>返回值</strong></td><td>可返回任意类型或 <code class="inline-code">void</code></td></tr></table>
+<table><tr><td><strong>重载</strong></td><td>同名方法，不同参数列表</td></tr></table>
+<table><tr><td><strong>访问控制</strong></td><td>通过修饰符控制访问权限</td></tr></table><p>> <strong>方法 = 程序的“功能模块”</strong></p><p>合理设计方法，遵循单一职责原则，是编写高质量 Java 代码的关键。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 方法名应具有语义，如 <code class="inline-code">saveUser()</code>、<code class="inline-code">validateInput()</code>  
+> - 方法尽量短小，专注单一功能  
+> - 使用 Javadoc 注释公共方法  
+> - 避免过度重载，保持可读性</p><p>#java基础 #方法 #方法重载 #参数传递 #返回值 #方法链 #访问修饰符 #编程规范</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 9</h3>
+        <div class="topic-content"><h2>方法的注意事项</h2><p>在 Java 开发中，方法是实现业务逻辑的核心单元。合理设计和使用方法可以显著提高代码的可读性、可维护性和可复用性。以下是编写和调用方法时需要注意的关键事项。</p><hr><h3>1. 方法命名规范</h3><ul><li><strong>使用动词开头</strong>：如 <code class="inline-code">calculateTotal()</code>、<code class="inline-code">validateInput()</code>、<code class="inline-code">saveUser()</code></li>
+<li><strong>遵循驼峰命名法</strong>：<code class="inline-code">getUserName()</code>、<code class="inline-code">setAge()</code></li>
+<li><strong>避免无意义名称</strong>：如 <code class="inline-code">doSomething()</code>、<code class="inline-code">process()</code>，应具体化</li>
+<li><strong>避免与类名或关键字冲突</strong></li>
+</ul>
+> ✅ 推荐：<code class="inline-code">createOrder()</code>  
+> ❌ 不推荐：<code class="inline-code">func1()</code>、<code class="inline-code">method()</code>、<code class="inline-code">run()</code>（除非是主方法）</p><hr><h3>2. 方法参数设计</h3><h4>2.1 参数数量</h4><ul><li><strong>尽量少</strong>：参数越多，方法越难理解</li>
+<li><strong>建议不超过 3 个参数</strong>，超过时考虑使用对象封装</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 参数过多
+public void sendEmail(String to, String subject, String body, boolean isHtml, String cc, String bcc) { ... }</p><p>// ✅ 推荐：封装为对象
+public void sendEmail(EmailConfig config) { ... }</code></pre></div></p><h4>2.2 参数类型</h4><ul><li><strong>避免使用 <code class="inline-code">Object</code> 类型</strong>，除非必要</li>
+<li><strong>优先使用具体类型</strong>，提高类型安全</li>
+</ul>
+<hr></p><h3>3. 返回值处理</h3><ul><li><strong>明确返回值含义</strong>：返回 <code class="inline-code">null</code> 应有文档说明</li>
+<li><strong>避免返回 <code class="inline-code">null</code></strong>，可使用 <code class="inline-code">Optional</code>（Java 8+）或默认值</li>
+<li><strong>返回值类型应与方法功能匹配</strong></li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 不推荐：返回 null 表示失败
+public User getUserById(int id) {
+    return null; // 无用户时返回 null
+}</p><p>// ✅ 推荐：使用 Optional
+public Optional&lt;User&gt; getUserById(int id) {
+    return Optional.ofNullable(userDao.findById(id));
+}</code></pre></div></p><hr><h3>4. 方法重载注意事项</h3><ul><li><strong>参数列表必须不同</strong>：类型、数量、顺序不同</li>
+<li><strong>避免重载歧义</strong>：如 <code class="inline-code">add(int a, int b)</code> 和 <code class="inline-code">add(Integer a, Integer b)</code> 会冲突（自动装箱）</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 重载冲突（自动装箱导致）
+public void add(int a, int b) { ... }
+public void add(Integer a, Integer b) { ... } // 编译错误</p><p>// ✅ 正确重载
+public void add(int a, int b) { ... }
+public void add(double a, double b) { ... }</code></pre></div></p><hr><h3>5. 方法访问控制</h3><ul><li><strong>私有方法</strong>：仅在类内使用，避免暴露内部实现</li>
+<li><strong>公有方法</strong>：对外提供接口，应有清晰文档</li>
+<li><strong>静态方法</strong>：用于工具类，不依赖实例状态</li>
+</ul>
+> ✅ 推荐：工具类方法用 <code class="inline-code">static</code>，如 <code class="inline-code">StringUtils.isEmailValid()</code></p><hr><h3>6. 方法体设计</h3><ul><li><strong>单一职责原则</strong>：一个方法只做一件事</li>
+<li><strong>避免过长方法</strong>：建议不超过 20 行</li>
+<li><strong>减少嵌套层级</strong>：避免多层 <code class="inline-code">if-else</code> 或 <code class="inline-code">try-catch</code></li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 过长方法
+public void processOrder(Order order) {
+    if (order != null &amp;&amp; order.getItems() != null) {
+        for (Item item : order.getItems()) {
+            if (item.getPrice() &gt; 0) {
+                // 处理逻辑...
+            }
+        }
+    }
+    // 更多逻辑...
+}</p><p>// ✅ 拆分方法
+public void processOrder(Order order) {
+    if (order == null) return;
+    validateOrder(order);
+    calculateTotal(order);
+    saveOrder(order);
+}</p><p>private void validateOrder(Order order) { ... }
+private void calculateTotal(Order order) { ... }
+private void saveOrder(Order order) { ... }</code></pre></div></p><hr><h3>7. 异常处理</h3><ul><li><strong>明确抛出异常</strong>：如 <code class="inline-code">IllegalArgumentException</code>、<code class="inline-code">NullPointerException</code></li>
+<li><strong>避免捕获所有异常</strong>：<code class="inline-code">catch (Exception e)</code> 应谨慎使用</li>
+<li><strong>使用 <code class="inline-code">throws</code> 声明异常</strong>，或在方法内处理</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void divide(int a, int b) throws ArithmeticException {
+    if (b == 0) {
+        throw new ArithmeticException(&quot;除数不能为零&quot;);
+    }
+    return a / b;
+}</code></pre></div></p><hr><h3>8. 性能与资源管理</h3><ul><li><strong>避免在方法中创建大量对象</strong>，尤其在循环中</li>
+<li><strong>及时关闭资源</strong>：如文件、数据库连接（使用 <code class="inline-code">try-with-resources</code>）</li>
+<li><strong>避免重复计算</strong>：缓存结果或使用静态变量</li>
+</ul>
+<hr></p><h3>9. 文档与注释</h3><ul><li><strong>使用 Javadoc 注释公共方法</strong></li>
+<li><strong>说明参数、返回值、异常、使用场景</strong></li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">/**
+ * 计算两个整数的和
+ * 
+ * @param a 第一个整数
+ * @param b 第二个整数
+ * @return 两数之和
+ * @throws IllegalArgumentException 如果参数为负数
+ */
+public int add(int a, int b) {
+    if (a &lt; 0 || b &lt; 0) {
+        throw new IllegalArgumentException(&quot;参数不能为负数&quot;);
+    }
+    return a + b;
+}</code></pre></div></p><hr><h3>10. 总结</h3><table><tr><td>注意事项</td><td>说明</td></tr></table><table><tr><td><strong>命名规范</strong></td><td>动词开头，驼峰命名</td></tr></table>
+<table><tr><td><strong>参数设计</strong></td><td>尽量少，避免 <code class="inline-code">Object</code></td></tr></table>
+<table><tr><td><strong>返回值</strong></td><td>避免 <code class="inline-code">null</code>，使用 <code class="inline-code">Optional</code></td></tr></table>
+<table><tr><td><strong>重载</strong></td><td>参数列表必须不同</td></tr></table>
+<table><tr><td><strong>访问控制</strong></td><td>合理使用 <code class="inline-code">public</code>/<code class="inline-code">private</code>/<code class="inline-code">static</code></td></tr></table>
+<table><tr><td><strong>方法体</strong></td><td>单一职责，避免过长</td></tr></table>
+<table><tr><td><strong>异常处理</strong></td><td>明确抛出，避免捕获所有异常</td></tr></table>
+<table><tr><td><strong>性能</strong></td><td>避免资源浪费，及时释放</td></tr></table>
+<table><tr><td><strong>注释</strong></td><td>使用 Javadoc 说明方法</td></tr></table><p>> <strong>方法 = 程序的“功能模块”，设计好方法 = 设计好程序</strong></p><p>合理设计方法，是编写高质量、可维护 Java 代码的基础。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 使用 IDE 的代码分析工具检查方法长度、参数数量  
+> - 遵循团队编码规范  
+> - 定期重构过长或复杂的方法</p><p>#java基础 #方法 #方法设计 #编程规范 #单一职责 #异常处理 #Javadoc #代码质量 #重构</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 10</h3>
+        <div class="topic-content"><h2>自动与强制类型转换</h2><p>在 Java 中，类型转换是将一个数据类型转换为另一个数据类型的过程。根据转换方式，分为<strong>自动类型转换（隐式）</strong> 和 <strong>强制类型转换（显式）</strong>。</p><hr><h3>1. 自动类型转换（隐式转换）</h3><p>当从<strong>低精度类型</strong>向<strong>高精度类型</strong>转换时，Java 自动进行类型转换，无需显式声明。</p><h4>1.1 基本数据类型自动转换</h4><table><tr><td>低精度 → 高精度</td><td>示例</td></tr></table><table><tr><td><code class="inline-code">byte</code> → <code class="inline-code">short</code> → <code class="inline-code">int</code> → <code class="inline-code">long</code> → <code class="inline-code">float</code> → <code class="inline-code">double</code></td><td><code class="inline-code">int a = 10; long b = a;</code></td></tr></table>
+<table><tr><td><code class="inline-code">char</code> → <code class="inline-code">int</code> → <code class="inline-code">long</code> → <code class="inline-code">float</code> → <code class="inline-code">double</code></td><td><code class="inline-code">char c = 'A'; int i = c;</code></td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte b = 10;
+short s = b; // 自动转换
+int i = s;   // 自动转换
+long l = i;  // 自动转换
+double d = l; // 自动转换</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">char</code> 转 <code class="inline-code">int</code> 是自动的，因为 <code class="inline-code">char</code> 是 16 位，<code class="inline-code">int</code> 是 32 位。</p><hr><h3>2. 强制类型转换（显式转换）</h3><p>当从<strong>高精度类型</strong>向<strong>低精度类型</strong>转换时，必须显式使用类型转换操作符 <code class="inline-code">()</code>，否则编译报错。</p><h4>2.1 基本数据类型强制转换</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">double d = 3.14;
+int i = (int) d; // 强制转换，结果为 3（截断，非四舍五入）</p><p>long l = 10000000000L;
+int i = (int) l; // 可能溢出，结果为负数</p><p>float f = 3.14f;
+byte b = (byte) f; // 可能溢出或精度丢失</code></pre></div><p>> <strong>注意</strong>：强制转换可能导致<strong>数据丢失或溢出</strong>，需谨慎使用。</p><hr><h3>3. 包装类与基本类型的转换（装箱/拆箱）</h3><p>Java 5+ 支持自动装箱（Boxing）和拆箱（Unboxing）。</p><h4>3.1 自动装箱</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Integer i = 10; // 自动装箱：int → Integer
+Double d = 3.14; // 自动装箱：double → Double</code></pre></div><h4>3.2 自动拆箱</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int x = i; // 自动拆箱：Integer → int
+double y = d; // 自动拆箱：Double → double</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">null</code> 拆箱会抛出 <code class="inline-code">NullPointerException</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Integer i = null;
+int x = i; // ❌ NullPointerException</code></pre></div><hr><h3>4. 引用类型转换</h3><h4>4.1 向上转型（Upcasting）</h4><p>从子类对象转换为父类引用，自动完成。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Animal animal = new Dog(); // 自动向上转型</code></pre></div><h4>4.2 向下转型（Downcasting）</h4><p>从父类引用转换为子类对象，需显式转换，可能抛出 <code class="inline-code">ClassCastException</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Animal animal = new Dog();
+Dog dog = (Dog) animal; // 显式向下转型</code></pre></div><p>> <strong>建议</strong>：使用 <code class="inline-code">instanceof</code> 判断类型安全。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">if (animal instanceof Dog) {
+    Dog dog = (Dog) animal;
+}</code></pre></div><hr><h3>5. 类型转换注意事项</h3><table><tr><td>注意事项</td><td>说明</td></tr></table><table><tr><td><strong>自动转换安全</strong></td><td>低精度 → 高精度，无数据丢失</td></tr></table>
+<table><tr><td><strong>强制转换风险</strong></td><td>高精度 → 低精度，可能溢出或精度丢失</td></tr></table>
+<table><tr><td><strong>装箱拆箱性能</strong></td><td>频繁装箱拆箱影响性能，建议避免</td></tr></table>
+<table><tr><td><strong>null 拆箱危险</strong></td><td><code class="inline-code">null</code> 拆箱会抛出异常</td></tr></table>
+<table><tr><td><strong>向下转型需判断</strong></td><td>使用 <code class="inline-code">instanceof</code> 避免 <code class="inline-code">ClassCastException</code></td></tr></table><hr><h3>6. 总结</h3><table><tr><td>转换类型</td><td>说明</td><td>示例</td></tr></table><table><tr><td><strong>自动转换</strong></td><td>低精度 → 高精度</td><td><code class="inline-code">int → long</code></td></tr></table>
+<table><tr><td><strong>强制转换</strong></td><td>高精度 → 低精度</td><td><code class="inline-code">(int) double</code></td></tr></table>
+<table><tr><td><strong>装箱</strong></td><td>基本类型 → 包装类</td><td><code class="inline-code">int → Integer</code></td></tr></table>
+<table><tr><td><strong>拆箱</strong></td><td>包装类 → 基本类型</td><td><code class="inline-code">Integer → int</code></td></tr></table>
+<table><tr><td><strong>向上转型</strong></td><td>子类 → 父类</td><td><code class="inline-code">Dog → Animal</code></td></tr></table>
+<table><tr><td><strong>向下转型</strong></td><td>父类 → 子类</td><td><code class="inline-code">(Dog) Animal</code></td></tr></table><p>> <strong>类型转换 = 数据的“格式转换”，需谨慎处理精度和安全</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 优先使用自动转换，避免手动强制转换  
+> - 避免频繁装箱拆箱，尤其在循环中  
+> - 向下转型前使用 <code class="inline-code">instanceof</code> 判断  
+> - 使用 <code class="inline-code">Optional</code> 或 <code class="inline-code">null</code> 检查避免拆箱异常</p><p>#java基础 #类型转换 #自动转换 #强制转换 #装箱拆箱 #引用转换 #instanceof #编程规范 #数据安全</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 11</h3>
+        <div class="topic-content"><h2>表达式的自动类型提升</h2><p>在 Java 中，当表达式中包含不同数据类型的值时，Java 会自动进行<strong>类型提升（Type Promotion）</strong>，将较低精度的类型提升为较高精度的类型，以保证计算的准确性。</p><hr><h3>1. 类型提升规则</h3><p>Java 在表达式计算时遵循以下提升规则：</p><h4>1.1 基本类型提升顺序</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">byte → short → int → long → float → double</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">char</code> 也会被提升为 <code class="inline-code">int</code>。</p><h4>1.2 提升规则详解</h4><table><tr><td>表达式类型</td><td>提升结果</td></tr></table><table><tr><td><code class="inline-code">byte + int</code></td><td>提升为 <code class="inline-code">int</code></td></tr></table>
+<table><tr><td><code class="inline-code">short + long</code></td><td>提升为 <code class="inline-code">long</code></td></tr></table>
+<table><tr><td><code class="inline-code">int + float</code></td><td>提升为 <code class="inline-code">float</code></td></tr></table>
+<table><tr><td><code class="inline-code">long + double</code></td><td>提升为 <code class="inline-code">double</code></td></tr></table>
+<table><tr><td><code class="inline-code">char + int</code></td><td>提升为 <code class="inline-code">int</code></td></tr></table>
+<table><tr><td><code class="inline-code">byte + byte</code></td><td>提升为 <code class="inline-code">int</code>（两个 byte 相加，结果为 int）</td></tr></table><hr><h3>2. 表达式提升示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte b1 = 10;
+byte b2 = 20;
+int result = b1 + b2; // ❌ 不能直接赋值给 byte，因为表达式提升为 int</p><p>// ✅ 正确写法：显式转换
+byte result = (byte) (b1 + b2); // 强制转换回 byte</p><p>// 示例 2：char 与 int 相加
+char c = &#039;A&#039;; // ASCII 65
+int i = 10;
+int sum = c + i; // 提升为 int，结果为 75</p><p>// 示例 3：混合类型
+double d = 3.14;
+int i = 10;
+double result = d + i; // i 提升为 double，结果为 13.14</code></pre></div><hr><h3>3. 为什么需要类型提升？</h3><ul><li><strong>避免数据丢失</strong>：如 <code class="inline-code">byte + byte</code> 若不提升，可能溢出</li>
+<li><strong>保证计算精度</strong>：如 <code class="inline-code">int + float</code> 提升为 <code class="inline-code">float</code>，避免截断</li>
+<li><strong>统一计算环境</strong>：所有操作数在相同类型下进行计算</li>
+</ul>
+<hr></p><h3>4. 常见陷阱</h3><h4>4.1 <code class="inline-code">byte + byte</code> 不能直接赋值给 <code class="inline-code">byte</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte a = 10;
+byte b = 20;
+byte c = a + b; // ❌ 编译错误！表达式提升为 int，不能赋值给 byte</code></pre></div><p>✅ 正确写法：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte c = (byte) (a + b); // 显式转换</code></pre></div><h4>4.2 <code class="inline-code">char</code> 与 <code class="inline-code">int</code> 混合运算</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">char c = &#039;A&#039;; // 65
+int i = 10;
+int result = c + i; // 75，char 提升为 int</code></pre></div><hr><h3>5. 总结</h3><table><tr><td>表达式</td><td>提升结果</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">byte + byte</code></td><td><code class="inline-code">int</code></td><td>两个 byte 相加，结果为 int</td></tr></table>
+<table><tr><td><code class="inline-code">char + int</code></td><td><code class="inline-code">int</code></td><td>char 提升为 int</td></tr></table>
+<table><tr><td><code class="inline-code">int + long</code></td><td><code class="inline-code">long</code></td><td>int 提升为 long</td></tr></table>
+<table><tr><td><code class="inline-code">float + double</code></td><td><code class="inline-code">double</code></td><td>float 提升为 double</td></tr></table><p>> <strong>表达式自动类型提升 = 保证计算精度和安全</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 理解表达式提升规则，避免编译错误  
+> - 在混合类型运算后，如需赋值给低精度类型，使用显式转换  
+> - 避免在循环中频繁进行类型转换，影响性能</p><p>#java基础 #类型提升 #表达式 #自动转换 #数据精度 #编程规范 #byte #char #int #long #float #double</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 12</h3>
+        <div class="topic-content"><h2>输入-输出</h2><p>在 Java 中，输入（Input）和输出（Output）是程序与外部环境交互的基础。Java 提供了丰富的 I/O 类库，支持控制台、文件、网络等多种输入输出方式。</p><hr><h3>1. 控制台输入</h3><h4>1.1 使用 <code class="inline-code">Scanner</code> 类（推荐）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class InputExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        System.out.print(&quot;请输入姓名: &quot;);
+        String name = scanner.nextLine();</p><p>        System.out.print(&quot;请输入年龄: &quot;);
+        int age = scanner.nextInt();</p><p>        System.out.println(&quot;姓名: &quot; + name + &quot;, 年龄: &quot; + age);</p><p>        scanner.close(); // 关闭 Scanner，防止资源泄漏
+    }
+}</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">Scanner</code> 使用后必须调用 <code class="inline-code">close()</code>，或使用 try-with-resources。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">try (Scanner scanner = new Scanner(System.in)) {
+    // 使用 scanner
+}</code></pre></div><h4>1.2 使用 <code class="inline-code">BufferedReader</code>（更高效）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;</p><p>public class InputExample {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));</p><p>        System.out.print(&quot;请输入姓名: &quot;);
+        String name = reader.readLine();</p><p>        System.out.print(&quot;请输入年龄: &quot;);
+        int age = Integer.parseInt(reader.readLine());</p><p>        System.out.println(&quot;姓名: &quot; + name + &quot;, 年龄: &quot; + age);</p><p>        reader.close();
+    }
+}</code></pre></div><hr><h3>2. 控制台输出</h3><h4>2.1 使用 <code class="inline-code">System.out.println()</code> 和 <code class="inline-code">System.out.print()</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.println(&quot;Hello, World!&quot;); // 换行输出
+System.out.print(&quot;Hello, &quot;); // 不换行输出
+System.out.println(&quot;World!&quot;);</code></pre></div><h4>2.2 格式化输出（<code class="inline-code">printf</code>）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int age = 25;
+double price = 3.14;
+System.out.printf(&quot;年龄: %d, 价格: %.2f%n&quot;, age, price);
+// 输出: 年龄: 25, 价格: 3.14</code></pre></div><p>> <strong>格式说明符</strong>：
+<ul><li><code class="inline-code">%d</code>：整数</li>
+<li><code class="inline-code">%f</code>：浮点数</li>
+<li><code class="inline-code">%.2f</code>：保留两位小数</li>
+<li><code class="inline-code">%s</code>：字符串</li>
+<li><code class="inline-code">%n</code>：换行（平台无关）</li>
+</ul>
+<hr></p><h3>3. 文件输入输出</h3><h4>3.1 写入文件（<code class="inline-code">FileWriter</code>）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.io.FileWriter;
+import java.io.IOException;</p><p>public class FileWriteExample {
+    public static void main(String[] args) {
+        try (FileWriter writer = new FileWriter(&quot;output.txt&quot;)) {
+            writer.write(&quot;Hello, File!\n&quot;);
+            writer.write(&quot;This is a test.\n&quot;);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre></div><h4>3.2 读取文件（<code class="inline-code">FileReader</code>）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.io.FileReader;
+import java.io.IOException;</p><p>public class FileReadExample {
+    public static void main(String[] args) {
+        try (FileReader reader = new FileReader(&quot;input.txt&quot;)) {
+            int character;
+            while ((character = reader.read()) != -1) {
+                System.out.print((char) character);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre></div><hr><h3>4. 使用 <code class="inline-code">try-with-resources</code>（推荐）</h3><p>自动关闭资源，避免资源泄漏。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">try (Scanner scanner = new Scanner(System.in);
+     FileWriter writer = new FileWriter(&quot;output.txt&quot;)) {
+    String input = scanner.nextLine();
+    writer.write(input);
+} catch (IOException e) {
+    e.printStackTrace();
+}</code></pre></div><hr><h3>5. 总结</h3><table><tr><td>输入方式</td><td>说明</td><td>示例</td></tr></table><table><tr><td><code class="inline-code">Scanner</code></td><td>简单易用，适合控制台输入</td><td><code class="inline-code">scanner.nextLine()</code></td></tr></table>
+<table><tr><td><code class="inline-code">BufferedReader</code></td><td>高效，适合大量文本输入</td><td><code class="inline-code">reader.readLine()</code></td></tr></table>
+<table><tr><td><code class="inline-code">FileReader</code></td><td>读取文件</td><td><code class="inline-code">new FileReader("file.txt")</code></td></tr></table>
+<table><tr><td><code class="inline-code">FileWriter</code></td><td>写入文件</td><td><code class="inline-code">new FileWriter("file.txt")</code></td></tr></table><table><tr><td>输出方式</td><td>说明</td><td>示例</td></tr></table><table><tr><td><code class="inline-code">System.out.println()</code></td><td>控制台输出</td><td><code class="inline-code">System.out.println("Hello")</code></td></tr></table>
+<table><tr><td><code class="inline-code">System.out.printf()</code></td><td>格式化输出</td><td><code class="inline-code">printf("年龄: %d", age)</code></td></tr></table>
+<table><tr><td><code class="inline-code">FileWriter</code></td><td>写入文件</td><td><code class="inline-code">writer.write("text")</code></td></tr></table><p>> <strong>输入输出 = 程序与外部交互的“桥梁”</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 优先使用 <code class="inline-code">Scanner</code> 进行控制台输入  
+> - 使用 <code class="inline-code">try-with-resources</code> 管理资源  
+> - 格式化输出使用 <code class="inline-code">printf</code> 提高可读性  
+> - 文件操作注意异常处理和编码问题</p><p>#java基础 #输入输出 #Scanner #BufferedReader #FileReader #FileWriter #System.out #printf #try-with-resources #IO流 #控制台 #文件操作</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 13</h3>
+        <div class="topic-content"><h2>基本运算符 - 自增自减运算符</h2><p>在 Java 中，<strong>自增（++）</strong> 和 <strong>自减（--）</strong> 运算符用于将变量的值增加或减少 1。它们分为<strong>前缀</strong>和<strong>后缀</strong>两种形式，行为略有不同。</p><hr><h3>1. 自增运算符 <code class="inline-code">++</code></h3><h4>1.1 前缀自增 <code class="inline-code">++i</code></h4><p>先将变量加 1，再返回新值。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 5;
+int result = ++i; // i 先变为 6，然后 result = 6
+System.out.println(i); // 输出: 6
+System.out.println(result); // 输出: 6</code></pre></div><h4>1.2 后缀自增 <code class="inline-code">i++</code></h4><p>先返回原值，再将变量加 1。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 5;
+int result = i++; // result = 5，然后 i 变为 6
+System.out.println(i); // 输出: 6
+System.out.println(result); // 输出: 5</code></pre></div><hr><h3>2. 自减运算符 <code class="inline-code">--</code></h3><h4>2.1 前缀自减 <code class="inline-code">--i</code></h4><p>先将变量减 1，再返回新值。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 5;
+int result = --i; // i 先变为 4，然后 result = 4
+System.out.println(i); // 输出: 4
+System.out.println(result); // 输出: 4</code></pre></div><h4>2.2 后缀自减 <code class="inline-code">i--</code></h4><p>先返回原值，再将变量减 1。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 5;
+int result = i--; // result = 5，然后 i 变为 4
+System.out.println(i); // 输出: 4
+System.out.println(result); // 输出: 5</code></pre></div><hr><h3>3. 自增自减运算符的注意事项</h3><h4>3.1 不能用于常量或表达式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 错误：不能对常量使用自增
+int x = 5 + ++1; // 编译错误</p><p>// ❌ 错误：不能对表达式使用自增
+int a = 5, b = 10;
+int c = a++ + b++; // ❌ 语法错误（虽然 a++ 和 b++ 本身合法，但不能用于表达式中？实际是合法的，但需注意顺序）</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">a++ + b++</code> 是合法的，但执行顺序由左到右，且 <code class="inline-code">a++</code> 返回原值，<code class="inline-code">b++</code> 返回原值。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 5, b = 10;
+int c = a++ + b++; // c = 5 + 10 = 15，然后 a=6, b=11</code></pre></div><h4>3.2 在赋值语句中的使用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int i = 5;
+i = i++; // i = 5，然后 i 变为 6 → 最终 i = 6？ ❌ 实际是 i = 5，因为 i++ 返回原值
+System.out.println(i); // 输出: 6</p><p>// 但注意：
+int j = 5;
+j = ++j; // j = 6，然后 j = 6 → 最终 j = 6</code></pre></div><p>> <strong>关键点</strong>：<code class="inline-code">i = i++</code> 的结果是 <code class="inline-code">i</code> 的值不变（因为赋值的是 <code class="inline-code">i++</code> 返回的原值），但 <code class="inline-code">i</code> 本身会自增。</p><hr><h3>4. 自增自减的性能与建议</h3><ul><li><strong>性能</strong>：自增自减是原子操作，但多线程环境下需加锁或使用 <code class="inline-code">AtomicInteger</code></li>
+<li><strong>建议</strong>：</li>
+</ul>  - 单独使用时，优先使用 <code class="inline-code">i++</code> 或 <code class="inline-code">++i</code>，语义清晰
+  - 在赋值语句中，避免 <code class="inline-code">i = i++</code>，容易引起混淆
+  - 在循环中，使用 <code class="inline-code">i++</code> 更常见（如 <code class="inline-code">for (int i = 0; i < 10; i++)</code>）</p><hr><h3>5. 总结</h3><table><tr><td>运算符</td><td>说明</td><td>示例</td><td>结果</td></tr></table><table><tr><td><code class="inline-code">++i</code></td><td>前缀自增</td><td><code class="inline-code">int x = ++i;</code></td><td>先加 1，再赋值</td></tr></table>
+<table><tr><td><code class="inline-code">i++</code></td><td>后缀自增</td><td><code class="inline-code">int x = i++;</code></td><td>先赋值，再加 1</td></tr></table>
+<table><tr><td><code class="inline-code">--i</code></td><td>前缀自减</td><td><code class="inline-code">int x = --i;</code></td><td>先减 1，再赋值</td></tr></table>
+<table><tr><td><code class="inline-code">i--</code></td><td>后缀自减</td><td><code class="inline-code">int x = i--;</code></td><td>先赋值，再减 1</td></tr></table><p>> <strong>自增自减 = 快速加减 1 的便捷运算符</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在循环中使用 <code class="inline-code">i++</code> 或 <code class="inline-code">++i</code>，语义清晰  
+> - 避免在复杂表达式中使用自增自减，易出错  
+> - 多线程环境下，使用 <code class="inline-code">AtomicInteger</code> 替代普通 <code class="inline-code">int</code> 自增</p><p>#java基础 #自增运算符 #自减运算符 #前缀 #后缀 #运算符 #循环 #赋值 #编程规范 #性能 #多线程</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 14</h3>
+        <div class="topic-content"><p>
+<h2> 赋值运算符-三元运算符</h2><p>在 Java 中，<strong>赋值运算符</strong>用于将值赋给变量，而<strong>三元运算符</strong>（也称条件运算符）是 Java 中唯一一个三目运算符，用于根据条件表达式的真假返回两个值中的一个。</p><hr><h3>1. 赋值运算符</h3><h4>1.1 基本赋值运算符 <code class="inline-code">=</code></h4><p>将右边的值赋给左边的变量。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 10; // 将 10 赋值给变量 a</code></pre></div><h4>1.2 复合赋值运算符</h4><p>复合赋值运算符将赋值与算术运算结合，简化代码。</p><table><tr><td>运算符</td><td>作用</td><td>示例</td><td>等价写法</td></tr></table><table><tr><td><code class="inline-code">+=</code></td><td>加法赋值</td><td><code class="inline-code">a += 5;</code></td><td><code class="inline-code">a = a + 5;</code></td></tr></table>
+<table><tr><td><code class="inline-code">-=</code></td><td>减法赋值</td><td><code class="inline-code">a -= 3;</code></td><td><code class="inline-code">a = a - 3;</code></td></tr></table>
+<table><tr><td><code class="inline-code">*=</code></td><td>乘法赋值</td><td><code class="inline-code">a *= 2;</code></td><td><code class="inline-code">a = a * 2;</code></td></tr></table>
+<table><tr><td><code class="inline-code">/=</code></td><td>除法赋值</td><td><code class="inline-code">a /= 4;</code></td><td><code class="inline-code">a = a / 4;</code></td></tr></table>
+<table><tr><td><code class="inline-code">%=</code></td><td>取模赋值</td><td><code class="inline-code">a %= 3;</code></td><td><code class="inline-code">a = a % 3;</code></td></tr></table><p>> <strong>注意</strong>：复合赋值运算符会自动进行类型转换，避免溢出问题。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte b = 10;
+b += 5; // 等价于 b = (byte)(b + 5); ✅ 自动类型转换
+// b = b + 5; ❌ 编译错误，因为 b + 5 是 int 类型</code></pre></div><hr><h3>2. 三元运算符</h3><h4>2.1 语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean_expression ? value_if_true : value_if_false</code></pre></div><ul><li>如果 <code class="inline-code">boolean_expression</code> 为 <code class="inline-code">true</code>，返回 <code class="inline-code">value_if_true</code></li>
+<li>如果为 <code class="inline-code">false</code>，返回 <code class="inline-code">value_if_false</code></li>
+</ul>
+<h4>2.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 10;
+int b = 20;
+int max = a &gt; b ? a : b; // 如果 a &gt; b 成立，则 max = a，否则 max = b</code></pre></div><p>在这个例子中，<code class="inline-code">max</code> 的值为 <code class="inline-code">20</code>。</p><h4>2.3 嵌套使用</h4><p>三元运算符可以嵌套使用，实现多条件判断。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int score = 85;
+String grade = score &gt;= 90 ? &quot;A&quot; :
+               score &gt;= 80 ? &quot;B&quot; :
+               score &gt;= 70 ? &quot;C&quot; :
+               score &gt;= 60 ? &quot;D&quot; : &quot;F&quot;;</code></pre></div><p>输出：<code class="inline-code">grade = "B"</code></p><hr><h3>3. 使用注意事项</h3><h4>3.1 不能用于常量或表达式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 错误：不能对常量使用赋值运算符
+int x = 5 + 10 = 20; // 编译错误</code></pre></div><h4>3.2 三元运算符的类型兼容性</h4><p>三元运算符的两个分支必须能兼容，否则会报错。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 10;
+String result = a &gt; 5 ? &quot;大&quot; : 100; // ❌ 编译错误，String 和 int 不兼容</code></pre></div><p>> <strong>正确写法</strong>：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String result = a &gt; 5 ? &quot;大&quot; : &quot;小&quot;; // ✅ 两个分支都是 String</code></pre></div><hr><h3>4. 总结</h3><table><tr><td>运算符</td><td>说明</td><td>示例</td></tr></table><table><tr><td><code class="inline-code">=</code></td><td>基本赋值</td><td><code class="inline-code">a = 10;</code></td></tr></table>
+<table><tr><td><code class="inline-code">+=</code></td><td>加法赋值</td><td><code class="inline-code">a += 5;</code></td></tr></table>
+<table><tr><td><code class="inline-code">? :</code></td><td>三元运算符</td><td><code class="inline-code">a > b ? a : b</code></td></tr></table><p>> <strong>赋值运算符 = 快速赋值的便捷方式</strong>  
+> <strong>三元运算符 = 简洁的条件表达式</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 使用复合赋值运算符简化代码  
+> - 三元运算符适合简单条件判断，避免嵌套过深  
+> - 注意类型兼容性，避免编译错误</p><p>#java基础 #赋值运算符 #三元运算符 #条件表达式 #编程技巧 #代码简洁 #类型兼容 #运算符 #Java语法
+</p></div>
+      </section>
+      <section class="section" id="section-8">
+        <h3>8. 15</h3>
+        <div class="topic-content"><p>
+<h2>逻辑运算符</h2><p>在 Java 中，逻辑运算符用于连接多个布尔表达式，并根据它们的真假值返回一个布尔结果。逻辑运算符是条件判断和流程控制的重要组成部分。</p><hr><h3>1. 逻辑与运算符 <code class="inline-code">&&</code></h3><p><code class="inline-code">&&</code> 是逻辑与运算符，只有当两个操作数都为 <code class="inline-code">true</code> 时，结果才为 <code class="inline-code">true</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean a = true;
+boolean b = false;
+boolean result = a &amp;&amp; b; // result = false</code></pre></div><h4>短路特性</h4><p><code class="inline-code">&&</code> 具有<strong>短路求值</strong>特性：如果第一个操作数为 <code class="inline-code">false</code>，则不会计算第二个操作数。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int x = 0;
+boolean result = (x &gt; 0) &amp;&amp; (10 / x &gt; 2); // 不会执行除法，避免除零异常</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">&&</code> 可以防止潜在的运行时错误，如空指针或除零。</p><hr><h3>2. 逻辑或运算符 <code class="inline-code">||</code></h3><p><code class="inline-code">||</code> 是逻辑或运算符，只要有一个操作数为 <code class="inline-code">true</code>，结果就为 <code class="inline-code">true</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean a = true;
+boolean b = false;
+boolean result = a || b; // result = true</code></pre></div><h4>短路特性</h4><p><code class="inline-code">||</code> 同样具有短路求值特性：如果第一个操作数为 <code class="inline-code">true</code>，则不会计算第二个操作数。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int x = 0;
+boolean result = (x &gt; 0) || (10 / x &gt; 2); // 不会执行除法，避免除零异常</code></pre></div><hr><h3>3. 逻辑非运算符 <code class="inline-code">!</code></h3><p><code class="inline-code">!</code> 是逻辑非运算符，用于取反布尔值。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean a = true;
+boolean result = !a; // result = false</code></pre></div><hr><h3>4. 逻辑运算符的优先级</h3><p>逻辑运算符的优先级从高到低为：</p><p>1. <code class="inline-code">!</code>（逻辑非）
+2. <code class="inline-code">&&</code>（逻辑与）
+3. <code class="inline-code">||</code>（逻辑或）</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean a = true;
+boolean b = false;
+boolean c = true;</p><p>// 等价于: (a &amp;&amp; b) || c
+boolean result = a &amp;&amp; b || c; // result = true</code></pre></div><p>> <strong>建议</strong>：使用括号明确优先级，提高代码可读性。</p><hr><h3>5. 逻辑运算符与位运算符的区别</h3><table><tr><td>运算符</td><td>类型</td><td>是否短路</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">&</code></td><td>按位与 / 逻辑与</td><td>否</td><td>总是计算两个操作数</td></tr></table>
+<table><tr><td><code class="inline-code">&&</code></td><td>逻辑与</td><td>是</td><td>短路求值</td></tr></table>
+<table><tr><td><code class="inline-code"></td><td></code></td><td>按位或 / 逻辑或</td><td>否</td><td>总是计算两个操作数</td></tr></table>
+<table><tr><td><code class="inline-code"></td><td></code></td><td>逻辑或</td><td>是</td><td>短路求值</td></tr></table><p>> <strong>推荐使用 <code class="inline-code">&&</code> 和 <code class="inline-code">||</code></strong>，因为它们更安全、高效。</p><hr><h3>6. 实际应用示例</h3><h4>示例 1：用户登录验证</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean isUsernameValid = true;
+boolean isPasswordValid = false;</p><p>if (isUsernameValid &amp;&amp; isPasswordValid) {
+    System.out.println(&quot;登录成功&quot;);
+} else {
+    System.out.println(&quot;登录失败&quot;);
+}</code></pre></div><h4>示例 2：空值检查</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String name = null;
+if (name != null &amp;&amp; name.length() &gt; 0) {
+    System.out.println(&quot;姓名有效&quot;);
+} else {
+    System.out.println(&quot;姓名无效&quot;);
+}</code></pre></div><p>> 使用 <code class="inline-code">&&</code> 可以避免 <code class="inline-code">NullPointerException</code>。</p><hr><h3>7. 总结</h3><table><tr><td>运算符</td><td>作用</td><td>特性</td></tr></table><table><tr><td><code class="inline-code">&&</code></td><td>逻辑与</td><td>短路求值</td></tr></table>
+<table><tr><td><code class="inline-code"></td><td></code></td><td>逻辑或</td><td>短路求值</td></tr></table>
+<table><tr><td><code class="inline-code">!</code></td><td>逻辑非</td><td>取反</td></tr></table><p>> <strong>逻辑运算符 = 条件判断的基石</strong>  
+> <strong>短路求值 = 安全、高效的编程技巧</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 优先使用 <code class="inline-code">&&</code> 和 <code class="inline-code">||</code>，避免潜在异常  
+> - 使用括号明确逻辑顺序，提高可读性  
+> - 在复杂条件中，考虑拆分为多个变量或方法</p><p>#java基础 #逻辑运算符 #&& #|| #! #短路求值 #条件判断 #编程技巧 #布尔运算 
+</p></div>
+      </section>
+      <section class="section" id="section-9">
+        <h3>9. 16</h3>
+        <div class="topic-content"><h2>综合实战 - 身体健康指数计算</h2><p>在实际开发中，我们经常需要将多个知识点综合运用，解决一个具体问题。本节通过一个综合实战项目：<strong>计算身体健康指数（BMI）</strong>，来巩固前面所学的输入输出、运算符、数据类型、条件判断等知识。</p><hr><h3>1. 项目目标</h3><p>根据用户的身高和体重，计算其 <strong>身体质量指数（BMI）</strong>，并给出健康建议。</p><h4>1.1 BMI 计算公式</h4><p>$$
+\text{BMI} = \frac{\text{体重（kg）}}{\text{身高（m）}^2}
+$$</p><h4>1.2 BMI 分类标准</h4><table><tr><td>BMI 范围</td><td>健康状态</td></tr></table><table><tr><td>< 18.5</td><td>体重过轻</td></tr></table>
+<table><tr><td>18.5 - 23.9</td><td>正常范围</td></tr></table>
+<table><tr><td>24.0 - 27.9</td><td>超重</td></tr></table>
+<table><tr><td>≥ 28.0</td><td>肥胖</td></tr></table><hr><h3>2. 实现步骤</h3><h4>2.1 输入用户信息</h4><p>使用 <code class="inline-code">Scanner</code> 获取用户的身高（单位：米）和体重（单位：千克）。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class BMICalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        System.out.print(&quot;请输入身高（米）: &quot;);
+        double height = scanner.nextDouble();</p><p>        System.out.print(&quot;请输入体重（千克）: &quot;);
+        double weight = scanner.nextDouble();
+    }
+}</code></pre></div><h4>2.2 计算 BMI</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">double bmi = weight / (height * height);</code></pre></div><h4>2.3 输出结果并给出建议</h4><p>使用 <code class="inline-code">System.out.printf</code> 输出格式化结果，并通过 <code class="inline-code">if-else</code> 判断健康状态。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.printf(&quot;您的 BMI 为: %.2f%n&quot;, bmi);</p><p>if (bmi &lt; 18.5) {
+    System.out.println(&quot;建议：体重过轻，注意营养摄入。&quot;);
+} else if (bmi &gt;= 18.5 &amp;&amp; bmi &lt; 24.0) {
+    System.out.println(&quot;建议：体重正常，保持健康生活方式。&quot;);
+} else if (bmi &gt;= 24.0 &amp;&amp; bmi &lt; 28.0) {
+    System.out.println(&quot;建议：超重，建议控制饮食和增加运动。&quot;);
+} else {
+    System.out.println(&quot;建议：肥胖，建议咨询医生或营养师。&quot;);
+}</code></pre></div><hr><h3>3. 完整代码</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class BMICalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        System.out.print(&quot;请输入身高（米）: &quot;);
+        double height = scanner.nextDouble();</p><p>        System.out.print(&quot;请输入体重（千克）: &quot;);
+        double weight = scanner.nextDouble();</p><p>        double bmi = weight / (height * height);</p><p>        System.out.printf(&quot;您的 BMI 为: %.2f%n&quot;, bmi);</p><p>        if (bmi &lt; 18.5) {
+            System.out.println(&quot;建议：体重过轻，注意营养摄入。&quot;);
+        } else if (bmi &gt;= 18.5 &amp;&amp; bmi &lt; 24.0) {
+            System.out.println(&quot;建议：体重正常，保持健康生活方式。&quot;);
+        } else if (bmi &gt;= 24.0 &amp;&amp; bmi &lt; 28.0) {
+            System.out.println(&quot;建议：超重，建议控制饮食和增加运动。&quot;);
+        } else {
+            System.out.println(&quot;建议：肥胖，建议咨询医生或营养师。&quot;);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入身高（米）: 1.75
+请输入体重（千克）: 70
+您的 BMI 为: 22.86
+建议：体重正常，保持健康生活方式。</code></pre></div><hr><h3>5. 扩展功能（可选）</h3><h4>5.1 支持用户输入单位</h4><p>允许用户输入身高（厘米）和体重（斤），自动转换为标准单位。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.print(&quot;请输入身高（厘米）: &quot;);
+double heightCm = scanner.nextDouble();
+double height = heightCm / 100.0; // 转换为米</code></pre></div><h4>5.2 添加循环功能</h4><p>允许用户多次计算，直到输入 <code class="inline-code">quit</code> 退出。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">while (true) {
+    System.out.print(&quot;输入 &#039;quit&#039; 退出，否则按回车继续: &quot;);
+    String input = scanner.nextLine();
+    if (&quot;quit&quot;.equals(input)) break;
+    // 继续计算
+}</code></pre></div><hr><h3>6. 总结</h3><table><tr><td>功能</td><td>使用的技术</td></tr></table><table><tr><td>用户输入</td><td><code class="inline-code">Scanner</code></td></tr></table>
+<table><tr><td>数据计算</td><td>算术运算符、<code class="inline-code">Math.pow</code>（可选）</td></tr></table>
+<table><tr><td>输出格式化</td><td><code class="inline-code">System.out.printf</code></td></tr></table>
+<table><tr><td>条件判断</td><td><code class="inline-code">if-else</code></td></tr></table>
+<table><tr><td>资源管理</td><td><code class="inline-code">scanner.close()</code> 或 <code class="inline-code">try-with-resources</code></td></tr></table><p>> <strong>综合实战 = 知识点的融合与应用</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，注意输入验证（如身高体重是否为正数）  
+> - 使用 <code class="inline-code">try-catch</code> 处理非法输入（如输入非数字）  
+> - 保持代码结构清晰，便于维护和扩展</p><p>#java基础 #综合实战 #BMI计算 #输入输出 #条件判断 #运算符 #编程实践 #健康指数 #用户交互</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter01.html" class="nav-prev">← 第1章</a>
+        <a href="chapter03.html" class="nav-next">第3章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 类型转换与运算符</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

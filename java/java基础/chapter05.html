@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 面向对象编程 - 编程知识库">
+  <title>第5章: 面向对象编程 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link active"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🎯 第5章</div>
+        <h1>面向对象编程</h1>
+        <p>Java基础教程 - 面向对象编程</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 39</a></li>
+          <li><a href="#section-2">2. 40</a></li>
+          <li><a href="#section-3">3. 41</a></li>
+          <li><a href="#section-4">4. 42</a></li>
+          <li><a href="#section-5">5. 43</a></li>
+          <li><a href="#section-6">6. 44</a></li>
+          <li><a href="#section-7">7. 45</a></li>
+          <li><a href="#section-8">8. 46</a></li>
+          <li><a href="#section-9">9. 47</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 39</h3>
+        <div class="topic-content"><h2>面向对象编程入门</h2><p>面向对象编程（Object-Oriented Programming，简称 OOP）是 Java 的核心编程范式，它将现实世界中的事物抽象为“对象”，通过封装、继承、多态等特性实现代码的模块化、可维护性和可扩展性。</p><hr><h3>1. 什么是面向对象编程？</h3><p>面向对象编程是一种以“对象”为核心的编程思想，它将数据和操作数据的方法封装在一起，形成一个独立的单元。</p><h4>1.1 核心思想</h4><ul><li><strong>万物皆对象</strong>：现实世界中的事物都可以抽象为对象</li>
+<li><strong>对象 = 属性 + 方法</strong>：对象包含数据（属性）和行为（方法）</li>
+<li><strong>程序 = 对象之间的交互</strong>：通过调用对象的方法实现功能</li>
+</ul>
+<hr></p><h3>2. 面向对象的四大特性</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>封装</strong></td><td>将数据和方法封装在类中，隐藏内部实现细节</td></tr></table>
+<table><tr><td><strong>继承</strong></td><td>子类继承父类的属性和方法，实现代码复用</td></tr></table>
+<table><tr><td><strong>多态</strong></td><td>同一个接口可以有不同的实现方式，提高灵活性</td></tr></table>
+<table><tr><td><strong>抽象</strong></td><td>抽象出共性，定义接口或抽象类，隐藏复杂性</td></tr></table><hr><h3>3. 类与对象</h3><h4>3.1 什么是类？</h4><p>类是对象的模板或蓝图，用于描述对象的属性和行为。</p><h4>3.2 什么是对象？</h4><p>对象是类的实例，是具体的实体。</p><h4>3.3 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 定义一个类
+class Student {
+    // 属性（成员变量）
+    String name;
+    int age;
+    double score;</p><p>    // 方法（成员方法）
+    void study() {
+        System.out.println(name + &quot; 正在学习&quot;);
+    }</p><p>    void showInfo() {
+        System.out.println(&quot;姓名: &quot; + name + &quot;, 年龄: &quot; + age + &quot;, 成绩: &quot; + score);
+    }
+}</p><p>// 创建对象
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student(); // 创建对象
+        s1.name = &quot;张三&quot;;
+        s1.age = 20;
+        s1.score = 90.5;
+        s1.showInfo(); // 输出: 姓名: 张三, 年龄: 20, 成绩: 90.5
+        s1.study(); // 输出: 张三 正在学习
+    }
+}</code></pre></div><hr><h3>4. 封装</h3><p>封装是面向对象编程的第一特性，它将数据和方法封装在类中，隐藏内部实现细节。</p><h4>4.1 封装的好处</h4><ul><li><strong>提高安全性</strong>：防止外部直接修改内部数据</li>
+<li><strong>提高可维护性</strong>：修改内部实现不影响外部调用</li>
+<li><strong>提高灵活性</strong>：可以通过方法控制数据访问</li>
+</ul>
+<h4>4.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Student {
+    private String name; // 私有属性
+    private int age;</p><p>    // 提供公共方法访问私有属性
+    public void setName(String name) {
+        this.name = name;
+    }</p><p>    public String getName() {
+        return name;
+    }</p><p>    public void setAge(int age) {
+        if (age &gt; 0 &amp;&amp; age &lt; 150) {
+            this.age = age;
+        } else {
+            System.out.println(&quot;年龄不合法&quot;);
+        }
+    }</p><p>    public int getAge() {
+        return age;
+    }
+}</code></pre></div><hr><h3>5. 继承</h3><p>继承是面向对象编程的第二特性，它允许一个类继承另一个类的属性和方法，实现代码复用。</p><h4>5.1 继承的语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Parent {
+    String name;
+    void showName() {
+        System.out.println(&quot;父类姓名: &quot; + name);
+    }
+}</p><p>class Child extends Parent {
+    int age;
+    void showAge() {
+        System.out.println(&quot;子类年龄: &quot; + age);
+    }
+}</code></pre></div><h4>5.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.name = &quot;张三&quot;;
+        c.age = 20;
+        c.showName(); // 输出: 父类姓名: 张三
+        c.showAge(); // 输出: 子类年龄: 20
+    }
+}</code></pre></div><hr><h3>6. 多态</h3><p>多态是面向对象编程的第三特性，它允许同一个接口有不同的实现方式，提高灵活性。</p><h4>6.1 多态的实现方式</h4><ul><li><strong>方法重写</strong>：子类重写父类的方法</li>
+<li><strong>方法重载</strong>：同一个类中定义多个同名方法</li>
+</ul>
+<h4>6.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void speak() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void speak() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void speak() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a1 = new Dog();
+        Animal a2 = new Cat();
+        a1.speak(); // 输出: 汪汪
+        a2.speak(); // 输出: 喵喵
+    }
+}</code></pre></div><hr><h3>7. 抽象</h3><p>抽象是面向对象编程的第四特性，它通过定义接口或抽象类，隐藏复杂性，只暴露必要的接口。</p><h4>7.1 抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Shape {
+    abstract double area(); // 抽象方法
+}</p><p>class Circle extends Shape {
+    double radius;
+    Circle(double r) {
+        radius = r;
+    }
+    @Override
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}</code></pre></div><h4>7.2 接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">interface Flyable {
+    void fly();
+}</p><p>class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</code></pre></div><hr><h3>8. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>封装</strong></td><td>数据和方法封装在类中</td></tr></table>
+<table><tr><td><strong>继承</strong></td><td>子类继承父类的属性和方法</td></tr></table>
+<table><tr><td><strong>多态</strong></td><td>同一个接口有不同的实现方式</td></tr></table>
+<table><tr><td><strong>抽象</strong></td><td>定义接口或抽象类，隐藏复杂性</td></tr></table><p>> <strong>面向对象编程 = 面向现实世界的编程方式</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用封装保护数据  
+> - 在复杂逻辑中，考虑使用继承和多态  
+> - 在抽象层面，使用接口定义行为</p><p>#java基础 #面向对象编程 #OOP #类与对象 #封装 #继承 #多态 #抽象 #编程思想</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 40</h3>
+        <div class="topic-content"><h2>构造器</h2><p>在 Java 面向对象编程中，<strong>构造器（Constructor）</strong> 是一种特殊的成员方法，用于在创建对象时初始化对象的状态。构造器与类同名，没有返回类型（甚至没有 <code class="inline-code">void</code>），并且在对象实例化时自动调用。</p><h3>构造器的基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
+    private String name;
+    private int age;</p><p>    // 无参构造器
+    public Person() {
+        this.name = &quot;Unknown&quot;;
+        this.age = 0;
+    }</p><p>    // 带参构造器
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}</code></pre></div><h3>构造器的特性</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>名称必须与类名一致</strong></td><td>与类名完全相同，区分大小写</td></tr></table>
+<table><tr><td><strong>无返回类型</strong></td><td>包括 <code class="inline-code">void</code> 也不允许</td></tr></table>
+<table><tr><td><strong>自动调用</strong></td><td>在使用 <code class="inline-code">new</code> 关键字创建对象时自动调用</td></tr></table>
+<table><tr><td><strong>可重载</strong></td><td>一个类可以有多个构造器，参数列表不同</td></tr></table>
+<table><tr><td><strong>默认构造器</strong></td><td>如果类中没有定义任何构造器，编译器会自动提供一个无参构造器</td></tr></table><h3>构造器的重载</h3><p>Java 支持构造器重载，即一个类中可以有多个构造器，只要它们的参数列表不同。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Student {
+    private String name;
+    private int age;
+    private String major;</p><p>    // 无参构造器
+    public Student() {}</p><p>    // 带参构造器
+    public Student(String name) {
+        this.name = name;
+    }</p><p>    // 带参构造器
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    // 带参构造器
+    public Student(String name, int age, String major) {
+        this.name = name;
+        this.age = age;
+        this.major = major;
+    }
+}</code></pre></div><h3>this 关键字在构造器中的使用</h3><p><code class="inline-code">this</code> 关键字可以用于引用当前对象的实例变量，也可以用于调用类中的其他构造器。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Rectangle {
+    private double width;
+    private double height;</p><p>    // 默认构造器
+    public Rectangle() {
+        this(1.0, 1.0); // 调用带参构造器
+    }</p><p>    // 带参构造器
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+}</code></pre></div><h3>构造器的访问控制</h3><p>构造器可以使用 <code class="inline-code">public</code>、<code class="inline-code">private</code>、<code class="inline-code">protected</code> 或默认访问修饰符。</p><ul><li><code class="inline-code">public</code>：任何类都可以访问</li>
+<li><code class="inline-code">private</code>：只能在本类中访问，常用于单例模式</li>
+<li><code class="inline-code">protected</code>：子类和同包类可以访问</li>
+<li>默认（包私有）：同包类可以访问</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Singleton {
+    private static Singleton instance;</p><p>    private Singleton() {} // 私有构造器</p><p>    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}</code></pre></div></p><h3>构造器的执行顺序</h3><p>当创建一个对象时，构造器的执行顺序如下：</p><p>1. 父类的无参构造器（如果父类没有无参构造器，则必须显式调用父类的构造器）
+2. 子类的构造器</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    public Animal() {
+        System.out.println(&quot;Animal 构造器&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    public Dog() {
+        System.out.println(&quot;Dog 构造器&quot;);
+    }
+}</p><p>// 输出：
+// Animal 构造器
+// Dog 构造器</code></pre></div><h3>总结</h3><ul><li>构造器用于初始化对象</li>
+<li>可以重载，但参数列表必须不同</li>
+<li><code class="inline-code">this</code> 可以用于调用其他构造器或引用实例变量</li>
+<li>构造器可以控制访问权限，影响对象的创建方式</li>
+<li>构造器的执行顺序遵循继承链</li>
+</ul>
+构造器是 Java 面向对象编程中非常重要的概念，合理使用构造器可以提高代码的可读性和可维护性。</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 41</h3>
+        <div class="topic-content"><h2>this关键字</h2><p>在 Java 面向对象编程中，<strong><code class="inline-code">this</code> 关键字</strong> 是一个非常重要的引用，它代表当前对象的引用，即调用该方法或构造器的对象本身。<code class="inline-code">this</code> 可以用于访问当前对象的实例变量、调用当前对象的方法，或在构造器中调用其他构造器。</p><h3>1. this 用于访问实例变量</h3><p>当类的局部变量与实例变量同名时，<code class="inline-code">this</code> 可以用于明确指定访问的是实例变量，而不是局部变量。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
+    private String name;
+    private int age;</p><p>    public Person(String name, int age) {
+        this.name = name; // this.name 指的是实例变量
+        this.age = age;   // this.age 指的是实例变量
+    }</p><p>    public void setName(String name) {
+        this.name = name; // 避免与参数 name 混淆
+    }</p><p>    public void setAge(int age) {
+        this.age = age;   // 避免与参数 age 混淆
+    }
+}</code></pre></div><h3>2. this 用于调用当前对象的方法</h3><p><code class="inline-code">this</code> 可以用于调用当前对象的其他方法，尤其在方法链中非常有用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Calculator {
+    private int result;</p><p>    public Calculator add(int x) {
+        result += x;
+        return this; // 返回当前对象，支持方法链
+    }</p><p>    public Calculator multiply(int x) {
+        result *= x;
+        return this;
+    }</p><p>    public int getResult() {
+        return result;
+    }</p><p>    // 使用示例
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        calc.add(5).multiply(3).add(2);
+        System.out.println(calc.getResult()); // 输出 17
+    }
+}</code></pre></div><h3>3. this 用于在构造器中调用其他构造器</h3><p><code class="inline-code">this()</code> 可以在构造器中调用同一个类中的其他构造器，必须放在构造器的第一行。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Student {
+    private String name;
+    private int age;
+    private String major;</p><p>    // 无参构造器
+    public Student() {
+        this(&quot;Unknown&quot;, 0, &quot;Unknown&quot;); // 调用带参构造器
+    }</p><p>    // 带参构造器
+    public Student(String name, int age) {
+        this(name, age, &quot;Computer Science&quot;); // 调用三参构造器
+    }</p><p>    // 三参构造器
+    public Student(String name, int age, String major) {
+        this.name = name;
+        this.age = age;
+        this.major = major;
+    }
+}</code></pre></div><h3>4. this 用于返回当前对象</h3><p>在方法中返回 <code class="inline-code">this</code> 可以实现方法链（Method Chaining），提高代码的可读性和简洁性。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringBuilderExample {
+    private StringBuilder sb;</p><p>    public StringBuilderExample() {
+        sb = new StringBuilder();
+    }</p><p>    public StringBuilderExample append(String str) {
+        sb.append(str);
+        return this; // 返回当前对象
+    }</p><p>    public StringBuilderExample append(int num) {
+        sb.append(num);
+        return this;
+    }</p><p>    public String toString() {
+        return sb.toString();
+    }</p><p>    // 使用示例
+    public static void main(String[] args) {
+        StringBuilderExample builder = new StringBuilderExample();
+        builder.append(&quot;Hello&quot;).append(&quot; &quot;).append(&quot;World&quot;).append(123);
+        System.out.println(builder.toString()); // 输出: Hello World123
+    }
+}</code></pre></div><h3>5. this 用于传递当前对象作为参数</h3><p><code class="inline-code">this</code> 可以作为参数传递给其他方法或对象，用于将当前对象传递给其他类处理。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Employee {
+    private String name;
+    private double salary;</p><p>    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }</p><p>    public void register(EmployeeManager manager) {
+        manager.addEmployee(this); // 将当前对象传递给管理器
+    }</p><p>    // getter 和 setter 省略
+}</p><p>public class EmployeeManager {
+    private List&lt;Employee&gt; employees = new ArrayList&lt;&gt;();</p><p>    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }</p><p>    public void printAll() {
+        for (Employee e : employees) {
+            System.out.println(e.getName() + &quot; - &quot; + e.getSalary());
+        }
+    }
+}</code></pre></div><h3>6. this 的访问权限</h3><p><code class="inline-code">this</code> 可以访问当前对象的所有成员，包括：</p><ul><li>公有（public）成员</li>
+<li>保护（protected）成员</li>
+<li>默认（包私有）成员</li>
+<li>私有（private）成员（仅限本类内部）</li>
+</ul>
+<h3>7. 注意事项</h3><ul><li><code class="inline-code">this</code> 不能在静态方法或静态代码块中使用，因为静态成员属于类，而不是对象。</li>
+<li><code class="inline-code">this()</code> 必须是构造器的第一条语句。</li>
+<li><code class="inline-code">this</code> 不能用于访问静态变量或静态方法（虽然语法上允许，但不推荐，因为静态成员属于类，不是对象）。</li>
+</ul>
+<h3>总结</h3><table><tr><td>用途</td><td>说明</td></tr></table><table><tr><td>访问实例变量</td><td>避免与局部变量同名冲突</td></tr></table>
+<table><tr><td>调用其他方法</td><td>支持方法链，提高代码可读性</td></tr></table>
+<table><tr><td>调用其他构造器</td><td>构造器重载时使用，必须放在第一行</td></tr></table>
+<table><tr><td>返回当前对象</td><td>实现方法链</td></tr></table>
+<table><tr><td>传递当前对象</td><td>作为参数传递给其他方法或对象</td></tr></table><p><code class="inline-code">this</code> 关键字是 Java 面向对象编程中的核心概念之一，合理使用 <code class="inline-code">this</code> 可以使代码更加清晰、简洁、可维护。</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 42</h3>
+        <div class="topic-content"><h2>封装</h2><p>在 Java 面向对象编程中，<strong>封装（Encapsulation）</strong> 是四大基本特性之一，指的是将对象的属性和行为封装在类中，隐藏内部实现细节，只暴露必要的接口供外部使用。封装的目的是提高代码的安全性、可维护性和可复用性。</p><h3>1. 封装的核心思想</h3><p>封装的本质是“<strong>隐藏实现，暴露接口</strong>”。通过访问修饰符（如 <code class="inline-code">private</code>、<code class="inline-code">public</code> 等）控制类成员的可见性，防止外部直接访问或修改对象的内部状态。</p><h3>2. 封装的实现方式</h3><h4>2.1 使用访问修饰符</h4><ul><li><code class="inline-code">private</code>：私有成员，只能在本类中访问</li>
+<li><code class="inline-code">public</code>：公有成员，任何地方都可以访问</li>
+<li><code class="inline-code">protected</code>：受保护成员，子类和同包类可以访问</li>
+<li>默认（包私有）：同包类可以访问</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class BankAccount {
+    private String accountNumber; // 私有属性
+    private double balance;       // 私有属性</p><p>    // 公有方法，用于访问和修改属性
+    public String getAccountNumber() {
+        return accountNumber;
+    }</p><p>    public double getBalance() {
+        return balance;
+    }</p><p>    public void deposit(double amount) {
+        if (amount &gt; 0) {
+            balance += amount;
+        }
+    }</p><p>    public void withdraw(double amount) {
+        if (amount &gt; 0 &amp;&amp; amount &lt;= balance) {
+            balance -= amount;
+        }
+    }
+}</code></pre></div></p><h4>2.2 Getter 和 Setter 方法</h4><p>封装通常通过提供 <code class="inline-code">getter</code> 和 <code class="inline-code">setter</code> 方法来实现，允许外部安全地读取和修改属性。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
+    private String name;
+    private int age;</p><p>    // Getter
+    public String getName() {
+        return name;
+    }</p><p>    // Setter
+    public void setName(String name) {
+        if (name != null &amp;&amp; !name.trim().isEmpty()) {
+            this.name = name;
+        }
+    }</p><p>    // Getter
+    public int getAge() {
+        return age;
+    }</p><p>    // Setter
+    public void setAge(int age) {
+        if (age &gt;= 0 &amp;&amp; age &lt;= 150) {
+            this.age = age;
+        }
+    }
+}</code></pre></div><h3>3. 封装的好处</h3><table><tr><td>好处</td><td>说明</td></tr></table><table><tr><td><strong>安全性</strong></td><td>防止外部直接修改对象状态，避免非法数据</td></tr></table>
+<table><tr><td><strong>可维护性</strong></td><td>修改内部实现不影响外部代码，只需修改 getter/setter</td></tr></table>
+<table><tr><td><strong>可复用性</strong></td><td>封装良好的类更容易被其他模块复用</td></tr></table>
+<table><tr><td><strong>灵活性</strong></td><td>可以在 getter/setter 中添加验证、日志、计算等逻辑</td></tr></table><h3>4. 封装的高级应用</h3><h4>4.1 数据验证</h4><p>在 setter 中添加数据验证逻辑，确保数据合法性。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Product {
+    private String name;
+    private double price;</p><p>    public void setPrice(double price) {
+        if (price &gt;= 0) {
+            this.price = price;
+        } else {
+            throw new IllegalArgumentException(&quot;价格不能为负数&quot;);
+        }
+    }
+}</code></pre></div><h4>4.2 访问控制</h4><p>通过封装，可以控制哪些属性对外可见，哪些不可见。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Car {
+    private String brand;
+    private int speed; // 不希望外部直接修改</p><p>    public String getBrand() {
+        return brand;
+    }</p><p>    public void setBrand(String brand) {
+        this.brand = brand;
+    }</p><p>    public int getSpeed() {
+        return speed;
+    }</p><p>    // 仅允许通过方法控制速度
+    public void accelerate(int increment) {
+        speed += increment;
+    }</p><p>    public void brake(int decrement) {
+        speed = Math.max(0, speed - decrement);
+    }
+}</code></pre></div><h3>5. 封装与设计模式</h3><p>封装是许多设计模式的基础，例如：</p><ul><li><strong>单例模式</strong>：通过私有构造器和静态方法控制对象创建</li>
+<li><strong>工厂模式</strong>：封装对象创建过程</li>
+<li><strong>观察者模式</strong>：封装状态变化通知机制</li>
+</ul>
+<h3>6. 封装的注意事项</h3><ul><li>不要过度封装，导致接口过于复杂</li>
+<li>避免暴露不必要的方法或属性</li>
+<li>在 setter 中添加必要的业务逻辑（如验证、日志等）</li>
+<li>使用 <code class="inline-code">final</code> 修饰不可变对象，增强封装性</li>
+</ul>
+<h3>总结</h3><p>封装是面向对象编程的基石之一。通过合理使用访问修饰符和提供安全的访问方法，可以有效保护对象的内部状态，提高代码的健壮性和可维护性。良好的封装设计是构建高质量 Java 程序的关键。</p><p>> <strong>封装 = 私有化属性 + 公有化方法 + 数据验证 + 接口控制</strong></p><p>在实际开发中，应遵循“<strong>最小暴露原则</strong>”，只暴露必要的接口，隐藏不必要的实现细节。</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 43</h3>
+        <div class="topic-content"><h2>实体类</h2><p>在 Java 开发中，<strong>实体类（Entity Class）</strong> 是用于表示现实世界中某个具体对象或数据结构的类。它通常对应数据库中的一张表，或系统中的一个业务对象，封装了对象的属性和基本操作。</p><p>实体类是面向对象编程中“类”概念的直接体现，广泛应用于 Web 开发、数据持久化、业务逻辑处理等场景。</p><hr><h3>1. 实体类的基本结构</h3><p>一个典型的实体类包含：</p><ul><li><strong>私有属性（private fields）</strong>：表示对象的属性</li>
+<li><strong>公共的 getter 和 setter 方法</strong>：用于访问和修改属性</li>
+<li><strong>构造器（可选）</strong>：用于初始化对象</li>
+<li><strong>toString() 方法（可选）</strong>：用于输出对象信息</li>
+<li><strong>equals() 和 hashCode() 方法（可选）</strong>：用于对象比较</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class User {
+    private String id;
+    private String username;
+    private String email;
+    private int age;</p><p>    // 无参构造器
+    public User() {}</p><p>    // 带参构造器
+    public User(String id, String username, String email, int age) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.age = age;
+    }</p><p>    // Getter 和 Setter
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }</p><p>    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }</p><p>    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }</p><p>    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }</p><p>    // toString 方法
+    @Override
+    public String toString() {
+        return &quot;User{&quot; +
+                &quot;id=&#039;&quot; + id + &#039;\&#039;&#039; +
+                &quot;, username=&#039;&quot; + username + &#039;\&#039;&#039; +
+                &quot;, email=&#039;&quot; + email + &#039;\&#039;&#039; +
+                &quot;, age=&quot; + age +
+                &#039;}&#039;;
+    }</p><p>    // equals 和 hashCode（用于集合比较）
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age &amp;&amp;
+                Objects.equals(id, user.id) &amp;&amp;
+                Objects.equals(username, user.username) &amp;&amp;
+                Objects.equals(email, user.email);
+    }</p><p>    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, email, age);
+    }
+}</code></pre></div></p><hr><h3>2. 实体类的常见用途</h3><table><tr><td>用途</td><td>说明</td></tr></table><table><tr><td><strong>数据库映射</strong></td><td>对应数据库表，用于 ORM 框架（如 Hibernate、MyBatis）</td></tr></table>
+<table><tr><td><strong>数据传输</strong></td><td>作为 DTO（Data Transfer Object）在服务层之间传递数据</td></tr></table>
+<table><tr><td><strong>业务逻辑处理</strong></td><td>封装业务对象，用于业务方法调用</td></tr></table>
+<table><tr><td><strong>JSON 序列化</strong></td><td>用于前后端数据交互（如 Spring MVC、Spring Boot）</td></tr></table><hr><h3>3. 实体类的设计原则</h3><h4>3.1 单一职责原则</h4><p>实体类应只负责数据的封装，不包含复杂的业务逻辑。业务逻辑应放在 Service 层。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 不推荐：实体类包含业务逻辑
+public class Order {
+    private double total;</p><p>    public void applyDiscount(double discount) {
+        total *= (1 - discount); // 业务逻辑不应在实体类中
+    }
+}</p><p>// ✅ 推荐：业务逻辑放在 Service 层
+public class OrderService {
+    public void applyDiscount(Order order, double discount) {
+        order.setTotal(order.getTotal() * (1 - discount));
+    }
+}</code></pre></div><h4>3.2 封装性</h4><p>属性应设为 <code class="inline-code">private</code>，通过 getter/setter 访问，确保数据安全。</p><h4>3.3 可序列化</h4><p>如果实体类需要在网络中传输或持久化，应实现 <code class="inline-code">Serializable</code> 接口。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Product implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private double price;
+    // ...
+}</code></pre></div><hr><h3>4. 实体类与 DTO 的区别</h3><table><tr><td>特性</td><td>实体类（Entity）</td><td>DTO（Data Transfer Object）</td></tr></table><table><tr><td><strong>用途</strong></td><td>对应数据库表，持久化数据</td><td>用于数据传输，不持久化</td></tr></table>
+<table><tr><td><strong>字段</strong></td><td>通常包含数据库字段</td><td>可能包含计算字段、部分字段</td></tr></table>
+<table><tr><td><strong>位置</strong></td><td>数据访问层（DAO/Repository）</td><td>服务层、控制器层</td></tr></table>
+<table><tr><td><strong>是否持久化</strong></td><td>是</td><td>否</td></tr></table><p>> <strong>示例：</strong>
+> - 实体类：<code class="inline-code">User</code>（包含 id, username, password, email）
+> - DTO：<code class="inline-code">UserDTO</code>（包含 username, email, role）——用于前端展示</p><hr><h3>5. 实体类的生成工具</h3><p>在实际开发中，实体类通常由工具自动生成，例如：</p><ul><li><strong>Lombok</strong>：通过注解自动生成 getter/setter/toString 等</li>
+<li><strong>IDE 插件</strong>：如 IntelliJ 的 Generate 功能</li>
+<li><strong>代码生成器</strong>：如 MyBatis Generator、JPA Entity Generator</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 使用 Lombok 简化实体类
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Book {
+    private String isbn;
+    private String title;
+    private String author;
+    private double price;
+}</code></pre></div></p><hr><h3>6. 总结</h3><p>实体类是 Java 开发中不可或缺的基础组件，它：</p><ul><li>封装了对象的数据结构</li>
+<li>支持数据持久化和传输</li>
+<li>遵循封装、单一职责等设计原则</li>
+<li>通常与 ORM 框架、Web 框架配合使用</li>
+</ul>
+> <strong>实体类 = 数据结构 + 封装 + 可序列化 + 与数据库/网络交互</strong></p><p>在实际项目中，应合理设计实体类，避免过度复杂化，保持其简洁性和可维护性。</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 44</h3>
+        <div class="topic-content"><h2>static - 静态变量 - 应用场景</h2><p>在 Java 中，<code class="inline-code">static</code> 关键字用于声明<strong>静态变量</strong>（也称类变量），它属于类本身，而不是类的实例。静态变量在类加载时初始化，所有实例共享同一份内存空间。</p><hr><h3>1. 静态变量的定义</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Counter {
+    private static int count = 0; // 静态变量，所有实例共享</p><p>    public Counter() {
+        count++; // 每创建一个实例，计数器加1
+    }</p><p>    public static int getCount() {
+        return count;
+    }
+}</code></pre></div><p>> <strong>注意</strong>：静态变量必须在类加载时初始化，不能依赖实例变量。</p><hr><h3>2. 静态变量的应用场景</h3><h4>2.1 共享数据（全局状态）</h4><p>当多个对象需要共享同一份数据时，使用静态变量。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Config {
+    public static String appName = &quot;MyApp&quot;;
+    public static int maxConnections = 100;
+}</code></pre></div><p>> <strong>使用示例</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.println(Config.appName); // 输出: MyApp</code></pre></div></p><h4>2.2 计数器（统计实例数量）</h4><p>用于统计类的实例化次数。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class User {
+    private static int userCount = 0;
+    private String name;</p><p>    public User(String name) {
+        this.name = name;
+        userCount++;
+    }</p><p>    public static int getUserCount() {
+        return userCount;
+    }
+}</code></pre></div><p>> <strong>使用示例</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">User u1 = new User(&quot;Alice&quot;);
+User u2 = new User(&quot;Bob&quot;);
+System.out.println(User.getUserCount()); // 输出: 2</code></pre></div></p><h4>2.3 常量定义（配合 final）</h4><p>静态常量用于定义全局常量，如数学常数、配置参数等。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MathConstants {
+    public static final double PI = 3.14159;
+    public static final int MAX_VALUE = 10000;
+}</code></pre></div><p>> <strong>使用示例</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">double area = MathConstants.PI * radius * radius;</code></pre></div></p><h4>2.4 工具类（静态方法 + 静态变量）</h4><p>在工具类中，静态变量用于存储共享资源或配置。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringUtils {
+    private static final String DEFAULT_DELIMITER = &quot;,&quot;;</p><p>    public static String join(String[] array) {
+        return String.join(DEFAULT_DELIMITER, array);
+    }
+}</code></pre></div><h4>2.5 单例模式（静态内部类或静态引用）</h4><p>静态变量常用于实现单例模式，确保全局唯一实例。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Singleton {
+    private static Singleton instance;</p><p>    private Singleton() {}</p><p>    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}</code></pre></div><p>> <strong>或使用静态内部类（推荐）</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Singleton {
+    private Singleton() {}</p><p>    private static class SingletonHolder {
+        private static final Singleton INSTANCE = new Singleton();
+    }</p><p>    public static Singleton getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+}</code></pre></div></p><h4>2.6 线程安全的静态资源池</h4><p>在多线程环境中，静态变量可用于共享资源池（如数据库连接池、线程池）。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class ConnectionPool {
+    private static final List&lt;Connection&gt; pool = new ArrayList&lt;&gt;();
+    private static final int MAX_POOL_SIZE = 10;</p><p>    static {
+        for (int i = 0; i &lt; MAX_POOL_SIZE; i++) {
+            pool.add(createConnection());
+        }
+    }</p><p>    public static Connection getConnection() {
+        return pool.remove(0);
+    }</p><p>    public static void returnConnection(Connection conn) {
+        pool.add(conn);
+    }
+}</code></pre></div><hr><h3>3. 静态变量的注意事项</h3><table><tr><td>注意事项</td><td>说明</td></tr></table><table><tr><td><strong>内存占用</strong></td><td>静态变量在类加载时分配内存，生命周期与类一致，可能造成内存泄漏</td></tr></table>
+<table><tr><td><strong>线程安全</strong></td><td>多线程访问静态变量需加锁或使用线程安全容器（如 <code class="inline-code">ConcurrentHashMap</code>）</td></tr></table>
+<table><tr><td><strong>初始化时机</strong></td><td>在类加载时初始化，不能依赖实例变量或方法</td></tr></table>
+<table><tr><td><strong>访问方式</strong></td><td>通过类名访问：<code class="inline-code">ClassName.staticVar</code>，不推荐通过实例访问</td></tr></table><hr><h3>4. 总结</h3><table><tr><td>应用场景</td><td>说明</td></tr></table><table><tr><td><strong>共享数据</strong></td><td>多个实例共享同一份数据</td></tr></table>
+<table><tr><td><strong>计数器</strong></td><td>统计对象创建次数</td></tr></table>
+<table><tr><td><strong>常量定义</strong></td><td>定义全局常量（配合 <code class="inline-code">final</code>）</td></tr></table>
+<table><tr><td><strong>工具类</strong></td><td>存储工具类的共享配置或资源</td></tr></table>
+<table><tr><td><strong>单例模式</strong></td><td>实现全局唯一实例</td></tr></table>
+<table><tr><td><strong>资源池</strong></td><td>线程安全的共享资源管理</td></tr></table><p>> <strong>静态变量 = 类共享 + 生命周期长 + 初始化早</strong></p><p>合理使用静态变量可以提高代码的复用性和效率，但需注意其生命周期和线程安全问题，避免滥用导致内存泄漏或并发问题。</p><hr><p>> 💡 <strong>建议</strong>：在非必要情况下，优先使用实例变量；静态变量应谨慎使用，主要用于全局配置、常量、工具类、单例等场景。</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 45</h3>
+        <div class="topic-content"><h2>static - 静态方法 - 应用场景 - 工具类</h2><p>在 Java 中，<code class="inline-code">static</code> 关键字用于定义<strong>静态成员</strong>，包括静态变量、静态方法和静态代码块。静态成员属于类本身，而不是类的实例，因此可以在不创建对象的情况下直接通过类名调用。</p><hr><h3>1. 什么是静态方法？</h3><p>静态方法是使用 <code class="inline-code">static</code> 关键字修饰的方法，它属于类，而不是类的实例。静态方法可以直接通过类名调用，无需创建对象。</p><h4>1.1 语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MyClass {
+    public static void myMethod() {
+        System.out.println(&quot;这是一个静态方法&quot;);
+    }
+}</code></pre></div><h4>1.2 调用方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">MyClass.myMethod(); // 直接通过类名调用</code></pre></div><hr><h3>2. 静态方法的特点</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>属于类</strong></td><td>静态方法属于类，而不是实例</td></tr></table>
+<table><tr><td><strong>无需实例化</strong></td><td>可以直接通过类名调用</td></tr></table>
+<table><tr><td><strong>访问权限</strong></td><td>可以访问静态变量和静态方法</td></tr></table>
+<table><tr><td><strong>不能访问实例变量</strong></td><td>不能直接访问非静态成员</td></tr></table><hr><h3>3. 静态方法的应用场景</h3><h4>3.1 工具类</h4><p>工具类是提供一组通用功能的类，通常包含多个静态方法，用于执行特定任务，如字符串处理、数学计算、日期操作等。</p><p>#### 示例：字符串工具类</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringUtils {
+    // 检查字符串是否为空
+    public static boolean isEmpty(String str) {
+        return str == null || str.isEmpty();
+    }</p><p>    // 检查字符串是否为数字
+    public static boolean isNumeric(String str) {
+        if (isEmpty(str)) {
+            return false;
+        }
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }</p><p>    // 字符串反转
+    public static String reverse(String str) {
+        if (isEmpty(str)) {
+            return str;
+        }
+        return new StringBuilder(str).reverse().toString();
+    }
+}</code></pre></div><p>#### 使用示例</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        System.out.println(StringUtils.isEmpty(null)); // true
+        System.out.println(StringUtils.isNumeric(&quot;123&quot;)); // true
+        System.out.println(StringUtils.reverse(&quot;hello&quot;)); // &quot;olleh&quot;
+    }
+}</code></pre></div><hr><h4>3.2 数学工具类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MathUtils {
+    // 计算两个数的最大公约数
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }</p><p>    // 计算两个数的最小公倍数
+    public static int lcm(int a, int b) {
+        return a * b / gcd(a, b);
+    }
+}</code></pre></div><p>#### 使用示例</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        System.out.println(MathUtils.gcd(12, 18)); // 6
+        System.out.println(MathUtils.lcm(12, 18)); // 36
+    }
+}</code></pre></div><hr><h4>3.3 日期工具类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;</p><p>public class DateUtils {
+    // 获取当前时间
+    public static String getCurrentTime() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;));
+    }</p><p>    // 格式化日期
+    public static String formatDate(LocalDateTime time, String pattern) {
+        return time.format(DateTimeFormatter.ofPattern(pattern));
+    }
+}</code></pre></div><p>#### 使用示例</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        System.out.println(DateUtils.getCurrentTime()); // 输出当前时间
+        LocalDateTime time = LocalDateTime.of(2025, 11, 7, 10, 0);
+        System.out.println(DateUtils.formatDate(time, &quot;yyyy年MM月dd日&quot;)); // 输出: 2025年11月07日
+    }
+}</code></pre></div><hr><h3>4. 工具类的设计原则</h3><h4>4.1 单例模式</h4><p>工具类通常是单例的，即只能有一个实例。可以通过私有构造函数和静态方法实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Utility {
+    private Utility() {
+        // 私有构造函数，防止实例化
+    }</p><p>    public static void doSomething() {
+        System.out.println(&quot;执行某个操作&quot;);
+    }
+}</code></pre></div><h4>4.2 方法命名规范</h4><ul><li>使用动词开头，如 <code class="inline-code">get</code>, <code class="inline-code">set</code>, <code class="inline-code">calculate</code>, <code class="inline-code">format</code></li>
+<li>方法名应清晰表达功能</li>
+</ul>
+<h4>4.3 异常处理</h4><ul><li>在工具类中，应合理处理异常，避免程序崩溃</li>
+<li>提供清晰的错误信息</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>应用场景</td><td>说明</td></tr></table><table><tr><td><strong>工具类</strong></td><td>提供通用功能，如字符串、数学、日期处理</td></tr></table>
+<table><tr><td><strong>静态方法</strong></td><td>属于类，无需实例化即可调用</td></tr></table>
+<table><tr><td><strong>设计原则</strong></td><td>单例模式、方法命名、异常处理</td></tr></table><p>> <strong>工具类 = 代码复用的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，使用 <code class="inline-code">StringUtils</code>、<code class="inline-code">MathUtils</code> 等标准工具类  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #static #静态方法 #工具类 #代码复用 #编程实践</p></div>
+      </section>
+      <section class="section" id="section-8">
+        <h3>8. 46</h3>
+        <div class="topic-content"><h2>静态方法的注意事项</h2><p>在 Java 中，<code class="inline-code">static</code> 关键字用于定义静态成员，包括静态变量、静态方法和静态代码块。静态方法属于类本身，而不是类的实例，因此在使用时需要注意以下几点，以避免常见错误和性能问题。</p><hr><h3>1. 静态方法的访问限制</h3><h4>1.1 不能访问非静态成员</h4><p>静态方法不能直接访问类的非静态成员（实例变量和实例方法）。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MyClass {
+    private int instanceVar = 10; // 实例变量
+    private static int staticVar = 20; // 静态变量</p><p>    public void instanceMethod() {
+        System.out.println(&quot;实例方法&quot;);
+    }</p><p>    public static void staticMethod() {
+        // System.out.println(instanceVar); // ❌ 编译错误：不能直接访问非静态成员
+        System.out.println(staticVar); // ✅ 可以访问静态成员
+        // instanceMethod(); // ❌ 编译错误：不能直接调用实例方法
+    }
+}</code></pre></div><p>> ✅ 解决方案：通过对象访问实例成员</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public static void staticMethod() {
+    MyClass obj = new MyClass();
+    System.out.println(obj.instanceVar); // ✅ 通过对象访问
+    obj.instanceMethod(); // ✅ 通过对象调用
+}</code></pre></div><hr><h3>2. 静态方法的调用方式</h3><h4>2.1 通过类名调用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">MyClass.staticMethod(); // ✅ 推荐方式</code></pre></div><h4>2.2 通过对象调用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">MyClass obj = new MyClass();
+obj.staticMethod(); // ✅ 但不推荐，容易误解为实例方法</code></pre></div><p>> ✅ 推荐使用类名调用，避免混淆。</p><hr><h3>3. 静态方法的生命周期</h3><h4>3.1 静态方法的生命周期</h4><ul><li>静态方法在类加载时初始化</li>
+<li>静态方法的生命周期与类相同</li>
+<li>静态方法在类卸载时销毁</li>
+</ul>
+<h4>3.2 静态方法的内存管理</h4><ul><li>静态方法存储在方法区（Method Area）</li>
+<li>静态方法的内存空间是共享的</li>
+</ul>
+<hr></p><h3>4. 静态方法的线程安全</h3><h4>4.1 静态方法的线程安全</h4><ul><li>静态方法本身是线程安全的，但其内部操作可能不是线程安全的</li>
+<li>如果静态方法修改了静态变量，需要考虑线程安全</li>
+</ul>
+#### 示例：非线程安全的静态方法</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Counter {
+    private static int count = 0;</p><p>    public static void increment() {
+        count++; // ❌ 非线程安全
+    }</p><p>    public static int getCount() {
+        return count;
+    }
+}</code></pre></div><p>> ✅ 解决方案：使用 <code class="inline-code">synchronized</code> 或 <code class="inline-code">AtomicInteger</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Counter {
+    private static AtomicInteger count = new AtomicInteger(0);</p><p>    public static void increment() {
+        count.incrementAndGet(); // ✅ 线程安全
+    }</p><p>    public static int getCount() {
+        return count.get();
+    }
+}</code></pre></div><hr><h3>5. 静态方法的性能</h3><h4>5.1 静态方法的性能优势</h4><ul><li>静态方法调用速度快，因为不需要创建对象</li>
+<li>静态方法的内存开销小</li>
+</ul>
+<h4>5.2 静态方法的性能劣势</h4><ul><li>静态方法不能被重写（<code class="inline-code">final</code> 方法）</li>
+<li>静态方法不能访问实例成员</li>
+</ul>
+<hr></p><h3>6. 静态方法的最佳实践</h3><h4>6.1 使用场景</h4><ul><li>工具类方法</li>
+<li>工厂方法</li>
+<li>单例模式</li>
+</ul>
+<h4>6.2 不要滥用静态方法</h4><ul><li>静态方法不适合复杂逻辑</li>
+<li>静态方法不适合需要状态管理的场景</li>
+</ul>
+<h4>6.3 避免过度使用</h4><ul><li>静态方法容易导致代码耦合</li>
+<li>静态方法不利于测试和扩展</li>
+</ul>
+<hr></p><h3>7. 总结</h3><table><tr><td>注意事项</td><td>说明</td></tr></table><table><tr><td><strong>不能访问非静态成员</strong></td><td>静态方法不能直接访问实例变量和实例方法</td></tr></table>
+<table><tr><td><strong>调用方式</strong></td><td>推荐通过类名调用</td></tr></table>
+<table><tr><td><strong>生命周期</strong></td><td>与类相同，类加载时初始化，卸载时销毁</td></tr></table>
+<table><tr><td><strong>线程安全</strong></td><td>静态方法本身线程安全，但内部操作可能不是</td></tr></table>
+<table><tr><td><strong>性能</strong></td><td>调用速度快，内存开销小</td></tr></table>
+<table><tr><td><strong>最佳实践</strong></td><td>用于工具类、工厂方法、单例模式</td></tr></table><p>> <strong>静态方法 = 高效、简洁的工具</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用静态方法实现工具类功能  
+> - 在复杂逻辑中，考虑使用实例方法  
+> - 在多线程环境中，注意静态方法的线程安全  
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟静态方法</p><p>#java基础 #static #静态方法 #注意事项 #线程安全 #性能优化 #编程实践</p></div>
+      </section>
+      <section class="section" id="section-9">
+        <h3>9. 47</h3>
+        <div class="topic-content"><h2>综合实战 - 电影信息展示</h2><p>本节通过实现一个<strong>电影信息展示系统</strong>，将类、对象、静态方法、数组、循环等知识点融合在一起，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 案例目标</h3><p>编写程序，展示多个电影的信息，包括电影名称、导演、评分、类型等。</p><h4>1.1 功能需求</h4><ul><li>定义一个 <code class="inline-code">Movie</code> 类，包含电影信息</li>
+<li>使用数组存储多个电影对象</li>
+<li>输出所有电影信息</li>
+<li>支持按评分排序</li>
+<li>支持按类型筛选</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 定义 Movie 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Movie {
+    private String name;
+    private String director;
+    private double rating;
+    private String genre;</p><p>    public Movie(String name, String director, double rating, String genre) {
+        this.name = name;
+        this.director = director;
+        this.rating = rating;
+        this.genre = genre;
+    }</p><p>    public String getName() {
+        return name;
+    }</p><p>    public String getDirector() {
+        return director;
+    }</p><p>    public double getRating() {
+        return rating;
+    }</p><p>    public String getGenre() {
+        return genre;
+    }</p><p>    @Override
+    public String toString() {
+        return &quot;电影名称: &quot; + name + &quot;, 导演: &quot; + director + &quot;, 评分: &quot; + rating + &quot;, 类型: &quot; + genre;
+    }
+}</code></pre></div><hr><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MovieSystem {
+    public static void main(String[] args) {
+        // 创建电影数组
+        Movie[] movies = {
+            new Movie(&quot;肖申克的救赎&quot;, &quot;弗兰克·德拉邦特&quot;, 9.7, &quot;剧情&quot;),
+            new Movie(&quot;教父&quot;, &quot;弗朗西斯·福特·科波拉&quot;, 9.6, &quot;剧情&quot;),
+            new Movie(&quot;盗梦空间&quot;, &quot;克里斯托弗·诺兰&quot;, 9.3, &quot;科幻&quot;),
+            new Movie(&quot;泰坦尼克号&quot;, &quot;詹姆斯·卡梅隆&quot;, 9.2, &quot;爱情&quot;),
+            new Movie(&quot;阿凡达&quot;, &quot;詹姆斯·卡梅隆&quot;, 9.1, &quot;科幻&quot;)
+        };</p><p>        // 输出所有电影
+        System.out.println(&quot;所有电影信息：&quot;);
+        for (Movie movie : movies) {
+            System.out.println(movie);
+        }</p><p>        // 按评分排序
+        System.out.println(&quot;\n按评分排序：&quot;);
+        sortMoviesByRating(movies);
+        for (Movie movie : movies) {
+            System.out.println(movie);
+        }</p><p>        // 按类型筛选
+        System.out.println(&quot;\n科幻电影：&quot;);
+        filterMoviesByGenre(movies, &quot;科幻&quot;);
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Arrays;</p><p>public class MovieSystem {
+    public static void main(String[] args) {
+        // 创建电影数组
+        Movie[] movies = {
+            new Movie(&quot;肖申克的救赎&quot;, &quot;弗兰克·德拉邦特&quot;, 9.7, &quot;剧情&quot;),
+            new Movie(&quot;教父&quot;, &quot;弗朗西斯·福特·科波拉&quot;, 9.6, &quot;剧情&quot;),
+            new Movie(&quot;盗梦空间&quot;, &quot;克里斯托弗·诺兰&quot;, 9.3, &quot;科幻&quot;),
+            new Movie(&quot;泰坦尼克号&quot;, &quot;詹姆斯·卡梅隆&quot;, 9.2, &quot;爱情&quot;),
+            new Movie(&quot;阿凡达&quot;, &quot;詹姆斯·卡梅隆&quot;, 9.1, &quot;科幻&quot;)
+        };</p><p>        // 输出所有电影
+        System.out.println(&quot;所有电影信息：&quot;);
+        for (Movie movie : movies) {
+            System.out.println(movie);
+        }</p><p>        // 按评分排序
+        System.out.println(&quot;\n按评分排序：&quot;);
+        sortMoviesByRating(movies);
+        for (Movie movie : movies) {
+            System.out.println(movie);
+        }</p><p>        // 按类型筛选
+        System.out.println(&quot;\n科幻电影：&quot;);
+        filterMoviesByGenre(movies, &quot;科幻&quot;);
+    }</p><p>    // 按评分排序
+    public static void sortMoviesByRating(Movie[] movies) {
+        Arrays.sort(movies, (m1, m2) -&gt; Double.compare(m2.getRating(), m1.getRating())); // 降序
+    }</p><p>    // 按类型筛选
+    public static void filterMoviesByGenre(Movie[] movies, String genre) {
+        for (Movie movie : movies) {
+            if (movie.getGenre().equals(genre)) {
+                System.out.println(movie);
+            }
+        }
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">所有电影信息：
+电影名称: 肖申克的救赎, 导演: 弗兰克·德拉邦特, 评分: 9.7, 类型: 剧情
+电影名称: 教父, 导演: 弗朗西斯·福特·科波拉, 评分: 9.6, 类型: 剧情
+电影名称: 盗梦空间, 导演: 克里斯托弗·诺兰, 评分: 9.3, 类型: 科幻
+电影名称: 泰坦尼克号, 导演: 詹姆斯·卡梅隆, 评分: 9.2, 类型: 爱情
+电影名称: 阿凡达, 导演: 詹姆斯·卡梅隆, 评分: 9.1, 类型: 科幻</p><p>按评分排序：
+电影名称: 肖申克的救赎, 导演: 弗兰克·德拉邦特, 评分: 9.7, 类型: 剧情
+电影名称: 教父, 导演: 弗朗西斯·福特·科波拉, 评分: 9.6, 类型: 剧情
+电影名称: 盗梦空间, 导演: 克里斯托弗·诺兰, 评分: 9.3, 类型: 科幻
+电影名称: 泰坦尼克号, 导演: 詹姆斯·卡梅隆, 评分: 9.2, 类型: 爱情
+电影名称: 阿凡达, 导演: 詹姆斯·卡梅隆, 评分: 9.1, 类型: 科幻</p><p>科幻电影：
+电影名称: 盗梦空间, 导演: 克里斯托弗·诺兰, 评分: 9.3, 类型: 科幻
+电影名称: 阿凡达, 导演: 詹姆斯·卡梅隆, 评分: 9.1, 类型: 科幻</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>定义 Movie 类</td><td>封装电影信息</td></tr></table>
+<table><tr><td>使用数组存储</td><td>存储多个电影对象</td></tr></table>
+<table><tr><td>输出所有电影</td><td><code class="inline-code">for</code> 循环</td></tr></table>
+<table><tr><td>按评分排序</td><td><code class="inline-code">Arrays.sort()</code></td></tr></table>
+<table><tr><td>按类型筛选</td><td><code class="inline-code">for</code> 循环</td></tr></table><hr><h3>6. 扩展功能（可选）</h3><h4>6.1 添加电影评分统计</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public static void showRatingStatistics(Movie[] movies) {
+    double sum = 0;
+    for (Movie movie : movies) {
+        sum += movie.getRating();
+    }
+    double average = sum / movies.length;
+    System.out.printf(&quot;平均评分: %.2f%n&quot;, average);
+}</code></pre></div><h4>6.2 添加电影搜索功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public static void searchMovieByName(Movie[] movies, String name) {
+    for (Movie movie : movies) {
+        if (movie.getName().contains(name)) {
+            System.out.println(movie);
+        }
+    }
+}</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">class</code></td><td>定义电影类</td></tr></table>
+<table><tr><td><code class="inline-code">数组</code></td><td>存储多个电影对象</td></tr></table>
+<table><tr><td><code class="inline-code">for</code> 循环</td><td>遍历数组</td></tr></table>
+<table><tr><td><code class="inline-code">Arrays.sort()</code></td><td>排序</td></tr></table>
+<table><tr><td><code class="inline-code">方法重载</code></td><td>提供多种功能</td></tr></table><p>> <strong>综合案例 = 面向对象编程的全面应用</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，使用 <code class="inline-code">List<Movie></code> 替代数组  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #面向对象编程 #电影信息展示 #综合案例 #数组 #排序 #筛选</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter04.html" class="nav-prev">← 第4章</a>
+        <a href="chapter06.html" class="nav-next">第6章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 面向对象编程</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

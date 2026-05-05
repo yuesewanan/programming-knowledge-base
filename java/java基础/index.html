@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 基础教程 - 从入门到精通，涵盖Java语法、面向对象、集合等核心知识点">
+  <title>Java 基础 · 编程知识库</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link active"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">1</span> Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">2</span> 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">3</span> 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">4</span> 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">5</span> 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">6</span> 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">7</span> 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">8</span> 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">9</span> 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">☕ Java 基础教程</div>
+        <h1>Java 基础</h1>
+        <p>系统学习 Java 编程语言的基础知识，从入门语法到面向对象编程，为后续学习打下坚实基础。</p>
+      </div>
+
+      <div class="intro-cards">
+        <div class="intro-card">
+          <div class="intro-icon">📖</div>
+          <h3>78 篇教程</h3>
+          <p>涵盖Java核心知识点</p>
+        </div>
+        <div class="intro-card">
+          <div class="intro-icon">🎯</div>
+          <h3>9 大章节</h3>
+          <p>循序渐进的学习路径</p>
+        </div>
+        <div class="intro-card">
+          <div class="intro-icon">💻</div>
+          <h3>实战项目</h3>
+          <p>边学边练巩固知识</p>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>📚 学习路径</h2>
+        <div class="chapter-grid">
+          <a href="chapter01.html" class="chapter-card">
+            <div class="chapter-number">01</div>
+            <h3>Java入门基础</h3>
+            <p>方法注释、字面量、变量、数据类型、标识符关键字</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 7 篇
+            </div>
+          </a>
+          <a href="chapter02.html" class="chapter-card">
+            <div class="chapter-number">02</div>
+            <h3>类型转换与运算符</h3>
+            <p>方法详解、类型转换、输入输出、运算符</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 9 篇
+            </div>
+          </a>
+          <a href="chapter03.html" class="chapter-card">
+            <div class="chapter-number">03</div>
+            <h3>程序流程控制</h3>
+            <p>if分支、switch、for循环、while循环、实战案例</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 15 篇
+            </div>
+          </a>
+          <a href="chapter04.html" class="chapter-card">
+            <div class="chapter-number">04</div>
+            <h3>数组</h3>
+            <p>一维数组、二维数组、数组案例</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 6 篇
+            </div>
+          </a>
+          <a href="chapter05.html" class="chapter-card">
+            <div class="chapter-number">05</div>
+            <h3>面向对象编程</h3>
+            <p>类与对象、构造器、this关键字、封装、static</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 9 篇
+            </div>
+          </a>
+          <a href="chapter06.html" class="chapter-card">
+            <div class="chapter-number">06</div>
+            <h3>继承</h3>
+            <p>继承概念、权限修饰符、方法重写、子类构造器</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 10 篇
+            </div>
+          </a>
+          <a href="chapter07.html" class="chapter-card">
+            <div class="chapter-number">07</div>
+            <h3>多态与高级特性</h3>
+            <p>多态、final关键字、单例模式、枚举</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 4 篇
+            </div>
+          </a>
+          <a href="chapter08.html" class="chapter-card">
+            <div class="chapter-number">08</div>
+            <h3>抽象类与接口</h3>
+            <p>抽象类、接口、模板方法模式、综合案例</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 8 篇
+            </div>
+          </a>
+          <a href="chapter09.html" class="chapter-card">
+            <div class="chapter-number">09</div>
+            <h3>综合项目实战</h3>
+            <p>智能家居、内部类、函数式编程、项目实战</p>
+            <div class="chapter-meta">
+              <span class="icon">📄</span> 9 篇
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>🎯 学习建议</h2>
+        <div class="tip-list">
+          <div class="tip-item">
+            <span class="tip-icon">1️⃣</span>
+            <div>
+              <h4>循序渐进</h4>
+              <p>按章节顺序学习，每学完一个知识点及时练习</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">2️⃣</span>
+            <div>
+              <h4>动手实践</h4>
+              <p>跟着教程敲代码，运行结果，观察变化</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">3️⃣</span>
+            <div>
+              <h4>完成练习</h4>
+              <p>每个知识点都有练习题，务必独立完成</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">4️⃣</span>
+            <div>
+              <h4>项目实战</h4>
+              <p>综合实战项目是检验学习成果的最佳方式</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础教程</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

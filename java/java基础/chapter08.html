@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 抽象类与接口 - 编程知识库">
+  <title>第8章: 抽象类与接口 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link active"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🔧 第8章</div>
+        <h1>抽象类与接口</h1>
+        <p>Java基础教程 - 抽象类与接口</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 62</a></li>
+          <li><a href="#section-2">2. 63</a></li>
+          <li><a href="#section-3">3. 64</a></li>
+          <li><a href="#section-4">4. 65</a></li>
+          <li><a href="#section-5">5. 66</a></li>
+          <li><a href="#section-6">6. 67</a></li>
+          <li><a href="#section-7">7. 68</a></li>
+          <li><a href="#section-8">8. 69</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 62</h3>
+        <div class="topic-content"><h2>抽象类 - 认识抽象类</h2><p>在 Java 中，<strong>抽象类（Abstract Class）</strong> 是一种特殊的类，它不能被实例化，只能被继承。抽象类通常用于定义一组公共的属性和方法，供子类继承和实现。抽象类是面向对象编程的重要特性之一，它提高了代码的复用性和可扩展性。</p><hr><h3>1. 抽象类的基本语法</h3><h4>1.1 定义抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    // 抽象方法
+    abstract void makeSound();</p><p>    // 普通方法
+    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">abstract</code> 关键字用于定义抽象类</li>
+<li>抽象类可以包含抽象方法和普通方法</li>
+<li>抽象方法没有方法体，必须在子类中实现</li>
+</ul>
+<hr></p><h4>1.2 抽象方法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    // 抽象方法
+    abstract void makeSound();</p><p>    // 普通方法
+    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">abstract</code> 关键字用于定义抽象方法</li>
+<li>抽象方法没有方法体，必须在子类中实现</li>
+</ul>
+<hr></p><h3>2. 抽象类的特点</h3><h4>2.1 不能被实例化</h4><p>抽象类不能被实例化，只能被继承。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        // Animal animal = new Animal(); // ❌ 编译错误：不能实例化抽象类
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 是抽象类，不能被实例化</li>
+<li>必须通过子类实例化</li>
+</ul>
+<hr></p><h4>2.2 可以包含普通方法</h4><p>抽象类可以包含普通方法，这些方法可以被子类继承和使用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    // 抽象方法
+    abstract void makeSound();</p><p>    // 普通方法
+    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">sleep()</code> 是普通方法，可以被子类继承和使用</li>
+</ul>
+<hr></p><h4>2.3 可以包含抽象方法</h4><p>抽象类可以包含抽象方法，这些方法必须在子类中实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    // 抽象方法
+    abstract void makeSound();</p><p>    // 普通方法
+    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">makeSound()</code> 是抽象方法，必须在子类中实现</li>
+</ul>
+<hr></p><h3>3. 抽象类的应用场景</h3><h4>3.1 定义公共行为</h4><p>抽象类可以定义一组公共的行为，供子类继承和实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 定义了 <code class="inline-code">makeSound()</code> 和 <code class="inline-code">sleep()</code> 方法</li>
+<li><code class="inline-code">Dog</code> 和 <code class="inline-code">Cat</code> 实现了 <code class="inline-code">makeSound()</code> 方法</li>
+</ul>
+<hr></p><h4>3.2 定义公共属性</h4><p>抽象类可以定义一组公共的属性，供子类继承和使用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">name</code> 和 <code class="inline-code">age</code> 是公共属性，可以被子类继承和使用</li>
+</ul>
+<hr></p><h3>4. 抽象类的注意事项</h3><h4>4.1 抽象类不能被实例化</h4><p>抽象类不能被实例化，只能被继承。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        // Animal animal = new Animal(); // ❌ 编译错误：不能实例化抽象类
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 是抽象类，不能被实例化</li>
+<li>必须通过子类实例化</li>
+</ul>
+<hr></p><h4>4.2 抽象方法必须在子类中实现</h4><p>抽象方法必须在子类中实现，否则会编译错误。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">makeSound()</code> 是抽象方法，必须在子类中实现</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>抽象类</strong></td><td>不能被实例化，只能被继承</td></tr></table>
+<table><tr><td><strong>抽象方法</strong></td><td>没有方法体，必须在子类中实现</td></tr></table>
+<table><tr><td><strong>普通方法</strong></td><td>可以被子类继承和使用</td></tr></table>
+<table><tr><td><strong>应用场景</strong></td><td>定义公共行为、公共属性</td></tr></table><p>> <strong>抽象类 = 公共行为的抽象</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用抽象类定义公共行为
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟抽象类行为</p><p>#java基础 #抽象类 #抽象方法 #公共行为 #公共属性</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 63</h3>
+        <div class="topic-content"><h2>抽象类 - 好处与应用场景</h2><p>在 Java 中，<strong>抽象类（Abstract Class）</strong> 是一种特殊的类，它不能被实例化，只能被继承。抽象类通常用于定义一组公共的属性和方法，供子类继承和实现。本节将详细介绍抽象类的好处和应用场景。</p><hr><h3>1. 抽象类的好处</h3><h4>1.1 提高代码的复用性</h4><p>抽象类可以定义一组公共的方法和属性，供子类继承和使用，从而避免重复代码。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 定义了 <code class="inline-code">name</code>、<code class="inline-code">age</code>、<code class="inline-code">sleep()</code> 方法</li>
+<li>子类可以继承这些方法，避免重复定义</li>
+</ul>
+<hr></p><h4>1.2 提高代码的可维护性</h4><p>抽象类可以集中管理公共的属性和方法，便于维护和修改。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 集中管理 <code class="inline-code">name</code>、<code class="inline-code">age</code>、<code class="inline-code">sleep()</code> 方法</li>
+<li>修改 <code class="inline-code">Animal</code> 类时，所有子类都会自动更新</li>
+</ul>
+<hr></p><h4>1.3 提高代码的可扩展性</h4><p>抽象类可以定义一组公共的行为，供子类继承和实现，从而提高代码的可扩展性。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 定义了 <code class="inline-code">makeSound()</code> 方法</li>
+<li><code class="inline-code">Dog</code> 和 <code class="inline-code">Cat</code> 实现了 <code class="inline-code">makeSound()</code> 方法</li>
+<li>添加新的子类时，只需实现 <code class="inline-code">makeSound()</code> 方法</li>
+</ul>
+<hr></p><h3>2. 抽象类的应用场景</h3><h4>2.1 定义公共行为</h4><p>抽象类可以定义一组公共的行为，供子类继承和实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 定义了 <code class="inline-code">makeSound()</code> 方法</li>
+<li>子类必须实现 <code class="inline-code">makeSound()</code> 方法</li>
+</ul>
+<hr></p><h4>2.2 定义公共属性</h4><p>抽象类可以定义一组公共的属性，供子类继承和使用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">name</code> 和 <code class="inline-code">age</code> 是公共属性，可以被子类继承和使用</li>
+</ul>
+<hr></p><h4>2.3 定义公共方法</h4><p>抽象类可以定义一组公共的方法，供子类继承和使用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">sleep()</code> 是公共方法，可以被子类继承和使用</li>
+</ul>
+<hr></p><h3>3. 抽象类的注意事项</h3><h4>3.1 抽象类不能被实例化</h4><p>抽象类不能被实例化，只能被继承。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        // Animal animal = new Animal(); // ❌ 编译错误：不能实例化抽象类
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 是抽象类，不能被实例化</li>
+<li>必须通过子类实例化</li>
+</ul>
+<hr></p><h4>3.2 抽象方法必须在子类中实现</h4><p>抽象方法必须在子类中实现，否则会编译错误。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    abstract void makeSound();
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">makeSound()</code> 是抽象方法，必须在子类中实现</li>
+</ul>
+<hr></p><h3>4. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>抽象类</strong></td><td>不能被实例化，只能被继承</td></tr></table>
+<table><tr><td><strong>抽象方法</strong></td><td>没有方法体，必须在子类中实现</td></tr></table>
+<table><tr><td><strong>普通方法</strong></td><td>可以被子类继承和使用</td></tr></table>
+<table><tr><td><strong>应用场景</strong></td><td>定义公共行为、公共属性、公共方法</td></tr></table><p>> <strong>抽象类 = 公共行为的抽象</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用抽象类定义公共行为
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟抽象类行为</p><p>#java基础 #抽象类 #抽象方法 #公共行为 #公共属性 #公共方法</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 64</h3>
+        <div class="topic-content"><h2>抽象类 - 模板方法设计模式</h2><p>在 Java 中，<strong>模板方法设计模式（Template Method Pattern）</strong> 是一种行为型设计模式，它定义了一个算法的骨架，将一些步骤延迟到子类中实现。模板方法模式通过抽象类来定义算法的框架，子类通过继承抽象类并实现特定步骤来完成算法。</p><hr><h3>1. 模板方法设计模式的基本结构</h3><h4>1.1 抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    // 模板方法：定义算法的骨架
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    // 抽象方法：子类必须实现
+    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    // 具体方法：子类可以重写
+    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><h4>1.2 子类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Cricket extends Game {
+    @Override
+    void initialize() {
+        System.out.println(&quot;Cricket 游戏初始化&quot;);
+    }</p><p>    @Override
+    void startPlay() {
+        System.out.println(&quot;Cricket 游戏开始&quot;);
+    }</p><p>    @Override
+    void endPlay() {
+        System.out.println(&quot;Cricket 游戏结束&quot;);
+    }
+}</p><p>class Football extends Game {
+    @Override
+    void initialize() {
+        System.out.println(&quot;Football 游戏初始化&quot;);
+    }</p><p>    @Override
+    void startPlay() {
+        System.out.println(&quot;Football 游戏开始&quot;);
+    }</p><p>    @Override
+    void endPlay() {
+        System.out.println(&quot;Football 游戏结束&quot;);
+    }
+}</code></pre></div><h4>1.3 使用示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        Game cricket = new Cricket();
+        cricket.playGame();</p><p>        Game football = new Football();
+        football.playGame();
+    }
+}</code></pre></div><p>> <strong>输出</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">Cricket 游戏初始化
+Cricket 游戏开始
+Cricket 游戏结束
+游戏结束
+Football 游戏初始化
+Football 游戏开始
+Football 游戏结束
+游戏结束</code></pre></div></p><hr><h3>2. 模板方法设计模式的特点</h3><h4>2.1 定义算法骨架</h4><p>模板方法模式通过抽象类定义算法的骨架，子类通过继承抽象类并实现特定步骤来完成算法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">playGame()</code> 是模板方法，定义了算法的骨架</li>
+<li><code class="inline-code">initialize()</code>、<code class="inline-code">startPlay()</code>、<code class="inline-code">endPlay()</code> 是抽象方法，子类必须实现</li>
+</ul>
+<hr></p><h4>2.2 子类实现特定步骤</h4><p>子类通过继承抽象类并实现特定步骤来完成算法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Cricket extends Game {
+    @Override
+    void initialize() {
+        System.out.println(&quot;Cricket 游戏初始化&quot;);
+    }</p><p>    @Override
+    void startPlay() {
+        System.out.println(&quot;Cricket 游戏开始&quot;);
+    }</p><p>    @Override
+    void endPlay() {
+        System.out.println(&quot;Cricket 游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Cricket</code> 实现了 <code class="inline-code">initialize()</code>、<code class="inline-code">startPlay()</code>、<code class="inline-code">endPlay()</code> 方法</li>
+<li>子类可以重写 <code class="inline-code">showResult()</code> 方法</li>
+</ul>
+<hr></p><h4>2.3 保持算法一致性</h4><p>模板方法模式确保了算法的一致性，子类不能改变算法的骨架。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">playGame()</code> 方法的执行顺序是固定的</li>
+<li>子类不能改变算法的骨架</li>
+</ul>
+<hr></p><h3>3. 模板方法设计模式的应用场景</h3><h4>3.1 定义算法骨架</h4><p>模板方法模式通过抽象类定义算法的骨架，子类通过继承抽象类并实现特定步骤来完成算法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Game</code> 定义了 <code class="inline-code">playGame()</code> 方法的骨架</li>
+<li>子类必须实现 <code class="inline-code">initialize()</code>、<code class="inline-code">startPlay()</code>、<code class="inline-code">endPlay()</code> 方法</li>
+</ul>
+<hr></p><h4>3.2 实现特定步骤</h4><p>子类通过继承抽象类并实现特定步骤来完成算法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Cricket extends Game {
+    @Override
+    void initialize() {
+        System.out.println(&quot;Cricket 游戏初始化&quot;);
+    }</p><p>    @Override
+    void startPlay() {
+        System.out.println(&quot;Cricket 游戏开始&quot;);
+    }</p><p>    @Override
+    void endPlay() {
+        System.out.println(&quot;Cricket 游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Cricket</code> 实现了 <code class="inline-code">initialize()</code>、<code class="inline-code">startPlay()</code>、<code class="inline-code">endPlay()</code> 方法</li>
+<li>子类可以重写 <code class="inline-code">showResult()</code> 方法</li>
+</ul>
+<hr></p><h4>3.3 保持算法一致性</h4><p>模板方法模式确保了算法的一致性，子类不能改变算法的骨架。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">playGame()</code> 方法的执行顺序是固定的</li>
+<li>子类不能改变算法的骨架</li>
+</ul>
+<hr></p><h3>4. 模板方法设计模式的注意事项</h3><h4>4.1 抽象类不能被实例化</h4><p>抽象类不能被实例化，只能被继承。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Game</code> 是抽象类，不能被实例化</li>
+<li>必须通过子类实例化</li>
+</ul>
+<hr></p><h4>4.2 抽象方法必须在子类中实现</h4><p>抽象方法必须在子类中实现，否则会编译错误。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Game {
+    final void playGame() {
+        initialize();
+        startPlay();
+        endPlay();
+    }</p><p>    abstract void initialize();</p><p>    abstract void startPlay();</p><p>    abstract void endPlay();</p><p>    void showResult() {
+        System.out.println(&quot;游戏结束&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">initialize()</code>、<code class="inline-code">startPlay()</code>、<code class="inline-code">endPlay()</code> 是抽象方法</li>
+<li>子类必须实现这些方法</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>模板方法</strong></td><td>定义算法的骨架</td></tr></table>
+<table><tr><td><strong>抽象方法</strong></td><td>子类必须实现</td></tr></table>
+<table><tr><td><strong>具体方法</strong></td><td>子类可以重写</td></tr></table>
+<table><tr><td><strong>应用场景</strong></td><td>定义算法骨架、实现特定步骤、保持算法一致性</td></tr></table><p>> <strong>模板方法设计模式 = 算法骨架的抽象</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用模板方法设计模式定义算法骨架
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟模板方法行为</p><p>#java基础 #模板方法设计模式 #算法骨架 #抽象方法 #具体方法</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 65</h3>
+        <div class="topic-content"><h2>接口 - 认识接口</h2><p>在 Java 中，<strong>接口（Interface）</strong> 是一种引用类型，它定义了一组抽象方法，这些方法必须由实现该接口的类来实现。接口是面向对象编程的重要特性之一，它提供了多态性和代码的解耦。</p><hr><h3>1. 接口的基本语法</h3><h4>1.1 定义接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">interface</code> 关键字用于定义接口</li>
+<li>接口中的方法默认是 <code class="inline-code">public abstract</code> 的</li>
+<li>接口不能包含实例变量</li>
+</ul>
+<hr></p><h4>1.2 实现接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">implements</code> 关键字用于实现接口</li>
+<li>实现类必须实现接口中的所有方法</li>
+</ul>
+<hr></p><h3>2. 接口的特点</h3><h4>2.1 多态性</h4><p>接口支持多态性，允许一个接口引用指向实现该接口的类的实例。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable f1 = new Bird();
+        Flyable f2 = new Plane();</p><p>        f1.fly(); // 输出: 鸟在飞
+        f2.fly(); // 输出: 飞机在飞
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>通过多态性，统一调用 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h4>2.2 解耦</h4><p>接口实现了代码的解耦，使得类之间的依赖关系更加松散。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable f1 = new Bird();
+        Flyable f2 = new Plane();</p><p>        f1.fly(); // 输出: 鸟在飞
+        f2.fly(); // 输出: 飞机在飞
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>通过多态性，统一调用 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h4>2.3 多重实现</h4><p>一个类可以实现多个接口。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public interface Swimmable {
+    void swim();
+}</p><p>public class Duck implements Flyable, Swimmable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸭子在飞&quot;);
+    }</p><p>    @Override
+    public void swim() {
+        System.out.println(&quot;鸭子在游泳&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Duck</code> 类实现了 <code class="inline-code">Flyable</code> 和 <code class="inline-code">Swimmable</code> 接口</li>
+<li><code class="inline-code">Duck</code> 类必须实现两个接口中的所有方法</li>
+</ul>
+<hr></p><h3>3. 接口的应用场景</h3><h4>3.1 定义行为规范</h4><p>接口可以定义一组行为规范，供实现类实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public interface Swimmable {
+    void swim();
+}</p><p>public class Duck implements Flyable, Swimmable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸭子在飞&quot;);
+    }</p><p>    @Override
+    public void swim() {
+        System.out.println(&quot;鸭子在游泳&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 和 <code class="inline-code">Swimmable</code> 接口定义了行为规范</li>
+<li><code class="inline-code">Duck</code> 类实现了这些行为规范</li>
+</ul>
+<hr></p><h4>3.2 实现多态性</h4><p>接口支持多态性，允许一个接口引用指向实现该接口的类的实例。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable f1 = new Bird();
+        Flyable f2 = new Plane();</p><p>        f1.fly(); // 输出: 鸟在飞
+        f2.fly(); // 输出: 飞机在飞
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>通过多态性，统一调用 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h3>4. 接口的注意事项</h3><h4>4.1 接口中的方法默认是 <code class="inline-code">public abstract</code> 的</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly(); // 默认是 public abstract
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>接口中的方法默认是 <code class="inline-code">public abstract</code> 的</li>
+<li>不能使用 <code class="inline-code">private</code>、<code class="inline-code">protected</code>、<code class="inline-code">default</code> 修饰符</li>
+</ul>
+<hr></p><h4>4.2 接口不能包含实例变量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+    int speed = 100; // ✅ 可以定义常量
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>接口中的变量默认是 <code class="inline-code">public static final</code> 的</li>
+<li>不能定义实例变量</li>
+</ul>
+<hr></p><h4>4.3 接口可以定义默认方法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">default</code> 关键字用于定义默认方法</li>
+<li>实现类可以重写默认方法</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>接口</strong></td><td>定义一组抽象方法</td></tr></table>
+<table><tr><td><strong>多态性</strong></td><td>支持多态性，允许一个接口引用指向实现该接口的类的实例</td></tr></table>
+<table><tr><td><strong>解耦</strong></td><td>实现了代码的解耦，使得类之间的依赖关系更加松散</td></tr></table>
+<table><tr><td><strong>多重实现</strong></td><td>一个类可以实现多个接口</td></tr></table><p>> <strong>接口 = 行为规范的抽象</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用接口定义行为规范
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #多态性 #解耦 #行为规范</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 66</h3>
+        <div class="topic-content"><h2>接口 - 接口的好处</h2><p>在 Java 中，<strong>接口（Interface）</strong> 是一种引用类型，它定义了一组抽象方法，这些方法必须由实现该接口的类来实现。接口是面向对象编程的重要特性之一，它提供了多态性和代码的解耦。本节将详细介绍接口的好处。</p><hr><h3>1. 接口的好处</h3><h4>1.1 提高代码的可维护性</h4><p>接口可以集中管理公共的行为规范，便于维护和修改。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>修改 <code class="inline-code">Flyable</code> 接口时，所有实现类都会自动更新</li>
+</ul>
+<hr></p><h4>1.2 提高代码的可扩展性</h4><p>接口可以定义一组公共的行为规范，供实现类继承和实现，从而提高代码的可扩展性。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>添加新的实现类时，只需实现 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h4>1.3 提高代码的灵活性</h4><p>接口支持多态性，允许一个接口引用指向实现该接口的类的实例。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable f1 = new Bird();
+        Flyable f2 = new Plane();</p><p>        f1.fly(); // 输出: 鸟在飞
+        f2.fly(); // 输出: 飞机在飞
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>通过多态性，统一调用 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h4>1.4 实现多重继承</h4><p>一个类可以实现多个接口，从而实现多重继承。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public interface Swimmable {
+    void swim();
+}</p><p>public class Duck implements Flyable, Swimmable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸭子在飞&quot;);
+    }</p><p>    @Override
+    public void swim() {
+        System.out.println(&quot;鸭子在游泳&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Duck</code> 类实现了 <code class="inline-code">Flyable</code> 和 <code class="inline-code">Swimmable</code> 接口</li>
+<li><code class="inline-code">Duck</code> 类必须实现两个接口中的所有方法</li>
+</ul>
+<hr></p><h3>2. 接口的应用场景</h3><h4>2.1 定义行为规范</h4><p>接口可以定义一组行为规范，供实现类实现。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public interface Swimmable {
+    void swim();
+}</p><p>public class Duck implements Flyable, Swimmable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸭子在飞&quot;);
+    }</p><p>    @Override
+    public void swim() {
+        System.out.println(&quot;鸭子在游泳&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 和 <code class="inline-code">Swimmable</code> 接口定义了行为规范</li>
+<li><code class="inline-code">Duck</code> 类实现了这些行为规范</li>
+</ul>
+<hr></p><h4>2.2 实现多态性</h4><p>接口支持多态性，允许一个接口引用指向实现该接口的类的实例。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>public class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable f1 = new Bird();
+        Flyable f2 = new Plane();</p><p>        f1.fly(); // 输出: 鸟在飞
+        f2.fly(); // 输出: 飞机在飞
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>通过多态性，统一调用 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h3>3. 接口的注意事项</h3><h4>3.1 接口中的方法默认是 <code class="inline-code">public abstract</code> 的</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly(); // 默认是 public abstract
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>接口中的方法默认是 <code class="inline-code">public abstract</code> 的</li>
+<li>不能使用 <code class="inline-code">private</code>、<code class="inline-code">protected</code>、<code class="inline-code">default</code> 修饰符</li>
+</ul>
+<hr></p><h4>3.2 接口不能包含实例变量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+    int speed = 100; // ✅ 可以定义常量
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>接口中的变量默认是 <code class="inline-code">public static final</code> 的</li>
+<li>不能定义实例变量</li>
+</ul>
+<hr></p><h4>3.3 接口可以定义默认方法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">default</code> 关键字用于定义默认方法</li>
+<li>实现类可以重写默认方法</li>
+</ul>
+<hr></p><h3>4. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>接口</strong></td><td>定义一组抽象方法</td></tr></table>
+<table><tr><td><strong>多态性</strong></td><td>支持多态性，允许一个接口引用指向实现该接口的类的实例</td></tr></table>
+<table><tr><td><strong>解耦</strong></td><td>实现了代码的解耦，使得类之间的依赖关系更加松散</td></tr></table>
+<table><tr><td><strong>多重实现</strong></td><td>一个类可以实现多个接口</td></tr></table><p>> <strong>接口 = 行为规范的抽象</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用接口定义行为规范
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #多态性 #解耦 #行为规范</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 67</h3>
+        <div class="topic-content"><h2>接口 - 综合案例</h2><p>本节通过实现一个<strong>支付系统</strong>，将接口、类、多态等知识点融合在一起，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 案例目标</h3><p>编写程序，模拟一个支付系统，支持多种支付方式（如支付宝、微信、银行卡），并根据用户选择的支付方式调用相应的支付方法。</p><h4>1.1 功能需求</h4><ul><li>定义一个 <code class="inline-code">Payment</code> 接口，包含支付方法</li>
+<li>实现多个支付方式类（如 <code class="inline-code">Alipay</code>、<code class="inline-code">WeChatPay</code>、<code class="inline-code">BankCardPay</code>）</li>
+<li>根据用户输入选择支付方式</li>
+<li>调用相应的支付方法</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 定义 Payment 接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Payment {
+    void pay(double amount);
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Payment</code> 接口定义了 <code class="inline-code">pay()</code> 方法</li>
+<li>所有支付方式类必须实现 <code class="inline-code">pay()</code> 方法</li>
+</ul>
+<hr></p><h4>2.2 实现 Alipay 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Alipay implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println(&quot;使用支付宝支付 &quot; + amount + &quot; 元&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Alipay</code> 类实现了 <code class="inline-code">Payment</code> 接口</li>
+<li>实现了 <code class="inline-code">pay()</code> 方法</li>
+</ul>
+<hr></p><h4>2.3 实现 WeChatPay 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class WeChatPay implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println(&quot;使用微信支付 &quot; + amount + &quot; 元&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">WeChatPay</code> 类实现了 <code class="inline-code">Payment</code> 接口</li>
+<li>实现了 <code class="inline-code">pay()</code> 方法</li>
+</ul>
+<hr></p><h4>2.4 实现 BankCardPay 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class BankCardPay implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println(&quot;使用银行卡支付 &quot; + amount + &quot; 元&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">BankCardPay</code> 类实现了 <code class="inline-code">Payment</code> 接口</li>
+<li>实现了 <code class="inline-code">pay()</code> 方法</li>
+</ul>
+<hr></p><h4>2.5 主程序</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class PaymentSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        System.out.print(&quot;请输入支付金额: &quot;);
+        double amount = scanner.nextDouble();</p><p>        System.out.println(&quot;请选择支付方式:&quot;);
+        System.out.println(&quot;1. 支付宝&quot;);
+        System.out.println(&quot;2. 微信支付&quot;);
+        System.out.println(&quot;3. 银行卡支付&quot;);
+        System.out.print(&quot;请输入选择: &quot;);
+        int choice = scanner.nextInt();</p><p>        Payment payment = null;</p><p>        switch (choice) {
+            case 1:
+                payment = new Alipay();
+                break;
+            case 2:
+                payment = new WeChatPay();
+                break;
+            case 3:
+                payment = new BankCardPay();
+                break;
+            default:
+                System.out.println(&quot;无效选择&quot;);
+                return;
+        }</p><p>        payment.pay(amount); // 调用支付方法
+        scanner.close();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Payment</code> 接口定义了 <code class="inline-code">pay()</code> 方法</li>
+<li><code class="inline-code">Alipay</code>、<code class="inline-code">WeChatPay</code>、<code class="inline-code">BankCardPay</code> 实现了 <code class="inline-code">pay()</code> 方法</li>
+<li>根据用户选择，创建相应的支付对象</li>
+<li>调用 <code class="inline-code">pay()</code> 方法</li>
+</ul>
+<hr></p><h3>3. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入支付金额: 100
+请选择支付方式:
+1. 支付宝
+2. 微信支付
+3. 银行卡支付
+请输入选择: 1
+使用支付宝支付 100.0 元</code></pre></div><hr><h3>4. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>定义 Payment 接口</td><td>使用 <code class="inline-code">interface</code> 关键字</td></tr></table>
+<table><tr><td>实现支付方式类</td><td>使用 <code class="inline-code">implements</code> 关键字</td></tr></table>
+<table><tr><td>用户选择支付方式</td><td>使用 <code class="inline-code">Scanner</code> 输入</td></tr></table>
+<table><tr><td>调用支付方法</td><td>使用多态，父类引用指向子类对象</td></tr></table><hr><h3>5. 扩展功能（可选）</h3><h4>5.1 添加支付成功提示</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Alipay implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println(&quot;使用支付宝支付 &quot; + amount + &quot; 元&quot;);
+        System.out.println(&quot;支付成功&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>添加支付成功提示</li>
+<li>提高用户体验</li>
+</ul>
+<hr></p><h4>5.2 添加支付失败提示</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class BankCardPay implements Payment {
+    @Override
+    public void pay(double amount) {
+        System.out.println(&quot;使用银行卡支付 &quot; + amount + &quot; 元&quot;);
+        System.out.println(&quot;支付失败，请检查银行卡余额&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>添加支付失败提示</li>
+<li>提高用户体验</li>
+</ul>
+<hr></p><h3>6. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">interface</code></td><td>定义接口</td></tr></table>
+<table><tr><td><code class="inline-code">implements</code></td><td>实现接口</td></tr></table>
+<table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td>多态</td><td>父类引用指向子类对象</td></tr></table><p>> <strong>综合案例 = 接口的全面应用</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用接口定义行为规范
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #支付系统 #综合案例 #多态</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 68</h3>
+        <div class="topic-content"><h2>接口 - JDK8 新增的三个方法及注意事项</h2><p>在 Java 8 中，接口（Interface）得到了重大增强，引入了 <strong>默认方法（Default Methods）</strong>、<strong>静态方法（Static Methods）</strong> 和 <strong>私有方法（Private Methods）</strong>，这些新特性使得接口更加灵活和强大。</p><hr><h3>1. JDK8 新增的三个方法</h3><h4>1.1 默认方法（Default Methods）</h4><p>默认方法允许接口中定义带有方法体的方法，实现类可以选择性地重写。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">takeOff()</code> 是默认方法</li>
+<li>实现类可以重写 <code class="inline-code">takeOff()</code> 方法，也可以不重写</li>
+</ul>
+<hr></p><h4>1.2 静态方法（Static Methods）</h4><p>静态方法允许在接口中定义静态方法，可以直接通过接口名调用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    static void displayInfo() {
+        System.out.println(&quot;这是一个飞行接口&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">displayInfo()</code> 是静态方法</li>
+<li>可以通过 <code class="inline-code">Flyable.displayInfo()</code> 调用</li>
+</ul>
+<hr></p><h4>1.3 私有方法（Private Methods）</h4><p>私有方法允许在接口中定义私有方法，供默认方法或静态方法调用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+        prepare();
+    }</p><p>    private void prepare() {
+        System.out.println(&quot;准备起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">prepare()</code> 是私有方法</li>
+<li>只能在接口内部调用，不能被实现类直接调用</li>
+</ul>
+<hr></p><h3>2. 注意事项</h3><h4>2.1 默认方法的重写</h4><p>实现类可以选择性地重写默认方法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }</p><p>    @Override
+    public void takeOff() {
+        System.out.println(&quot;鸟起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Bird</code> 类重写了 <code class="inline-code">takeOff()</code> 方法</li>
+<li>实现类可以选择性地重写默认方法</li>
+</ul>
+<hr></p><h4>2.2 默认方法的继承</h4><p>如果一个类实现了多个接口，且这些接口有相同的默认方法，类必须重写该方法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }
+}</p><p>public interface Swimmable {
+    default void takeOff() {
+        System.out.println(&quot;准备游泳&quot;);
+    }
+}</p><p>public class Duck implements Flyable, Swimmable {
+    @Override
+    public void takeOff() {
+        System.out.println(&quot;鸭子起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 和 <code class="inline-code">Swimmable</code> 都有 <code class="inline-code">takeOff()</code> 方法</li>
+<li><code class="inline-code">Duck</code> 类必须重写 <code class="inline-code">takeOff()</code> 方法</li>
+</ul>
+<hr></p><h4>2.3 静态方法的调用</h4><p>静态方法可以直接通过接口名调用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    static void displayInfo() {
+        System.out.println(&quot;这是一个飞行接口&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable.displayInfo(); // 输出: 这是一个飞行接口
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">displayInfo()</code> 是静态方法</li>
+<li>可以通过 <code class="inline-code">Flyable.displayInfo()</code> 调用</li>
+</ul>
+<hr></p><h4>2.4 私有方法的调用</h4><p>私有方法只能在接口内部调用，不能被实现类直接调用。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+        prepare(); // 调用私有方法
+    }</p><p>    private void prepare() {
+        System.out.println(&quot;准备起飞&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">prepare()</code> 是私有方法</li>
+<li>只能在接口内部调用，不能被实现类直接调用</li>
+</ul>
+<hr></p><h3>3. 总结</h3><table><tr><td>方法</td><td>说明</td></tr></table><table><tr><td>默认方法</td><td>允许接口中定义带有方法体的方法，实现类可以选择性地重写</td></tr></table>
+<table><tr><td>静态方法</td><td>允许在接口中定义静态方法，可以直接通过接口名调用</td></tr></table>
+<table><tr><td>私有方法</td><td>允许在接口中定义私有方法，供默认方法或静态方法调用</td></tr></table><p>> <strong>JDK8 新增方法 = 接口的灵活性增强</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用默认方法定义通用行为
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #接口 #JDK8 #默认方法 #静态方法 #私有方法</p></div>
+      </section>
+      <section class="section" id="section-8">
+        <h3>8. 69</h3>
+        <div class="topic-content"><h2>接口 - 抽象类和接口的区别</h2><p>在 Java 中，<strong>抽象类（Abstract Class）</strong> 和 <strong>接口（Interface）</strong> 是两种重要的抽象机制，它们都可以用于定义抽象方法，但它们在语法、用途和设计思想上有显著的区别。本节将详细介绍抽象类和接口的区别。</p><hr><h3>1. 抽象类和接口的基本语法</h3><h4>1.1 抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">abstract</code> 关键字用于定义抽象类</li>
+<li>抽象类可以包含抽象方法和普通方法</li>
+<li>抽象类可以包含实例变量</li>
+</ul>
+<hr></p><h4>1.2 接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }</p><p>    static void displayInfo() {
+        System.out.println(&quot;这是一个飞行接口&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">interface</code> 关键字用于定义接口</li>
+<li>接口中的方法默认是 <code class="inline-code">public abstract</code> 的</li>
+<li>接口中的变量默认是 <code class="inline-code">public static final</code> 的</li>
+</ul>
+<hr></p><h3>2. 抽象类和接口的区别</h3><table><tr><td>特性</td><td>抽象类</td><td>接口</td></tr></table><table><tr><td><strong>定义方式</strong></td><td>使用 <code class="inline-code">abstract</code> 关键字</td><td>使用 <code class="inline-code">interface</code> 关键字</td></tr></table>
+<table><tr><td><strong>方法类型</strong></td><td>可以包含抽象方法和普通方法</td><td>只能包含抽象方法（JDK8 前）</td></tr></table>
+<table><tr><td><strong>变量类型</strong></td><td>可以包含实例变量</td><td>只能包含常量（<code class="inline-code">public static final</code>）</td></tr></table>
+<table><tr><td><strong>继承方式</strong></td><td>使用 <code class="inline-code">extends</code> 关键字</td><td>使用 <code class="inline-code">implements</code> 关键字</td></tr></table>
+<table><tr><td><strong>多重继承</strong></td><td>不支持多重继承</td><td>支持多重实现</td></tr></table>
+<table><tr><td><strong>访问修饰符</strong></td><td>可以使用 <code class="inline-code">private</code>、<code class="inline-code">protected</code>、<code class="inline-code">public</code></td><td>方法默认是 <code class="inline-code">public</code>，变量默认是 <code class="inline-code">public static final</code></td></tr></table>
+<table><tr><td><strong>JDK8 新特性</strong></td><td>不支持默认方法和静态方法</td><td>支持默认方法、静态方法和私有方法</td></tr></table><hr><h3>3. 抽象类和接口的应用场景</h3><h4>3.1 抽象类的应用场景</h4><ul><li><strong>定义公共行为</strong>：抽象类可以定义一组公共的行为，供子类继承和实现。</li>
+<li><strong>实现代码复用</strong>：抽象类可以包含普通方法，供子类复用。</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 定义了 <code class="inline-code">makeSound()</code> 方法</li>
+<li><code class="inline-code">sleep()</code> 方法可以被子类复用</li>
+</ul>
+<hr></p><h4>3.2 接口的应用场景</h4><ul><li><strong>定义行为规范</strong>：接口可以定义一组行为规范，供实现类实现。</li>
+<li><strong>实现多态性</strong>：接口支持多态性，允许一个接口引用指向实现该接口的类的实例。</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">takeOff()</code> 方法可以被实现类复用</li>
+</ul>
+<hr></p><h3>4. 抽象类和接口的选择</h3><h4>4.1 选择抽象类的情况</h4><ul><li><strong>需要定义公共行为</strong>：抽象类可以定义一组公共的行为，供子类继承和实现。</li>
+<li><strong>需要实现代码复用</strong>：抽象类可以包含普通方法，供子类复用。</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    protected String name;
+    protected int age;</p><p>    public Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    abstract void makeSound();</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 定义了 <code class="inline-code">makeSound()</code> 方法</li>
+<li><code class="inline-code">sleep()</code> 方法可以被子类复用</li>
+</ul>
+<hr></p><h4>4.2 选择接口的情况</h4><ul><li><strong>需要定义行为规范</strong>：接口可以定义一组行为规范，供实现类实现。</li>
+<li><strong>需要实现多态性</strong>：接口支持多态性，允许一个接口引用指向实现该接口的类的实例。</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();</p><p>    default void takeOff() {
+        System.out.println(&quot;起飞&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">takeOff()</code> 方法可以被实现类复用</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特性</td><td>抽象类</td><td>接口</td></tr></table><table><tr><td><strong>定义方式</strong></td><td>使用 <code class="inline-code">abstract</code> 关键字</td><td>使用 <code class="inline-code">interface</code> 关键字</td></tr></table>
+<table><tr><td><strong>方法类型</strong></td><td>可以包含抽象方法和普通方法</td><td>只能包含抽象方法（JDK8 前）</td></tr></table>
+<table><tr><td><strong>变量类型</strong></td><td>可以包含实例变量</td><td>只能包含常量（<code class="inline-code">public static final</code>）</td></tr></table>
+<table><tr><td><strong>继承方式</strong></td><td>使用 <code class="inline-code">extends</code> 关键字</td><td>使用 <code class="inline-code">implements</code> 关键字</td></tr></table>
+<table><tr><td><strong>多重继承</strong></td><td>不支持多重继承</td><td>支持多重实现</td></tr></table>
+<table><tr><td><strong>访问修饰符</strong></td><td>可以使用 <code class="inline-code">private</code>、<code class="inline-code">protected</code>、<code class="inline-code">public</code></td><td>方法默认是 <code class="inline-code">public</code>，变量默认是 <code class="inline-code">public static final</code></td></tr></table>
+<table><tr><td><strong>JDK8 新特性</strong></td><td>不支持默认方法和静态方法</td><td>支持默认方法、静态方法和私有方法</td></tr></table><p>> <strong>抽象类和接口 = 抽象机制的两种方式</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用接口定义行为规范
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟接口行为</p><p>#java基础 #抽象类 #接口 #抽象机制 #多态性 #代码复用</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter07.html" class="nav-prev">← 第7章</a>
+        <a href="chapter09.html" class="nav-next">第9章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 抽象类与接口</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

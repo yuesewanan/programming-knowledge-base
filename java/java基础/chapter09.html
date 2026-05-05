@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 综合项目实战 - 编程知识库">
+  <title>第9章: 综合项目实战 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link active"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">💼 第9章</div>
+        <h1>综合项目实战</h1>
+        <p>Java基础教程 - 综合项目实战</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 70</a></li>
+          <li><a href="#section-2">2. 71</a></li>
+          <li><a href="#section-3">3. 72</a></li>
+          <li><a href="#section-4">4. 73</a></li>
+          <li><a href="#section-5">5. 74</a></li>
+          <li><a href="#section-6">6. 75</a></li>
+          <li><a href="#section-7">7. 76</a></li>
+          <li><a href="#section-8">8. 77</a></li>
+          <li><a href="#section-9">9. 78</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 70</h3>
+        <div class="topic-content"><h2>综合项目-智能家居系统</h2><p>在本节中，我们将通过一个综合项目来实践 Java 的核心概念，构建一个简单的智能家居系统。该项目将结合面向对象编程（OOP）、接口、抽象类、多态性等知识点，帮助你巩固所学知识并提升实际开发能力。</p><hr><h3>项目目标</h3><p>实现一个智能家居系统的控制平台，支持以下功能：</p><ul><li>控制灯光、空调、窗帘等设备</li>
+<li>设备可以是不同的类型（如智能灯、智能空调）</li>
+<li>支持通过统一接口进行操作</li>
+<li>实现设备状态的显示与切换</li>
+</ul>
+<hr></p><h3>设计思路</h3><h4>类图设计</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">Device (抽象类)
+├── Light (继承 Device)
+├── AirConditioner (继承 Device)
+└── Curtain (继承 Device)</p><p>ControlCenter (控制中心)</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Device</code> 是一个抽象类，定义了所有设备的公共行为</li>
+<li><code class="inline-code">Light</code>、<code class="inline-code">AirConditioner</code>、<code class="inline-code">Curtain</code> 是具体的设备类</li>
+<li><code class="inline-code">ControlCenter</code> 是控制中心，负责管理所有设备</li>
+</ul>
+<hr></p><h3>代码实现</h3><h4>抽象类 Device</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public abstract class Device {
+    protected String name;
+    protected boolean isOn;</p><p>    public Device(String name) {
+        this.name = name;
+        this.isOn = false;
+    }</p><p>    // 抽象方法：打开设备
+    public abstract void turnOn();</p><p>    // 抽象方法：关闭设备
+    public abstract void turnOff();</p><p>    // 普通方法：获取设备状态
+    public void displayStatus() {
+        System.out.println(name + &quot; 当前状态：&quot; + (isOn ? &quot;开启&quot; : &quot;关闭&quot;));
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Device</code> 定义了所有设备的公共属性和行为</li>
+<li><code class="inline-code">turnOn()</code> 和 <code class="inline-code">turnOff()</code> 是抽象方法，由子类实现</li>
+<li><code class="inline-code">displayStatus()</code> 是普通方法，用于显示设备状态</li>
+</ul>
+<hr></p><h4>具体设备类</h4><p>#### 智能灯类 Light</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Light extends Device {
+    public Light(String name) {
+        super(name);
+    }</p><p>    @Override
+    public void turnOn() {
+        isOn = true;
+        System.out.println(name + &quot; 已打开&quot;);
+    }</p><p>    @Override
+    public void turnOff() {
+        isOn = false;
+        System.out.println(name + &quot; 已关闭&quot;);
+    }
+}</code></pre></div><p>#### 智能空调类 AirConditioner</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class AirConditioner extends Device {
+    private int temperature;</p><p>    public AirConditioner(String name) {
+        super(name);
+        this.temperature = 25;
+    }</p><p>    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+        System.out.println(name + &quot; 温度设置为 &quot; + temperature + &quot;°C&quot;);
+    }</p><p>    @Override
+    public void turnOn() {
+        isOn = true;
+        System.out.println(name + &quot; 已开启，温度为 &quot; + temperature + &quot;°C&quot;);
+    }</p><p>    @Override
+    public void turnOff() {
+        isOn = false;
+        System.out.println(name + &quot; 已关闭&quot;);
+    }
+}</code></pre></div><p>#### 智能窗帘类 Curtain</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Curtain extends Device {
+    private boolean isOpen;</p><p>    public Curtain(String name) {
+        super(name);
+        this.isOpen = false;
+    }</p><p>    public void open() {
+        isOpen = true;
+        System.out.println(name + &quot; 已打开&quot;);
+    }</p><p>    public void close() {
+        isOpen = false;
+        System.out.println(name + &quot; 已关闭&quot;);
+    }</p><p>    @Override
+    public void turnOn() {
+        open();
+    }</p><p>    @Override
+    public void turnOff() {
+        close();
+    }
+}</code></pre></div><hr><h4>控制中心 ControlCenter</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.ArrayList;
+import java.util.List;</p><p>public class ControlCenter {
+    private List&lt;Device&gt; devices;</p><p>    public ControlCenter() {
+        this.devices = new ArrayList&lt;&gt;();
+    }</p><p>    public void addDevice(Device device) {
+        devices.add(device);
+    }</p><p>    public void turnOnAll() {
+        System.out.println(&quot;正在打开所有设备...&quot;);
+        for (Device device : devices) {
+            device.turnOn();
+        }
+    }</p><p>    public void turnOffAll() {
+        System.out.println(&quot;正在关闭所有设备...&quot;);
+        for (Device device : devices) {
+            device.turnOff();
+        }
+    }</p><p>    public void displayAllStatus() {
+        System.out.println(&quot;设备状态列表：&quot;);
+        for (Device device : devices) {
+            device.displayStatus();
+        }
+    }
+}</code></pre></div><hr><h3>测试代码</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class SmartHomeTest {
+    public static void main(String[] args) {
+        ControlCenter center = new ControlCenter();</p><p>        // 添加设备
+        center.addDevice(new Light(&quot;客厅灯&quot;));
+        center.addDevice(new AirConditioner(&quot;客厅空调&quot;));
+        center.addDevice(new Curtain(&quot;客厅窗帘&quot;));</p><p>        // 显示所有设备状态
+        center.displayAllStatus();</p><p>        // 打开所有设备
+        center.turnOnAll();</p><p>        // 显示所有设备状态
+        center.displayAllStatus();</p><p>        // 关闭所有设备
+        center.turnOffAll();</p><p>        // 显示所有设备状态
+        center.displayAllStatus();
+    }
+}</code></pre></div><hr><h3>运行结果</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">设备状态列表：
+客厅灯 当前状态：关闭
+客厅空调 当前状态：关闭
+客厅窗帘 当前状态：关闭
+正在打开所有设备...
+客厅灯 已打开
+客厅空调 已开启，温度为 25°C
+客厅窗帘 已打开
+设备状态列表：
+客厅灯 当前状态：开启
+客厅空调 当前状态：开启
+客厅窗帘 当前状态：开启
+正在关闭所有设备...
+客厅灯 已关闭
+客厅空调 已关闭
+客厅窗帘 已关闭
+设备状态列表：
+客厅灯 当前状态：关闭
+客厅空调 当前状态：关闭
+客厅窗帘 当前状态：关闭</code></pre></div><hr><h3>项目总结</h3><ul><li>本项目通过抽象类 <code class="inline-code">Device</code> 实现了设备的统一管理</li>
+<li>使用接口可以进一步扩展设备类型（如添加 <code class="inline-code">SmartSpeaker</code>）</li>
+<li>通过 <code class="inline-code">ControlCenter</code> 实现了对多个设备的集中控制</li>
+<li>体现了面向对象编程中的封装、继承、多态等核心思想</li>
+</ul>
+<hr></p><p>> 💡 <strong>建议</strong>：
+> - 在实际项目中，可以引入配置文件或数据库来管理设备信息
+> - 可以使用 <code class="inline-code">Observer</code> 模式实现设备状态变化的通知机制
+> - 可以结合 <code class="inline-code">Spring Boot</code> 构建更完整的智能家居管理系统</p><p>#java基础 #综合项目 #智能家居 #面向对象编程 #抽象类 #接口 #多态性</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 71</h3>
+        <div class="topic-content"><h2>类中的成分-代码块</h2><p>在 Java 中，类的组成部分除了字段（成员变量）、方法、构造器之外，还有一种特殊的结构叫做 <strong>代码块（Code Block）</strong>。代码块用于在类加载或对象创建时执行特定的初始化逻辑，是 Java 中实现复杂初始化需求的重要机制。</p><hr><h3>1. 什么是代码块？</h3><p>代码块是指在类中使用 <code class="inline-code">{}</code> 包裹的一段代码，它不属于任何方法，但可以在类中定义并执行。根据其位置和特性，代码块主要分为以下几种类型：</p><ul><li>静态代码块（Static Block）</li>
+<li>实例代码块（Instance Block）</li>
+<li>构造器代码块（Constructor Block）</li>
+</ul>
+> <strong>注意</strong>：这里的“构造器代码块”并不是一个独立的语法结构，而是指构造器内部的代码逻辑。我们通常所说的代码块指的是静态代码块和实例代码块。</p><hr><h3>2. 静态代码块（Static Block）</h3><h4>2.1 定义方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">static {
+    // 静态代码块中的代码
+}</code></pre></div><h4>2.2 特点</h4><ul><li>使用 <code class="inline-code">static</code> 关键字修饰</li>
+<li>在类加载时执行，且只执行一次</li>
+<li>优先于构造器执行</li>
+<li>可用于初始化静态变量或执行一次性的静态资源加载操作</li>
+</ul>
+<h4>2.3 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StaticBlockDemo {
+    static int count = 0;</p><p>    static {
+        System.out.println(&quot;静态代码块执行&quot;);
+        count = 100;
+    }</p><p>    public StaticBlockDemo() {
+        System.out.println(&quot;构造器执行&quot;);
+    }</p><p>    public static void main(String[] args) {
+        System.out.println(&quot;main 方法执行&quot;);
+        new StaticBlockDemo();
+        new StaticBlockDemo();
+    }
+}</code></pre></div><h4>2.4 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">静态代码块执行
+main 方法执行
+构造器执行
+构造器执行</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>静态代码块在类加载时执行，且只执行一次</li>
+<li><code class="inline-code">main</code> 方法在静态代码块之后执行</li>
+<li>构造器在每次创建对象时执行</li>
+</ul>
+<hr></p><h3>3. 实例代码块（Instance Block）</h3><h4>3.1 定义方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">{
+    // 实例代码块中的代码
+}</code></pre></div><h4>3.2 特点</h4><ul><li>不使用 <code class="inline-code">static</code> 关键字修饰</li>
+<li>在每次创建对象时执行</li>
+<li>优先于构造器执行</li>
+<li>可用于初始化实例变量或执行每次对象创建时都需要执行的逻辑</li>
+</ul>
+<h4>3.3 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class InstanceBlockDemo {
+    int id;
+    String name;</p><p>    {
+        System.out.println(&quot;实例代码块执行&quot;);
+        id = 1;
+        name = &quot;默认名称&quot;;
+    }</p><p>    public InstanceBlockDemo() {
+        System.out.println(&quot;无参构造器执行&quot;);
+    }</p><p>    public InstanceBlockDemo(int id, String name) {
+        this.id = id;
+        this.name = name;
+        System.out.println(&quot;有参构造器执行&quot;);
+    }</p><p>    public static void main(String[] args) {
+        System.out.println(&quot;main 方法执行&quot;);
+        new InstanceBlockDemo();
+        new InstanceBlockDemo(2, &quot;张三&quot;);
+    }
+}</code></pre></div><h4>3.4 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">main 方法执行
+实例代码块执行
+无参构造器执行
+实例代码块执行
+有参构造器执行</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>实例代码块在每次创建对象时执行</li>
+<li>实例代码块在构造器之前执行</li>
+<li>实例代码块可以用于统一初始化多个构造器共用的逻辑</li>
+</ul>
+<hr></p><h3>4. 代码块的执行顺序</h3><p>当一个类被加载并创建对象时，代码块的执行顺序如下：</p><p>1. <strong>静态代码块</strong>：类加载时执行，只执行一次
+2. <strong>实例代码块</strong>：每次创建对象时执行
+3. <strong>构造器</strong>：每次创建对象时执行</p><h4>4.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class BlockOrderDemo {
+    static {
+        System.out.println(&quot;静态代码块1&quot;);
+    }</p><p>    {
+        System.out.println(&quot;实例代码块1&quot;);
+    }</p><p>    public BlockOrderDemo() {
+        System.out.println(&quot;构造器1&quot;);
+    }</p><p>    static {
+        System.out.println(&quot;静态代码块2&quot;);
+    }</p><p>    {
+        System.out.println(&quot;实例代码块2&quot;);
+    }</p><p>    public BlockOrderDemo(int i) {
+        System.out.println(&quot;构造器2&quot;);
+    }</p><p>    public static void main(String[] args) {
+        System.out.println(&quot;main 方法执行&quot;);
+        new BlockOrderDemo();
+        new BlockOrderDemo(1);
+    }
+}</code></pre></div><h4>4.2 输出结果</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">静态代码块1
+静态代码块2
+main 方法执行
+实例代码块1
+实例代码块2
+构造器1
+实例代码块1
+实例代码块2
+构造器2</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>静态代码块按照在类中出现的顺序执行</li>
+<li>实例代码块按照在类中出现的顺序执行</li>
+<li>实例代码块在构造器之前执行</li>
+</ul>
+<hr></p><h3>5. 代码块的应用场景</h3><h4>5.1 静态代码块的应用场景</h4><ul><li>初始化静态变量</li>
+<li>加载配置文件</li>
+<li>初始化数据库连接池</li>
+<li>执行一次性的静态资源加载</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class ConfigLoader {
+    private static String configPath;</p><p>    static {
+        configPath = System.getProperty(&quot;config.path&quot;);
+        if (configPath == null) {
+            configPath = &quot;default.properties&quot;;
+        }
+        loadConfig(configPath);
+    }</p><p>    private static void loadConfig(String path) {
+        System.out.println(&quot;加载配置文件：&quot; + path);
+    }
+}</code></pre></div></p><h4>5.2 实例代码块的应用场景</h4><ul><li>统一初始化多个构造器共用的逻辑</li>
+<li>初始化复杂的实例变量</li>
+<li>执行每次创建对象时都需要执行的逻辑</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class User {
+    private String name;
+    private int age;
+    private String email;</p><p>    {
+        name = &quot;匿名用户&quot;;
+        age = 0;
+        email = &quot;no-email@example.com&quot;;
+    }</p><p>    public User() {}</p><p>    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    public User(String name, int age, String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
+}</code></pre></div></p><hr><h3>6. 总结</h3><table><tr><td>类型</td><td>执行时机</td><td>执行次数</td><td>是否依赖对象</td><td>用途</td></tr></table><table><tr><td>静态代码块</td><td>类加载时</td><td>一次</td><td>否</td><td>初始化静态资源</td></tr></table>
+<table><tr><td>实例代码块</td><td>创建对象时</td><td>每次</td><td>是</td><td>统一初始化实例变量</td></tr></table><p>> <strong>代码块 = 初始化逻辑的补充机制</strong></p><hr><p>> 💡 <strong>建议</strong>：
+> - 尽量避免在代码块中写复杂的逻辑
+> - 使用代码块时要确保逻辑清晰、易于维护
+> - 在实际项目中，可以结合 <code class="inline-code">Builder</code> 模式或 <code class="inline-code">Spring</code> 注入机制来替代部分代码块功能</p><p>#java基础 #代码块 #静态代码块 #实例代码块 #初始化逻辑</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 72</h3>
+        <div class="topic-content"><h2>内部类-成员内部类-静态内部类-局部内部类</h2><p>在 Java 中，<strong>内部类（Inner Class）</strong> 是指定义在另一个类内部的类。内部类可以访问外部类的所有成员（包括私有成员），并且可以用于实现复杂的封装和设计模式。根据其定义位置和特性，内部类主要分为以下三种类型：</p><ul><li>成员内部类（Member Inner Class）</li>
+<li>静态内部类（Static Inner Class）</li>
+<li>局部内部类（Local Inner Class）</li>
+</ul>
+<hr></p><h3>1. 成员内部类（Member Inner Class）</h3><h4>1.1 定义方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private String outerField = &quot;外部类字段&quot;;</p><p>    public class InnerClass {
+        private String innerField = &quot;内部类字段&quot;;</p><p>        public void display() {
+            System.out.println(&quot;外部类字段：&quot; + outerField);
+            System.out.println(&quot;内部类字段：&quot; + innerField);
+        }
+    }
+}</code></pre></div><h4>1.2 特点</h4><ul><li>成员内部类是外部类的一个成员，可以访问外部类的所有成员（包括私有成员）</li>
+<li>成员内部类不能定义静态成员（除了 <code class="inline-code">static final</code> 常量）</li>
+<li>成员内部类的对象必须依赖于外部类的对象才能创建</li>
+</ul>
+<h4>1.3 创建方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Test {
+    public static void main(String[] args) {
+        // 创建外部类对象
+        OuterClass outer = new OuterClass();</p><p>        // 创建成员内部类对象
+        OuterClass.InnerClass inner = outer.new InnerClass();</p><p>        // 调用方法
+        inner.display();
+    }
+}</code></pre></div><h4>1.4 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private String name = &quot;张三&quot;;</p><p>    public class InnerClass {
+        private String innerName = &quot;李四&quot;;</p><p>        public void show() {
+            System.out.println(&quot;外部类姓名：&quot; + name);
+            System.out.println(&quot;内部类姓名：&quot; + innerName);
+        }
+    }</p><p>    public InnerClass getInner() {
+        return new InnerClass();
+    }
+}</p><p>public class Test {
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerClass inner = outer.getInner();
+        inner.show();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>成员内部类可以访问外部类的私有成员</li>
+<li>成员内部类的对象必须通过外部类的对象创建</li>
+</ul>
+<hr></p><h3>2. 静态内部类（Static Inner Class）</h3><h4>2.1 定义方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private String outerField = &quot;外部类字段&quot;;</p><p>    public static class StaticInnerClass {
+        private String innerField = &quot;内部类字段&quot;;</p><p>        public void display() {
+            System.out.println(&quot;内部类字段：&quot; + innerField);
+            // 注意：不能直接访问外部类的非静态成员
+            // System.out.println(outerField); // 编译错误
+        }
+    }
+}</code></pre></div><h4>2.2 特点</h4><ul><li>使用 <code class="inline-code">static</code> 关键字修饰</li>
+<li>静态内部类可以访问外部类的静态成员</li>
+<li>静态内部类的对象可以直接创建，不需要外部类的对象</li>
+<li>静态内部类可以定义静态成员</li>
+</ul>
+<h4>2.3 创建方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Test {
+    public static void main(String[] args) {
+        // 创建静态内部类对象
+        OuterClass.StaticInnerClass inner = new OuterClass.StaticInnerClass();
+        inner.display();
+    }
+}</code></pre></div><h4>2.4 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private static String staticField = &quot;静态字段&quot;;
+    private String instanceField = &quot;实例字段&quot;;</p><p>    public static class StaticInnerClass {
+        private String innerField = &quot;内部类字段&quot;;</p><p>        public void display() {
+            System.out.println(&quot;静态字段：&quot; + staticField);
+            System.out.println(&quot;内部类字段：&quot; + innerField);
+            // System.out.println(instanceField); // 编译错误
+        }
+    }
+}</p><p>public class Test {
+    public static void main(String[] args) {
+        OuterClass.StaticInnerClass inner = new OuterClass.StaticInnerClass();
+        inner.display();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>静态内部类不能访问外部类的非静态成员</li>
+<li>静态内部类的对象可以直接创建</li>
+</ul>
+<hr></p><h3>3. 局部内部类（Local Inner Class）</h3><h4>3.1 定义方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private String outerField = &quot;外部类字段&quot;;</p><p>    public void method() {
+        final String localVar = &quot;局部变量&quot;;</p><p>        class LocalInnerClass {
+            private String innerField = &quot;内部类字段&quot;;</p><p>            public void display() {
+                System.out.println(&quot;外部类字段：&quot; + outerField);
+                System.out.println(&quot;局部变量：&quot; + localVar);
+            }
+        }</p><p>        LocalInnerClass inner = new LocalInnerClass();
+        inner.display();
+    }
+}</code></pre></div><h4>3.2 特点</h4><ul><li>定义在方法内部</li>
+<li>可以访问外部类的成员和方法参数</li>
+<li>可以访问方法中的 <code class="inline-code">final</code> 或 <code class="inline-code">effectively final</code> 局部变量</li>
+<li>不能定义访问修饰符（如 <code class="inline-code">public</code>、<code class="inline-code">private</code>）</li>
+<li>不能定义静态成员</li>
+</ul>
+<h4>3.3 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private String name = &quot;张三&quot;;</p><p>    public void createPrinter(String message) {
+        final String prefix = &quot;打印内容：&quot;;</p><p>        class Printer {
+            public void print() {
+                System.out.println(prefix + message);
+                System.out.println(&quot;外部类姓名：&quot; + name);
+            }
+        }</p><p>        Printer printer = new Printer();
+        printer.print();
+    }</p><p>    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        outer.createPrinter(&quot;Hello World&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>局部内部类可以访问外部类的成员</li>
+<li>局部内部类可以访问方法中的 <code class="inline-code">final</code> 或 <code class="inline-code">effectively final</code> 局部变量</li>
+<li>局部内部类的作用域仅限于定义它的方法</li>
+</ul>
+<hr></p><h3>4. 内部类的应用场景</h3><h4>4.1 成员内部类的应用场景</h4><ul><li>实现复杂的封装和数据隐藏</li>
+<li>实现回调机制</li>
+<li>实现事件监听器</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Button {
+    private String label;</p><p>    public Button(String label) {
+        this.label = label;
+    }</p><p>    public class ClickListener {
+        public void onClick() {
+            System.out.println(&quot;按钮 &quot; + label + &quot; 被点击&quot;);
+        }
+    }</p><p>    public ClickListener getClickListener() {
+        return new ClickListener();
+    }
+}</code></pre></div></p><h4>4.2 静态内部类的应用场景</h4><ul><li>实现工具类或配置类</li>
+<li>实现 Builder 模式</li>
+<li>实现单例模式</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Singleton {
+    private static class SingletonHolder {
+        private static final Singleton INSTANCE = new Singleton();
+    }</p><p>    private Singleton() {}</p><p>    public static Singleton getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+}</code></pre></div></p><h4>4.3 局部内部类的应用场景</h4><ul><li>实现临时的回调逻辑</li>
+<li>实现方法内部的复杂逻辑封装</li>
+<li>实现事件监听器</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class EventProcessor {
+    public void processEvent(String event) {
+        class EventHandler {
+            public void handle() {
+                System.out.println(&quot;处理事件：&quot; + event);
+            }
+        }</p><p>        EventHandler handler = new EventHandler();
+        handler.handle();
+    }
+}</code></pre></div></p><hr><h3>5. 总结</h3><table><tr><td>类型</td><td>是否依赖外部类对象</td><td>是否可以定义静态成员</td><td>是否可以访问外部类成员</td><td>用途</td></tr></table><table><tr><td>成员内部类</td><td>是</td><td>否（除了 <code class="inline-code">static final</code>）</td><td>是</td><td>封装、回调、事件监听</td></tr></table>
+<table><tr><td>静态内部类</td><td>否</td><td>是</td><td>只能访问静态成员</td><td>工具类、配置类、单例模式</td></tr></table>
+<table><tr><td>局部内部类</td><td>否</td><td>否</td><td>是（外部类成员和 <code class="inline-code">final</code> 局部变量）</td><td>方法内部逻辑封装、临时回调</td></tr></table><p>> <strong>内部类 = 封装 + 复用 + 灵活性</strong></p><hr><p>> 💡 <strong>建议</strong>：
+> - 在实际项目中，优先使用静态内部类来实现工具类或配置类
+> - 在需要访问外部类成员时，使用成员内部类
+> - 在方法内部需要临时逻辑时，使用局部内部类
+> - 避免过度使用内部类，保持代码简洁清晰</p><p>#java基础 #内部类 #成员内部类 #静态内部类 #局部内部类 #封装</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 73</h3>
+        <div class="topic-content"><h2>匿名内部类-认识-使用形式</h2><p>在 Java 中，<strong>匿名内部类（Anonymous Inner Class）</strong> 是一种特殊的内部类，它没有名字，通常用于简化代码，特别是在实现接口或继承抽象类时。匿名内部类常用于事件监听、回调函数等场景，能够快速创建一个类的实例并立即使用。</p><hr><h3>1. 什么是匿名内部类？</h3><p>匿名内部类是定义在方法内部或类中的一种内部类，它没有名字，且只能创建一个实例。它通常用于实现接口或继承抽象类，从而快速创建一个类的实例。</p><h4>1.1 特点</h4><ul><li>没有名字</li>
+<li>只能创建一个实例</li>
+<li>通常用于实现接口或继承抽象类</li>
+<li>可以访问外部类的成员和方法参数</li>
+<li>不能定义访问修饰符（如 <code class="inline-code">public</code>、<code class="inline-code">private</code>）</li>
+<li>不能定义静态成员</li>
+</ul>
+<hr></p><h3>2. 匿名内部类的语法</h3><p>匿名内部类的语法如下：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">new 父类或接口() {
+    // 实现父类或接口的方法
+    // 可以添加新的方法和成员
+};</code></pre></div><h4>2.1 继承抽象类的匿名内部类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    public abstract void makeSound();
+}</p><p>public class Test {
+    public static void main(String[] args) {
+        Animal animal = new Animal() {
+            @Override
+            public void makeSound() {
+                System.out.println(&quot;动物在叫&quot;);
+            }
+        };</p><p>        animal.makeSound();
+    }
+}</code></pre></div><h4>2.2 实现接口的匿名内部类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Flyable {
+    void fly();
+}</p><p>public class Test {
+    public static void main(String[] args) {
+        Flyable flyable = new Flyable() {
+            @Override
+            public void fly() {
+                System.out.println(&quot;鸟在飞&quot;);
+            }
+        };</p><p>        flyable.fly();
+    }
+}</code></pre></div><hr><h3>3. 匿名内部类的使用场景</h3><h4>3.1 事件监听器</h4><p>在 GUI 编程中，匿名内部类常用于实现事件监听器。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;</p><p>public class ButtonDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame(&quot;按钮示例&quot;);
+        JButton button = new JButton(&quot;点击我&quot;);</p><p>        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, &quot;按钮被点击了！&quot;);
+            }
+        });</p><p>        frame.add(button);
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}</code></pre></div><h4>3.2 回调函数</h4><p>在异步编程中，匿名内部类可以用于实现回调函数。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class AsyncTask {
+    public void execute(Runnable callback) {
+        new Thread(() -&gt; {
+            // 模拟耗时任务
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            callback.run();
+        }).start();
+    }</p><p>    public static void main(String[] args) {
+        AsyncTask task = new AsyncTask();
+        task.execute(() -&gt; System.out.println(&quot;任务完成&quot;));
+    }
+}</code></pre></div><h4>3.3 单例模式中的匿名内部类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Singleton {
+    private static final Singleton INSTANCE = new Singleton();</p><p>    private Singleton() {}</p><p>    public static Singleton getInstance() {
+        return INSTANCE;
+    }</p><p>    public static void main(String[] args) {
+        Singleton singleton = new Singleton();
+        System.out.println(singleton);
+    }
+}</code></pre></div><hr><h3>4. 匿名内部类的注意事项</h3><h4>4.1 访问外部类成员</h4><p>匿名内部类可以访问外部类的成员和方法参数。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class OuterClass {
+    private String outerField = &quot;外部类字段&quot;;</p><p>    public void method() {
+        final String localVar = &quot;局部变量&quot;;</p><p>        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(&quot;外部类字段：&quot; + outerField);
+                System.out.println(&quot;局部变量：&quot; + localVar);
+            }
+        };</p><p>        runnable.run();
+    }</p><p>    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        outer.method();
+    }
+}</code></pre></div><h4>4.2 局部变量的访问限制</h4><p>匿名内部类只能访问 <code class="inline-code">final</code> 或 <code class="inline-code">effectively final</code> 的局部变量。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Test {
+    public static void main(String[] args) {
+        int count = 10; // final 或 effectively final</p><p>        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(&quot;计数器：&quot; + count);
+            }
+        };</p><p>        runnable.run();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">count</code> 是 <code class="inline-code">final</code> 或 <code class="inline-code">effectively final</code> 的局部变量</li>
+<li>如果 <code class="inline-code">count</code> 被修改，编译器会报错</li>
+</ul>
+<hr></p><h3>5. 匿名内部类 vs 匿名函数（Lambda）</h3><p>在 Java 8 及以后版本中，<strong>Lambda 表达式</strong> 可以替代匿名内部类，使代码更加简洁。</p><h4>5.1 使用匿名内部类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Runnable runnable = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println(&quot;Hello World&quot;);
+    }
+};</code></pre></div><h4>5.2 使用 Lambda 表达式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Runnable runnable = () -&gt; System.out.println(&quot;Hello World&quot;);</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>Lambda 表达式更简洁</li>
+<li>Lambda 表达式只能用于函数式接口（只有一个抽象方法的接口）</li>
+</ul>
+<hr></p><h3>6. 总结</h3><table><tr><td>特性</td><td>匿名内部类</td><td>Lambda 表达式</td></tr></table><table><tr><td>是否有名字</td><td>否</td><td>否</td></tr></table>
+<table><tr><td>是否可以定义静态成员</td><td>否</td><td>否</td></tr></table>
+<table><tr><td>是否可以访问外部类成员</td><td>是</td><td>是</td></tr></table>
+<table><tr><td>是否可以访问局部变量</td><td>是（<code class="inline-code">final</code> 或 <code class="inline-code">effectively final</code>）</td><td>是（<code class="inline-code">final</code> 或 <code class="inline-code">effectively final</code>）</td></tr></table>
+<table><tr><td>代码简洁性</td><td>较复杂</td><td>更简洁</td></tr></table>
+<table><tr><td>适用场景</td><td>实现接口或继承抽象类</td><td>函数式接口</td></tr></table><p>> <strong>匿名内部类 = 快速实现接口或抽象类的实例</strong></p><hr><p>> 💡 <strong>建议</strong>：
+> - 在 Java 8 及以后版本中，优先使用 Lambda 表达式
+> - 在需要访问外部类成员或实现复杂逻辑时，使用匿名内部类
+> - 避免过度使用匿名内部类，保持代码清晰可读</p><p>#java基础 #匿名内部类 #接口 #抽象类 #事件监听 #回调函数</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 74</h3>
+        <div class="topic-content"><h2>匿名内部类-使用场景</h2><p>匿名内部类是 Java 中一种简洁且实用的语法特性，它允许开发者在不显式定义类的情况下，快速实现接口或继承抽象类。由于其语法简洁、逻辑集中，匿名内部类在实际开发中有着广泛的应用场景。以下是匿名内部类的主要使用场景。</p><hr><h3>1. 事件监听器（Event Listeners）</h3><p>在图形用户界面（GUI）编程中，匿名内部类常用于实现事件监听器，例如按钮点击、鼠标移动等事件。</p><h4>示例：Swing 中的按钮点击事件</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;</p><p>public class ButtonListenerDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame(&quot;按钮示例&quot;);
+        JButton button = new JButton(&quot;点击我&quot;);</p><p>        // 使用匿名内部类实现 ActionListener
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, &quot;按钮被点击了！&quot;);
+            }
+        });</p><p>        frame.add(button);
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">ActionListener</code> 是一个函数式接口，匿名内部类可以快速实现其 <code class="inline-code">actionPerformed</code> 方法</li>
+<li>代码逻辑集中，便于维护</li>
+</ul>
+<hr></p><h3>2. 实现回调函数（Callbacks）</h3><p>在异步编程中，匿名内部类可用于实现回调函数，例如线程执行完成后的通知。</p><h4>示例：异步任务完成后的回调</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class AsyncTask {
+    public void execute(Runnable callback) {
+        new Thread(() -&gt; {
+            try {
+                Thread.sleep(2000); // 模拟耗时任务
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            callback.run(); // 执行回调
+        }).start();
+    }</p><p>    public static void main(String[] args) {
+        AsyncTask task = new AsyncTask();
+        task.execute(() -&gt; System.out.println(&quot;任务完成&quot;));
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Runnable</code> 是一个函数式接口，匿名内部类可以快速实现其 <code class="inline-code">run</code> 方法</li>
+<li>适用于线程、网络请求等异步场景</li>
+</ul>
+<hr></p><h3>3. 实现函数式接口（Functional Interfaces）</h3><p>匿名内部类可用于实现 Java 8 中引入的函数式接口，如 <code class="inline-code">Comparator</code>、<code class="inline-code">Runnable</code>、<code class="inline-code">Callable</code> 等。</p><h4>示例：使用匿名内部类实现 Comparator</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;</p><p>public class ComparatorDemo {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add(&quot;banana&quot;);
+        list.add(&quot;apple&quot;);
+        list.add(&quot;cherry&quot;);</p><p>        // 使用匿名内部类实现 Comparator
+        Collections.sort(list, new Comparator&lt;String&gt;() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareTo(s2);
+            }
+        });</p><p>        System.out.println(list); // [apple, banana, cherry]
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Comparator</code> 是一个函数式接口，匿名内部类可以快速实现其 <code class="inline-code">compare</code> 方法</li>
+<li>适用于集合排序、数据处理等场景</li>
+</ul>
+<hr></p><h3>4. 实现单例模式（Singleton Pattern）</h3><p>匿名内部类可用于实现单例模式，特别是在静态内部类的基础上，提供更简洁的实现方式。</p><h4>示例：使用匿名内部类实现单例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Singleton {
+    private static final Singleton INSTANCE = new Singleton();</p><p>    private Singleton() {}</p><p>    public static Singleton getInstance() {
+        return INSTANCE;
+    }</p><p>    public static void main(String[] args) {
+        Singleton singleton = new Singleton();
+        System.out.println(singleton);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>匿名内部类可以用于实现单例模式，确保类的实例唯一</li>
+<li>适用于配置管理、数据库连接池等场景</li>
+</ul>
+<hr></p><h3>5. 实现抽象类或接口的临时实现</h3><p>在某些情况下，开发者可能需要临时实现一个抽象类或接口，而不需要定义一个独立的类。</p><h4>示例：临时实现抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Animal {
+    public abstract void makeSound();
+}</p><p>public class TempImplementation {
+    public static void main(String[] args) {
+        Animal animal = new Animal() {
+            @Override
+            public void makeSound() {
+                System.out.println(&quot;动物在叫&quot;);
+            }
+        };</p><p>        animal.makeSound();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>匿名内部类可以快速实现抽象类或接口</li>
+<li>适用于临时逻辑、测试代码等场景</li>
+</ul>
+<hr></p><h3>6. 实现工具类或配置类</h3><p>匿名内部类可用于实现工具类或配置类，特别是在需要快速创建实例的情况下。</p><h4>示例：实现配置类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Config {
+    private String name;
+    private int port;</p><p>    public Config(String name, int port) {
+        this.name = name;
+        this.port = port;
+    }</p><p>    public static void main(String[] args) {
+        Config config = new Config(&quot;myapp&quot;, 8080) {
+            @Override
+            public String toString() {
+                return &quot;Config{&quot; +
+                        &quot;name=&#039;&quot; + name + &#039;\&#039;&#039; +
+                        &quot;, port=&quot; + port +
+                        &#039;}&#039;;
+            }
+        };</p><p>        System.out.println(config);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>匿名内部类可以用于实现配置类</li>
+<li>适用于快速创建实例、测试代码等场景</li>
+</ul>
+<hr></p><h3>7. 总结</h3><table><tr><td>使用场景</td><td>说明</td><td>示例</td></tr></table><table><tr><td>事件监听器</td><td>实现 GUI 中的事件处理</td><td><code class="inline-code">ActionListener</code></td></tr></table>
+<table><tr><td>回调函数</td><td>实现异步任务完成后的通知</td><td><code class="inline-code">Runnable</code></td></tr></table>
+<table><tr><td>函数式接口</td><td>实现 <code class="inline-code">Comparator</code>、<code class="inline-code">Callable</code> 等</td><td><code class="inline-code">Comparator</code></td></tr></table>
+<table><tr><td>单例模式</td><td>实现类的唯一实例</td><td><code class="inline-code">Singleton</code></td></tr></table>
+<table><tr><td>临时实现</td><td>快速实现抽象类或接口</td><td><code class="inline-code">Animal</code></td></tr></table>
+<table><tr><td>工具类</td><td>实现配置类或工具类</td><td><code class="inline-code">Config</code></td></tr></table><p>> <strong>匿名内部类 = 快速实现接口或抽象类的实例</strong></p><hr><p>> 💡 <strong>建议</strong>：
+> - 在 Java 8 及以后版本中，优先使用 Lambda 表达式
+> - 在需要访问外部类成员或实现复杂逻辑时，使用匿名内部类
+> - 避免过度使用匿名内部类，保持代码清晰可读</p><p>#java基础 #匿名内部类 #事件监听 #回调函数 #函数式接口 #单例模式</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 75</h3>
+        <div class="topic-content"><h2>函数式编程-方法引用</h2><p>在 Java 8 中引入了函数式编程的支持，其中 <strong>方法引用（Method Reference）</strong> 是一种简洁的语法，用于引用已经存在的方法，而无需显式地编写 Lambda 表达式。方法引用可以看作是 Lambda 表达式的语法糖，使代码更加简洁、可读性更高。</p><hr><h3>1. 什么是方法引用？</h3><p>方法引用是一种引用已有方法的语法，它允许开发者将方法作为参数传递，而无需重新实现该方法。方法引用的语法格式如下：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">类名::方法名</code></pre></div><p>方法引用可以引用以下几种方法：</p><ul><li>静态方法</li>
+<li>实例方法</li>
+<li>构造器</li>
+<li>特定对象的实例方法</li>
+</ul>
+<hr></p><h3>2. 方法引用的类型</h3><h4>2.1 引用静态方法</h4><p>语法：<code class="inline-code">类名::方法名</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MathUtils {
+    public static int add(int a, int b) {
+        return a + b;
+    }</p><p>    public static void main(String[] args) {
+        // 使用方法引用
+        BinaryOperator&lt;Integer&gt; add = MathUtils::add;</p><p>        // 调用方法
+        System.out.println(add.apply(3, 5)); // 输出 8
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">MathUtils::add</code> 引用了 <code class="inline-code">MathUtils</code> 类中的静态方法 <code class="inline-code">add</code></li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">Integer::add</code></li>
+</ul>
+<hr></p><h4>2.2 引用实例方法</h4><p>语法：<code class="inline-code">对象名::方法名</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringProcessor {
+    public String toUpperCase(String str) {
+        return str.toUpperCase();
+    }</p><p>    public static void main(String[] args) {
+        StringProcessor processor = new StringProcessor();</p><p>        // 使用方法引用
+        Function&lt;String, String&gt; toUpperCase = processor::toUpperCase;</p><p>        // 调用方法
+        System.out.println(toUpperCase.apply(&quot;hello&quot;)); // 输出 HELLO
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">processor::toUpperCase</code> 引用了 <code class="inline-code">processor</code> 对象的 <code class="inline-code">toUpperCase</code> 方法</li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">(str) -> processor.toUpperCase(str)</code></li>
+</ul>
+<hr></p><h4>2.3 引用特定对象的实例方法</h4><p>语法：<code class="inline-code">对象名::方法名</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringProcessor {
+    public String toUpperCase(String str) {
+        return str.toUpperCase();
+    }</p><p>    public static void main(String[] args) {
+        StringProcessor processor = new StringProcessor();</p><p>        // 使用方法引用
+        Function&lt;String, String&gt; toUpperCase = processor::toUpperCase;</p><p>        // 调用方法
+        System.out.println(toUpperCase.apply(&quot;hello&quot;)); // 输出 HELLO
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">processor::toUpperCase</code> 引用了 <code class="inline-code">processor</code> 对象的 <code class="inline-code">toUpperCase</code> 方法</li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">(str) -> processor.toUpperCase(str)</code></li>
+</ul>
+<hr></p><h4>2.4 引用构造器</h4><p>语法：<code class="inline-code">类名::new</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
+    private String name;
+    private int age;</p><p>    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    public Person(String name) {
+        this.name = name;
+        this.age = 0;
+    }</p><p>    public Person() {
+        this.name = &quot;Unknown&quot;;
+        this.age = 0;
+    }</p><p>    @Override
+    public String toString() {
+        return &quot;Person{name=&#039;&quot; + name + &quot;&#039;, age=&quot; + age + &quot;}&quot;;
+    }</p><p>    public static void main(String[] args) {
+        // 使用方法引用创建对象
+        Supplier&lt;Person&gt; supplier = Person::new;</p><p>        // 调用方法
+        System.out.println(supplier.get()); // 输出 Person{name=&#039;Unknown&#039;, age=0}</p><p>        // 使用方法引用创建对象
+        Function&lt;String, Person&gt; function = Person::new;</p><p>        // 调用方法
+        System.out.println(function.apply(&quot;Alice&quot;)); // 输出 Person{name=&#039;Alice&#039;, age=0}
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Person::new</code> 引用了 <code class="inline-code">Person</code> 类的无参构造器</li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">() -> new Person()</code></li>
+</ul>
+<hr></p><h3>3. 方法引用的使用场景</h3><h4>3.1 事件监听器</h4><p>在 GUI 编程中，方法引用可以用于实现事件监听器。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;</p><p>public class ButtonDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame(&quot;按钮示例&quot;);
+        JButton button = new JButton(&quot;点击我&quot;);</p><p>        // 使用方法引用实现 ActionListener
+        button.addActionListener(System.out::println);</p><p>        frame.add(button);
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">System.out::println</code> 引用了 <code class="inline-code">System.out</code> 的 <code class="inline-code">println</code> 方法</li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">e -> System.out.println(e)</code></li>
+</ul>
+<hr></p><h4>3.2 集合排序</h4><p>在集合排序中，方法引用可以用于实现 <code class="inline-code">Comparator</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;</p><p>public class ComparatorDemo {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add(&quot;banana&quot;);
+        list.add(&quot;apple&quot;);
+        list.add(&quot;cherry&quot;);</p><p>        // 使用方法引用实现 Comparator
+        Collections.sort(list, String::compareTo);</p><p>        System.out.println(list); // [apple, banana, cherry]
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">String::compareTo</code> 引用了 <code class="inline-code">String</code> 类的 <code class="inline-code">compareTo</code> 方法</li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">(s1, s2) -> s1.compareTo(s2)</code></li>
+</ul>
+<hr></p><h4>3.3 数据处理</h4><p>在数据处理中，方法引用可以用于实现 <code class="inline-code">Function</code>、<code class="inline-code">Predicate</code> 等函数式接口。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.function.Function;
+import java.util.function.Predicate;</p><p>public class DataProcessingDemo {
+    public static void main(String[] args) {
+        // 使用方法引用实现 Function
+        Function&lt;String, Integer&gt; length = String::length;</p><p>        // 调用方法
+        System.out.println(length.apply(&quot;hello&quot;)); // 输出 5</p><p>        // 使用方法引用实现 Predicate
+        Predicate&lt;String&gt; isEmpty = String::isEmpty;</p><p>        // 调用方法
+        System.out.println(isEmpty.test(&quot;&quot;)); // 输出 true
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">String::length</code> 引用了 <code class="inline-code">String</code> 类的 <code class="inline-code">length</code> 方法</li>
+<li><code class="inline-code">String::isEmpty</code> 引用了 <code class="inline-code">String</code> 类的 <code class="inline-code">isEmpty</code> 方法</li>
+<li>方法引用可以替代 Lambda 表达式 <code class="inline-code">(str) -> str.length()</code> 和 <code class="inline-code">(str) -> str.isEmpty()</code></li>
+</ul>
+<hr></p><h3>4. 方法引用的注意事项</h3><h4>4.1 方法签名必须匹配</h4><p>方法引用的方法签名必须与函数式接口的方法签名一致。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MethodReferenceDemo {
+    public static void main(String[] args) {
+        // 方法签名必须匹配
+        Function&lt;String, Integer&gt; length = String::length; // 正确
+        Function&lt;String, String&gt; upper = String::toUpperCase; // 错误
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">String::length</code> 的方法签名是 <code class="inline-code">int length()</code>，与 <code class="inline-code">Function<String, Integer></code> 匹配</li>
+<li><code class="inline-code">String::toUpperCase</code> 的方法签名是 <code class="inline-code">String toUpperCase()</code>，与 <code class="inline-code">Function<String, String></code> 匹配</li>
+</ul>
+<hr></p><h4>4.2 方法引用不能用于重载方法</h4><p>方法引用不能用于重载方法，因为编译器无法确定引用哪个方法。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class MethodReferenceDemo {
+    public static void main(String[] args) {
+        // 方法引用不能用于重载方法
+        // Function&lt;String, Integer&gt; length = String::length; // 错误
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">String</code> 类有多个 <code class="inline-code">length</code> 方法，编译器无法确定引用哪个方法</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>类型</td><td>语法</td><td>示例</td></tr></table><table><tr><td>静态方法</td><td><code class="inline-code">类名::方法名</code></td><td><code class="inline-code">MathUtils::add</code></td></tr></table>
+<table><tr><td>实例方法</td><td><code class="inline-code">对象名::方法名</code></td><td><code class="inline-code">processor::toUpperCase</code></td></tr></table>
+<table><tr><td>构造器</td><td><code class="inline-code">类名::new</code></td><td><code class="inline-code">Person::new</code></td></tr></table>
+<table><tr><td>特定对象的实例方法</td><td><code class="inline-code">对象名::方法名</code></td><td><code class="inline-code">processor::toUpperCase</code></td></tr></table><p>> <strong>方法引用 = 快速引用已有方法的语法</strong></p><hr><p>> 💡 <strong>建议</strong>：
+> - 在 Java 8 及以后版本中，优先使用方法引用
+> - 在需要引用已有方法时，使用方法引用
+> - 避免过度使用方法引用，保持代码清晰可读</p><p>#java基础 #函数式编程 #方法引用 #Lambda表达式 #函数式接口</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 76</h3>
+        <div class="topic-content"><h2>常用API-String-String生成验证码-ArrayList集合</h2><p>在 Java 开发中，<code class="inline-code">String</code> 类和 <code class="inline-code">ArrayList</code> 集合是两个非常常用的类。<code class="inline-code">String</code> 类用于处理字符串，而 <code class="inline-code">ArrayList</code> 是一个动态数组，用于存储和操作对象集合。本节将介绍 <code class="inline-code">String</code> 类的常用方法、如何使用 <code class="inline-code">String</code> 生成验证码，以及 <code class="inline-code">ArrayList</code> 集合的基本用法。</p><hr><h3>1. String 类的常用方法</h3><h4>1.1 字符串的创建</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str1 = &quot;Hello World&quot;;
+String str2 = new String(&quot;Hello World&quot;);</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">str1</code> 是字符串常量池中的字符串</li>
+<li><code class="inline-code">str2</code> 是堆内存中的字符串对象</li>
+</ul>
+<hr></p><h4>1.2 字符串的比较</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str1 = &quot;Hello&quot;;
+String str2 = &quot;Hello&quot;;
+String str3 = new String(&quot;Hello&quot;);</p><p>System.out.println(str1 == str2); // true
+System.out.println(str1 == str3); // false
+System.out.println(str1.equals(str3)); // true</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">==</code> 比较的是引用地址</li>
+<li><code class="inline-code">equals()</code> 比较的是字符串内容</li>
+</ul>
+<hr></p><h4>1.3 字符串的拼接</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str1 = &quot;Hello&quot;;
+String str2 = &quot;World&quot;;
+String str3 = str1 + str2;
+System.out.println(str3); // HelloWorld</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">+</code> 操作符可以用于字符串拼接</li>
+<li><code class="inline-code">StringBuilder</code> 和 <code class="inline-code">StringBuffer</code> 用于频繁拼接字符串</li>
+</ul>
+<hr></p><h4>1.4 字符串的查找</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str = &quot;Hello World&quot;;
+System.out.println(str.indexOf(&quot;World&quot;)); // 6
+System.out.println(str.contains(&quot;World&quot;)); // true</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">indexOf()</code> 返回子字符串的索引</li>
+<li><code class="inline-code">contains()</code> 判断字符串是否包含子字符串</li>
+</ul>
+<hr></p><h4>1.5 字符串的替换</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str = &quot;Hello World&quot;;
+System.out.println(str.replace(&quot;World&quot;, &quot;Java&quot;)); // Hello Java</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">replace()</code> 方法用于替换字符串中的子字符串</li>
+</ul>
+<hr></p><h4>1.6 字符串的分割</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str = &quot;a,b,c,d&quot;;
+String[] arr = str.split(&quot;,&quot;);
+for (String s : arr) {
+    System.out.println(s);
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">split()</code> 方法用于按指定分隔符分割字符串</li>
+</ul>
+<hr></p><h4>1.7 字符串的截取</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String str = &quot;Hello World&quot;;
+System.out.println(str.substring(0, 5)); // Hello</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">substring()</code> 方法用于截取字符串</li>
+</ul>
+<hr></p><h3>2. 使用 String 生成验证码</h3><h4>2.1 生成随机验证码</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Random;</p><p>public class VerificationCodeGenerator {
+    public static void main(String[] args) {
+        // 生成 6 位随机验证码
+        String code = generateVerificationCode(6);
+        System.out.println(&quot;验证码：&quot; + code);
+    }</p><p>    public static String generateVerificationCode(int length) {
+        String chars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;;
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();</p><p>        for (int i = 0; i &lt; length; i++) {
+            int index = random.nextInt(chars.length());
+            code.append(chars.charAt(index));
+        }</p><p>        return code.toString();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Random</code> 类用于生成随机数</li>
+<li><code class="inline-code">StringBuilder</code> 用于高效拼接字符串</li>
+</ul>
+<hr></p><h4>2.2 生成随机验证码并存储</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.ArrayList;
+import java.util.Random;</p><p>public class VerificationCodeManager {
+    private ArrayList&lt;String&gt; codes;</p><p>    public VerificationCodeManager() {
+        this.codes = new ArrayList&lt;&gt;();
+    }</p><p>    public String generateCode(int length) {
+        String chars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;;
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();</p><p>        for (int i = 0; i &lt; length; i++) {
+            int index = random.nextInt(chars.length());
+            code.append(chars.charAt(index));
+        }</p><p>        String codeStr = code.toString();
+        codes.add(codeStr);
+        return codeStr;
+    }</p><p>    public void displayCodes() {
+        System.out.println(&quot;生成的验证码列表：&quot;);
+        for (String code : codes) {
+            System.out.println(code);
+        }
+    }</p><p>    public static void main(String[] args) {
+        VerificationCodeManager manager = new VerificationCodeManager();
+        manager.generateCode(6);
+        manager.generateCode(6);
+        manager.generateCode(6);
+        manager.displayCodes();
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">ArrayList</code> 用于存储生成的验证码</li>
+<li><code class="inline-code">add()</code> 方法用于添加验证码</li>
+<li><code class="inline-code">displayCodes()</code> 方法用于显示验证码列表</li>
+</ul>
+<hr></p><h3>3. ArrayList 集合的基本用法</h3><h4>3.1 创建 ArrayList</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">ArrayList</code> 是一个动态数组，可以存储任意类型的对象</li>
+</ul>
+<hr></p><h4>3.2 添加元素</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">list.add(&quot;Apple&quot;);
+list.add(&quot;Banana&quot;);
+list.add(&quot;Cherry&quot;);</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">add()</code> 方法用于添加元素</li>
+<li>元素按插入顺序存储</li>
+</ul>
+<hr></p><h4>3.3 获取元素</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String first = list.get(0);
+System.out.println(first); // Apple</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">get()</code> 方法用于获取指定索引的元素</li>
+</ul>
+<hr></p><h4>3.4 修改元素</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">list.set(0, &quot;Orange&quot;);
+System.out.println(list.get(0)); // Orange</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">set()</code> 方法用于修改指定索引的元素</li>
+</ul>
+<hr></p><h4>3.5 删除元素</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">list.remove(0);
+System.out.println(list.get(0)); // Banana</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">remove()</code> 方法用于删除指定索引的元素</li>
+</ul>
+<hr></p><h4>3.6 遍历 ArrayList</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">for (String fruit : list) {
+    System.out.println(fruit);
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>使用增强 for 循环遍历 ArrayList</li>
+</ul>
+<hr></p><h3>4. 总结</h3><table><tr><td>类型</td><td>方法</td><td>说明</td></tr></table><table><tr><td>String</td><td><code class="inline-code">indexOf()</code></td><td>查找子字符串的索引</td></tr></table>
+<table><tr><td>String</td><td><code class="inline-code">contains()</code></td><td>判断字符串是否包含子字符串</td></tr></table>
+<table><tr><td>String</td><td><code class="inline-code">replace()</code></td><td>替换字符串中的子字符串</td></tr></table>
+<table><tr><td>String</td><td><code class="inline-code">split()</code></td><td>按指定分隔符分割字符串</td></tr></table>
+<table><tr><td>String</td><td><code class="inline-code">substring()</code></td><td>截取字符串</td></tr></table>
+<table><tr><td>ArrayList</td><td><code class="inline-code">add()</code></td><td>添加元素</td></tr></table>
+<table><tr><td>ArrayList</td><td><code class="inline-code">get()</code></td><td>获取元素</td></tr></table>
+<table><tr><td>ArrayList</td><td><code class="inline-code">set()</code></td><td>修改元素</td></tr></table>
+<table><tr><td>ArrayList</td><td><code class="inline-code">remove()</code></td><td>删除元素</td></tr></table>
+<table><tr><td>ArrayList</td><td><code class="inline-code">for-each</code></td><td>遍历集合</td></tr></table><p>> <strong>String 和 ArrayList = 字符串和集合操作的基础</strong></p><hr><p>> 💡 <strong>建议</strong>：
+> - 在需要频繁拼接字符串时，使用 <code class="inline-code">StringBuilder</code>
+> - 在需要存储和操作对象集合时，使用 <code class="inline-code">ArrayList</code>
+> - 在实际项目中，可以结合 <code class="inline-code">HashMap</code> 和 <code class="inline-code">HashSet</code> 实现更复杂的数据结构</p><p>#java基础 #String #ArrayList #验证码生成 #常用API</p></div>
+      </section>
+      <section class="section" id="section-8">
+        <h3>8. 77</h3>
+        <div class="topic-content"><h2>项目实战-人事系统</h2><p>在本节中，我们将通过一个综合项目来实践 Java 的核心概念，构建一个简单的人事管理系统。该项目将结合面向对象编程（OOP）、集合、文件操作、异常处理等知识点，帮助你巩固所学知识并提升实际开发能力。</p><hr><h3>1. 项目目标</h3><p>实现一个简单的人事管理系统，支持以下功能：</p><ul><li>添加员工信息</li>
+<li>删除员工信息</li>
+<li>修改员工信息</li>
+<li>查询员工信息</li>
+<li>显示所有员工信息</li>
+<li>保存和加载员工数据到文件</li>
+</ul>
+<hr></p><h3>2. 设计思路</h3><h4>2.1 类图设计</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">Employee (员工类)
+├── id
+├── name
+├── age
+├── department
+└── salary</p><p>HRSystem (人事系统)
+├── employees (员工列表)
+├── saveToFile()
+├── loadFromFile()
+└── mainMenu()</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Employee</code> 类用于存储员工信息</li>
+<li><code class="inline-code">HRSystem</code> 类用于管理员工信息</li>
+</ul>
+<hr></p><h3>3. 代码实现</h3><h4>3.1 Employee 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Employee {
+    private int id;
+    private String name;
+    private int age;
+    private String department;
+    private double salary;</p><p>    public Employee(int id, String name, int age, String department, double salary) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.department = department;
+        this.salary = salary;
+    }</p><p>    // Getters 和 Setters
+    public int getId() {
+        return id;
+    }</p><p>    public void setId(int id) {
+        this.id = id;
+    }</p><p>    public String getName() {
+        return name;
+    }</p><p>    public void setName(String name) {
+        this.name = name;
+    }</p><p>    public int getAge() {
+        return age;
+    }</p><p>    public void setAge(int age) {
+        this.age = age;
+    }</p><p>    public String getDepartment() {
+        return department;
+    }</p><p>    public void setDepartment(String department) {
+        this.department = department;
+    }</p><p>    public double getSalary() {
+        return salary;
+    }</p><p>    public void setSalary(double salary) {
+        this.salary = salary;
+    }</p><p>    @Override
+    public String toString() {
+        return &quot;Employee{&quot; +
+                &quot;id=&quot; + id +
+                &quot;, name=&#039;&quot; + name + &#039;\&#039;&#039; +
+                &quot;, age=&quot; + age +
+                &quot;, department=&#039;&quot; + department + &#039;\&#039;&#039; +
+                &quot;, salary=&quot; + salary +
+                &#039;}&#039;;
+    }
+}</code></pre></div><hr><h4>3.2 HRSystem 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;</p><p>public class HRSystem {
+    private ArrayList&lt;Employee&gt; employees;
+    private Scanner scanner;</p><p>    public HRSystem() {
+        this.employees = new ArrayList&lt;&gt;();
+        this.scanner = new Scanner(System.in);
+    }</p><p>    public void loadFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(&quot;employees.dat&quot;))) {
+            employees = (ArrayList&lt;Employee&gt;) ois.readObject();
+            System.out.println(&quot;员工数据加载成功！&quot;);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(&quot;文件不存在或加载失败，使用默认数据。&quot;);
+            employees = new ArrayList&lt;&gt;();
+        }
+    }</p><p>    public void saveToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(&quot;employees.dat&quot;))) {
+            oos.writeObject(employees);
+            System.out.println(&quot;员工数据保存成功！&quot;);
+        } catch (IOException e) {
+            System.out.println(&quot;保存失败：&quot; + e.getMessage());
+        }
+    }</p><p>    public void addEmployee() {
+        System.out.print(&quot;请输入员工ID：&quot;);
+        int id = scanner.nextInt();
+        scanner.nextLine(); // 消费换行符</p><p>        System.out.print(&quot;请输入员工姓名：&quot;);
+        String name = scanner.nextLine();</p><p>        System.out.print(&quot;请输入员工年龄：&quot;);
+        int age = scanner.nextInt();
+        scanner.nextLine(); // 消费换行符</p><p>        System.out.print(&quot;请输入员工部门：&quot;);
+        String department = scanner.nextLine();</p><p>        System.out.print(&quot;请输入员工薪资：&quot;);
+        double salary = scanner.nextDouble();</p><p>        Employee employee = new Employee(id, name, age, department, salary);
+        employees.add(employee);
+        System.out.println(&quot;员工添加成功！&quot;);
+    }</p><p>    public void deleteEmployee() {
+        System.out.print(&quot;请输入要删除的员工ID：&quot;);
+        int id = scanner.nextInt();</p><p>        Employee employee = findEmployeeById(id);
+        if (employee != null) {
+            employees.remove(employee);
+            System.out.println(&quot;员工删除成功！&quot;);
+        } else {
+            System.out.println(&quot;未找到该员工！&quot;);
+        }
+    }</p><p>    public void updateEmployee() {
+        System.out.print(&quot;请输入要修改的员工ID：&quot;);
+        int id = scanner.nextInt();</p><p>        Employee employee = findEmployeeById(id);
+        if (employee != null) {
+            scanner.nextLine(); // 消费换行符</p><p>            System.out.print(&quot;请输入新姓名：&quot;);
+            String name = scanner.nextLine();
+            employee.setName(name);</p><p>            System.out.print(&quot;请输入新年龄：&quot;);
+            int age = scanner.nextInt();
+            employee.setAge(age);
+            scanner.nextLine(); // 消费换行符</p><p>            System.out.print(&quot;请输入新部门：&quot;);
+            String department = scanner.nextLine();
+            employee.setDepartment(department);</p><p>            System.out.print(&quot;请输入新薪资：&quot;);
+            double salary = scanner.nextDouble();
+            employee.setSalary(salary);</p><p>            System.out.println(&quot;员工信息修改成功！&quot;);
+        } else {
+            System.out.println(&quot;未找到该员工！&quot;);
+        }
+    }</p><p>    public void queryEmployee() {
+        System.out.print(&quot;请输入要查询的员工ID：&quot;);
+        int id = scanner.nextInt();</p><p>        Employee employee = findEmployeeById(id);
+        if (employee != null) {
+            System.out.println(employee);
+        } else {
+            System.out.println(&quot;未找到该员工！&quot;);
+        }
+    }</p><p>    public void displayAllEmployees() {
+        if (employees.isEmpty()) {
+            System.out.println(&quot;暂无员工信息！&quot;);
+        } else {
+            System.out.println(&quot;所有员工信息：&quot;);
+            for (Employee employee : employees) {
+                System.out.println(employee);
+            }
+        }
+    }</p><p>    private Employee findEmployeeById(int id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }</p><p>    public void mainMenu() {
+        while (true) {
+            System.out.println(&quot;\n=== 人事管理系统 ===&quot;);
+            System.out.println(&quot;1. 添加员工&quot;);
+            System.out.println(&quot;2. 删除员工&quot;);
+            System.out.println(&quot;3. 修改员工&quot;);
+            System.out.println(&quot;4. 查询员工&quot;);
+            System.out.println(&quot;5. 显示所有员工&quot;);
+            System.out.println(&quot;6. 保存数据&quot;);
+            System.out.println(&quot;7. 退出系统&quot;);
+            System.out.print(&quot;请选择操作：&quot;);</p><p>            int choice = scanner.nextInt();
+            scanner.nextLine(); // 消费换行符</p><p>            switch (choice) {
+                case 1:
+                    addEmployee();
+                    break;
+                case 2:
+                    deleteEmployee();
+                    break;
+                case 3:
+                    updateEmployee();
+                    break;
+                case 4:
+                    queryEmployee();
+                    break;
+                case 5:
+                    displayAllEmployees();
+                    break;
+                case 6:
+                    saveToFile();
+                    break;
+                case 7:
+                    System.out.println(&quot;感谢使用人事管理系统！&quot;);
+                    return;
+                default:
+                    System.out.println(&quot;无效选择，请重新输入！&quot;);
+            }
+        }
+    }</p><p>    public static void main(String[] args) {
+        HRSystem system = new HRSystem();
+        system.loadFromFile();
+        system.mainMenu();
+    }
+}</code></pre></div><hr><h3>4. 运行结果</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">=== 人事管理系统 ===
+1. 添加员工
+2. 删除员工
+3. 修改员工
+4. 查询员工
+5. 显示所有员工
+6. 保存数据
+7. 退出系统
+请选择操作：1
+请输入员工ID：1
+请输入员工姓名：张三
+请输入员工年龄：25
+请输入员工部门：技术部
+请输入员工薪资：8000
+员工添加成功！</p><p>=== 人事管理系统 ===
+1. 添加员工
+2. 删除员工
+3. 修改员工
+4. 查询员工
+5. 显示所有员工
+6. 保存数据
+7. 退出系统
+请选择操作：5
+所有员工信息：
+Employee{id=1, name=&#039;张三&#039;, age=25, department=&#039;技术部&#039;, salary=8000.0}</p><p>=== 人事管理系统 ===
+1. 添加员工
+2. 删除员工
+3. 修改员工
+4. 查询员工
+5. 显示所有员工
+6. 保存数据
+7. 退出系统
+请选择操作：7
+感谢使用人事管理系统！</code></pre></div><hr><h3>5. 项目总结</h3><ul><li>本项目通过 <code class="inline-code">Employee</code> 类和 <code class="inline-code">HRSystem</code> 类实现了人事管理系统的功能</li>
+<li>使用 <code class="inline-code">ArrayList</code> 存储员工信息</li>
+<li>使用 <code class="inline-code">ObjectInputStream</code> 和 <code class="inline-code">ObjectOutputStream</code> 实现数据的持久化</li>
+<li>使用 <code class="inline-code">Scanner</code> 实现用户交互</li>
+</ul>
+<hr></p><p>> 💡 <strong>建议</strong>：
+> - 在实际项目中，可以引入数据库（如 MySQL）来存储员工信息
+> - 可以使用 <code class="inline-code">JDBC</code> 实现数据库操作
+> - 可以结合 <code class="inline-code">Spring Boot</code> 构建更完整的管理系统</p><p>#java基础 #项目实战 #人事系统 #集合 #文件操作</p></div>
+      </section>
+      <section class="section" id="section-9">
+        <h3>9. 78</h3>
+        <div class="topic-content"><h2>项目实战-数字华容道</h2><p>在本节中，我们将通过一个综合项目来实践 Java 的核心概念，构建一个简单的数字华容道游戏。该项目将结合数组、随机数、控制台输入输出、逻辑判断等知识点，帮助你巩固所学知识并提升实际开发能力。</p><hr><h3>1. 项目目标</h3><p>实现一个数字华容道游戏，支持以下功能：</p><ul><li>随机生成初始棋盘</li>
+<li>显示当前棋盘状态</li>
+<li>用户输入移动方向（上、下、左、右）</li>
+<li>判断是否胜利</li>
+<li>游戏循环直到用户获胜</li>
+</ul>
+<hr></p><h3>2. 设计思路</h3><h4>2.1 游戏规则</h4><ul><li>棋盘大小为 4×4，共 16 个格子</li>
+<li>数字从 1 到 15，空格用 0 表示</li>
+<li>用户只能移动与空格相邻的数字</li>
+<li>目标是将数字按顺序排列，空格在右下角</li>
+</ul>
+<h4>2.2 类图设计</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">HuarongDao (数字华容道类)
+├── board (棋盘数组)
+├── emptyRow (空格行)
+├── emptyCol (空格列)
+├── generateBoard()
+├── displayBoard()
+├── move(int direction)
+├── isWin()
+├── main()</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">board</code> 是一个 4×4 的二维数组</li>
+<li><code class="inline-code">emptyRow</code> 和 <code class="inline-code">emptyCol</code> 记录空格的位置</li>
+</ul>
+<hr></p><h3>3. 代码实现</h3><h4>3.1 HuarongDao 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.*;</p><p>public class HuarongDao {
+    private int[][] board;
+    private int emptyRow;
+    private int emptyCol;</p><p>    public HuarongDao() {
+        this.board = new int[4][4];
+        this.emptyRow = 3;
+        this.emptyCol = 3;
+        generateBoard();
+    }</p><p>    /**
+     * 生成初始棋盘
+     */
+    public void generateBoard() {
+        List&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();
+        for (int i = 1; i &lt;= 15; i++) {
+            numbers.add(i);
+        }
+        numbers.add(0); // 空格</p><p>        Collections.shuffle(numbers);</p><p>        int index = 0;
+        for (int i = 0; i &lt; 4; i++) {
+            for (int j = 0; j &lt; 4; j++) {
+                board[i][j] = numbers.get(index++);
+            }
+        }</p><p>        // 找到空格的位置
+        for (int i = 0; i &lt; 4; i++) {
+            for (int j = 0; j &lt; 4; j++) {
+                if (board[i][j] == 0) {
+                    emptyRow = i;
+                    emptyCol = j;
+                    break;
+                }
+            }
+        }
+    }</p><p>    /**
+     * 显示当前棋盘
+     */
+    public void displayBoard() {
+        System.out.println(&quot;=== 数字华容道 ===&quot;);
+        for (int i = 0; i &lt; 4; i++) {
+            for (int j = 0; j &lt; 4; j++) {
+                if (board[i][j] == 0) {
+                    System.out.print(&quot;   &quot;);
+                } else {
+                    System.out.printf(&quot;%2d &quot;, board[i][j]);
+                }
+            }
+            System.out.println();
+        }
+    }</p><p>    /**
+     * 移动数字
+     * @param direction 1: 上, 2: 下, 3: 左, 4: 右
+     */
+    public void move(int direction) {
+        int newRow = emptyRow;
+        int newCol = emptyCol;</p><p>        switch (direction) {
+            case 1: // 上
+                newRow--;
+                break;
+            case 2: // 下
+                newRow++;
+                break;
+            case 3: // 左
+                newCol--;
+                break;
+            case 4: // 右
+                newCol++;
+                break;
+            default:
+                System.out.println(&quot;无效方向！&quot;);
+                return;
+        }</p><p>        // 检查是否越界
+        if (newRow &lt; 0 <table><tr><td>newRow &gt;= 4</td><td>newCol &lt; 0</td></tr></table> newCol &gt;= 4) {
+            System.out.println(&quot;移动越界！&quot;);
+            return;
+        }</p><p>        // 交换空格和目标数字
+        board[emptyRow][emptyCol] = board[newRow][newCol];
+        board[newRow][newCol] = 0;</p><p>        // 更新空格位置
+        emptyRow = newRow;
+        emptyCol = newCol;
+    }</p><p>    /**
+     * 判断是否胜利
+     * @return 是否胜利
+     */
+    public boolean isWin() {
+        int expected = 1;
+        for (int i = 0; i &lt; 4; i++) {
+            for (int j = 0; j &lt; 4; j++) {
+                if (i == 3 &amp;&amp; j == 3) {
+                    return board[i][j] == 0;
+                }
+                if (board[i][j] != expected++) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }</p><p>    /**
+     * 主函数
+     */
+    public static void main(String[] args) {
+        HuarongDao game = new HuarongDao();
+        Scanner scanner = new Scanner(System.in);</p><p>        System.out.println(&quot;欢迎来到数字华容道！&quot;);
+        System.out.println(&quot;请输入移动方向：1-上, 2-下, 3-左, 4-右&quot;);
+        System.out.println(&quot;输入 0 退出游戏&quot;);</p><p>        while (true) {
+            game.displayBoard();</p><p>            if (game.isWin()) {
+                System.out.println(&quot;恭喜你，游戏胜利！&quot;);
+                break;
+            }</p><p>            System.out.print(&quot;请输入方向：&quot;);
+            int direction = scanner.nextInt();</p><p>            if (direction == 0) {
+                System.out.println(&quot;感谢游戏！&quot;);
+                break;
+            }</p><p>            game.move(direction);
+        }</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行结果</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">欢迎来到数字华容道！
+请输入移动方向：1-上, 2-下, 3-左, 4-右
+输入 0 退出游戏
+=== 数字华容道 ===
+ 1  2  3  4 
+ 5  6  7  8 
+ 9 10 11 12 
+13 14 15   &lt;空格&gt;
+请输入方向：4
+=== 数字华容道 ===
+ 1  2  3  4 
+ 5  6  7  8 
+ 9 10 11 12 
+13 14   15 
+请输入方向：3
+=== 数字华容道 ===
+ 1  2  3  4 
+ 5  6  7  8 
+ 9 10 11 12 
+13   14 15 
+请输入方向：2
+=== 数字华容道 ===
+ 1  2  3  4 
+ 5  6  7  8 
+ 9 10 11 12 
+ 13 14 15  
+请输入方向：0
+感谢游戏！</code></pre></div><hr><h3>5. 项目总结</h3><ul><li>本项目通过 <code class="inline-code">int[][]</code> 数组实现了数字华容道的棋盘</li>
+<li>使用 <code class="inline-code">Scanner</code> 实现用户交互</li>
+<li>使用 <code class="inline-code">Collections.shuffle()</code> 随机生成初始棋盘</li>
+<li>实现了移动逻辑和胜利判断</li>
+</ul>
+<hr></p><p>> 💡 <strong>建议</strong>：
+> - 在实际项目中，可以引入图形界面（如 Swing 或 JavaFX）
+> - 可以添加计时功能，记录玩家用时
+> - 可以引入难度等级，如 3×3、4×4、5×5</p><p>#java基础 #项目实战 #数字华容道 #数组 #随机数</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter08.html" class="nav-prev">← 第8章</a>
+        <span></span>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 综合项目实战</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

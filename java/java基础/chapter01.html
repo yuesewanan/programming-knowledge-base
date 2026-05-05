@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java Java入门基础 - 编程知识库">
+  <title>第1章: Java入门基础 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link active"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🚀 第1章</div>
+        <h1>Java入门基础</h1>
+        <p>Java基础教程 - Java入门基础</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 1</a></li>
+          <li><a href="#section-2">2. 2</a></li>
+          <li><a href="#section-3">3. 3</a></li>
+          <li><a href="#section-4">4. 4</a></li>
+          <li><a href="#section-5">5. 5</a></li>
+          <li><a href="#section-6">6. 6</a></li>
+          <li><a href="#section-7">7. 7</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 1</h3>
+        <div class="topic-content"><h2>功能单元 - 方法、注释</h2><p>在 Java 面向对象编程中，<strong>方法（Method）</strong> 和 <strong>注释（Comment）</strong> 是构成程序的基本功能单元。方法用于封装可重用的逻辑，注释用于提高代码的可读性和可维护性。</p><hr><h3>1. 方法（Method）</h3><p>方法是执行特定任务的代码块，是类中实现功能的核心。</p><h4>1.1 方法的基本语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">修饰符 返回类型 方法名(参数列表) {
+    // 方法体
+    return 返回值; // 可选，仅当返回类型非 void 时需要
+}</code></pre></div><h4>1.2 方法的组成部分</h4><table><tr><td>组成部分</td><td>说明</td></tr></table><table><tr><td><strong>修饰符</strong></td><td><code class="inline-code">public</code>、<code class="inline-code">private</code>、<code class="inline-code">protected</code>、<code class="inline-code">static</code>、<code class="inline-code">final</code> 等</td></tr></table>
+<table><tr><td><strong>返回类型</strong></td><td><code class="inline-code">void</code>、<code class="inline-code">int</code>、<code class="inline-code">String</code>、自定义类型等</td></tr></table>
+<table><tr><td><strong>方法名</strong></td><td>遵循驼峰命名法，如 <code class="inline-code">calculateTotal()</code></td></tr></table>
+<table><tr><td><strong>参数列表</strong></td><td>可选，多个参数用逗号分隔</td></tr></table>
+<table><tr><td><strong>方法体</strong></td><td>包含执行逻辑的代码块</td></tr></table><h4>1.3 方法示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Calculator {
+    // 无参无返回值方法
+    public void sayHello() {
+        System.out.println(&quot;Hello, World!&quot;);
+    }</p><p>    // 带参有返回值方法
+    public int add(int a, int b) {
+        return a + b;
+    }</p><p>    // 静态方法
+    public static double multiply(double x, double y) {
+        return x * y;
+    }</p><p>    // 重载方法
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}</code></pre></div><h4>1.4 方法的调用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Calculator calc = new Calculator();
+calc.sayHello(); // 调用实例方法
+int result = calc.add(3, 5); // 调用实例方法
+double product = Calculator.multiply(2.5, 3.0); // 调用静态方法</code></pre></div><h4>1.5 方法重载（Overloading）</h4><p>同一类中可以有多个同名方法，只要参数列表不同。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StringUtils {
+    public String concat(String a, String b) {
+        return a + b;
+    }</p><p>    public String concat(String a, String b, String c) {
+        return a + b + c;
+    }</p><p>    public String concat(String a, int b) {
+        return a + b;
+    }
+}</code></pre></div><hr><h3>2. 注释（Comment）</h3><p>注释用于解释代码逻辑、功能、参数、返回值等，是代码文档的重要组成部分。</p><h4>2.1 单行注释</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 这是一个单行注释
+int x = 10; // 变量 x 的初始值为 10</code></pre></div><h4>2.2 多行注释</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">/*
+ * 这是一个多行注释
+ * 可以跨越多行
+ * 用于详细说明代码逻辑
+ */
+public void complexMethod() {
+    // 方法体
+}</code></pre></div><h4>2.3 文档注释（Javadoc）</h4><p>用于生成 API 文档，支持 <code class="inline-code">@param</code>、<code class="inline-code">@return</code>、<code class="inline-code">@throws</code> 等标签。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">/**
+ * 计算两个整数的和
+ * 
+ * @param a 第一个整数
+ * @param b 第二个整数
+ * @return 两数之和
+ */
+public int add(int a, int b) {
+    return a + b;
+}</code></pre></div><p>> <strong>生成文档</strong>：使用 <code class="inline-code">javadoc</code> 命令生成 HTML 文档。</p><h4>2.4 注释的最佳实践</h4><table><tr><td>原则</td><td>说明</td></tr></table><table><tr><td><strong>解释“为什么”，而不是“是什么”</strong></td><td>注释应解释设计意图，而非代码本身</td></tr></table>
+<table><tr><td><strong>保持简洁</strong></td><td>避免冗长，重点突出</td></tr></table>
+<table><tr><td><strong>及时更新</strong></td><td>代码修改后，注释应同步更新</td></tr></table>
+<table><tr><td><strong>避免注释无用代码</strong></td><td>删除无用代码，而非注释掉</td></tr></table><hr><h3>3. 方法与注释的结合</h3><p>良好的代码应具备清晰的方法命名和必要的注释。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">/**
+ * 根据用户输入计算折扣价格
+ * 
+ * @param originalPrice 原价
+ * @param discountRate 折扣率（0~1）
+ * @return 折后价格
+ * @throws IllegalArgumentException 如果折扣率超出范围
+ */
+public double calculateDiscountedPrice(double originalPrice, double discountRate) {
+    if (discountRate &lt; 0 || discountRate &gt; 1) {
+        throw new IllegalArgumentException(&quot;折扣率必须在 0~1 之间&quot;);
+    }
+    return originalPrice * (1 - discountRate);
+}</code></pre></div><hr><h3>4. 总结</h3><table><tr><td>功能单元</td><td>作用</td></tr></table><table><tr><td><strong>方法</strong></td><td>封装可重用的逻辑，实现特定功能</td></tr></table>
+<table><tr><td><strong>注释</strong></td><td>提高代码可读性，便于维护和协作</td></tr></table><p>> <strong>方法是代码的“功能模块”，注释是代码的“说明书”</strong></p><p>在实际开发中，应遵循“<strong>方法清晰、注释到位</strong>”的原则，编写可读、可维护、可复用的 Java 代码。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 方法名应具有语义，如 <code class="inline-code">saveUser()</code>、<code class="inline-code">validateInput()</code>  
+> - 使用 Javadoc 注释公共方法  
+> - 避免过度注释，注释应服务于理解，而非替代代码</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 2</h3>
+        <div class="topic-content"><h2>字面量</h2><p>在 Java 中，<strong>字面量（Literal）</strong> 是指在代码中直接写出的、具有固定值的常量。字面量是程序中最基本的数据表示形式，用于初始化变量、传递参数、进行计算等。</p><hr><h3>1. 常见字面量类型</h3><h4>1.1 整数字面量</h4><p>表示整数，支持十进制、八进制、十六进制。</p><table><tr><td>类型</td><td>示例</td><td>说明</td></tr></table><table><tr><td><strong>十进制</strong></td><td><code class="inline-code">123</code></td><td>默认整数类型为 <code class="inline-code">int</code></td></tr></table>
+<table><tr><td><strong>八进制</strong></td><td><code class="inline-code">0123</code></td><td>以 <code class="inline-code">0</code> 开头，表示八进制</td></tr></table>
+<table><tr><td><strong>十六进制</strong></td><td><code class="inline-code">0x1A</code></td><td>以 <code class="inline-code">0x</code> 或 <code class="inline-code">0X</code> 开头</td></tr></table>
+<table><tr><td><strong>长整型</strong></td><td><code class="inline-code">123L</code> 或 <code class="inline-code">123l</code></td><td>后缀 <code class="inline-code">L</code> 表示 <code class="inline-code">long</code> 类型</td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 123;        // 十进制 int
+int b = 0123;       // 八进制 int (等于 83)
+int c = 0x1A;       // 十六进制 int (等于 26)
+long d = 123L;      // long 类型</code></pre></div><h4>1.2 浮点数字面量</h4><p>表示浮点数，支持单精度（<code class="inline-code">float</code>）和双精度（<code class="inline-code">double</code>）。</p><table><tr><td>类型</td><td>示例</td><td>说明</td></tr></table><table><tr><td><strong>double</strong></td><td><code class="inline-code">3.14</code>、<code class="inline-code">1.0e-3</code></td><td>默认为 <code class="inline-code">double</code></td></tr></table>
+<table><tr><td><strong>float</strong></td><td><code class="inline-code">3.14f</code>、<code class="inline-code">1.0e-3f</code></td><td>后缀 <code class="inline-code">f</code> 或 <code class="inline-code">F</code> 表示 <code class="inline-code">float</code></td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">double pi = 3.14159;
+float speed = 10.5f;
+double large = 1.23e10; // 科学计数法</code></pre></div><h4>1.3 字符字面量</h4><p>表示单个字符，用单引号括起来。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">char c1 = &#039;A&#039;;
+char c2 = &#039;1&#039;;
+char c3 = &#039;\n&#039;; // 转义字符
+char c4 = &#039;\u0041&#039;; // Unicode 字符</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">char</code> 是 16 位 Unicode 字符，不是字符串。</p><h4>1.4 字符串字面量</h4><p>表示字符串，用双引号括起来。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String s1 = &quot;Hello&quot;;
+String s2 = &quot;World\n&quot;; // 包含转义字符
+String s3 = &quot;中文&quot;; // 支持 Unicode
+String s4 = &quot;Hello&quot; + &quot;World&quot;; // 字符串拼接</code></pre></div><p>> <strong>字符串是对象</strong>，存储在字符串常量池中，具有不可变性。</p><h4>1.5 布尔字面量</h4><p>只有两个值：<code class="inline-code">true</code> 和 <code class="inline-code">false</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">boolean flag = true;
+boolean isReady = false;</code></pre></div><h4>1.6 null 字面量</h4><p>表示空引用，用于初始化引用类型变量。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String name = null;
+Integer num = null;</code></pre></div><hr><h3>2. 字面量的类型推断</h3><p>Java 8+ 支持局部变量类型推断（<code class="inline-code">var</code>），字面量可用于推断类型。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">var x = 123;        // 推断为 int
+var y = 3.14;       // 推断为 double
+var z = &#039;A&#039;;        // 推断为 char
+var str = &quot;Hello&quot;;  // 推断为 String
+var flag = true;    // 推断为 boolean</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">var</code> 仅用于局部变量，不能用于类字段或方法参数。</p><hr><h3>3. 字面量的转义字符</h3><p>在字符串和字符字面量中，可以使用转义字符。</p><table><tr><td>转义字符</td><td>含义</td></tr></table><table><tr><td><code class="inline-code">\'</code></td><td>单引号</td></tr></table>
+<table><tr><td><code class="inline-code">\"</code></td><td>双引号</td></tr></table>
+<table><tr><td><code class="inline-code">\\</code></td><td>反斜杠</td></tr></table>
+<table><tr><td><code class="inline-code">\n</code></td><td>换行</td></tr></table>
+<table><tr><td><code class="inline-code">\t</code></td><td>制表符</td></tr></table>
+<table><tr><td><code class="inline-code">\r</code></td><td>回车</td></tr></table>
+<table><tr><td><code class="inline-code">\b</code></td><td>退格</td></tr></table>
+<table><tr><td><code class="inline-code">\f</code></td><td>换页</td></tr></table>
+<table><tr><td><code class="inline-code">\uXXXX</code></td><td>Unicode 字符（4 位十六进制）</td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String path = &quot;C:\\Users\\User\\Desktop&quot;;
+String message = &quot;Hello\nWorld&quot;;
+String quote = &quot;He said: \&quot;Hello!\&quot;&quot;;</code></pre></div><hr><h3>4. 字面量的注意事项</h3><table><tr><td>注意事项</td><td>说明</td></tr></table><table><tr><td><strong>整数默认为 int</strong></td><td>如果数值超出 <code class="inline-code">int</code> 范围，需加 <code class="inline-code">L</code> 后缀</td></tr></table>
+<table><tr><td><strong>浮点数默认为 double</strong></td><td>如果需要 <code class="inline-code">float</code>，必须加 <code class="inline-code">f</code> 后缀</td></tr></table>
+<table><tr><td><strong>字符串不可变</strong></td><td>字符串字面量存储在常量池，不可修改</td></tr></table>
+<table><tr><td><strong>null 不是对象</strong></td><td><code class="inline-code">null</code> 表示空引用，不是任何类的实例</td></tr></table><hr><h3>5. 总结</h3><table><tr><td>类型</td><td>字面量示例</td><td>说明</td></tr></table><table><tr><td><strong>整数</strong></td><td><code class="inline-code">123</code>, <code class="inline-code">0123</code>, <code class="inline-code">0x1A</code>, <code class="inline-code">123L</code></td><td>支持多种进制</td></tr></table>
+<table><tr><td><strong>浮点数</strong></td><td><code class="inline-code">3.14</code>, <code class="inline-code">3.14f</code>, <code class="inline-code">1.0e-3</code></td><td>默认为 double</td></tr></table>
+<table><tr><td><strong>字符</strong></td><td><code class="inline-code">'A'</code>, <code class="inline-code">'\n'</code>, <code class="inline-code">'\u0041'</code></td><td>单引号，16 位 Unicode</td></tr></table>
+<table><tr><td><strong>字符串</strong></td><td><code class="inline-code">"Hello"</code>, <code class="inline-code">"中文"</code></td><td>双引号，不可变对象</td></tr></table>
+<table><tr><td><strong>布尔</strong></td><td><code class="inline-code">true</code>, <code class="inline-code">false</code></td><td>逻辑值</td></tr></table>
+<table><tr><td><strong>null</strong></td><td><code class="inline-code">null</code></td><td>空引用</td></tr></table><p>> <strong>字面量 = 程序中的“常量值”</strong></p><p>字面量是 Java 编程中最基础的数据表示方式，理解其类型、格式和使用规则，是编写正确、高效代码的前提。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 使用 <code class="inline-code">L</code> 后缀明确长整型  
+> - 使用 <code class="inline-code">f</code> 后缀明确浮点型  
+> - 字符串拼接时注意性能（大量拼接建议用 <code class="inline-code">StringBuilder</code>）  
+> - 避免在字符串中直接写特殊字符，使用转义字符</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 3</h3>
+        <div class="topic-content"><h2>变量</h2><p>在 Java 中，<strong>变量（Variable）</strong> 是用于存储数据的内存空间的引用。每个变量都有一个<strong>类型</strong>、<strong>名称</strong>和<strong>值</strong>，用于在程序运行过程中保存和操作数据。</p><hr><h3>1. 变量的基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">数据类型 变量名 = 初始值;</code></pre></div><h4>1.1 基本数据类型变量</h4><table><tr><td>类型</td><td>占用字节</td><td>默认值</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">byte</code></td><td>1</td><td>0</td><td>-128 ~ 127</td></tr></table>
+<table><tr><td><code class="inline-code">short</code></td><td>2</td><td>0</td><td>-32768 ~ 32767</td></tr></table>
+<table><tr><td><code class="inline-code">int</code></td><td>4</td><td>0</td><td>-21亿 ~ 21亿</td></tr></table>
+<table><tr><td><code class="inline-code">long</code></td><td>8</td><td>0L</td><td>超大整数</td></tr></table>
+<table><tr><td><code class="inline-code">float</code></td><td>4</td><td>0.0f</td><td>单精度浮点数</td></tr></table>
+<table><tr><td><code class="inline-code">double</code></td><td>8</td><td>0.0</td><td>双精度浮点数</td></tr></table>
+<table><tr><td><code class="inline-code">char</code></td><td>2</td><td>'\u0000'</td><td>Unicode 字符</td></tr></table>
+<table><tr><td><code class="inline-code">boolean</code></td><td>1</td><td>false</td><td>true / false</td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte b = 10;
+short s = 1000;
+int i = 100000;
+long l = 10000000000L;
+float f = 3.14f;
+double d = 3.14159;
+char c = &#039;A&#039;;
+boolean flag = true;</code></pre></div><h4>1.2 引用类型变量</h4><p>引用类型变量存储的是对象的引用（内存地址），不是对象本身。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String name = &quot;Alice&quot;;
+int[] arr = {1, 2, 3};
+List&lt;String&gt; list = new ArrayList&lt;&gt;();
+Map&lt;String, Integer&gt; map = new HashMap&lt;&gt;();</code></pre></div><hr><h3>2. 变量的分类</h3><h4>2.1 按作用域分类</h4><table><tr><td>类型</td><td>说明</td><td>示例</td></tr></table><table><tr><td><strong>局部变量</strong></td><td>定义在方法、代码块或构造器中</td><td><code class="inline-code">int x = 10;</code></td></tr></table>
+<table><tr><td><strong>实例变量</strong></td><td>定义在类中，方法外，没有 <code class="inline-code">static</code></td><td><code class="inline-code">private String name;</code></td></tr></table>
+<table><tr><td><strong>静态变量</strong></td><td>使用 <code class="inline-code">static</code> 修饰，属于类</td><td><code class="inline-code">public static int count = 0;</code></td></tr></table><h4>2.2 按生命周期分类</h4><table><tr><td>类型</td><td>生命周期</td><td>说明</td></tr></table><table><tr><td><strong>局部变量</strong></td><td>方法执行期间</td><td>方法结束即销毁</td></tr></table>
+<table><tr><td><strong>实例变量</strong></td><td>对象生命周期</td><td>对象创建时初始化，对象销毁时释放</td></tr></table>
+<table><tr><td><strong>静态变量</strong></td><td>类加载到卸载</td><td>类加载时初始化，类卸载时释放</td></tr></table><hr><h3>3. 变量的初始化</h3><h4>3.1 显式初始化</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int age = 25;
+String city = &quot;Beijing&quot;;</code></pre></div><h4>3.2 隐式初始化（默认值）</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int x; // 默认值为 0
+boolean flag; // 默认值为 false
+String s; // 默认值为 null</code></pre></div><p>> <strong>注意</strong>：局部变量必须显式初始化，否则编译报错。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ❌ 错误：局部变量未初始化
+int x;
+System.out.println(x); // 编译错误</code></pre></div><h4>3.3 常量变量（final）</h4><p>使用 <code class="inline-code">final</code> 修饰的变量为常量，一旦赋值不能修改。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final int MAX_SIZE = 100;
+final String PI = &quot;3.14159&quot;;</code></pre></div><p>> <strong>注意</strong>：<code class="inline-code">final</code> 变量必须在声明时或构造器中初始化。</p><hr><h3>4. 变量的作用域与生命周期</h3><h4>4.1 局部变量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void test() {
+    int a = 10; // 作用域：test 方法内
+    {
+        int b = 20; // 作用域：代码块内
+        System.out.println(a + b); // 可访问
+    }
+    // System.out.println(b); // ❌ 错误：b 已超出作用域
+}</code></pre></div><h4>4.2 实例变量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Person {
+    private String name; // 实例变量，每个对象独立
+    private int age;</p><p>    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}</code></pre></div><h4>4.3 静态变量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Counter {
+    private static int count = 0; // 所有实例共享</p><p>    public Counter() {
+        count++;
+    }</p><p>    public static int getCount() {
+        return count;
+    }
+}</code></pre></div><hr><h3>5. 变量命名规范</h3><table><tr><td>类型</td><td>命名规范</td><td>示例</td></tr></table><table><tr><td><strong>局部变量、实例变量</strong></td><td>驼峰命名法（lowerCamelCase）</td><td><code class="inline-code">userName</code>, <code class="inline-code">totalAmount</code></td></tr></table>
+<table><tr><td><strong>静态变量、常量</strong></td><td>全大写，下划线分隔</td><td><code class="inline-code">MAX_SIZE</code>, <code class="inline-code">PI_VALUE</code></td></tr></table>
+<table><tr><td><strong>类名</strong></td><td>首字母大写（UpperCamelCase）</td><td><code class="inline-code">Person</code>, <code class="inline-code">OrderService</code></td></tr></table>
+<table><tr><td><strong>方法名</strong></td><td>驼峰命名法</td><td><code class="inline-code">calculateTotal()</code>, <code class="inline-code">isValid()</code></td></tr></table><hr><h3>6. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>类型</strong></td><td>基本类型或引用类型</td></tr></table>
+<table><tr><td><strong>作用域</strong></td><td>局部、实例、静态</td></tr></table>
+<table><tr><td><strong>生命周期</strong></td><td>与作用域和对象生命周期相关</td></tr></table>
+<table><tr><td><strong>初始化</strong></td><td>局部变量必须显式初始化，其他有默认值</td></tr></table>
+<table><tr><td><strong>命名</strong></td><td>遵循驼峰命名、常量全大写等规范</td></tr></table><p>> <strong>变量 = 存储数据的“容器”</strong></p><p>合理使用变量是编写清晰、高效 Java 程序的基础。应根据需求选择合适的作用域和类型，并遵循命名规范，提高代码可读性和可维护性。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 局部变量尽量靠近使用位置  
+> - 避免使用无意义的变量名（如 <code class="inline-code">a</code>, <code class="inline-code">temp</code>）  
+> - 使用 <code class="inline-code">final</code> 修饰常量，提高代码安全性  
+> - 注意变量作用域，避免命名冲突</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 4</h3>
+        <div class="topic-content"><h2>存储数据的原理 - 二进制 - 字符的存储 - ASCII 字符集</h2><p>在计算机中，所有数据最终都以<strong>二进制</strong>形式存储。理解二进制和字符编码是掌握数据存储原理的基础。</p><hr><h3>1. 二进制基础</h3><p>计算机使用二进制（Base-2）系统，由 0 和 1 组成。</p><h4>1.1 位（bit）与字节（byte）</h4><table><tr><td>单位</td><td>说明</td><td>示例</td></tr></table><table><tr><td><strong>位（bit）</strong></td><td>最小单位，0 或 1</td><td>1 位表示 2 种状态</td></tr></table>
+<table><tr><td><strong>字节（byte）</strong></td><td>8 位组成 1 字节</td><td>1 字节 = 8 bit，可表示 256 种状态</td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">01010101  // 一个字节，共 8 位</code></pre></div><h4>1.2 二进制与十进制转换</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">二进制: 1011 = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11 (十进制)</code></pre></div><h4>1.3 数据存储单位</h4><table><tr><td>单位</td><td>说明</td></tr></table><table><tr><td><strong>KB</strong></td><td>1024 字节</td></tr></table>
+<table><tr><td><strong>MB</strong></td><td>1024 KB</td></tr></table>
+<table><tr><td><strong>GB</strong></td><td>1024 MB</td></tr></table>
+<table><tr><td><strong>TB</strong></td><td>1024 GB</td></tr></table><hr><h3>2. 字符的存储 - ASCII 字符集</h3><p>ASCII（American Standard Code for Information Interchange）是最早的字符编码标准，用于表示英文字符和控制字符。</p><h4>2.1 ASCII 编码表（7 位）</h4><p>ASCII 使用 7 位二进制表示字符，共 128 个字符（0~127）。</p><table><tr><td>类型</td><td>范围</td><td>示例</td></tr></table><table><tr><td><strong>控制字符</strong></td><td>0~31, 127</td><td>回车、换行、制表符等</td></tr></table>
+<table><tr><td><strong>可打印字符</strong></td><td>32~126</td><td>空格、字母、数字、符号</td></tr></table><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">字符   <table><tr><td>ASCII 值</td></tr></table> 二进制表示
+--------------------
+A      <table><tr><td>65</td></tr></table> 1000001
+B      <table><tr><td>66</td></tr></table> 1000010
+a      <table><tr><td>97</td></tr></table> 1100001
+0      <table><tr><td>48</td></tr></table> 0110000
+空格   <table><tr><td>32</td></tr></table> 0100000</code></pre></div><h4>2.2 ASCII 在 Java 中的应用</h4><p>在 Java 中，<code class="inline-code">char</code> 类型占用 2 字节（16 位），但可以存储 ASCII 字符（0~127）。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">char c1 = &#039;A&#039;; // ASCII 65
+char c2 = &#039;0&#039;; // ASCII 48
+char c3 = &#039;\n&#039;; // ASCII 10，换行符</code></pre></div><p>> <strong>注意</strong>：Java 使用 Unicode 编码，ASCII 是 Unicode 的子集。</p><hr><h3>3. 扩展字符集</h3><p>由于 ASCII 仅支持英文，无法表示中文、日文等，因此发展出扩展编码：</p><table><tr><td>编码</td><td>说明</td></tr></table><table><tr><td><strong>ISO-8859-1</strong></td><td>拓展 ASCII，支持西欧语言</td></tr></table>
+<table><tr><td><strong>GBK</strong></td><td>中文编码，支持简体中文</td></tr></table>
+<table><tr><td><strong>UTF-8</strong></td><td>可变长度编码，兼容 ASCII，支持全球字符</td></tr></table>
+<table><tr><td><strong>Unicode</strong></td><td>16 位或 32 位编码，支持所有语言</td></tr></table><p>> <strong>Java 默认使用 UTF-8 或 Unicode 编码</strong>，<code class="inline-code">char</code> 类型为 16 位，可表示 65536 个字符。</p><hr><h3>4. 数据存储原理总结</h3><table><tr><td>层级</td><td>说明</td></tr></table><table><tr><td><strong>物理层</strong></td><td>二进制位（0/1）存储在磁盘、内存中</td></tr></table>
+<table><tr><td><strong>编码层</strong></td><td>字符通过编码（如 ASCII、UTF-8）转换为二进制</td></tr></table>
+<table><tr><td><strong>程序层</strong></td><td>Java 使用 <code class="inline-code">char</code>、<code class="inline-code">String</code> 等类型操作字符数据</td></tr></table><p>> <strong>数据存储 = 二进制 + 编码规则</strong></p><hr><h3>5. 标签</h3><p>#java基础 #二进制 #ASCII #字符编码 #数据存储 #计算机原理</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 5</h3>
+        <div class="topic-content"><h2>八进制与十六进制</h2><p>在 Java 中，除了常用的十进制，还支持<strong>八进制</strong>和<strong>十六进制</strong>表示整数，常用于位运算、内存地址、颜色编码等场景。</p><hr><h3>1. 八进制（Octal）</h3><p>八进制以 8 为基数，使用数字 0~7 表示。</p><h4>1.1 表示方法</h4><p>在 Java 中，八进制数以 <strong><code class="inline-code">0</code></strong> 开头。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int octal1 = 0123; // 八进制，等于十进制 83
+int octal2 = 077;  // 八进制，等于十进制 63
+int octal3 = 0;     // 八进制 0，等于十进制 0</code></pre></div><h4>1.2 八进制转十进制</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">0123 = 1×8² + 2×8¹ + 3×8⁰ = 64 + 16 + 3 = 83
+077  = 7×8¹ + 7×8⁰ = 56 + 7 = 63</code></pre></div><h4>1.3 注意事项</h4><ul><li>八进制不能包含 8 或 9</li>
+<li><code class="inline-code">0</code> 开头的数字会被识别为八进制，即使只有一位（如 <code class="inline-code">01</code> 是八进制 1）</li>
+<li>建议避免使用八进制，除非有特殊需求（如权限设置）</li>
+</ul>
+<hr></p><h3>2. 十六进制（Hexadecimal）</h3><p>十六进制以 16 为基数，使用 0~9 和 A~F（或 a~f）表示。</p><h4>2.1 表示方法</h4><p>在 Java 中，十六进制数以 <strong><code class="inline-code">0x</code></strong> 或 <strong><code class="inline-code">0X</code></strong> 开头。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int hex1 = 0x1A;   // 十六进制，等于十进制 26
+int hex2 = 0xFF;   // 十六进制，等于十进制 255
+int hex3 = 0xABC;  // 十六进制，等于十进制 2748</code></pre></div><h4>2.2 十六进制转十进制</h4><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">0x1A = 1×16¹ + 10×16⁰ = 16 + 10 = 26
+0xFF = 15×16¹ + 15×16⁰ = 240 + 15 = 255
+0xABC = 10×16² + 11×16¹ + 12×16⁰ = 2560 + 176 + 12 = 2748</code></pre></div><h4>2.3 常见应用场景</h4><ul><li><strong>颜色编码</strong>：<code class="inline-code">#FF0000</code>（红色） → <code class="inline-code">0xFF0000</code></li>
+<li><strong>内存地址</strong>：<code class="inline-code">0x7F800000</code>（浮点数 NaN）</li>
+<li><strong>位运算</strong>：<code class="inline-code">0x0F</code> 表示低 4 位掩码</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 颜色示例
+int red = 0xFF0000; // 红色
+int green = 0x00FF00; // 绿色
+int blue = 0x0000FF; // 蓝色</code></pre></div></p><hr><h3>3. 进制转换工具</h3><p>Java 提供了内置方法进行进制转换：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 十进制转十六进制
+String hex = Integer.toHexString(255); // &quot;ff&quot;</p><p>// 十进制转八进制
+String octal = Integer.toOctalString(63); // &quot;77&quot;</p><p>// 十六进制转十进制
+int num = Integer.parseInt(&quot;1A&quot;, 16); // 26</p><p>// 八进制转十进制
+int num2 = Integer.parseInt(&quot;77&quot;, 8); // 63</code></pre></div><hr><h3>4. 总结</h3><table><tr><td>进制</td><td>前缀</td><td>数字范围</td><td>应用场景</td></tr></table><table><tr><td><strong>十进制</strong></td><td>无</td><td>0~9</td><td>日常计算</td></tr></table>
+<table><tr><td><strong>八进制</strong></td><td><code class="inline-code">0</code></td><td>0~7</td><td>权限设置、旧系统</td></tr></table>
+<table><tr><td><strong>十六进制</strong></td><td><code class="inline-code">0x</code> 或 <code class="inline-code">0X</code></td><td>0~9, A~F</td><td>颜色、内存、位运算</td></tr></table><p>> <strong>八进制 = 0 开头，十六进制 = 0x 开头</strong></p><p>在实际开发中，十六进制使用频率更高，尤其在图形、网络、系统编程中。八进制较少使用，但了解其语法有助于阅读旧代码或处理权限设置。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 使用 <code class="inline-code">0x</code> 表示十六进制，提高可读性  
+> - 避免在代码中直接使用八进制，除非必要  
+> - 使用 <code class="inline-code">Integer.toHexString()</code> 等方法进行进制转换，避免手动计算错误</p><p>#java基础 #八进制 #十六进制 #进制转换 #整数表示 #位运算 #颜色编码</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 6</h3>
+        <div class="topic-content"><h2>数据类型</h2><p>在 Java 中，数据类型决定了变量可以存储的数据种类、占用内存大小和可执行的操作。Java 是强类型语言，所有变量必须声明类型。</p><hr><h3>1. 基本数据类型（Primitive Types）</h3><p>基本数据类型是 Java 中最基础的数据类型，存储在栈中，直接存储值。</p><table><tr><td>类型</td><td>占用字节</td><td>默认值</td><td>取值范围</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">byte</code></td><td>1</td><td>0</td><td>-128 ~ 127</td><td>小整数</td></tr></table>
+<table><tr><td><code class="inline-code">short</code></td><td>2</td><td>0</td><td>-32768 ~ 32767</td><td>中等整数</td></tr></table>
+<table><tr><td><code class="inline-code">int</code></td><td>4</td><td>0</td><td>-21亿 ~ 21亿</td><td>最常用整数</td></tr></table>
+<table><tr><td><code class="inline-code">long</code></td><td>8</td><td>0L</td><td>超大整数</td><td>需加 <code class="inline-code">L</code> 后缀</td></tr></table>
+<table><tr><td><code class="inline-code">float</code></td><td>4</td><td>0.0f</td><td>单精度浮点数</td><td>需加 <code class="inline-code">f</code> 后缀</td></tr></table>
+<table><tr><td><code class="inline-code">double</code></td><td>8</td><td>0.0</td><td>双精度浮点数</td><td>默认浮点类型</td></tr></table>
+<table><tr><td><code class="inline-code">char</code></td><td>2</td><td>'\u0000'</td><td>0 ~ 65535</td><td>Unicode 字符</td></tr></table>
+<table><tr><td><code class="inline-code">boolean</code></td><td>1</td><td>false</td><td>true / false</td><td>逻辑值</td></tr></table><h4>1.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">byte b = 10;
+short s = 30000;
+int i = 1000000;
+long l = 10000000000L;
+float f = 3.14f;
+double d = 3.14159;
+char c = &#039;A&#039;;
+boolean flag = true;</code></pre></div><hr><h3>2. 引用数据类型（Reference Types）</h3><p>引用数据类型存储的是对象的引用（内存地址），对象本身存储在堆中。</p><h4>2.1 常见引用类型</h4><table><tr><td>类型</td><td>说明</td><td>示例</td></tr></table><table><tr><td><strong>类（Class）</strong></td><td>自定义类</td><td><code class="inline-code">Person p = new Person();</code></td></tr></table>
+<table><tr><td><strong>接口（Interface）</strong></td><td>接口类型</td><td><code class="inline-code">List<String> list = new ArrayList<>();</code></td></tr></table>
+<table><tr><td><strong>数组（Array）</strong></td><td>同类型元素集合</td><td><code class="inline-code">int[] arr = {1, 2, 3};</code></td></tr></table>
+<table><tr><td><strong>字符串（String）</strong></td><td>不可变字符串</td><td><code class="inline-code">String s = "Hello";</code></td></tr></table><h4>2.2 默认值</h4><p>引用类型变量默认值为 <code class="inline-code">null</code>。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">String name = null;
+int[] arr = null;
+List&lt;String&gt; list = null;</code></pre></div><hr><h3>3. 数据类型转换</h3><h4>3.1 自动类型转换（隐式）</h4><p>从低精度到高精度，自动转换。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 10;
+long b = a; // 自动转换
+double c = a; // 自动转换</code></pre></div><h4>3.2 强制类型转换（显式）</h4><p>从高精度到低精度，需显式转换，可能丢失精度。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">double d = 3.14;
+int i = (int) d; // 强制转换，结果为 3</code></pre></div><h4>3.3 包装类转换（装箱/拆箱）</h4><p>基本类型 ↔ 包装类（自动装箱/拆箱）</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">Integer i = 10; // 自动装箱
+int x = i;      // 自动拆箱</code></pre></div><hr><h3>4. 数据类型选择建议</h3><table><tr><td>场景</td><td>推荐类型</td></tr></table><table><tr><td>小整数</td><td><code class="inline-code">byte</code> / <code class="inline-code">short</code></td></tr></table>
+<table><tr><td>通用整数</td><td><code class="inline-code">int</code></td></tr></table>
+<table><tr><td>大整数</td><td><code class="inline-code">long</code></td></tr></table>
+<table><tr><td>浮点数</td><td><code class="inline-code">double</code>（精度要求高）或 <code class="inline-code">float</code>（内存敏感）</td></tr></table>
+<table><tr><td>字符</td><td><code class="inline-code">char</code></td></tr></table>
+<table><tr><td>逻辑判断</td><td><code class="inline-code">boolean</code></td></tr></table>
+<table><tr><td>字符串</td><td><code class="inline-code">String</code></td></tr></table>
+<table><tr><td>数组</td><td><code class="inline-code">int[]</code>, <code class="inline-code">String[]</code> 等</td></tr></table><hr><h3>5. 总结</h3><table><tr><td>类型</td><td>存储位置</td><td>默认值</td><td>是否可变</td></tr></table><table><tr><td><strong>基本类型</strong></td><td>栈</td><td>0 / false / '\u0000'</td><td>不可变（值）</td></tr></table>
+<table><tr><td><strong>引用类型</strong></td><td>堆（对象）+ 栈（引用）</td><td>null</td><td>可变（对象内容）</td></tr></table><p>> <strong>数据类型 = 决定变量存储什么、如何存储、如何操作</strong></p><p>合理选择数据类型可以提高程序性能、减少内存占用、避免类型转换错误。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 优先使用 <code class="inline-code">int</code> 和 <code class="inline-code">double</code>，除非有特殊需求  
+> - 避免不必要的类型转换，防止精度丢失  
+> - 使用 <code class="inline-code">long</code> 处理大整数，避免溢出  
+> - 字符串使用 <code class="inline-code">String</code>，避免手动拼接（推荐 <code class="inline-code">StringBuilder</code>）</p><p>#java基础 #数据类型 #基本类型 #引用类型 #类型转换 #装箱拆箱 #内存存储 #编程规范</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 7</h3>
+        <div class="topic-content"><h2>标识符与关键字</h2><p>在 Java 中，<strong>标识符（Identifier）</strong> 是用于命名类、方法、变量、参数等的名称，而<strong>关键字（Keyword）</strong> 是 Java 语言预定义的保留字，具有特殊含义，不能用作标识符。</p><hr><h3>1. 标识符（Identifier）</h3><h4>1.1 标识符的命名规则</h4><table><tr><td>规则</td><td>说明</td></tr></table><table><tr><td><strong>首字符</strong></td><td>必须是字母、下划线 <code class="inline-code">_</code> 或美元符号 <code class="inline-code">$</code></td></tr></table>
+<table><tr><td><strong>后续字符</strong></td><td>可以是字母、数字、下划线 <code class="inline-code">_</code> 或美元符号 <code class="inline-code">$</code></td></tr></table>
+<table><tr><td><strong>大小写敏感</strong></td><td><code class="inline-code">myVar</code> 和 <code class="inline-code">myvar</code> 是不同的标识符</td></tr></table>
+<table><tr><td><strong>不能是关键字</strong></td><td>如 <code class="inline-code">class</code>、<code class="inline-code">public</code>、<code class="inline-code">int</code> 等不能用作标识符</td></tr></table><h4>1.2 命名规范（推荐）</h4><table><tr><td>类型</td><td>命名规范</td><td>示例</td></tr></table><table><tr><td><strong>类名</strong></td><td>首字母大写（UpperCamelCase）</td><td><code class="inline-code">Person</code>, <code class="inline-code">OrderService</code></td></tr></table>
+<table><tr><td><strong>方法名、变量名</strong></td><td>首字母小写（lowerCamelCase）</td><td><code class="inline-code">calculateTotal()</code>, <code class="inline-code">userName</code></td></tr></table>
+<table><tr><td><strong>常量名</strong></td><td>全大写，下划线分隔</td><td><code class="inline-code">MAX_SIZE</code>, <code class="inline-code">PI_VALUE</code></td></tr></table>
+<table><tr><td><strong>包名</strong></td><td>全小写，多级用点分隔</td><td><code class="inline-code">com.example.util</code></td></tr></table><h4>1.3 合法与非法标识符示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// ✅ 合法标识符
+int age;
+String userName;
+double _price;
+int $count;</p><p>// ❌ 非法标识符
+int 123age; // 以数字开头
+int class;  // 关键字
+int my-var; // 包含非法字符 <code class="inline-code">-</code></code></pre></div><hr><h3>2. 关键字（Keyword）</h3><p>关键字是 Java 语言预定义的保留字，用于定义语法结构。</p><h4>2.1 常见关键字</h4><table><tr><td>关键字</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">abstract</code></td><td>抽象类或方法</td></tr></table>
+<table><tr><td><code class="inline-code">boolean</code></td><td>布尔类型</td></tr></table>
+<table><tr><td><code class="inline-code">break</code></td><td>跳出循环或 switch</td></tr></table>
+<table><tr><td><code class="inline-code">byte</code></td><td>字节类型</td></tr></table>
+<table><tr><td><code class="inline-code">case</code></td><td>switch 分支</td></tr></table>
+<table><tr><td><code class="inline-code">catch</code></td><td>异常捕获</td></tr></table>
+<table><tr><td><code class="inline-code">char</code></td><td>字符类型</td></tr></table>
+<table><tr><td><code class="inline-code">class</code></td><td>定义类</td></tr></table>
+<table><tr><td><code class="inline-code">const</code></td><td>保留字（未使用）</td></tr></table>
+<table><tr><td><code class="inline-code">continue</code></td><td>跳过当前循环迭代</td></tr></table>
+<table><tr><td><code class="inline-code">default</code></td><td>默认分支</td></tr></table>
+<table><tr><td><code class="inline-code">do</code></td><td>do-while 循环</td></tr></table>
+<table><tr><td><code class="inline-code">double</code></td><td>双精度浮点类型</td></tr></table>
+<table><tr><td><code class="inline-code">else</code></td><td>条件分支</td></tr></table>
+<table><tr><td><code class="inline-code">enum</code></td><td>枚举类型</td></tr></table>
+<table><tr><td><code class="inline-code">extends</code></td><td>继承</td></tr></table>
+<table><tr><td><code class="inline-code">final</code></td><td>最终类、方法、变量</td></tr></table>
+<table><tr><td><code class="inline-code">finally</code></td><td>异常处理块</td></tr></table>
+<table><tr><td><code class="inline-code">float</code></td><td>单精度浮点类型</td></tr></table>
+<table><tr><td><code class="inline-code">for</code></td><td>循环</td></tr></table>
+<table><tr><td><code class="inline-code">goto</code></td><td>保留字（未使用）</td></tr></table>
+<table><tr><td><code class="inline-code">if</code></td><td>条件判断</td></tr></table>
+<table><tr><td><code class="inline-code">implements</code></td><td>实现接口</td></tr></table>
+<table><tr><td><code class="inline-code">import</code></td><td>导入包</td></tr></table>
+<table><tr><td><code class="inline-code">instanceof</code></td><td>类型判断</td></tr></table>
+<table><tr><td><code class="inline-code">int</code></td><td>整数类型</td></tr></table>
+<table><tr><td><code class="inline-code">interface</code></td><td>定义接口</td></tr></table>
+<table><tr><td><code class="inline-code">long</code></td><td>长整型</td></tr></table>
+<table><tr><td><code class="inline-code">native</code></td><td>本地方法</td></tr></table>
+<table><tr><td><code class="inline-code">new</code></td><td>创建对象</td></tr></table>
+<table><tr><td><code class="inline-code">package</code></td><td>定义包</td></tr></table>
+<table><tr><td><code class="inline-code">private</code></td><td>私有访问</td></tr></table>
+<table><tr><td><code class="inline-code">protected</code></td><td>受保护访问</td></tr></table>
+<table><tr><td><code class="inline-code">public</code></td><td>公有访问</td></tr></table>
+<table><tr><td><code class="inline-code">return</code></td><td>返回值</td></tr></table>
+<table><tr><td><code class="inline-code">short</code></td><td>短整型</td></tr></table>
+<table><tr><td><code class="inline-code">static</code></td><td>静态成员</td></tr></table>
+<table><tr><td><code class="inline-code">strictfp</code></td><td>严格浮点</td></tr></table>
+<table><tr><td><code class="inline-code">super</code></td><td>调用父类</td></tr></table>
+<table><tr><td><code class="inline-code">switch</code></td><td>多分支选择</td></tr></table>
+<table><tr><td><code class="inline-code">synchronized</code></td><td>同步</td></tr></table>
+<table><tr><td><code class="inline-code">this</code></td><td>当前对象引用</td></tr></table>
+<table><tr><td><code class="inline-code">throw</code></td><td>抛出异常</td></tr></table>
+<table><tr><td><code class="inline-code">throws</code></td><td>声明异常</td></tr></table>
+<table><tr><td><code class="inline-code">transient</code></td><td>临时变量（序列化忽略）</td></tr></table>
+<table><tr><td><code class="inline-code">try</code></td><td>异常处理</td></tr></table>
+<table><tr><td><code class="inline-code">void</code></td><td>无返回值</td></tr></table>
+<table><tr><td><code class="inline-code">volatile</code></td><td>易变变量（多线程）</td></tr></table>
+<table><tr><td><code class="inline-code">while</code></td><td>循环</td></tr></table><p>> <strong>注意</strong>：<code class="inline-code">true</code>、<code class="inline-code">false</code>、<code class="inline-code">null</code> 是<strong>字面量</strong>，不是关键字，但也不能用作标识符。</p><hr><h3>3. 标识符与关键字的使用建议</h3><ul><li><strong>避免使用关键字作为变量名或类名</strong></li>
+<li><strong>遵循命名规范，提高代码可读性</strong></li>
+<li><strong>使用有意义的标识符，避免 <code class="inline-code">a</code>, <code class="inline-code">temp</code>, <code class="inline-code">data</code> 等无意义名称</strong></li>
+<li><strong>在 IDE 中，关键字通常会高亮显示，便于识别</strong></li>
+</ul>
+<hr></p><h3>4. 总结</h3><table><tr><td>概念</td><td>说明</td></tr></table><table><tr><td><strong>标识符</strong></td><td>用户自定义的名称，用于命名类、方法、变量等</td></tr></table>
+<table><tr><td><strong>关键字</strong></td><td>Java 预定义的保留字，具有特殊语法含义</td></tr></table><p>> <strong>标识符 = 用户命名，关键字 = 语言保留</strong></p><p>合理使用标识符和避免关键字冲突，是编写规范、可读性强的 Java 代码的基础。</p><hr><p>> 💡 <strong>建议</strong>：  
+> - 使用 IDE 的自动补全和语法高亮功能  
+> - 遵循命名规范，保持团队代码风格一致  
+> - 避免使用 <code class="inline-code">class</code>、<code class="inline-code">int</code>、<code class="inline-code">public</code> 等关键字作为变量名</p><p>#java基础 #标识符 #关键字 #命名规范 #编程规范 #语法基础 #Java语法</p></div>
+      </section>
+
+      <div class="page-nav">
+        <span></span>
+        <a href="chapter02.html" class="nav-next">第2章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - Java入门基础</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

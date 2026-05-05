@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 高级教程 - 集合框架、多线程、IO流、网络编程等高级特性">
+  <title>Java 高级 · 编程知识库</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link active"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🚀 Java 高级教程</div>
+        <h1>Java 高级</h1>
+        <p>深入学习 Java 高级特性，掌握企业级开发所需的核心技术。</p>
+      </div>
+
+      <div class="coming-soon">
+        <div class="coming-soon-icon">🚧</div>
+        <h2>内容建设中</h2>
+        <p>Java 高级教程正在准备中，敬请期待...</p>
+      </div>
+
+      <section class="section">
+        <h2>📋 即将上线的内容</h2>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">📦</div>
+            <h4>集合框架</h4>
+            <p>List、Set、Map、Queue 等集合的使用与源码分析</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧵</div>
+            <h4>多线程编程</h4>
+            <p>线程、锁、线程池、并发工具类</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📄</div>
+            <h4>IO 流</h4>
+            <p>字节流、字符流、缓冲流、NIO</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h4>网络编程</h4>
+            <p>Socket、HTTP、Netty</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🗄️</div>
+            <h4>JDBC</h4>
+            <p>数据库连接、事务管理、连接池</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔧</div>
+            <h4>反射与注解</h4>
+            <p>动态代理、自定义注解、注解处理器</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📝</div>
+            <h4>泛型</h4>
+            <p>泛型类、泛型方法、通配符</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h4>JVM</h4>
+            <p>内存模型、GC、类加载机制</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <h4>设计模式</h4>
+            <p>23种设计模式在Java中的实现</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>📚 学习建议</h2>
+        <div class="tip-list">
+          <div class="tip-item">
+            <span class="tip-icon">1️⃣</span>
+            <div>
+              <h4>先掌握基础</h4>
+              <p>建议先完成 <a href="../java基础/">Java基础</a> 的学习</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">2️⃣</span>
+            <div>
+              <h4>结合实践</h4>
+              <p>高级特性需要通过项目实践来深入理解</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">3️⃣</span>
+            <div>
+              <h4>源码阅读</h4>
+              <p>阅读JDK源码是提升的最佳途径</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-nav">
+        <a href="../java基础/" class="nav-prev">← Java 基础</a>
+        <span></span>
+      </div>
+
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 高级教程</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 数组 - 编程知识库">
+  <title>第4章: 数组 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link active"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">📊 第4章</div>
+        <h1>数组</h1>
+        <p>Java基础教程 - 数组</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 33</a></li>
+          <li><a href="#section-2">2. 34</a></li>
+          <li><a href="#section-3">3. 35</a></li>
+          <li><a href="#section-4">4. 36</a></li>
+          <li><a href="#section-5">5. 37</a></li>
+          <li><a href="#section-6">6. 38</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 33</h3>
+        <div class="topic-content"><h2>数组概述 - 静态初始化</h2><p>在 Java 中，<strong>数组</strong>是一种用于存储多个相同类型数据的容器。它是编程中最基础、最常用的数据结构之一，广泛应用于数据存储、算法实现、集合操作等场景。</p><hr><h3>1. 什么是数组？</h3><p>数组是<strong>一组连续内存空间</strong>，用于存储相同类型的数据。数组中的每个元素通过<strong>索引（下标）</strong>访问，索引从 <code class="inline-code">0</code> 开始。</p><h4>1.1 数组的特点</h4><ul><li><strong>固定长度</strong>：数组一旦创建，长度不可变</li>
+<li><strong>相同类型</strong>：数组中所有元素必须是同一类型</li>
+<li><strong>连续存储</strong>：元素在内存中连续存放，访问效率高</li>
+<li><strong>索引访问</strong>：通过索引快速访问任意元素</li>
+</ul>
+<hr></p><h3>2. 数组的声明</h3><p>数组的声明语法如下：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">数据类型[] 数组名;</code></pre></div><h4>2.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores; // 声明一个 int 类型的数组
+String[] names; // 声明一个 String 类型的数组
+double[] prices; // 声明一个 double 类型的数组</code></pre></div><p>> ✅ 推荐写法：<code class="inline-code">数据类型[] 数组名</code>（更清晰）</p><hr><h3>3. 数组的静态初始化</h3><p>静态初始化是指在声明数组时，直接为数组元素赋值，<strong>不需要使用 <code class="inline-code">new</code> 关键字</strong>。</p><h4>3.1 语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">数据类型[] 数组名 = {值1, 值2, 值3, ...};</code></pre></div><h4>3.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = {90, 85, 95, 78, 88};
+String[] names = {&quot;张三&quot;, &quot;李四&quot;, &quot;王五&quot;};
+double[] prices = {10.5, 20.0, 15.8};</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>数组长度由初始化值的个数决定</li>
+<li>不需要手动指定长度</li>
+</ul>
+<hr></p><h3>4. 数组的访问</h3><p>数组元素通过索引访问，索引从 <code class="inline-code">0</code> 开始。</p><h4>4.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = {90, 85, 95, 78, 88};</p><p>System.out.println(scores[0]); // 输出: 90
+System.out.println(scores[2]); // 输出: 95
+System.out.println(scores[4]); // 输出: 88</code></pre></div><p>> ⚠️ 注意：索引越界会导致 <code class="inline-code">ArrayIndexOutOfBoundsException</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.println(scores[5]); // ❌ 报错：索引越界</code></pre></div><hr><h3>5. 数组的长度</h3><p>数组的长度可以通过 <code class="inline-code">数组名.length</code> 获取。</p><h4>5.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = {90, 85, 95, 78, 88};
+System.out.println(&quot;数组长度: &quot; + scores.length); // 输出: 5</code></pre></div><hr><h3>6. 静态初始化的注意事项</h3><h4>6.1 不能混合类型</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] arr = {1, &quot;hello&quot;}; // ❌ 编译错误：类型不一致</code></pre></div><h4>6.2 不能使用变量初始化</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int a = 10;
+int[] arr = {a, 20, 30}; // ✅ 正确：变量可以使用</code></pre></div><h4>6.3 不能在静态初始化中使用 <code class="inline-code">new</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] arr = new int[]{1, 2, 3}; // ✅ 正确：等价于静态初始化</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>静态初始化</strong></td><td>在声明时直接赋值，无需 <code class="inline-code">new</code></td></tr></table>
+<table><tr><td><strong>语法</strong></td><td><code class="inline-code">数据类型[] 数组名 = {值1, 值2, ...};</code></td></tr></table>
+<table><tr><td><strong>长度</strong></td><td>由初始化值个数决定</td></tr></table>
+<table><tr><td><strong>访问</strong></td><td>通过索引 <code class="inline-code">数组名[索引]</code></td></tr></table>
+<table><tr><td><strong>长度获取</strong></td><td><code class="inline-code">数组名.length</code></td></tr></table><p>> <strong>静态初始化 = 简洁、高效的数组创建方式</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在数组长度已知且固定时，优先使用静态初始化  
+> - 使用有意义的数组名（如 <code class="inline-code">scores</code>、<code class="inline-code">names</code>）  
+> - 注意索引越界问题，避免程序崩溃  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性</p><p>#java基础 #数组 #静态初始化 #数组声明 #数组访问 #数组长度 #编程基础</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 34</h3>
+        <div class="topic-content"><h2>一维数组 - 动态初始化</h2><p>在 Java 中，数组的初始化方式分为<strong>静态初始化</strong>和<strong>动态初始化</strong>。本节重点介绍<strong>动态初始化</strong>，即先声明数组，再通过 <code class="inline-code">new</code> 关键字分配内存空间，并为数组元素赋默认值。</p><hr><h3>1. 什么是动态初始化？</h3><p>动态初始化是指在声明数组时，<strong>不直接赋值</strong>，而是通过 <code class="inline-code">new</code> 关键字为数组分配内存空间，并根据数据类型自动初始化元素为默认值。</p><h4>1.1 语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">数据类型[] 数组名 = new 数据类型[数组长度];</code></pre></div><h4>1.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = new int[5]; // 创建一个长度为 5 的 int 数组
+String[] names = new String[3]; // 创建一个长度为 3 的 String 数组</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>数组长度必须是整数，且不能为负数</li>
+<li>数组元素会自动初始化为默认值</li>
+</ul>
+<hr></p><h3>2. 默认值规则</h3><p>不同数据类型在动态初始化后会自动赋值为默认值：</p><table><tr><td>数据类型</td><td>默认值</td></tr></table><table><tr><td><code class="inline-code">int</code>、<code class="inline-code">byte</code>、<code class="inline-code">short</code>、<code class="inline-code">long</code></td><td><code class="inline-code">0</code></td></tr></table>
+<table><tr><td><code class="inline-code">float</code>、<code class="inline-code">double</code></td><td><code class="inline-code">0.0</code></td></tr></table>
+<table><tr><td><code class="inline-code">char</code></td><td><code class="inline-code">'\u0000'</code>（空字符）</td></tr></table>
+<table><tr><td><code class="inline-code">boolean</code></td><td><code class="inline-code">false</code></td></tr></table>
+<table><tr><td>引用类型（如 <code class="inline-code">String</code>、<code class="inline-code">Object</code>）</td><td><code class="inline-code">null</code></td></tr></table><h4>2.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = new int[5];
+System.out.println(scores[0]); // 输出: 0
+System.out.println(scores[4]); // 输出: 0</p><p>String[] names = new String[3];
+System.out.println(names[0]); // 输出: null
+System.out.println(names[2]); // 输出: null</code></pre></div><hr><h3>3. 动态初始化的使用场景</h3><h4>3.1 数组长度未知</h4><p>当数组长度由用户输入或程序逻辑决定时，使用动态初始化。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class DynamicArrayExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;请输入数组长度: &quot;);
+        int length = scanner.nextInt();</p><p>        int[] arr = new int[length]; // 长度由用户输入决定
+        System.out.println(&quot;数组长度: &quot; + arr.length);
+    }
+}</code></pre></div><h4>3.2 需要手动赋值</h4><p>动态初始化后，可以手动为数组元素赋值。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = new int[5];
+scores[0] = 90;
+scores[1] = 85;
+scores[2] = 95;
+scores[3] = 78;
+scores[4] = 88;</code></pre></div><hr><h3>4. 数组的访问与修改</h3><p>动态初始化后，可以通过索引访问和修改数组元素。</p><h4>4.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = new int[5];
+scores[0] = 90;
+scores[1] = 85;
+scores[2] = 95;
+scores[3] = 78;
+scores[4] = 88;</p><p>System.out.println(&quot;第 1 个成绩: &quot; + scores[0]); // 输出: 90
+System.out.println(&quot;第 3 个成绩: &quot; + scores[2]); // 输出: 95</p><p>scores[1] = 92; // 修改第 2 个成绩
+System.out.println(&quot;修改后的第 2 个成绩: &quot; + scores[1]); // 输出: 92</code></pre></div><hr><h3>5. 数组的长度</h3><p>数组的长度可以通过 <code class="inline-code">数组名.length</code> 获取。</p><h4>5.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[] scores = new int[5];
+System.out.println(&quot;数组长度: &quot; + scores.length); // 输出: 5</code></pre></div><p>> ⚠️ 注意：数组长度一旦确定，<strong>不可更改</strong></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">scores.length = 10; // ❌ 编译错误：length 是只读属性</code></pre></div><hr><h3>6. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>动态初始化</strong></td><td>使用 <code class="inline-code">new</code> 分配内存，自动初始化默认值</td></tr></table>
+<table><tr><td><strong>语法</strong></td><td><code class="inline-code">数据类型[] 数组名 = new 数据类型[长度];</code></td></tr></table>
+<table><tr><td><strong>默认值</strong></td><td>根据数据类型自动赋值</td></tr></table>
+<table><tr><td><strong>长度</strong></td><td>由 <code class="inline-code">new</code> 指定，不可更改</td></tr></table>
+<table><tr><td><strong>访问</strong></td><td>通过索引 <code class="inline-code">数组名[索引]</code></td></tr></table><p>> <strong>动态初始化 = 灵活、可控的数组创建方式</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在数组长度已知且固定时，优先使用静态初始化  
+> - 在数组长度由用户输入或程序逻辑决定时，使用动态初始化  
+> - 注意数组索引越界问题，避免程序崩溃  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性</p><p>#java基础 #数组 #动态初始化 #数组声明 #数组长度 #编程基础</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 35</h3>
+        <div class="topic-content"><h2>一维数组 - 求最值案例</h2><p>在实际编程中，经常需要对数组中的元素进行统计分析，如求最大值、最小值、平均值等。本节通过实现一个<strong>求一维数组中最大值和最小值</strong>的案例，帮助你巩固数组的遍历、条件判断和循环结构。</p><hr><h3>1. 案例目标</h3><p>编写程序，输入一个一维数组，找出其中的最大值和最小值。</p><h4>1.1 功能需求</h4><ul><li>输入一个数组（或使用静态初始化）</li>
+<li>遍历数组，找出最大值和最小值</li>
+<li>输出最大值和最小值</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入 Scanner 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class ArrayMaxMin {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // 输入数组
+        // 求最大值和最小值
+        // 输出结果
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class ArrayMaxMin {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        // 输入数组长度
+        System.out.print(&quot;请输入数组长度: &quot;);
+        int length = scanner.nextInt();</p><p>        // 动态初始化数组
+        int[] arr = new int[length];</p><p>        // 输入数组元素
+        System.out.println(&quot;请输入 &quot; + length + &quot; 个整数：&quot;);
+        for (int i = 0; i &lt; length; i++) {
+            arr[i] = scanner.nextInt();
+        }</p><p>        // 求最大值和最小值
+        int max = arr[0];
+        int min = arr[0];</p><p>        for (int i = 1; i &lt; length; i++) {
+            if (arr[i] &gt; max) {
+                max = arr[i];
+            }
+            if (arr[i] &lt; min) {
+                min = arr[i];
+            }
+        }</p><p>        // 输出结果
+        System.out.println(&quot;数组: &quot;);
+        for (int i = 0; i &lt; length; i++) {
+            System.out.print(arr[i] + &quot; &quot;);
+        }
+        System.out.println();</p><p>        System.out.println(&quot;最大值: &quot; + max);
+        System.out.println(&quot;最小值: &quot; + min);</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入数组长度: 5
+请输入 5 个整数：
+90 85 95 78 88
+数组: 
+90 85 95 78 88 
+最大值: 95
+最小值: 78</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>输入数组</td><td><code class="inline-code">Scanner</code> + <code class="inline-code">for</code> 循环</td></tr></table>
+<table><tr><td>遍历数组</td><td><code class="inline-code">for</code> 循环</td></tr></table>
+<table><tr><td>求最大值</td><td><code class="inline-code">if (arr[i] > max)</code></td></tr></table>
+<table><tr><td>求最小值</td><td><code class="inline-code">if (arr[i] < min)</code></td></tr></table>
+<table><tr><td>输出结果</td><td><code class="inline-code">System.out.println</code></td></tr></table><hr><h3>6. 优化建议</h3><h4>6.1 初始化最大值和最小值</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int max = arr[0];
+int min = arr[0];</code></pre></div><p>> 说明：从 <code class="inline-code">arr[0]</code> 开始，避免 <code class="inline-code">arr[1]</code> 越界</p><h4>6.2 使用 <code class="inline-code">Math.max()</code> 和 <code class="inline-code">Math.min()</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">max = Math.max(max, arr[i]);
+min = Math.min(min, arr[i]);</code></pre></div><p>> 说明：更简洁，但性能略低</p><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">for</code> 循环</td><td>遍历数组</td></tr></table>
+<table><tr><td><code class="inline-code">if</code> 条件判断</td><td>比较大小</td></tr></table>
+<table><tr><td><code class="inline-code">数组访问</code></td><td><code class="inline-code">arr[i]</code></td></tr></table><p>> <strong>求最值 = 数组遍历的经典案例</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，使用 <code class="inline-code">Arrays.sort()</code> 排序后取首尾元素  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #数组 #求最值 #编程练习 #数组遍历 #条件判断 #代码实践</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 36</h3>
+        <div class="topic-content"><h2>一维数组 - 综合案例实战</h2><p>本节通过一个<strong>综合案例</strong>，将数组的声明、初始化、遍历、求最值、排序等知识点融合在一起，实现一个完整的程序：<strong>统计学生成绩并分析</strong>。</p><hr><h3>1. 案例目标</h3><p>编写程序，输入多个学生的成绩，统计并输出以下信息：</p><ul><li>最高分</li>
+<li>最低分</li>
+<li>平均分</li>
+<li>及格人数</li>
+<li>不及格人数</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入 Scanner 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StudentScoreAnalysis {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // 输入学生人数
+        // 输入成绩
+        // 统计分析
+        // 输出结果
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class StudentScoreAnalysis {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        // 输入学生人数
+        System.out.print(&quot;请输入学生人数: &quot;);
+        int n = scanner.nextInt();</p><p>        // 动态初始化数组
+        int[] scores = new int[n];</p><p>        // 输入成绩
+        System.out.println(&quot;请输入 &quot; + n + &quot; 个成绩：&quot;);
+        for (int i = 0; i &lt; n; i++) {
+            scores[i] = scanner.nextInt();
+        }</p><p>        // 统计分析
+        int max = scores[0];
+        int min = scores[0];
+        int sum = 0;
+        int passCount = 0;
+        int failCount = 0;</p><p>        for (int i = 0; i &lt; n; i++) {
+            // 更新最大值和最小值
+            if (scores[i] &gt; max) {
+                max = scores[i];
+            }
+            if (scores[i] &lt; min) {
+                min = scores[i];
+            }</p><p>            // 累加总分
+            sum += scores[i];</p><p>            // 统计及格人数
+            if (scores[i] &gt;= 60) {
+                passCount++;
+            } else {
+                failCount++;
+            }
+        }</p><p>        // 计算平均分
+        double average = (double) sum / n;</p><p>        // 输出结果
+        System.out.println(&quot;成绩统计分析：&quot;);
+        System.out.println(&quot;最高分: &quot; + max);
+        System.out.println(&quot;最低分: &quot; + min);
+        System.out.printf(&quot;平均分: %.2f%n&quot;, average);
+        System.out.println(&quot;及格人数: &quot; + passCount);
+        System.out.println(&quot;不及格人数: &quot; + failCount);</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入学生人数: 5
+请输入 5 个成绩：
+85 92 78 65 58
+成绩统计分析：
+最高分: 92
+最低分: 58
+平均分: 76.00
+及格人数: 4
+不及格人数: 1</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>输入学生人数</td><td><code class="inline-code">Scanner</code></td></tr></table>
+<table><tr><td>输入成绩</td><td><code class="inline-code">for</code> 循环</td></tr></table>
+<table><tr><td>求最大值</td><td><code class="inline-code">if (scores[i] > max)</code></td></tr></table>
+<table><tr><td>求最小值</td><td><code class="inline-code">if (scores[i] < min)</code></td></tr></table>
+<table><tr><td>求平均分</td><td><code class="inline-code">sum / n</code></td></tr></table>
+<table><tr><td>统计及格人数</td><td><code class="inline-code">if (scores[i] >= 60)</code></td></tr></table><hr><h3>6. 扩展功能（可选）</h3><h4>6.1 添加排序功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 使用 Arrays.sort() 排序
+import java.util.Arrays;
+Arrays.sort(scores);
+System.out.println(&quot;排序后成绩: &quot;);
+for (int score : scores) {
+    System.out.print(score + &quot; &quot;);
+}</code></pre></div><h4>6.2 添加排名功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 输出排名
+System.out.println(&quot;成绩排名：&quot;);
+for (int i = 0; i &lt; n; i++) {
+    System.out.println((i + 1) + &quot; 名: &quot; + scores[i]);
+}</code></pre></div><h4>6.3 添加优秀率统计</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int excellentCount = 0;
+for (int score : scores) {
+    if (score &gt;= 90) {
+        excellentCount++;
+    }
+}
+System.out.println(&quot;优秀人数: &quot; + excellentCount);</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">for</code> 循环</td><td>遍历数组</td></tr></table>
+<table><tr><td><code class="inline-code">if</code> 条件判断</td><td>比较大小</td></tr></table>
+<table><tr><td><code class="inline-code">数组访问</code></td><td><code class="inline-code">scores[i]</code></td></tr></table>
+<table><tr><td><code class="inline-code">数组统计</code></td><td>求最值、平均分、计数</td></tr></table><p>> <strong>综合案例 = 数组知识的全面应用</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，使用 <code class="inline-code">Arrays.sort()</code> 排序后分析  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #数组 #综合案例 #成绩分析 #编程练习 #数组遍历 #条件判断 #代码实践</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 37</h3>
+        <div class="topic-content"><h2>二维数组 - 概述、定义</h2><p>在 Java 中，<strong>二维数组</strong>是一种用于存储二维数据结构的容器，可以看作是“数组的数组”。它常用于表示表格、矩阵、图像等二维数据。</p><hr><h3>1. 什么是二维数组？</h3><p>二维数组是<strong>一个数组，其每个元素本身也是一个数组</strong>。它通常用于表示二维数据，如表格、矩阵、棋盘等。</p><h4>1.1 二维数组的特点</h4><ul><li><strong>二维结构</strong>：行和列</li>
+<li><strong>固定大小</strong>：一旦创建，大小不可变</li>
+<li><strong>连续存储</strong>：元素在内存中连续存放</li>
+<li><strong>索引访问</strong>：通过 <code class="inline-code">(行索引, 列索引)</code> 访问元素</li>
+</ul>
+<hr></p><h3>2. 二维数组的声明</h3><p>二维数组的声明语法如下：</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">数据类型[][] 数组名;</code></pre></div><h4>2.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix; // 声明一个 int 类型的二维数组
+String[][] names; // 声明一个 String 类型的二维数组
+double[][] prices; // 声明一个 double 类型的二维数组</code></pre></div><p>> ✅ 推荐写法：<code class="inline-code">数据类型[][] 数组名</code>（更清晰）</p><hr><h3>3. 二维数组的定义</h3><p>二维数组的定义是指为数组分配内存空间，并初始化元素。</p><h4>3.1 静态定义</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>每个内层数组是一个“行”</li>
+<li><code class="inline-code">matrix[0][0] = 1</code>, <code class="inline-code">matrix[1][2] = 6</code></li>
+</ul>
+<h4>3.2 动态定义</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = new int[3][4]; // 3 行 4 列</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">new int[3][4]</code> 创建一个 3×4 的二维数组</li>
+<li>所有元素默认值为 <code class="inline-code">0</code></li>
+</ul>
+<hr></p><h3>4. 二维数组的访问</h3><p>二维数组元素通过 <code class="inline-code">(行索引, 列索引)</code> 访问。</p><h4>4.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};</p><p>System.out.println(matrix[0][0]); // 输出: 1
+System.out.println(matrix[1][2]); // 输出: 6
+System.out.println(matrix[2][1]); // 输出: 8</code></pre></div><p>> ⚠️ 注意：索引越界会导致 <code class="inline-code">ArrayIndexOutOfBoundsException</code></p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">System.out.println(matrix[3][0]); // ❌ 报错：行索引越界</code></pre></div><hr><h3>5. 二维数组的长度</h3><p>二维数组的长度可以通过 <code class="inline-code">数组名.length</code> 获取。</p><h4>5.1 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};</p><p>System.out.println(&quot;行数: &quot; + matrix.length); // 输出: 3
+System.out.println(&quot;列数: &quot; + matrix[0].length); // 输出: 3</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">matrix.length</code>：行数</li>
+<li><code class="inline-code">matrix[i].length</code>：第 <code class="inline-code">i</code> 行的列数</li>
+</ul>
+<hr></p><h3>6. 二维数组的初始化</h3><h4>6.1 静态初始化</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};</code></pre></div><h4>6.2 动态初始化</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = new int[3][4]; // 3 行 4 列，所有元素为 0</code></pre></div><h4>6.3 混合初始化</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int[][] matrix = new int[3][];
+matrix[0] = new int[2]; // 第 0 行 2 列
+matrix[1] = new int[3]; // 第 1 行 3 列
+matrix[2] = new int[4]; // 第 2 行 4 列</code></pre></div><p>> <strong>说明</strong>：不规则二维数组（每行长度不同）</p><hr><h3>7. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>二维数组</strong></td><td>数组的数组，用于二维数据</td></tr></table>
+<table><tr><td><strong>声明</strong></td><td><code class="inline-code">数据类型[][] 数组名</code></td></tr></table>
+<table><tr><td><strong>静态初始化</strong></td><td><code class="inline-code">new int[][]{{}, {}}</code></td></tr></table>
+<table><tr><td><strong>动态初始化</strong></td><td><code class="inline-code">new int[行][列]</code></td></tr></table>
+<table><tr><td><strong>访问</strong></td><td><code class="inline-code">数组名[行][列]</code></td></tr></table>
+<table><tr><td><strong>长度</strong></td><td><code class="inline-code">数组名.length</code>（行数）</td></tr></table><p>> <strong>二维数组 = 处理表格、矩阵的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，使用 <code class="inline-code">Arrays.deepToString()</code> 输出二维数组  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 注意数组索引越界问题，避免程序崩溃</p><p>#java基础 #二维数组 #数组定义 #数组声明 #数组访问 #编程基础</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 38</h3>
+        <div class="topic-content"><h2>二维数组 - 综合案例</h2><p>本节通过一个<strong>综合案例</strong>，将二维数组的声明、初始化、遍历、求和等知识点融合在一起，实现一个完整的程序：<strong>学生成绩管理系统</strong>。</p><hr><h3>1. 案例目标</h3><p>编写程序，输入多个班级、多个学生的成绩，统计并输出以下信息：</p><ul><li>每个班级的平均分</li>
+<li>每个学生的总分</li>
+<li>全校最高分</li>
+<li>全校最低分</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 导入 Scanner 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</code></pre></div><h4>2.2 主程序结构</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class StudentScoreSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // 输入班级数和学生数
+        // 输入成绩
+        // 统计分析
+        // 输出结果
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 完整代码实现</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class StudentScoreSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        // 输入班级数和学生数
+        System.out.print(&quot;请输入班级数量: &quot;);
+        int numClasses = scanner.nextInt();
+        System.out.print(&quot;请输入每个班级的学生数量: &quot;);
+        int numStudents = scanner.nextInt();</p><p>        // 动态初始化二维数组
+        int[][] scores = new int[numClasses][numStudents];</p><p>        // 输入成绩
+        System.out.println(&quot;请输入 &quot; + numClasses + &quot; 个班级，每个班级 &quot; + numStudents + &quot; 名学生的成绩：&quot;);
+        for (int i = 0; i &lt; numClasses; i++) {
+            System.out.println(&quot;请输入第 &quot; + (i + 1) + &quot; 班的成绩：&quot;);
+            for (int j = 0; j &lt; numStudents; j++) {
+                scores[i][j] = scanner.nextInt();
+            }
+        }</p><p>        // 统计分析
+        int totalMax = scores[0][0];
+        int totalMin = scores[0][0];
+        double totalAverage = 0;
+        int totalStudents = numClasses * numStudents;</p><p>        // 每个班级的平均分
+        System.out.println(&quot;各班级平均分：&quot;);
+        for (int i = 0; i &lt; numClasses; i++) {
+            int classSum = 0;
+            for (int j = 0; j &lt; numStudents; j++) {
+                classSum += scores[i][j];
+                // 更新全校最值
+                if (scores[i][j] &gt; totalMax) {
+                    totalMax = scores[i][j];
+                }
+                if (scores[i][j] &lt; totalMin) {
+                    totalMin = scores[i][j];
+                }
+            }
+            double classAverage = (double) classSum / numStudents;
+            System.out.printf(&quot;第 %d 班平均分: %.2f%n&quot;, i + 1, classAverage);
+            totalAverage += classAverage;
+        }</p><p>        // 全校平均分
+        totalAverage /= numClasses;
+        System.out.printf(&quot;全校平均分: %.2f%n&quot;, totalAverage);</p><p>        // 每个学生的总分
+        System.out.println(&quot;各学生总分：&quot;);
+        for (int j = 0; j &lt; numStudents; j++) {
+            int studentTotal = 0;
+            for (int i = 0; i &lt; numClasses; i++) {
+                studentTotal += scores[i][j];
+            }
+            System.out.printf(&quot;第 %d 学生总分: %d%n&quot;, j + 1, studentTotal);
+        }</p><p>        // 输出全校最值
+        System.out.println(&quot;全校最高分: &quot; + totalMax);
+        System.out.println(&quot;全校最低分: &quot; + totalMin);</p><p>        scanner.close();
+    }
+}</code></pre></div><hr><h3>4. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入班级数量: 2
+请输入每个班级的学生数量: 3
+请输入 2 个班级，每个班级 3 名学生的成绩：
+请输入第 1 班的成绩：
+85 92 78
+请输入第 2 班的成绩：
+65 88 95
+各班级平均分：
+第 1 班平均分: 85.00
+第 2 班平均分: 82.67
+全校平均分: 83.83
+各学生总分：
+第 1 学生总分: 150
+第 2 学生总分: 180
+第 3 学生总分: 173
+全校最高分: 95
+全校最低分: 65</code></pre></div><hr><h3>5. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>输入班级和学生数</td><td><code class="inline-code">Scanner</code></td></tr></table>
+<table><tr><td>输入成绩</td><td><code class="inline-code">for</code> 循环嵌套</td></tr></table>
+<table><tr><td>求班级平均分</td><td><code class="inline-code">for</code> 循环</td></tr></table>
+<table><tr><td>求学生总分</td><td><code class="inline-code">for</code> 循环嵌套</td></tr></table>
+<table><tr><td>求最值</td><td><code class="inline-code">if</code> 条件判断</td></tr></table>
+<table><tr><td>输出结果</td><td><code class="inline-code">System.out.println</code></td></tr></table><hr><h3>6. 扩展功能（可选）</h3><h4>6.1 添加排序功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 对每个班级的成绩排序
+for (int i = 0; i &lt; numClasses; i++) {
+    Arrays.sort(scores[i]);
+}</code></pre></div><h4>6.2 添加排名功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">// 输出每个学生的排名
+System.out.println(&quot;各学生排名：&quot;);
+for (int j = 0; j &lt; numStudents; j++) {
+    int rank = 1;
+    for (int k = 0; k &lt; numStudents; k++) {
+        if (studentTotal &gt; scores[k][j]) {
+            rank++;
+        }
+    }
+    System.out.printf(&quot;第 %d 学生排名: %d%n&quot;, j + 1, rank);
+}</code></pre></div><h4>6.3 添加优秀率统计</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">int excellentCount = 0;
+for (int i = 0; i &lt; numClasses; i++) {
+    for (int j = 0; j &lt; numStudents; j++) {
+        if (scores[i][j] &gt;= 90) {
+            excellentCount++;
+        }
+    }
+}
+System.out.println(&quot;优秀人数: &quot; + excellentCount);</code></pre></div><hr><h3>7. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table>
+<table><tr><td><code class="inline-code">for</code> 循环嵌套</td><td>遍历二维数组</td></tr></table>
+<table><tr><td><code class="inline-code">if</code> 条件判断</td><td>比较大小</td></tr></table>
+<table><tr><td><code class="inline-code">数组访问</code></td><td><code class="inline-code">scores[i][j]</code></td></tr></table>
+<table><tr><td><code class="inline-code">数组统计</code></td><td>求和、平均分、最值</td></tr></table><p>> <strong>综合案例 = 二维数组知识的全面应用</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，使用 <code class="inline-code">Arrays.deepToString()</code> 输出二维数组  
+> - 在复杂逻辑中，考虑拆分为函数，提高可读性  
+> - 添加用户提示，提升交互体验</p><p>#java基础 #二维数组 #综合案例 #成绩管理 #编程练习 #数组遍历 #条件判断 #代码实践</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter03.html" class="nav-prev">← 第3章</a>
+        <a href="chapter05.html" class="nav-next">第5章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 数组</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 继承 - 编程知识库">
+  <title>第6章: 继承 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link active"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">🧬 第6章</div>
+        <h1>继承</h1>
+        <p>Java基础教程 - 继承</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 48</a></li>
+          <li><a href="#section-2">2. 49</a></li>
+          <li><a href="#section-3">3. 50</a></li>
+          <li><a href="#section-4">4. 51</a></li>
+          <li><a href="#section-5">5. 52</a></li>
+          <li><a href="#section-6">6. 53</a></li>
+          <li><a href="#section-7">7. 54</a></li>
+          <li><a href="#section-8">8. 55</a></li>
+          <li><a href="#section-9">9. 56</a></li>
+          <li><a href="#section-10">10. 57</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 48</h3>
+        <div class="topic-content"><h2>继承 - 认识继承</h2><p>在 Java 中，<strong>继承（Inheritance）</strong> 是面向对象编程的三大特性之一，它允许一个类（子类）继承另一个类（父类）的属性和方法，实现代码的复用和扩展。</p><hr><h3>1. 什么是继承？</h3><p>继承是一种“is-a”关系，表示子类是父类的一种特殊类型。通过继承，子类可以复用父类的代码，同时可以添加新的功能或修改已有功能。</p><h4>1.1 继承的语法</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class 子类名 extends 父类名 {
+    // 子类的属性和方法
+}</code></pre></div><h4>1.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    String name;
+    int age;</p><p>    void eat() {
+        System.out.println(&quot;动物在吃东西&quot;);
+    }</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Dog</code> 是 <code class="inline-code">Animal</code> 的子类</li>
+<li><code class="inline-code">Dog</code> 继承了 <code class="inline-code">Animal</code> 的 <code class="inline-code">name</code>、<code class="inline-code">age</code>、<code class="inline-code">eat()</code>、<code class="inline-code">sleep()</code> 方法</li>
+<li><code class="inline-code">Dog</code> 可以添加自己的方法 <code class="inline-code">bark()</code></li>
+</ul>
+<hr></p><h3>2. 继承的特点</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>代码复用</strong></td><td>子类复用父类的代码，避免重复</td></tr></table>
+<table><tr><td><strong>扩展性</strong></td><td>子类可以添加新功能</td></tr></table>
+<table><tr><td><strong>多态性</strong></td><td>同一个接口可以有不同的实现方式</td></tr></table>
+<table><tr><td><strong>单继承</strong></td><td>Java 不支持多继承，一个类只能继承一个父类</td></tr></table><hr><h3>3. 继承的访问权限</h3><h4>3.1 访问权限控制</h4><table><tr><td>权限修饰符</td><td>同类</td><td>同包</td><td>子类</td><td>其他</td></tr></table><table><tr><td><code class="inline-code">private</code></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr></table>
+<table><tr><td><code class="inline-code">default</code></td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr></table>
+<table><tr><td><code class="inline-code">protected</code></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr></table>
+<table><tr><td><code class="inline-code">public</code></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr></table><h4>3.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    private String name; // 私有，子类不能访问
+    protected int age; // 受保护，子类可以访问
+    public String color; // 公共，任何地方都可以访问
+}</code></pre></div><hr><h3>4. 继承的使用场景</h3><h4>4.1 代码复用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    void eat() {
+        System.out.println(&quot;人在吃东西&quot;);
+    }</p><p>    void sleep() {
+        System.out.println(&quot;人在睡觉&quot;);
+    }
+}</p><p>class Student extends Person {
+    String school;</p><p>    void study() {
+        System.out.println(&quot;学生在学习&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Student</code> 继承了 <code class="inline-code">Person</code> 的 <code class="inline-code">name</code>、<code class="inline-code">age</code>、<code class="inline-code">eat()</code>、<code class="inline-code">sleep()</code> 方法</li>
+<li><code class="inline-code">Student</code> 添加了自己的属性 <code class="inline-code">school</code> 和方法 <code class="inline-code">study()</code></li>
+</ul>
+<hr></p><h4>4.2 扩展功能</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Vehicle {
+    String brand;
+    int speed;</p><p>    void start() {
+        System.out.println(&quot;车辆启动&quot;);
+    }</p><p>    void stop() {
+        System.out.println(&quot;车辆停止&quot;);
+    }
+}</p><p>class Car extends Vehicle {
+    int doors;</p><p>    void openDoors() {
+        System.out.println(&quot;车门打开&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Car</code> 继承了 <code class="inline-code">Vehicle</code> 的 <code class="inline-code">brand</code>、<code class="inline-code">speed</code>、<code class="inline-code">start()</code>、<code class="inline-code">stop()</code> 方法</li>
+<li><code class="inline-code">Car</code> 添加了自己的属性 <code class="inline-code">doors</code> 和方法 <code class="inline-code">openDoors()</code></li>
+</ul>
+<hr></p><h3>5. 继承的注意事项</h3><h4>5.1 构造方法</h4><ul><li>子类构造方法必须调用父类构造方法</li>
+<li>使用 <code class="inline-code">super()</code> 调用父类构造方法</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    String name;
+    int age;</p><p>    Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}</p><p>class Dog extends Animal {
+    Dog(String name, int age) {
+        super(name, age); // 调用父类构造方法
+    }
+}</code></pre></div></p><h4>5.2 方法重写</h4><ul><li>子类可以重写父类的方法，实现不同的行为</li>
+<li>使用 <code class="inline-code">@Override</code> 注解</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div></p><hr><h3>6. 总结</h3><table><tr><td>特性</td><td>说明</td></tr></table><table><tr><td><strong>继承</strong></td><td>子类继承父类的属性和方法</td></tr></table>
+<table><tr><td><strong>语法</strong></td><td><code class="inline-code">class 子类 extends 父类</code></td></tr></table>
+<table><tr><td><strong>访问权限</strong></td><td>子类可以访问父类的 <code class="inline-code">protected</code> 和 <code class="inline-code">public</code> 成员</td></tr></table>
+<table><tr><td><strong>构造方法</strong></td><td>子类构造方法必须调用父类构造方法</td></tr></table>
+<table><tr><td><strong>方法重写</strong></td><td>子类可以重写父类的方法</td></tr></table><p>> <strong>继承 = 代码复用和扩展的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用继承实现代码复用  
+> - 在复杂逻辑中，考虑使用接口定义行为  
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟继承关系</p><p>#java基础 #继承 #面向对象编程 #代码复用 #方法重写 #构造方法</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 49</h3>
+        <div class="topic-content"><h2>继承 - 权限修饰符</h2><p>在 Java 中，<strong>权限修饰符</strong>（Access Modifiers）用于控制类、属性、方法的访问范围。它们在继承中起着至关重要的作用，决定了子类能否访问父类的成员。</p><hr><h3>1. 权限修饰符的种类</h3><p>Java 提供了四种权限修饰符，按访问权限从大到小排列：</p><table><tr><td>修饰符</td><td>说明</td><td>访问范围</td></tr></table><table><tr><td><code class="inline-code">public</code></td><td>公共的</td><td>任何地方都可以访问</td></tr></table>
+<table><tr><td><code class="inline-code">protected</code></td><td>受保护的</td><td>同包 + 子类可以访问</td></tr></table>
+<table><tr><td><code class="inline-code">default</code>（无修饰符）</td><td>默认的</td><td>同包可以访问</td></tr></table>
+<table><tr><td><code class="inline-code">private</code></td><td>私有的</td><td>仅限本类访问</td></tr></table><hr><h3>2. 权限修饰符的访问规则</h3><h4>2.1 访问权限表</h4><table><tr><td>修饰符</td><td>同类</td><td>同包</td><td>子类</td><td>其他</td></tr></table><table><tr><td><code class="inline-code">private</code></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr></table>
+<table><tr><td><code class="inline-code">default</code></td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr></table>
+<table><tr><td><code class="inline-code">protected</code></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr></table>
+<table><tr><td><code class="inline-code">public</code></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr></table><hr><h3>3. 权限修饰符在继承中的应用</h3><h4>3.1 <code class="inline-code">private</code> 修饰符</h4><ul><li>子类不能访问父类的 <code class="inline-code">private</code> 成员</li>
+<li><code class="inline-code">private</code> 成员仅限本类访问</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    private String name; // 私有成员
+    protected int age; // 受保护成员
+    public String color; // 公共成员
+}</p><p>class Dog extends Animal {
+    void showInfo() {
+        // System.out.println(name); // ❌ 编译错误：不能访问 private 成员
+        System.out.println(age); // ✅ 可以访问 protected 成员
+        System.out.println(color); // ✅ 可以访问 public 成员
+    }
+}</code></pre></div></p><hr><h4>3.2 <code class="inline-code">protected</code> 修饰符</h4><ul><li>子类可以访问父类的 <code class="inline-code">protected</code> 成员</li>
+<li><code class="inline-code">protected</code> 成员在不同包中也可以被子类访问</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">package com.example.animal;</p><p>public class Animal {
+    protected String name;
+    protected int age;
+}</p><p>package com.example.dog;</p><p>import com.example.animal.Animal;</p><p>public class Dog extends Animal {
+    void showInfo() {
+        System.out.println(&quot;名字: &quot; + name);
+        System.out.println(&quot;年龄: &quot; + age);
+    }
+}</code></pre></div></p><hr><h4>3.3 <code class="inline-code">default</code> 修饰符</h4><ul><li>同包中的类可以访问</li>
+<li>不同包中的子类不能访问</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">package com.example.animal;</p><p>class Animal {
+    String name; // 默认修饰符
+    int age; // 默认修饰符
+}</p><p>package com.example.dog;</p><p>import com.example.animal.Animal;</p><p>public class Dog extends Animal {
+    void showInfo() {
+        System.out.println(&quot;名字: &quot; + name); // ✅ 同包可以访问
+        System.out.println(&quot;年龄: &quot; + age); // ✅ 同包可以访问
+    }
+}</code></pre></div></p><hr><h4>3.4 <code class="inline-code">public</code> 修饰符</h4><ul><li>任何地方都可以访问</li>
+<li>子类可以访问父类的 <code class="inline-code">public</code> 成员</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    public String name;
+    public int age;
+}</p><p>class Dog extends Animal {
+    void showInfo() {
+        System.out.println(&quot;名字: &quot; + name);
+        System.out.println(&quot;年龄: &quot; + age);
+    }
+}</code></pre></div></p><hr><h3>4. 权限修饰符的最佳实践</h3><h4>4.1 封装原则</h4><ul><li>尽量使用 <code class="inline-code">private</code> 修饰成员变量</li>
+<li>提供 <code class="inline-code">public</code> 方法访问和修改私有成员</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    private String name;
+    private int age;</p><p>    public void setName(String name) {
+        this.name = name;
+    }</p><p>    public String getName() {
+        return name;
+    }</p><p>    public void setAge(int age) {
+        if (age &gt; 0 &amp;&amp; age &lt; 150) {
+            this.age = age;
+        } else {
+            System.out.println(&quot;年龄不合法&quot;);
+        }
+    }</p><p>    public int getAge() {
+        return age;
+    }
+}</code></pre></div></p><h4>4.2 继承中的权限</h4><ul><li>子类应尽量使用 <code class="inline-code">protected</code> 或 <code class="inline-code">public</code> 修饰符</li>
+<li>避免使用 <code class="inline-code">private</code> 修饰符，除非是内部实现细节</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>修饰符</td><td>说明</td><td>适用场景</td></tr></table><table><tr><td><code class="inline-code">private</code></td><td>仅限本类访问</td><td>实现细节</td></tr></table>
+<table><tr><td><code class="inline-code">default</code></td><td>同包访问</td><td>包内类共享</td></tr></table>
+<table><tr><td><code class="inline-code">protected</code></td><td>同包 + 子类访问</td><td>继承场景</td></tr></table>
+<table><tr><td><code class="inline-code">public</code></td><td>任何地方访问</td><td>公共接口</td></tr></table><p>> <strong>权限修饰符 = 控制访问范围的工具</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用 <code class="inline-code">private</code> 封装数据  
+> - 在继承中，使用 <code class="inline-code">protected</code> 或 <code class="inline-code">public</code> 提供访问接口  
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟权限控制</p><p>#java基础 #权限修饰符 #继承 #封装 #访问控制 #编程实践</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 50</h3>
+        <div class="topic-content"><h2>继承后的特点</h2><p>在 Java 中，继承（Inheritance）是面向对象编程的核心特性之一。通过继承，子类可以复用父类的属性和方法，同时可以扩展或修改父类的功能。继承后，子类与父类之间形成了一种“is-a”的关系，即子类是父类的一种特殊类型。</p><hr><h3>1. 继承的基本特点</h3><h4>1.1 代码复用</h4><p>继承允许子类复用父类的代码，避免重复编写相同的逻辑。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    String name;
+    int age;</p><p>    void eat() {
+        System.out.println(&quot;动物在吃东西&quot;);
+    }</p><p>    void sleep() {
+        System.out.println(&quot;动物在睡觉&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Dog</code> 类继承了 <code class="inline-code">Animal</code> 类的 <code class="inline-code">name</code>、<code class="inline-code">age</code>、<code class="inline-code">eat()</code>、<code class="inline-code">sleep()</code> 方法</li>
+<li><code class="inline-code">Dog</code> 类可以使用这些继承的成员，无需重新定义</li>
+</ul>
+<hr></p><h4>1.2 扩展功能</h4><p>子类可以在继承的基础上添加新的属性和方法，实现功能扩展。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Vehicle {
+    String brand;
+    int speed;</p><p>    void start() {
+        System.out.println(&quot;车辆启动&quot;);
+    }</p><p>    void stop() {
+        System.out.println(&quot;车辆停止&quot;);
+    }
+}</p><p>class Car extends Vehicle {
+    int doors;</p><p>    void openDoors() {
+        System.out.println(&quot;车门打开&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Car</code> 类继承了 <code class="inline-code">Vehicle</code> 类的 <code class="inline-code">brand</code>、<code class="inline-code">speed</code>、<code class="inline-code">start()</code>、<code class="inline-code">stop()</code> 方法</li>
+<li><code class="inline-code">Car</code> 类添加了自己的属性 <code class="inline-code">doors</code> 和方法 <code class="inline-code">openDoors()</code></li>
+</ul>
+<hr></p><h3>2. 继承的访问控制</h3><h4>2.1 访问权限</h4><ul><li>子类可以访问父类的 <code class="inline-code">protected</code> 和 <code class="inline-code">public</code> 成员</li>
+<li>子类不能访问父类的 <code class="inline-code">private</code> 成员</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    private String name;
+    protected int age;
+    public String color;
+}</p><p>class Dog extends Animal {
+    void showInfo() {
+        // System.out.println(name); // ❌ 编译错误：不能访问 private 成员
+        System.out.println(age); // ✅ 可以访问 protected 成员
+        System.out.println(color); // ✅ 可以访问 public 成员
+    }
+}</code></pre></div></p><hr><h3>3. 继承的构造方法</h3><h4>3.1 构造方法的调用</h4><ul><li>子类构造方法必须调用父类构造方法</li>
+<li>使用 <code class="inline-code">super()</code> 调用父类构造方法</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    String name;
+    int age;</p><p>    Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}</p><p>class Dog extends Animal {
+    Dog(String name, int age) {
+        super(name, age); // 调用父类构造方法
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">super()</code> 必须是子类构造方法的第一条语句</li>
+<li>如果父类没有无参构造方法，子类必须显式调用父类的构造方法</li>
+</ul>
+<hr></p><h3>4. 继承的多态性</h3><h4>4.1 方法重写</h4><p>子类可以重写父类的方法，实现不同的行为。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">@Override</code> 注解用于标记方法重写</li>
+<li>重写后，子类对象调用该方法时，执行子类的方法</li>
+</ul>
+<hr></p><h4>4.2 多态性</h4><p>多态性允许同一个接口有不同的实现方式。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a1 = new Dog();
+        Animal a2 = new Cat();</p><p>        a1.makeSound(); // 输出: 汪汪
+        a2.makeSound(); // 输出: 喵喵
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 类型的引用可以指向 <code class="inline-code">Dog</code> 或 <code class="inline-code">Cat</code> 对象</li>
+<li>调用 <code class="inline-code">makeSound()</code> 方法时，执行的是实际对象的方法</li>
+</ul>
+<hr></p><h3>5. 继承的注意事项</h3><h4>5.1 单继承</h4><ul><li>Java 不支持多继承，一个类只能继承一个父类</li>
+<li>但可以实现多个接口</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void eat() {
+        System.out.println(&quot;动物在吃东西&quot;);
+    }
+}</p><p>interface Flyable {
+    void fly();
+}</p><p>class Bird extends Animal implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</code></pre></div></p><hr><h4>5.2 构造方法的顺序</h4><ul><li>构造方法的执行顺序是：父类构造方法 → 子类构造方法</li>
+<li>父类构造方法必须先执行</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    Animal() {
+        System.out.println(&quot;父类构造方法&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    Dog() {
+        System.out.println(&quot;子类构造方法&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+    }
+}</code></pre></div></p><p>> <strong>输出</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">父类构造方法
+子类构造方法</code></pre></div></p><hr><h3>6. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>代码复用</strong></td><td>子类复用父类的代码</td></tr></table>
+<table><tr><td><strong>扩展功能</strong></td><td>子类可以添加新功能</td></tr></table>
+<table><tr><td><strong>访问控制</strong></td><td>子类可以访问父类的 <code class="inline-code">protected</code> 和 <code class="inline-code">public</code> 成员</td></tr></table>
+<table><tr><td><strong>构造方法</strong></td><td>子类构造方法必须调用父类构造方法</td></tr></table>
+<table><tr><td><strong>多态性</strong></td><td>同一个接口可以有不同的实现方式</td></tr></table><p>> <strong>继承 = 代码复用和扩展的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用继承实现代码复用  
+> - 在复杂逻辑中，考虑使用接口定义行为  
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟继承关系</p><p>#java基础 #继承 #代码复用 #方法重写 #多态性 #构造方法</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 51</h3>
+        <div class="topic-content"><h2>继承 - 方法重写 - 应用场景：toString() 方法</h2><p>在 Java 中，<code class="inline-code">toString()</code> 方法是 <code class="inline-code">Object</code> 类提供的一个方法，用于返回对象的字符串表示。通过继承和方法重写，我们可以为自定义类提供更清晰、更有意义的字符串表示，方便调试和日志输出。</p><hr><h3>1. toString() 方法的作用</h3><ul><li><strong>默认行为</strong>：<code class="inline-code">Object</code> 类的 <code class="inline-code">toString()</code> 返回格式为 <code class="inline-code">类名@哈希码</code></li>
+<li><strong>重写目的</strong>：提供更直观、可读性强的字符串表示</li>
+</ul>
+<h4>1.1 默认 toString()</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Person p = new Person(&quot;张三&quot;, 20);
+        System.out.println(p); // 输出: Person@1b6d3586
+    }
+}</code></pre></div><p>> <strong>说明</strong>：输出的是对象的内存地址，不直观。</p><hr><h3>2. 重写 toString() 方法</h3><h4>2.1 重写方式</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }</p><p>    @Override
+    public String toString() {
+        return &quot;Person{&quot; +
+                &quot;name=&#039;&quot; + name + &#039;\&#039;&#039; +
+                &quot;, age=&quot; + age +
+                &#039;}&#039;;
+    }
+}</code></pre></div><h4>2.2 使用示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        Person p = new Person(&quot;张三&quot;, 20);
+        System.out.println(p); // 输出: Person{name=&#039;张三&#039;, age=20}
+    }
+}</code></pre></div><p>> <strong>说明</strong>：输出的是自定义的字符串表示，更直观。</p><hr><h3>3. toString() 方法的应用场景</h3><h4>3.1 调试和日志</h4><ul><li>在调试时，输出对象信息</li>
+<li>在日志中记录对象状态</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Logger {
+    public static void log(Object obj) {
+        System.out.println(&quot;日志信息: &quot; + obj.toString());
+    }</p><p>    public static void main(String[] args) {
+        Person p = new Person(&quot;张三&quot;, 20);
+        log(p); // 输出: 日志信息: Person{name=&#039;张三&#039;, age=20}
+    }
+}</code></pre></div></p><hr><h4>3.2 输出集合中的对象</h4><ul><li>集合类（如 <code class="inline-code">List</code>、<code class="inline-code">Set</code>）在打印时会调用对象的 <code class="inline-code">toString()</code> 方法</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.ArrayList;
+import java.util.List;</p><p>public class Main {
+    public static void main(String[] args) {
+        List&lt;Person&gt; list = new ArrayList&lt;&gt;();
+        list.add(new Person(&quot;张三&quot;, 20));
+        list.add(new Person(&quot;李四&quot;, 25));</p><p>        System.out.println(list); // 输出: [Person{name=&#039;张三&#039;, age=20}, Person{name=&#039;李四&#039;, age=25}]
+    }
+}</code></pre></div></p><hr><h4>3.3 自定义对象的字符串表示</h4><ul><li>提供更清晰的输出格式</li>
+<li>便于用户理解和使用</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Book {
+    String title;
+    String author;
+    double price;</p><p>    Book(String title, String author, double price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+    }</p><p>    @Override
+    public String toString() {
+        return &quot;Book{&quot; +
+                &quot;title=&#039;&quot; + title + &#039;\&#039;&#039; +
+                &quot;, author=&#039;&quot; + author + &#039;\&#039;&#039; +
+                &quot;, price=&quot; + price +
+                &#039;}&#039;;
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Book b = new Book(&quot;Java编程思想&quot;, &quot;Bruce Eckel&quot;, 99.0);
+        System.out.println(b); // 输出: Book{title=&#039;Java编程思想&#039;, author=&#039;Bruce Eckel&#039;, price=99.0}
+    }
+}</code></pre></div></p><hr><h3>4. toString() 方法的最佳实践</h3><h4>4.1 使用 <code class="inline-code">@Override</code> 注解</h4><ul><li>明确表示重写父类方法</li>
+<li>避免拼写错误</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">@Override
+public String toString() {
+    return &quot;Person{&quot; +
+            &quot;name=&#039;&quot; + name + &#039;\&#039;&#039; +
+            &quot;, age=&quot; + age +
+            &#039;}&#039;;
+}</code></pre></div></p><h4>4.2 使用 <code class="inline-code">StringBuilder</code> 提高性能</h4><ul><li>在 <code class="inline-code">toString()</code> 方法中，使用 <code class="inline-code">StringBuilder</code> 提高性能</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">@Override
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(&quot;Person{&quot;);
+    sb.append(&quot;name=&#039;&quot;).append(name).append(&#039;\&#039;&#039;);
+    sb.append(&quot;, age=&quot;).append(age);
+    sb.append(&#039;}&#039;);
+    return sb.toString();
+}</code></pre></div></p><h4>4.3 避免无限递归</h4><ul><li>如果对象包含对自身的引用，可能导致栈溢出</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Circle {
+    double radius;
+    Circle(double radius) {
+        this.radius = radius;
+    }</p><p>    @Override
+    public String toString() {
+        return &quot;Circle{&quot; +
+                &quot;radius=&quot; + radius +
+                &#039;}&#039;;
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：避免在 <code class="inline-code">toString()</code> 中调用自身的方法</p><hr><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>默认行为</strong></td><td>返回类名@哈希码</td></tr></table>
+<table><tr><td><strong>重写目的</strong></td><td>提供更清晰的字符串表示</td></tr></table>
+<table><tr><td><strong>应用场景</strong></td><td>调试、日志、集合输出</td></tr></table>
+<table><tr><td><strong>最佳实践</strong></td><td>使用 <code class="inline-code">@Override</code>、<code class="inline-code">StringBuilder</code></td></tr></table><p>> <strong>toString() = 对象的字符串表示</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在自定义类中重写 <code class="inline-code">toString()</code> 方法
+> - 使用 <code class="inline-code">StringBuilder</code> 提高性能
+> - 在调试和日志中使用 <code class="inline-code">toString()</code> 方法</p><p>#java基础 #继承 #方法重写 #toString() #调试 #日志 #集合输出</p></div>
+      </section>
+      <section class="section" id="section-5">
+        <h3>5. 52</h3>
+        <div class="topic-content"><h2>继承 - 子类构造器的特点与应用场景</h2><p>在 Java 中，构造器（Constructor）用于初始化对象。当一个类继承另一个类时，子类的构造器必须调用父类的构造器，以确保父类的初始化逻辑被执行。理解子类构造器的特点对于正确使用继承至关重要。</p><hr><h3>1. 子类构造器的特点</h3><h4>1.1 构造器的调用顺序</h4><ul><li><strong>父类构造器先执行</strong>：子类构造器的第一条语句必须是 <code class="inline-code">super()</code> 或 <code class="inline-code">this()</code>，否则编译器会自动插入 <code class="inline-code">super()</code>。</li>
+<li><strong>子类构造器后执行</strong>：父类构造器执行完毕后，子类构造器继续执行。</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    String name;
+    int age;</p><p>    Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println(&quot;父类构造器执行&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    String breed;</p><p>    Dog(String name, int age, String breed) {
+        super(name, age); // 调用父类构造器
+        this.breed = breed;
+        System.out.println(&quot;子类构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>输出</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">父类构造器执行
+子类构造器执行</code></pre></div></p><hr><h4>1.2 构造器的调用方式</h4><ul><li><strong>显式调用父类构造器</strong>：使用 <code class="inline-code">super()</code> 调用父类构造器</li>
+<li><strong>隐式调用父类构造器</strong>：如果子类构造器没有显式调用 <code class="inline-code">super()</code>，编译器会自动插入 <code class="inline-code">super()</code>，前提是父类有无参构造器</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    String name;
+    int age;</p><p>    Animal() {
+        System.out.println(&quot;父类无参构造器执行&quot;);
+    }</p><p>    Animal(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println(&quot;父类有参构造器执行&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    String breed;</p><p>    Dog(String name, int age, String breed) {
+        super(name, age); // 显式调用父类有参构造器
+        this.breed = breed;
+        System.out.println(&quot;子类构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li>如果父类没有无参构造器，子类必须显式调用父类的有参构造器</li>
+<li>如果父类有无参构造器，子类可以不显式调用 <code class="inline-code">super()</code>，编译器会自动插入</li>
+</ul>
+<hr></p><h3>2. 子类构造器的应用场景</h3><h4>2.1 初始化父类和子类的属性</h4><ul><li>子类构造器可以初始化父类和子类的属性</li>
+<li>通过 <code class="inline-code">super()</code> 调用父类构造器，确保父类的初始化逻辑被执行</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println(&quot;父类构造器执行&quot;);
+    }
+}</p><p>class Student extends Person {
+    String school;
+    int grade;</p><p>    Student(String name, int age, String school, int grade) {
+        super(name, age); // 初始化父类属性
+        this.school = school;
+        this.grade = grade;
+        System.out.println(&quot;子类构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">super(name, age)</code> 初始化父类的 <code class="inline-code">name</code> 和 <code class="inline-code">age</code></li>
+<li><code class="inline-code">this.school</code> 和 <code class="inline-code">this.grade</code> 初始化子类的属性</li>
+</ul>
+<hr></p><h4>2.2 多级继承中的构造器调用</h4><ul><li>在多级继承中，构造器的调用顺序是从最顶层父类开始，逐级向下</li>
+<li>每一层的构造器都必须调用其直接父类的构造器</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    Animal() {
+        System.out.println(&quot;Animal 构造器执行&quot;);
+    }
+}</p><p>class Mammal extends Animal {
+    Mammal() {
+        System.out.println(&quot;Mammal 构造器执行&quot;);
+    }
+}</p><p>class Dog extends Mammal {
+    Dog() {
+        System.out.println(&quot;Dog 构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>输出</strong>：
+<div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">Animal 构造器执行
+Mammal 构造器执行
+Dog 构造器执行</code></pre></div></p><hr><h4>2.3 使用 <code class="inline-code">this()</code> 调用本类的其他构造器</h4><ul><li>子类构造器可以使用 <code class="inline-code">this()</code> 调用本类的其他构造器</li>
+<li><code class="inline-code">this()</code> 必须是构造器的第一条语句</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println(&quot;有参构造器执行&quot;);
+    }</p><p>    Person() {
+        this(&quot;张三&quot;, 20); // 调用有参构造器
+        System.out.println(&quot;无参构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">this()</code> 调用本类的其他构造器</li>
+<li><code class="inline-code">this()</code> 必须是构造器的第一条语句</li>
+</ul>
+<hr></p><h3>3. 子类构造器的注意事项</h3><h4>3.1 构造器的调用顺序</h4><ul><li><strong>父类构造器先执行</strong>：子类构造器的第一条语句必须是 <code class="inline-code">super()</code> 或 <code class="inline-code">this()</code></li>
+<li><strong>子类构造器后执行</strong>：父类构造器执行完毕后，子类构造器继续执行</li>
+</ul>
+<h4>3.2 构造器的调用方式</h4><ul><li><strong>显式调用父类构造器</strong>：使用 <code class="inline-code">super()</code> 调用父类构造器</li>
+<li><strong>隐式调用父类构造器</strong>：如果子类构造器没有显式调用 <code class="inline-code">super()</code>，编译器会自动插入 <code class="inline-code">super()</code>，前提是父类有无参构造器</li>
+</ul>
+<h4>3.3 构造器的调用限制</h4><ul><li><strong>不能在 <code class="inline-code">static</code> 块中调用构造器</strong></li>
+<li><strong>不能在 <code class="inline-code">static</code> 方法中调用构造器</strong></li>
+</ul>
+<hr></p><h3>4. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>构造器的调用顺序</strong></td><td>父类构造器先执行，子类构造器后执行</td></tr></table>
+<table><tr><td><strong>构造器的调用方式</strong></td><td>使用 <code class="inline-code">super()</code> 调用父类构造器，使用 <code class="inline-code">this()</code> 调用本类构造器</td></tr></table>
+<table><tr><td><strong>构造器的调用限制</strong></td><td><code class="inline-code">this()</code> 必须是构造器的第一条语句</td></tr></table><p>> <strong>子类构造器 = 初始化对象的关键</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在子类构造器中，显式调用父类构造器
+> - 在多级继承中，确保每一层的构造器都正确调用其父类的构造器
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式简化对象创建</p><p>#java基础 #继承 #构造器 #子类构造器 #构造器调用 #初始化对象</p></div>
+      </section>
+      <section class="section" id="section-6">
+        <h3>6. 53</h3>
+        <div class="topic-content"><h2>继承 - 构造器用 <code class="inline-code">this()</code> 调用兄弟构造器</h2><p>在 Java 中，<code class="inline-code">this()</code> 是一个特殊的语法，用于在同一个类中调用其他构造器。它通常用于<strong>构造器重载</strong>，避免重复代码。当一个类有多个构造器时，可以使用 <code class="inline-code">this()</code> 在一个构造器中调用另一个构造器，从而实现代码复用。</p><hr><h3>1. <code class="inline-code">this()</code> 的基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">this(参数列表);</code></pre></div><ul><li><code class="inline-code">this()</code> 必须是构造器的第一条语句</li>
+<li><code class="inline-code">this()</code> 用于调用本类中的其他构造器</li>
+<li><code class="inline-code">this()</code> 不能在 <code class="inline-code">static</code> 方法或 <code class="inline-code">static</code> 块中使用</li>
+</ul>
+<hr></p><h3>2. <code class="inline-code">this()</code> 的使用场景</h3><h4>2.1 构造器重载</h4><p>当一个类有多个构造器时，可以使用 <code class="inline-code">this()</code> 调用其他构造器，避免重复代码。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;
+    String gender;</p><p>    // 无参构造器
+    Person() {
+        this(&quot;张三&quot;, 20, &quot;男&quot;); // 调用有参构造器
+    }</p><p>    // 有参构造器
+    Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        System.out.println(&quot;有参构造器执行&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">this("张三", 20, "男")</code> 调用 <code class="inline-code">Person(String name, int age, String gender)</code> 构造器</li>
+<li><code class="inline-code">this()</code> 必须是构造器的第一条语句</li>
+</ul>
+<hr></p><h4>2.2 构造器链</h4><p><code class="inline-code">this()</code> 可以形成构造器链，从一个构造器调用另一个构造器，最终调用最底层的构造器。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;
+    String gender;</p><p>    // 无参构造器
+    Person() {
+        this(&quot;张三&quot;, 20, &quot;男&quot;); // 调用有参构造器
+    }</p><p>    // 有参构造器
+    Person(String name, int age) {
+        this(name, age, &quot;男&quot;); // 调用三参构造器
+    }</p><p>    // 三参构造器
+    Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        System.out.println(&quot;三参构造器执行&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">this("张三", 20, "男")</code> 调用 <code class="inline-code">Person(String name, int age, String gender)</code> 构造器</li>
+<li><code class="inline-code">this(name, age)</code> 调用 <code class="inline-code">Person(String name, int age, String gender)</code> 构造器</li>
+</ul>
+<hr></p><h3>3. <code class="inline-code">this()</code> 的注意事项</h3><h4>3.1 <code class="inline-code">this()</code> 必须是构造器的第一条语句</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    Person(String name, int age) {
+        System.out.println(&quot;执行其他逻辑&quot;);
+        this(name); // ❌ 编译错误：this() 必须是第一条语句
+    }</p><p>    Person(String name) {
+        this.name = name;
+        System.out.println(&quot;有参构造器执行&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：<code class="inline-code">this()</code> 必须是构造器的第一条语句，否则编译器会报错。</p><hr><h4>3.2 <code class="inline-code">this()</code> 不能调用 <code class="inline-code">super()</code></h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    Person(String name, int age) {
+        this(name); // ✅ 调用本类的其他构造器
+    }</p><p>    Person(String name) {
+        this.name = name;
+        System.out.println(&quot;有参构造器执行&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：<code class="inline-code">this()</code> 用于调用本类的其他构造器，<code class="inline-code">super()</code> 用于调用父类的构造器。</p><hr><h4>3.3 <code class="inline-code">this()</code> 不能在 <code class="inline-code">static</code> 方法中使用</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;</p><p>    static void createPerson() {
+        this(&quot;张三&quot;, 20); // ❌ 编译错误：不能在 static 方法中使用 this()
+    }</p><p>    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+        System.out.println(&quot;有参构造器执行&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：<code class="inline-code">this()</code> 只能在实例构造器中使用，不能在 <code class="inline-code">static</code> 方法或 <code class="inline-code">static</code> 块中使用。</p><hr><h3>4. <code class="inline-code">this()</code> 的应用场景</h3><h4>4.1 简化构造器代码</h4><ul><li>避免重复代码</li>
+<li>提高代码可维护性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;
+    String gender;</p><p>    Person() {
+        this(&quot;张三&quot;, 20, &quot;男&quot;); // 调用有参构造器
+    }</p><p>    Person(String name, int age) {
+        this(name, age, &quot;男&quot;); // 调用三参构造器
+    }</p><p>    Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        System.out.println(&quot;三参构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">this()</code> 用于简化构造器代码</li>
+<li>避免重复赋值逻辑</li>
+</ul>
+<hr></p><h4>4.2 构造器链的灵活性</h4><ul><li>支持多种构造方式</li>
+<li>提高代码灵活性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Person {
+    String name;
+    int age;
+    String gender;</p><p>    Person() {
+        this(&quot;张三&quot;, 20, &quot;男&quot;); // 默认值
+    }</p><p>    Person(String name) {
+        this(name, 20, &quot;男&quot;); // 默认年龄和性别
+    }</p><p>    Person(String name, int age) {
+        this(name, age, &quot;男&quot;); // 默认性别
+    }</p><p>    Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        System.out.println(&quot;三参构造器执行&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li>支持多种构造方式</li>
+<li>提高代码灵活性</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>语法</strong></td><td><code class="inline-code">this(参数列表)</code></td></tr></table>
+<table><tr><td><strong>位置</strong></td><td>必须是构造器的第一条语句</td></tr></table>
+<table><tr><td><strong>用途</strong></td><td>调用本类的其他构造器</td></tr></table>
+<table><tr><td><strong>限制</strong></td><td>不能在 <code class="inline-code">static</code> 方法中使用</td></tr></table><p>> <strong><code class="inline-code">this()</code> = 构造器重载的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在构造器重载时，使用 <code class="inline-code">this()</code> 简化代码
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟构造器调用</p><p>#java基础 #构造器 #this() #构造器重载 #代码复用</p></div>
+      </section>
+      <section class="section" id="section-7">
+        <h3>7. 54</h3>
+        <div class="topic-content"><h2>多态 - 认识多态</h2><p>在 Java 中，<strong>多态（Polymorphism）</strong> 是面向对象编程的三大特性之一，它允许同一个接口或方法在不同对象上有不同的实现方式。多态的核心思想是“<strong>一个接口，多种实现</strong>”，它提高了程序的灵活性和可扩展性。</p><hr><h3>1. 什么是多态？</h3><p>多态是指<strong>同一个方法在不同对象上表现出不同的行为</strong>。它通过继承和方法重写实现，使得程序可以在运行时根据对象的实际类型选择调用哪个方法。</p><h4>1.1 多态的实现方式</h4><ul><li><strong>继承</strong>：子类继承父类</li>
+<li><strong>方法重写</strong>：子类重写父类的方法</li>
+<li><strong>向上转型</strong>：父类引用指向子类对象</li>
+</ul>
+<hr></p><h3>2. 多态的基本语法</h3><h4>2.1 父类和子类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</code></pre></div><h4>2.2 向上转型</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        Animal a1 = new Dog(); // 向上转型
+        Animal a2 = new Cat(); // 向上转型</p><p>        a1.makeSound(); // 输出: 汪汪
+        a2.makeSound(); // 输出: 喵喵
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal a1 = new Dog();</code>：父类引用指向子类对象</li>
+<li>调用 <code class="inline-code">makeSound()</code> 方法时，执行的是子类的方法</li>
+</ul>
+<hr></p><h3>3. 多态的特点</h3><h4>3.1 动态绑定</h4><ul><li>多态的实现依赖于<strong>动态绑定</strong>（Runtime Binding）</li>
+<li>在运行时根据对象的实际类型决定调用哪个方法</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.makeSound(); // 输出: 汪汪
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用</li>
+<li>但 <code class="inline-code">a</code> 实际指向 <code class="inline-code">Dog</code> 对象</li>
+<li>调用 <code class="inline-code">makeSound()</code> 方法时，执行的是 <code class="inline-code">Dog</code> 类的方法</li>
+</ul>
+<hr></p><h4>3.2 方法重写</h4><ul><li>子类可以重写父类的方法，实现不同的行为</li>
+<li>使用 <code class="inline-code">@Override</code> 注解标记方法重写</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">@Override</code> 注解用于标记方法重写</li>
+<li>提高代码可读性和安全性</li>
+</ul>
+<hr></p><h3>4. 多态的应用场景</h3><h4>4.1 集合中的对象</h4><ul><li>集合类（如 <code class="inline-code">List</code>、<code class="inline-code">Set</code>）可以存储不同类型的对象</li>
+<li>通过多态，统一处理不同类型的对象</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.ArrayList;
+import java.util.List;</p><p>class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        List&lt;Animal&gt; animals = new ArrayList&lt;&gt;();
+        animals.add(new Dog());
+        animals.add(new Cat());</p><p>        for (Animal animal : animals) {
+            animal.makeSound(); // 输出: 汪汪, 喵喵
+        }
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">List<Animal></code> 可以存储 <code class="inline-code">Dog</code> 和 <code class="inline-code">Cat</code> 对象</li>
+<li>通过多态，统一调用 <code class="inline-code">makeSound()</code> 方法</li>
+</ul>
+<hr></p><h4>4.2 接口和抽象类</h4><ul><li>接口和抽象类定义了行为规范</li>
+<li>实现类提供具体实现</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">interface Flyable {
+    void fly();
+}</p><p>class Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;鸟在飞&quot;);
+    }
+}</p><p>class Plane implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println(&quot;飞机在飞&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Flyable f1 = new Bird();
+        Flyable f2 = new Plane();</p><p>        f1.fly(); // 输出: 鸟在飞
+        f2.fly(); // 输出: 飞机在飞
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Flyable</code> 接口定义了 <code class="inline-code">fly()</code> 方法</li>
+<li><code class="inline-code">Bird</code> 和 <code class="inline-code">Plane</code> 实现了 <code class="inline-code">fly()</code> 方法</li>
+<li>通过多态，统一调用 <code class="inline-code">fly()</code> 方法</li>
+</ul>
+<hr></p><h3>5. 多态的注意事项</h3><h4>5.1 向上转型</h4><ul><li>父类引用指向子类对象</li>
+<li>只能访问父类中定义的方法</li>
+<li>不能访问子类中特有的方法</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.makeSound(); // ✅ 可以访问
+        // a.bark(); // ❌ 编译错误：不能访问子类特有的方法
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal</code> 类型的引用不能访问 <code class="inline-code">Dog</code> 类中特有的方法</li>
+<li>如果需要访问子类特有的方法，需要向下转型</li>
+</ul>
+<hr></p><h4>5.2 向下转型</h4><ul><li>将父类引用转换为子类引用</li>
+<li>使用 <code class="inline-code">(子类名)</code> 进行强制类型转换</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        Dog d = (Dog) a; // 向下转型
+        d.bark(); // ✅ 可以访问
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用</li>
+<li><code class="inline-code">d</code> 是 <code class="inline-code">Dog</code> 类型的引用</li>
+<li><code class="inline-code">d.bark()</code> 可以访问 <code class="inline-code">Dog</code> 类中特有的方法</li>
+</ul>
+<hr></p><h3>6. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>多态</strong></td><td>同一个接口，多种实现</td></tr></table>
+<table><tr><td><strong>实现方式</strong></td><td>继承 + 方法重写 + 向上转型</td></tr></table>
+<table><tr><td><strong>动态绑定</strong></td><td>在运行时根据对象的实际类型决定调用哪个方法</td></tr></table>
+<table><tr><td><strong>应用场景</strong></td><td>集合、接口、抽象类</td></tr></table><p>> <strong>多态 = 灵活性和可扩展性的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用多态实现代码复用
+> - 在复杂逻辑中，考虑使用接口定义行为
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #多态 #面向对象编程 #方法重写 #向上转型 #动态绑定</p></div>
+      </section>
+      <section class="section" id="section-8">
+        <h3>8. 55</h3>
+        <div class="topic-content"><h2>多态 - 多态的好处和存在的问题</h2><p>多态是面向对象编程的核心特性之一，它通过继承和方法重写，实现了“一个接口，多种实现”的灵活性。然而，多态在带来便利的同时，也存在一些潜在的问题。本节将详细探讨多态的好处和存在的问题。</p><hr><h3>1. 多态的好处</h3><h4>1.1 提高代码的可扩展性</h4><p>多态允许我们在不修改现有代码的情况下，添加新的子类。这符合“开闭原则”（Open-Closed Principle），即对扩展开放，对修改关闭。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        List&lt;Animal&gt; animals = new ArrayList&lt;&gt;();
+        animals.add(new Dog());
+        animals.add(new Cat());</p><p>        for (Animal animal : animals) {
+            animal.makeSound(); // 输出: 汪汪, 喵喵
+        }
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>添加新的子类（如 <code class="inline-code">Bird</code>）时，无需修改 <code class="inline-code">main</code> 方法</li>
+<li>代码具有良好的可扩展性</li>
+</ul>
+<hr></p><h4>1.2 提高代码的可维护性</h4><p>多态使得代码更加模块化，每个类负责自己的行为，降低了耦合度。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>每个类只关注自己的行为</li>
+<li>修改一个类不会影响其他类</li>
+</ul>
+<hr></p><h4>1.3 提高代码的灵活性</h4><p>多态允许我们在运行时根据对象的实际类型选择调用哪个方法，提高了程序的灵活性。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.makeSound(); // 输出: 汪汪
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用</li>
+<li>但 <code class="inline-code">a</code> 实际指向 <code class="inline-code">Dog</code> 对象</li>
+<li>调用 <code class="inline-code">makeSound()</code> 方法时，执行的是 <code class="inline-code">Dog</code> 类的方法</li>
+</ul>
+<hr></p><h3>2. 多态存在的问题</h3><h4>2.1 向下转型的风险</h4><ul><li>向下转型需要强制类型转换</li>
+<li>如果类型不匹配，会抛出 <code class="inline-code">ClassCastException</code></li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        Dog d = (Dog) a; // 向下转型
+        d.bark(); // ✅ 可以访问
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用</li>
+<li><code class="inline-code">d</code> 是 <code class="inline-code">Dog</code> 类型的引用</li>
+<li><code class="inline-code">d.bark()</code> 可以访问 <code class="inline-code">Dog</code> 类中特有的方法</li>
+</ul>
+<hr></p><h4>2.2 方法重写的影响</h4><ul><li>子类重写父类的方法，可能会影响父类的逻辑</li>
+<li>需要确保重写的方法符合父类的契约</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Dog</code> 类重写了 <code class="inline-code">makeSound()</code> 方法</li>
+<li>父类的逻辑被覆盖</li>
+</ul>
+<hr></p><h4>2.3 性能开销</h4><ul><li>多态依赖于动态绑定，有一定的性能开销</li>
+<li>在性能敏感的场景中，需要权衡</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li>多态需要在运行时确定调用哪个方法</li>
+<li>有一定的性能开销</li>
+</ul>
+<hr></p><h3>3. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>多态的好处</strong></td><td>提高代码的可扩展性、可维护性和灵活性</td></tr></table>
+<table><tr><td><strong>多态的问题</strong></td><td>向下转型的风险、方法重写的影响、性能开销</td></tr></table><p>> <strong>多态 = 灵活性和可扩展性的利器</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用多态实现代码复用
+> - 在复杂逻辑中，考虑使用接口定义行为
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #多态 #面向对象编程 #方法重写 #向上转型 #动态绑定		</p></div>
+      </section>
+      <section class="section" id="section-9">
+        <h3>9. 56</h3>
+        <div class="topic-content"><h2>多态 - 多态下的类型转换问题</h2><p>在 Java 中，多态允许父类引用指向子类对象，这为程序设计带来了极大的灵活性。然而，这种灵活性也带来了类型转换的问题。本节将详细探讨多态下的类型转换问题，包括向上转型、向下转型以及相关的注意事项。</p><hr><h3>1. 向上转型（Upcasting）</h3><h4>1.1 定义</h4><p>向上转型是指将子类对象赋值给父类引用的过程。这是自动进行的，无需显式转换。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog(); // 向上转型
+        a.makeSound(); // 输出: 汪汪
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Animal a = new Dog();</code>：将 <code class="inline-code">Dog</code> 对象赋值给 <code class="inline-code">Animal</code> 引用</li>
+<li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用，但指向 <code class="inline-code">Dog</code> 对象</li>
+<li>调用 <code class="inline-code">makeSound()</code> 方法时，执行的是 <code class="inline-code">Dog</code> 类的方法</li>
+</ul>
+<hr></p><h4>1.2 特点</h4><ul><li><strong>自动进行</strong>：无需显式转换</li>
+<li><strong>只能访问父类中定义的方法</strong>：不能访问子类中特有的方法</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.makeSound(); // ✅ 可以访问
+        // a.bark(); // ❌ 编译错误：不能访问子类特有的方法
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用</li>
+<li>但 <code class="inline-code">a</code> 实际指向 <code class="inline-code">Dog</code> 对象</li>
+<li><code class="inline-code">a.bark()</code> 会编译错误，因为 <code class="inline-code">Animal</code> 类中没有 <code class="inline-code">bark()</code> 方法</li>
+</ul>
+<hr></p><h3>2. 向下转型（Downcasting）</h3><h4>2.1 定义</h4><p>向下转型是指将父类引用转换为子类引用的过程。这是强制进行的，需要显式转换。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        Dog d = (Dog) a; // 向下转型
+        d.bark(); // ✅ 可以访问
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Animal</code> 类型的引用</li>
+<li><code class="inline-code">d</code> 是 <code class="inline-code">Dog</code> 类型的引用</li>
+<li><code class="inline-code">d.bark()</code> 可以访问 <code class="inline-code">Dog</code> 类中特有的方法</li>
+</ul>
+<hr></p><h4>2.2 特点</h4><ul><li><strong>强制进行</strong>：需要显式转换</li>
+<li><strong>类型检查</strong>：在运行时检查类型是否匹配</li>
+<li><strong>类型不匹配时抛出异常</strong>：如果类型不匹配，会抛出 <code class="inline-code">ClassCastException</code></li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    void meow() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        Dog d = (Dog) a; // ✅ 类型匹配
+        d.bark(); // ✅ 可以访问</p><p>        Animal b = new Cat();
+        // Dog d2 = (Dog) b; // ❌ 类型不匹配，抛出 ClassCastException
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">a</code> 是 <code class="inline-code">Dog</code> 对象，可以向下转型为 <code class="inline-code">Dog</code></li>
+<li><code class="inline-code">b</code> 是 <code class="inline-code">Cat</code> 对象，不能向下转型为 <code class="inline-code">Dog</code>，会抛出 <code class="inline-code">ClassCastException</code></li>
+</ul>
+<hr></p><h3>3. 类型检查</h3><h4>3.1 使用 <code class="inline-code">instanceof</code> 操作符</h4><p>在进行向下转型之前，可以使用 <code class="inline-code">instanceof</code> 操作符检查类型是否匹配。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    void meow() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();</p><p>        if (a instanceof Dog) {
+            Dog d = (Dog) a;
+            d.bark(); // ✅ 可以访问
+        } else {
+            System.out.println(&quot;不是 Dog 对象&quot;);
+        }
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">instanceof</code> 操作符用于检查对象是否是某个类的实例</li>
+<li>如果类型匹配，可以安全地进行向下转型</li>
+</ul>
+<hr></p><h4>3.2 使用 <code class="inline-code">instanceof</code> 的好处</h4><ul><li><strong>避免 <code class="inline-code">ClassCastException</code></strong>：在进行向下转型之前检查类型</li>
+<li><strong>提高代码安全性</strong>：确保类型匹配</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Animal {
+    void makeSound() {
+        System.out.println(&quot;动物叫&quot;);
+    }
+}</p><p>class Dog extends Animal {
+    void bark() {
+        System.out.println(&quot;汪汪&quot;);
+    }
+}</p><p>class Cat extends Animal {
+    void meow() {
+        System.out.println(&quot;喵喵&quot;);
+    }
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();</p><p>        if (a instanceof Dog) {
+            Dog d = (Dog) a;
+            d.bark(); // ✅ 可以访问
+        } else if (a instanceof Cat) {
+            Cat c = (Cat) a;
+            c.meow(); // ✅ 可以访问
+        } else {
+            System.out.println(&quot;未知类型&quot;);
+        }
+    }
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li>使用 <code class="inline-code">instanceof</code> 检查类型</li>
+<li>根据类型选择相应的操作</li>
+</ul>
+<hr></p><h3>4. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>向上转型</strong></td><td>自动进行，只能访问父类中定义的方法</td></tr></table>
+<table><tr><td><strong>向下转型</strong></td><td>强制进行，需要显式转换，类型不匹配时抛出异常</td></tr></table>
+<table><tr><td><strong>类型检查</strong></td><td>使用 <code class="inline-code">instanceof</code> 操作符检查类型</td></tr></table><p>> <strong>类型转换 = 多态的灵活性与安全性的平衡</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在进行向下转型之前，使用 <code class="inline-code">instanceof</code> 检查类型
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式简化对象创建
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #多态 #类型转换 #向上转型 #向下转型 #instanceof</p></div>
+      </section>
+      <section class="section" id="section-10">
+        <h3>10. 57</h3>
+        <div class="topic-content"><h2>综合实战 - 支付模块</h2><p>本节通过实现一个<strong>支付模块</strong>，将类、对象、继承、多态等知识点融合在一起，帮助你巩固所学知识，并提升综合编程能力。</p><hr><h3>1. 案例目标</h3><p>编写程序，模拟一个支付系统，支持多种支付方式（如支付宝、微信、银行卡），并根据用户选择的支付方式调用相应的支付方法。</p><h4>1.1 功能需求</h4><ul><li>定义一个 <code class="inline-code">Payment</code> 抽象类，包含支付方法</li>
+<li>实现多个支付方式类（如 <code class="inline-code">Alipay</code>、<code class="inline-code">WeChatPay</code>、<code class="inline-code">BankCardPay</code>）</li>
+<li>根据用户输入选择支付方式</li>
+<li>调用相应的支付方法</li>
+</ul>
+<hr></p><h3>2. 实现步骤</h3><h4>2.1 定义 Payment 抽象类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">abstract class Payment {
+    protected double amount;</p><p>    public Payment(double amount) {
+        this.amount = amount;
+    }</p><p>    public abstract void pay();
+}</code></pre></div><h4>2.2 实现 Alipay 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Alipay extends Payment {
+    public Alipay(double amount) {
+        super(amount);
+    }</p><p>    @Override
+    public void pay() {
+        System.out.println(&quot;使用支付宝支付 &quot; + amount + &quot; 元&quot;);
+    }
+}</code></pre></div><h4>2.3 实现 WeChatPay 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class WeChatPay extends Payment {
+    public WeChatPay(double amount) {
+        super(amount);
+    }</p><p>    @Override
+    public void pay() {
+        System.out.println(&quot;使用微信支付 &quot; + amount + &quot; 元&quot;);
+    }
+}</code></pre></div><h4>2.4 实现 BankCardPay 类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class BankCardPay extends Payment {
+    public BankCardPay(double amount) {
+        super(amount);
+    }</p><p>    @Override
+    public void pay() {
+        System.out.println(&quot;使用银行卡支付 &quot; + amount + &quot; 元&quot;);
+    }
+}</code></pre></div><h4>2.5 主程序</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">import java.util.Scanner;</p><p>public class PaymentSystem {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);</p><p>        System.out.print(&quot;请输入支付金额: &quot;);
+        double amount = scanner.nextDouble();</p><p>        System.out.println(&quot;请选择支付方式:&quot;);
+        System.out.println(&quot;1. 支付宝&quot;);
+        System.out.println(&quot;2. 微信支付&quot;);
+        System.out.println(&quot;3. 银行卡支付&quot;);
+        System.out.print(&quot;请输入选择: &quot;);
+        int choice = scanner.nextInt();</p><p>        Payment payment = null;</p><p>        switch (choice) {
+            case 1:
+                payment = new Alipay(amount);
+                break;
+            case 2:
+                payment = new WeChatPay(amount);
+                break;
+            case 3:
+                payment = new BankCardPay(amount);
+                break;
+            default:
+                System.out.println(&quot;无效选择&quot;);
+                return;
+        }</p><p>        payment.pay(); // 调用支付方法
+        scanner.close();
+    }
+}</code></pre></div><hr><h3>3. 运行示例</h3><div class="code-block"><div class="code-header"><span class="lang-label">text</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-text">请输入支付金额: 100
+请选择支付方式:
+1. 支付宝
+2. 微信支付
+3. 银行卡支付
+请输入选择: 1
+使用支付宝支付 100.0 元</code></pre></div><hr><h3>4. 功能说明</h3><table><tr><td>功能</td><td>实现方式</td></tr></table><table><tr><td>定义 Payment 抽象类</td><td>使用 <code class="inline-code">abstract</code> 关键字</td></tr></table>
+<table><tr><td>实现支付方式类</td><td>继承 <code class="inline-code">Payment</code> 类</td></tr></table>
+<table><tr><td>用户选择支付方式</td><td>使用 <code class="inline-code">Scanner</code> 输入</td></tr></table>
+<table><tr><td>调用支付方法</td><td>使用多态，父类引用指向子类对象</td></tr></table><hr><h3>5. 扩展功能（可选）</h3><h4>5.1 添加支付成功提示</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class Alipay extends Payment {
+    public Alipay(double amount) {
+        super(amount);
+    }</p><p>    @Override
+    public void pay() {
+        System.out.println(&quot;使用支付宝支付 &quot; + amount + &quot; 元&quot;);
+        System.out.println(&quot;支付成功&quot;);
+    }
+}</code></pre></div><h4>5.2 添加支付失败提示</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">class BankCardPay extends Payment {
+    public BankCardPay(double amount) {
+        super(amount);
+    }</p><p>    @Override
+    public void pay() {
+        System.out.println(&quot;使用银行卡支付 &quot; + amount + &quot; 元&quot;);
+        System.out.println(&quot;支付失败，请检查银行卡余额&quot;);
+    }
+}</code></pre></div><hr><h3>6. 总结</h3><table><tr><td>技术点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">abstract</code></td><td>定义抽象类</td></tr></table>
+<table><tr><td>继承</td><td>实现支付方式类</td></tr></table>
+<table><tr><td>多态</td><td>父类引用指向子类对象</td></tr></table>
+<table><tr><td><code class="inline-code">Scanner</code></td><td>用户输入</td></tr></table><p>> <strong>综合案例 = 面向对象编程的全面应用</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用接口定义行为
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式简化对象创建
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟多态行为</p><p>#java基础 #支付模块 #综合实战 #多态 #继承 #抽象类</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter05.html" class="nav-prev">← 第5章</a>
+        <a href="chapter07.html" class="nav-next">第7章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 继承</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

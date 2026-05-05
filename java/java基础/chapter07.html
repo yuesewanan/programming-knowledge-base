@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Java 多态与高级特性 - 编程知识库">
+  <title>第7章: 多态与高级特性 · Java基础</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>编程知识库</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索Java知识点..." autocomplete="off">
+        <div class="search-dropdown" id="searchDropdown"></div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:85;"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">🏠 导航</div>
+      <a href="../../index.html" class="sidebar-link"><span class="icon">📖</span> 首页</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">☕ Java</div>
+      <a href="../java基础/" class="sidebar-link"><span class="icon">📚</span> Java 基础</a>
+      <a href="../java高级/" class="sidebar-link"><span class="icon">🚀</span> Java 高级</a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">📑 基础章节</div>
+      <a href="chapter01.html" class="sidebar-link"><span class="icon">🚀</span> 第1章 Java入门基础</a>
+      <a href="chapter02.html" class="sidebar-link"><span class="icon">🔢</span> 第2章 类型转换与运算符</a>
+      <a href="chapter03.html" class="sidebar-link"><span class="icon">🔄</span> 第3章 程序流程控制</a>
+      <a href="chapter04.html" class="sidebar-link"><span class="icon">📊</span> 第4章 数组</a>
+      <a href="chapter05.html" class="sidebar-link"><span class="icon">🎯</span> 第5章 面向对象编程</a>
+      <a href="chapter06.html" class="sidebar-link"><span class="icon">🧬</span> 第6章 继承</a>
+      <a href="chapter07.html" class="sidebar-link active"><span class="icon">⚡</span> 第7章 多态与高级特性</a>
+      <a href="chapter08.html" class="sidebar-link"><span class="icon">🔧</span> 第8章 抽象类与接口</a>
+      <a href="chapter09.html" class="sidebar-link"><span class="icon">💼</span> 第9章 综合项目实战</a>
+    </div>
+  </aside>
+  <div class="progress-bar"><div class="fill"></div></div>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-hero">
+        <div class="topic-badge" style="background: rgba(237,139,0,0.1); color: var(--color-java);">⚡ 第7章</div>
+        <h1>多态与高级特性</h1>
+        <p>Java基础教程 - 多态与高级特性</p>
+      </div>
+
+      <div class="toc">
+        <h3>📑 本章目录</h3>
+        <ul class="toc-list">
+          <li><a href="#section-1">1. 58</a></li>
+          <li><a href="#section-2">2. 59</a></li>
+          <li><a href="#section-3">3. 60</a></li>
+          <li><a href="#section-4">4. 61</a></li>
+        </ul>
+      </div>
+
+      <section class="section" id="section-1">
+        <h3>1. 58</h3>
+        <div class="topic-content"><h2>final 关键字 - 详解 Java 常量</h2><p>在 Java 中，<code class="inline-code">final</code> 是一个关键字，用于定义<strong>常量</strong>或<strong>不可变的变量</strong>。它确保变量的值在初始化后不能被修改，从而提高程序的安全性和可读性。</p><hr><h3>1. final 关键字的基本语法</h3><h4>1.1 定义常量</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final 数据类型 变量名 = 值;</code></pre></div><ul><li><code class="inline-code">final</code> 修饰的变量必须在声明时初始化</li>
+<li>初始化后，值不能被修改</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final int MAX_SIZE = 100;
+final double PI = 3.14159;
+final String NAME = &quot;张三&quot;;</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">MAX_SIZE</code> 是一个常量，值为 100</li>
+<li><code class="inline-code">PI</code> 是一个常量，值为 3.14159</li>
+<li><code class="inline-code">NAME</code> 是一个常量，值为 "张三"</li>
+</ul>
+<hr></p><h3>2. final 的应用场景</h3><h4>2.1 定义常量</h4><ul><li>用于定义程序中不会改变的值</li>
+<li>提高代码的可读性和安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Constants {
+    public static final int MAX_USERS = 1000;
+    public static final double TAX_RATE = 0.05;
+    public static final String DEFAULT_NAME = &quot;匿名用户&quot;;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">MAX_USERS</code>：最大用户数</li>
+<li><code class="inline-code">TAX_RATE</code>：税率</li>
+<li><code class="inline-code">DEFAULT_NAME</code>：默认用户名</li>
+</ul>
+<hr></p><h4>2.2 定义方法参数</h4><ul><li><code class="inline-code">final</code> 修饰的方法参数表示参数在方法体内不能被修改</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void printName(final String name) {
+    // name = &quot;李四&quot;; // ❌ 编译错误：不能修改 final 参数
+    System.out.println(name);
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">name</code> 是 <code class="inline-code">final</code> 参数，不能在方法体内修改</li>
+<li>提高方法的安全性</li>
+</ul>
+<hr></p><h4>2.3 定义局部变量</h4><ul><li><code class="inline-code">final</code> 修饰的局部变量表示变量在初始化后不能被修改</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void calculate() {
+    final int x = 10;
+    // x = 20; // ❌ 编译错误：不能修改 final 局部变量
+    System.out.println(x);
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">x</code> 是 <code class="inline-code">final</code> 局部变量，值为 10</li>
+<li>不能在方法体内修改 <code class="inline-code">x</code> 的值</li>
+</ul>
+<hr></p><h3>3. final 的注意事项</h3><h4>3.1 final 变量必须初始化</h4><ul><li><code class="inline-code">final</code> 修饰的变量必须在声明时初始化</li>
+<li>否则会编译错误</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final int x; // ❌ 编译错误：必须初始化</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">final</code> 变量必须在声明时初始化</li>
+<li>否则会编译错误</li>
+</ul>
+<hr></p><h4>3.2 final 变量的值不能被修改</h4><ul><li><code class="inline-code">final</code> 修饰的变量值不能被修改</li>
+<li>否则会编译错误</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final int x = 10;
+x = 20; // ❌ 编译错误：不能修改 final 变量</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">x</code> 是 <code class="inline-code">final</code> 变量，值为 10</li>
+<li>不能在方法体内修改 <code class="inline-code">x</code> 的值</li>
+</ul>
+<hr></p><h4>3.3 final 修饰的引用类型</h4><ul><li><code class="inline-code">final</code> 修饰的引用类型表示引用不能被修改</li>
+<li>但引用指向的对象可以被修改</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">final List&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add(&quot;张三&quot;); // ✅ 可以修改 list 的内容
+list = new ArrayList&lt;&gt;(); // ❌ 编译错误：不能修改 final 引用</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">list</code> 是 <code class="inline-code">final</code> 引用，不能指向其他对象</li>
+<li>但 <code class="inline-code">list</code> 指向的对象可以被修改</li>
+</ul>
+<hr></p><h3>4. final 的最佳实践</h3><h4>4.1 使用 final 定义常量</h4><ul><li>优先使用 <code class="inline-code">final</code> 定义常量</li>
+<li>提高代码的可读性和安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Constants {
+    public static final int MAX_USERS = 1000;
+    public static final double TAX_RATE = 0.05;
+    public static final String DEFAULT_NAME = &quot;匿名用户&quot;;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">MAX_USERS</code>：最大用户数</li>
+<li><code class="inline-code">TAX_RATE</code>：税率</li>
+<li><code class="inline-code">DEFAULT_NAME</code>：默认用户名</li>
+</ul>
+<hr></p><h4>4.2 使用 final 修饰方法参数</h4><ul><li>优先使用 <code class="inline-code">final</code> 修饰方法参数</li>
+<li>提高方法的安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void printName(final String name) {
+    System.out.println(name);
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">name</code> 是 <code class="inline-code">final</code> 参数，不能在方法体内修改</li>
+<li>提高方法的安全性</li>
+</ul>
+<hr></p><h4>4.3 使用 final 修饰局部变量</h4><ul><li>优先使用 <code class="inline-code">final</code> 修饰局部变量</li>
+<li>提高代码的可读性和安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public void calculate() {
+    final int x = 10;
+    System.out.println(x);
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">x</code> 是 <code class="inline-code">final</code> 局部变量，值为 10</li>
+<li>不能在方法体内修改 <code class="inline-code">x</code> 的值</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><code class="inline-code">final</code></td><td>定义常量或不可变的变量</td></tr></table>
+<table><tr><td>必须初始化</td><td><code class="inline-code">final</code> 变量必须在声明时初始化</td></tr></table>
+<table><tr><td>值不能被修改</td><td><code class="inline-code">final</code> 修饰的变量值不能被修改</td></tr></table>
+<table><tr><td>引用不能被修改</td><td><code class="inline-code">final</code> 修饰的引用不能指向其他对象</td></tr></table><p>> <strong>final = 不可变性的保证</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用 <code class="inline-code">final</code> 定义常量
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式简化对象创建
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟 final 行为</p><p>#java基础 #final #常量 #不可变性 #代码安全</p></div>
+      </section>
+      <section class="section" id="section-2">
+        <h3>2. 59</h3>
+        <div class="topic-content"><h2>单例设计模式 - 懒汉式单例与饿汉式单例</h2><p>在 Java 中，<strong>单例设计模式（Singleton Pattern）</strong> 是一种创建型设计模式，它确保一个类只有一个实例，并提供一个全局访问点。单例模式常用于管理共享资源，如数据库连接池、日志对象、配置管理等。</p><hr><h3>1. 单例模式的基本要求</h3><ul><li><strong>构造函数私有化</strong>：防止外部直接创建实例</li>
+<li><strong>提供全局访问点</strong>：通过静态方法获取实例</li>
+<li><strong>线程安全</strong>：在多线程环境下，确保只有一个实例</li>
+</ul>
+<hr></p><h3>2. 饿汉式单例（Eager Initialization）</h3><h4>2.1 定义</h4><p>饿汉式单例在类加载时就创建实例，因此它是线程安全的，但可能会浪费内存。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class EagerSingleton {
+    // 饿汉式：在类加载时创建实例
+    private static final EagerSingleton instance = new EagerSingleton();</p><p>    // 私有构造函数
+    private EagerSingleton() {}</p><p>    // 提供全局访问点
+    public static EagerSingleton getInstance() {
+        return instance;
+    }
+}</code></pre></div><h4>2.2 特点</h4><ul><li><strong>线程安全</strong>：在类加载时创建实例，无需同步</li>
+<li><strong>内存浪费</strong>：即使不使用，也会创建实例</li>
+<li><strong>立即加载</strong>：类加载时就创建实例</li>
+</ul>
+<hr></p><h3>3. 懒汉式单例（Lazy Initialization）</h3><h4>3.1 定义</h4><p>懒汉式单例在第一次调用 <code class="inline-code">getInstance()</code> 方法时才创建实例，因此它节省了内存，但需要考虑线程安全问题。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class LazySingleton {
+    // 懒汉式：在第一次调用时创建实例
+    private static LazySingleton instance;</p><p>    // 私有构造函数
+    private LazySingleton() {}</p><p>    // 提供全局访问点
+    public static LazySingleton getInstance() {
+        if (instance == null) {
+            instance = new LazySingleton();
+        }
+        return instance;
+    }
+}</code></pre></div><h4>3.2 特点</h4><ul><li><strong>内存节省</strong>：只有在需要时才创建实例</li>
+<li><strong>线程安全问题</strong>：在多线程环境下，可能创建多个实例</li>
+<li><strong>延迟加载</strong>：只有在需要时才创建实例</li>
+</ul>
+<hr></p><h3>4. 懒汉式单例的线程安全问题</h3><h4>4.1 问题描述</h4><p>在多线程环境下，多个线程可能同时进入 <code class="inline-code">getInstance()</code> 方法，导致创建多个实例。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class LazySingleton {
+    private static LazySingleton instance;</p><p>    private LazySingleton() {}</p><p>    public static LazySingleton getInstance() {
+        if (instance == null) {
+            instance = new LazySingleton(); // 可能创建多个实例
+        }
+        return instance;
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>多个线程可能同时进入 <code class="inline-code">if (instance == null)</code> 判断</li>
+<li>导致创建多个实例</li>
+</ul>
+<hr></p><h4>4.2 解决方案</h4><p>#### 4.2.1 使用 <code class="inline-code">synchronized</code> 关键字</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class LazySingleton {
+    private static LazySingleton instance;</p><p>    private LazySingleton() {}</p><p>    public static synchronized LazySingleton getInstance() {
+        if (instance == null) {
+            instance = new LazySingleton();
+        }
+        return instance;
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">synchronized</code> 关键字确保线程安全</li>
+<li>但性能较差，因为每次调用都会同步</li>
+</ul>
+#### 4.2.2 使用双重检查锁定（Double-Checked Locking）</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class LazySingleton {
+    private static volatile LazySingleton instance;</p><p>    private LazySingleton() {}</p><p>    public static LazySingleton getInstance() {
+        if (instance == null) {
+            synchronized (LazySingleton.class) {
+                if (instance == null) {
+                    instance = new LazySingleton();
+                }
+            }
+        }
+        return instance;
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">volatile</code> 关键字确保可见性和有序性</li>
+<li>双重检查锁定提高性能</li>
+</ul>
+<hr></p><h3>5. 饿汉式 vs 懒汉式</h3><table><tr><td>特性</td><td>饿汉式</td><td>懒汉式</td></tr></table><table><tr><td><strong>实例创建时机</strong></td><td>类加载时</td><td>第一次调用时</td></tr></table>
+<table><tr><td><strong>内存使用</strong></td><td>可能浪费内存</td><td>节省内存</td></tr></table>
+<table><tr><td><strong>线程安全</strong></td><td>线程安全</td><td>需要同步</td></tr></table>
+<table><tr><td><strong>性能</strong></td><td>高</td><td>低（同步开销）</td></tr></table>
+<table><tr><td><strong>适用场景</strong></td><td>实例创建成本高</td><td>实例创建成本低</td></tr></table><hr><h3>6. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>单例模式</strong></td><td>确保一个类只有一个实例</td></tr></table>
+<table><tr><td><strong>饿汉式</strong></td><td>类加载时创建实例，线程安全</td></tr></table>
+<table><tr><td><strong>懒汉式</strong></td><td>第一次调用时创建实例，需要同步</td></tr></table>
+<table><tr><td><strong>线程安全</strong></td><td>饿汉式天然线程安全，懒汉式需要同步</td></tr></table><p>> <strong>单例模式 = 全局唯一实例的保证</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用饿汉式单例
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟单例行为</p><p>#java基础 #单例模式 #饿汉式 #懒汉式 #线程安全</p></div>
+      </section>
+      <section class="section" id="section-3">
+        <h3>3. 60</h3>
+        <div class="topic-content"><h2>枚举 - 认识枚举类</h2><p>在 Java 中，<strong>枚举（Enum）</strong> 是一种特殊的数据类型，用于定义一组固定的常量。枚举类是 Java 5 引入的一种特殊类，它继承自 <code class="inline-code">java.lang.Enum</code>，并提供了类型安全的常量定义方式。</p><hr><h3>1. 枚举的基本语法</h3><h4>1.1 定义枚举类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED, GREEN, BLUE;
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">enum</code> 关键字用于定义枚举类</li>
+<li>枚举常量用逗号分隔</li>
+<li>枚举类默认继承自 <code class="inline-code">java.lang.Enum</code></li>
+</ul>
+<hr></p><h4>1.2 使用枚举类</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        Color color = Color.RED;
+        System.out.println(color); // 输出: RED
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Color.RED</code> 是枚举常量</li>
+<li>枚举常量是 <code class="inline-code">Color</code> 类型的实例</li>
+</ul>
+<hr></p><h3>2. 枚举的特点</h3><h4>2.1 类型安全</h4><p>枚举类提供了类型安全的常量定义方式，避免了使用字符串或整数定义常量的错误。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Status {
+    ACTIVE, INACTIVE, PENDING;
+}</p><p>public class Main {
+    public static void main(String[] args) {
+        Status status = Status.ACTIVE;
+        System.out.println(status); // 输出: ACTIVE
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Status.ACTIVE</code> 是 <code class="inline-code">Status</code> 类型的实例</li>
+<li>避免了使用字符串或整数定义常量的错误</li>
+</ul>
+<hr></p><h4>2.2 唯一性</h4><p>枚举常量是唯一的，不能重复。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED, GREEN, BLUE;
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Color.RED</code> 是唯一的</li>
+<li>不能重复定义 <code class="inline-code">RED</code></li>
+</ul>
+<hr></p><h4>2.3 可以添加方法和字段</h4><p>枚举类可以像普通类一样添加方法和字段。</p><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED(&quot;红色&quot;), GREEN(&quot;绿色&quot;), BLUE(&quot;蓝色&quot;);</p><p>    private String description;</p><p>    Color(String description) {
+        this.description = description;
+    }</p><p>    public String getDescription() {
+        return description;
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>枚举类可以有构造函数</li>
+<li>枚举类可以有方法和字段</li>
+</ul>
+<hr></p><h3>3. 枚举的应用场景</h3><h4>3.1 定义常量</h4><ul><li>用于定义一组固定的常量</li>
+<li>提高代码的可读性和安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Weekday {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Weekday.MONDAY</code> 是 <code class="inline-code">Weekday</code> 类型的实例</li>
+<li>用于表示一周中的某一天</li>
+</ul>
+<hr></p><h4>3.2 状态管理</h4><ul><li>用于管理对象的状态</li>
+<li>提高代码的可读性和安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum OrderStatus {
+    PENDING, SHIPPED, DELIVERED, CANCELLED;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">OrderStatus.PENDING</code> 是 <code class="inline-code">OrderStatus</code> 类型的实例</li>
+<li>用于表示订单的状态</li>
+</ul>
+<hr></p><h4>3.3 配置管理</h4><ul><li>用于管理配置项</li>
+<li>提高代码的可读性和安全性</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum DatabaseType {
+    MYSQL, POSTGRESQL, ORACLE;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">DatabaseType.MYSQL</code> 是 <code class="inline-code">DatabaseType</code> 类型的实例</li>
+<li>用于表示数据库类型</li>
+</ul>
+<hr></p><h3>4. 枚举的注意事项</h3><h4>4.1 枚举常量是唯一的</h4><ul><li>枚举常量是唯一的，不能重复</li>
+<li>枚举常量是 <code class="inline-code">Enum</code> 类型的实例</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED, GREEN, BLUE;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Color.RED</code> 是唯一的</li>
+<li>不能重复定义 <code class="inline-code">RED</code></li>
+</ul>
+<hr></p><h4>4.2 枚举类不能继承</h4><ul><li>枚举类不能继承其他类</li>
+<li>枚举类默认继承自 <code class="inline-code">java.lang.Enum</code></li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED, GREEN, BLUE;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li>枚举类不能继承其他类</li>
+<li>枚举类默认继承自 <code class="inline-code">java.lang.Enum</code></li>
+</ul>
+<hr></p><h4>4.3 枚举类不能被实例化</h4><ul><li>枚举类不能通过 <code class="inline-code">new</code> 关键字实例化</li>
+<li>枚举常量是 <code class="inline-code">Enum</code> 类型的实例</li>
+</ul>
+<div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED, GREEN, BLUE;
+}</code></pre></div></p><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Color.RED</code> 是 <code class="inline-code">Color</code> 类型的实例</li>
+<li>不能通过 <code class="inline-code">new Color()</code> 实例化</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>特点</td><td>说明</td></tr></table><table><tr><td><strong>枚举</strong></td><td>定义一组固定的常量</td></tr></table>
+<table><tr><td><strong>类型安全</strong></td><td>提供类型安全的常量定义方式</td></tr></table>
+<table><tr><td><strong>唯一性</strong></td><td>枚举常量是唯一的</td></tr></table>
+<table><tr><td><strong>可扩展性</strong></td><td>枚举类可以添加方法和字段</td></tr></table><p>> <strong>枚举 = 类型安全的常量定义</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用枚举定义常量
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟枚举行为</p><p>#java基础 #枚举 #类型安全 #常量定义</p></div>
+      </section>
+      <section class="section" id="section-4">
+        <h3>4. 61</h3>
+        <div class="topic-content"><h2>枚举 - 应用场景</h2><p>在 Java 中，<strong>枚举（Enum）</strong> 是一种特殊的数据类型，用于定义一组固定的常量。枚举类是 Java 5 引入的一种特殊类，它继承自 <code class="inline-code">java.lang.Enum</code>，并提供了类型安全的常量定义方式。本节将详细介绍枚举的应用场景。</p><hr><h3>1. 定义常量</h3><h4>1.1 优点</h4><ul><li><strong>类型安全</strong>：避免了使用字符串或整数定义常量的错误</li>
+<li><strong>可读性</strong>：代码更加清晰易懂</li>
+<li><strong>维护性</strong>：常量集中管理，便于维护</li>
+</ul>
+<h4>1.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Weekday {
+    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">Weekday.MONDAY</code> 是 <code class="inline-code">Weekday</code> 类型的实例</li>
+<li>用于表示一周中的某一天</li>
+</ul>
+<hr></p><h3>2. 状态管理</h3><h4>2.1 优点</h4><ul><li><strong>类型安全</strong>：避免了使用字符串或整数定义状态的错误</li>
+<li><strong>可读性</strong>：代码更加清晰易懂</li>
+<li><strong>维护性</strong>：状态集中管理，便于维护</li>
+</ul>
+<h4>2.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum OrderStatus {
+    PENDING, SHIPPED, DELIVERED, CANCELLED;
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">OrderStatus.PENDING</code> 是 <code class="inline-code">OrderStatus</code> 类型的实例</li>
+<li>用于表示订单的状态</li>
+</ul>
+<hr></p><h3>3. 配置管理</h3><h4>3.1 优点</h4><ul><li><strong>类型安全</strong>：避免了使用字符串或整数定义配置项的错误</li>
+<li><strong>可读性</strong>：代码更加清晰易懂</li>
+<li><strong>维护性</strong>：配置项集中管理，便于维护</li>
+</ul>
+<h4>3.2 示例</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum DatabaseType {
+    MYSQL, POSTGRESQL, ORACLE;
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li><code class="inline-code">DatabaseType.MYSQL</code> 是 <code class="inline-code">DatabaseType</code> 类型的实例</li>
+<li>用于表示数据库类型</li>
+</ul>
+<hr></p><h3>4. 枚举的高级特性</h3><h4>4.1 枚举类可以添加方法和字段</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public enum Color {
+    RED(&quot;红色&quot;), GREEN(&quot;绿色&quot;), BLUE(&quot;蓝色&quot;);</p><p>    private String description;</p><p>    Color(String description) {
+        this.description = description;
+    }</p><p>    public String getDescription() {
+        return description;
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>枚举类可以有构造函数</li>
+<li>枚举类可以有方法和字段</li>
+</ul>
+<hr></p><h4>4.2 枚举类可以实现接口</h4><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">public interface Drawable {
+    void draw();
+}</p><p>public enum Shape implements Drawable {
+    CIRCLE, SQUARE, TRIANGLE;</p><p>    @Override
+    public void draw() {
+        System.out.println(&quot;绘制 &quot; + this.name());
+    }
+}</code></pre></div><p>> <strong>说明</strong>：
+<ul><li>枚举类可以实现接口</li>
+<li>枚举类可以有方法和字段</li>
+</ul>
+<hr></p><h3>5. 总结</h3><table><tr><td>应用场景</td><td>说明</td></tr></table><table><tr><td><strong>定义常量</strong></td><td>用于定义一组固定的常量</td></tr></table>
+<table><tr><td><strong>状态管理</strong></td><td>用于管理对象的状态</td></tr></table>
+<table><tr><td><strong>配置管理</strong></td><td>用于管理配置项</td></tr></table>
+<table><tr><td><strong>高级特性</strong></td><td>枚举类可以添加方法和字段，实现接口</td></tr></table><p>> <strong>枚举 = 类型安全的常量定义</strong></p><hr><p>> 💡 <strong>建议</strong>：  
+> - 在实际项目中，优先使用枚举定义常量
+> - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式
+> - 在测试中，使用 <code class="inline-code">Mockito</code> 模拟枚举行为</p><p>#java基础 #枚举 #常量定义 #状态管理 #配置管理</p></div>
+      </section>
+
+      <div class="page-nav">
+        <a href="chapter06.html" class="nav-prev">← 第6章</a>
+        <a href="chapter08.html" class="nav-next">第8章 →</a>
+      </div>
+      <footer class="footer">
+        <p>💻 编程知识库 · Java 基础 - 多态与高级特性</p>
+      </footer>
+    </div>
+  </main>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
