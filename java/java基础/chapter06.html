@@ -68,7 +68,7 @@
           <li><a href="#section-3">3. 继承后的特点</a></li>
           <li><a href="#section-4">4. 继承 - 方法重写 - 应用场景：toString() 方法</a></li>
           <li><a href="#section-5">5. 继承 - 子类构造器的特点与应用场景</a></li>
-          <li><a href="#section-6">6. 6. 53</a></li>
+          <li><a href="#section-6">6. 继承 - 构造器用 this() 调用兄弟构造器</a></li>
           <li><a href="#section-7">7. 多态 - 认识多态</a></li>
           <li><a href="#section-8">8. 多态 - 多态的好处和存在的问题</a></li>
           <li><a href="#section-9">9. 多态 - 多态下的类型转换问题</a></li>
@@ -622,7 +622,7 @@ Dog 构造器执行</code></pre></div></p><hr><h4>2.3 使用 <code class="inline
 > - 在复杂逻辑中，考虑使用 <code class="inline-code">Builder</code> 模式简化对象创建</p><p>#java基础 #继承 #构造器 #子类构造器 #构造器调用 #初始化对象</p></div>
       </section>
       <section class="section" id="section-6">
-        <h3>6. 53</h3>
+        <h3>继承 - 构造器用 this() 调用兄弟构造器</h3>
         <div class="topic-content"><h2>继承 - 构造器用 <code class="inline-code">this()</code> 调用兄弟构造器</h2><p>在 Java 中，<code class="inline-code">this()</code> 是一个特殊的语法，用于在同一个类中调用其他构造器。它通常用于<strong>构造器重载</strong>，避免重复代码。当一个类有多个构造器时，可以使用 <code class="inline-code">this()</code> 在一个构造器中调用另一个构造器，从而实现代码复用。</p><hr><h3>1. <code class="inline-code">this()</code> 的基本语法</h3><div class="code-block"><div class="code-header"><span class="lang-label">java</span><button class="copy-btn">📋 复制</button></div><pre><code class="language-java">this(参数列表);</code></pre></div><ul><li><code class="inline-code">this()</code> 必须是构造器的第一条语句</li>
 <li><code class="inline-code">this()</code> 用于调用本类中的其他构造器</li>
 <li><code class="inline-code">this()</code> 不能在 <code class="inline-code">static</code> 方法或 <code class="inline-code">static</code> 块中使用</li>
